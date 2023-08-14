@@ -16,4 +16,4 @@ I have a deep passion for staying up-to-date with the latest developments and tr
 
 I have created numerous demonstration scripts for HPE GreenLake, HPE OneView, HPE Synergy, and other related technologies. 
 
-These scripts are available on my [GitHub repository]() for public access.
+These scripts are available on my [GitHub repository](https://github.com/jullienl) for public access.
