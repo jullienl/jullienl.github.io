@@ -1,1 +1,1 @@
-This is the repository of my blog on DevOps for HPE products and solutions 
+This is the repository for my blog on DevOps for HPE products and solutions. 
