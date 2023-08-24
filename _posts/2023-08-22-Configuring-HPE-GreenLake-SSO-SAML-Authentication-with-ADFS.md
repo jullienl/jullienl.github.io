@@ -194,7 +194,7 @@ So if you are not connected to HPE GreenLake with an email from your SAML domain
 >
 > Then click on **Send Invite**. This will send an email invitation to the mailbox of your AD user. 
 > 
-> ![]( {{ site.baseurl }}/assets/images/AD-ADFS-12.png){:class="citation-image-post"}{:height="400px"}
+> ![]( {{ site.baseurl }}/assets/images/AD-ADFS-12.png ){:class="body-image-post"}{:width="50%"}
 >
 > Accept the invitation by clicking on the **Accept invitation** button and complete the HPE GreenLake registration.
 
@@ -273,9 +273,9 @@ In the results page, you might have a few warnings. You can then close the wizar
 
 > **Note**: If you get an SPN error message, you can run the following command from a PowerShell console:    
 ```bash
-setspn -a host/localhost <service account>
+setspn -a host/localhost <service-account>
 ```    
-> where **\<service account\>** corresponds to **adfssvc** in our case. 
+> where *\<service-account\>* corresponds to **adfssvc** in our case. 
 
 AD FS service should be running now, make sure the status is *online* in the Server Manager console:
 
@@ -297,7 +297,7 @@ By default ADFS is not configured for RelayState, a parameter of the SAML federa
 
 > If you don't enable RelayState and don't use the special encoded url with *RelayState*, you will get the following error from HPE GreenLake when using the iDP-initiated SSO:   
 > 
-> ![]( {{ site.baseurl }}/assets/images/AD-ADFS-25-1.png){:class="body-image-post"}{:height="300px"}
+> ![]( {{ site.baseurl }}/assets/images/AD-ADFS-25-1.png){:class="body-image-post"}{:width="50%"}
 
 
 There are two steps to this configuration:
@@ -317,18 +317,24 @@ There are two steps to this configuration:
 
 2. Building the URL required at the ADFS sign on page:
 	
-   In addition, RelayState requires a encoded URL for the iDP-initiated login. To generate this encoded URL, you can use an ADFS RelayState generator tool such as [https://jackstromberg.com/adfs-relay-state-generator/](https://jackstromberg.com/adfs-relay-state-generator/). 
+   In addition, RelayState requires an encoded URL for the iDP-initiated login. To generate this encoded URL, you can use an ADFS RelayState generator tool such as [https://jackstromberg.com/adfs-relay-state-generator/](https://jackstromberg.com/adfs-relay-state-generator/) using the following URLs:
+   - *IDP URL String*: **https://\<FQDN\>/adfs/ls/IdPInitiatedSignon.aspx** with *\<FQDN\>* the fully qualified domain name (FQDN) host name of your ADFS server.
+ <br/>
 
-   You can use the following URLs:
-   - IDP URL String: **https://\<FQDN\>/adfs/ls/IdPInitiatedSignon.aspx** with \<FQDN\> the fully qualified domain name (FQDN) host name of your ADFS server.
-   - Relying Party Identifier: **https://sso.common.cloud.hpe.com**
-   - For Relay State, you can use different URL depending on your needs:   
-       - If you want to get to the HPE GreenLake home page, you can use: **https://common.cloud.hpe.com**
-       - If you want to get to an application instance such as Compute Ops Management US-West home page, you can use **https://us-west2.compute.cloud.hpe.com** but this is not recommended if you have more than one application on the HPE GreenLake platform.     
-           
-   > If you use "Compute Ops Management" as the RelayState, after logging on, you will be redirected to the home page of Compute Ops Management.
+   - *Relying Party Identifier*: **https://sso.common.cloud.hpe.com**
+ <br/>
+  
+   - For *Relay State*, you can use different URL depending on your needs:   
+       - **https://common.cloud.hpe.com** if you want to get to the HPE GreenLake home page.
+       - Any HPE GreenLake application such as **https://us-west2.compute.cloud.hpe.com** if you want for example get to the US-West Compute Ops Management home page.
+ <br/>
+ <br/>
+
+   > **Note**: If you use **https://us-west2.compute.cloud.hpe.com** as the RelayState, after logging on, you will be redirected to the home page of Compute Ops Management.
+   >
+   > **Note**: It is not recommended to use an application RelayState if you have more than one application on the HPE GreenLake platform.     
     
-   ![]( {{ site.baseurl }}/assets/images/AD-ADFS-25-2.png){:class="body-image-post"}{:height="500px"}
+   ![]( {{ site.baseurl }}/assets/images/AD-ADFS-25-2.png){:class="body-image-post"}{:width="80%"}
 
    Your encoded URL will then look like:     
 	```
@@ -343,7 +349,7 @@ There are two steps to this configuration:
 
 Now it's time to configure your HPE GreenLake environment for SAML SSO authentication. Log in to the HPE GreenLake platform using your AD administrative user account (i.e. lionel@\<your_domain_name.com\> created above).
 
-![]( {{ site.baseurl }}/assets/images/AD-GLCP-1.png){:class="body-image-post"}{:height="300px"}
+![]( {{ site.baseurl }}/assets/images/AD-GLCP-1.png){:class="body-image-post"}{:width="50%"}
 
 Then go to **Manage** / **Authentication**
 
@@ -590,15 +596,15 @@ version_1#{workspace_id_1}:{application_id_1}:{role_name}:{resource_restriction_
 
 To substitute your own custom value for `{workspace_id}` and `{application_id}`, refer to your workspace IDs and application IDs previously recorded in step 8 on the HPE GreenLake platform. 
 
-Then for `{role_name}` and `{resource_restriction_policy_name}`:
+Then for:
 
-- `{Role_name}` is found in the HPE GreenLake interface in **Manage** / **Identity & Access** / **Roles & Permissions**.
+- `{Role_name}`: found in the HPE GreenLake interface in **Manage** / **Identity & Access** / **Roles & Permissions**.
   
   ![]( {{ site.baseurl }}/assets/images/AD-ADFS-44-1.png){:class="body-image-post"}
 
   As illustrated above, the administrative role name for Compute Ops Management is *Administrator* but *Account Administrator* for the HPE GreenLake platform.
 
-- `{resource_restriction_policy_name}` is found in **Manage** / **Identity & Access** / **Resource Restriction Policies**.
+- `{resource_restriction_policy_name}`: found in **Manage** / **Identity & Access** / **Resource Restriction Policies**.
   
   ![]( {{ site.baseurl }}/assets/images/AD-ADFS-44-2.png){:class="body-image-post"}
 
@@ -715,13 +721,13 @@ This test consists of testing the authentication initiated by the Service provid
 
 Open a web browser, and go to the HPE GreenLake interface at [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/) and click the **Sign in with SSO** button:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS-53.png){:class="body-image-post"}{:height="500px"}
+![]( {{ site.baseurl }}/assets/images/AD-ADFS-53.png){:class="body-image-post"}{:width="60%"}
 
 ### Test authentication with an AD administrator user
 
 To test an AD user with administrative role, provide the Active Directory e-mail address of the admin user created at step 3 in our example (i.e. lionel) then click **Next**:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS-54.png){:class="body-image-post"}{:height="500px"}
+![]( {{ site.baseurl }}/assets/images/AD-ADFS-54.png){:class="body-image-post"}{:width="60%"}
 
 The ADFS sign on page opens, enter the Active Directory user credentials and click **Sign in**:
 
@@ -756,7 +762,7 @@ And to also disconnect from HPE GreenLake in the ADFS sign on page at [https://\
 Once you've logged out from both, you can click on the **Sign in with SSO** button again and provide the Active Directory e-mail address of the observer user created at step 3 in our example (i.e. mike) then click **Next**:
 
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS-60.png){:class="body-image-post"}{:height="500px"}
+![]( {{ site.baseurl }}/assets/images/AD-ADFS-60.png){:class="body-image-post"}{:width="60%"}
 
 The ADFS sign on page opens again, enter this time the Active Directory observer user credentials and click **Sign in**:
 
@@ -772,7 +778,7 @@ And check that you have observer rights in **Manage** / **Identity & Access** / 
 >
 > You can click on **Limited Access** to obtain the name of the resource restriction policy used:
 >
-> ![]( {{ site.baseurl }}/assets/images/AD-ADFS-64.png){:class="body-image-post"}{:height="300px"}
+> ![]( {{ site.baseurl }}/assets/images/AD-ADFS-64.png){:class="body-image-post"}{:width="50%"}
 
 <a name="iDPInitiatedtest"></a>
 
