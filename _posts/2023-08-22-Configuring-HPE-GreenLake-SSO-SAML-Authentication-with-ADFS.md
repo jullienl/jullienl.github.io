@@ -1,10 +1,10 @@
 ---
 layout: post
 title:  "Configuring HPE GreenLake SSO SAML Authentication with ADFS"
-date:   2023-08-22 18:42:45 +0200
 categories: GreenLake
 image: /assets/images/idp.jpg
 excerpt: The goal of this post is to walk you through the steps required to configure ADFS as a SAML identity provider (IdP) for HPE GreenLake
+tags: sso saml greenlake adfs idp
 ---
 
 **Contents**   
@@ -27,6 +27,7 @@ excerpt: The goal of this post is to walk you through the steps required to conf
 [Testing step 2: SP-Initiated test authentication](#SPInitiatedtest)   
 [Testing step 3: iDP-Initiated test authentication](#iDPInitiatedtest)   
 [Troubleshooting SAML connectivity errors](#troubleshooting)   
+ <br/>
 
 
 # Introduction

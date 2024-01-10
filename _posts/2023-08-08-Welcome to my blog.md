@@ -1,8 +1,7 @@
 ---
 layout: post
 title:  "Welcome to my blog!"
-date:   2023-08-08 09:31:45 +0200
-categories: GreenLake
+categories: Blog
 excerpt:  I have decided to create a blog on DevOps for HPE products and solutions...
 ---
 
