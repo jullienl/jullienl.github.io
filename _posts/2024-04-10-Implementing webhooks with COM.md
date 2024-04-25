@@ -2,7 +2,7 @@
 layout: post
 title: "Automating IT Operations with Compute Ops Management Webhooks"
 categories: Compute Ops Management
-image: /assets/images/COM-webhooks/Webhooks-Title.jpg
+image: /assets/images/COM-Webhooks/Webhooks-Title.jpg
 excerpt: Harnessing the Power of Webhooks for Real-Time Event Handling
 tags: GreenLake COM Ansible 
 mermaid: true
