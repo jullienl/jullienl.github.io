@@ -8,16 +8,36 @@ tags: GreenLake COM Ansible
 mermaid: true
 ---
 
+**Contents**   
+[What are webhooks?](#Step1)  
+[The magic of automation](#Step2)  
+[Available resources in Compute Ops Management](#Step3)  
+[Filtering options](#Step4)   
+[New and Old](#Step5)   
+[OData style filters](#Step6)   
+[Filter examples](#Step7)   
+[Secure handshake mechanism](#Step8)   
+[Integrating COM webhooks with automation tools](#Step9)   
+[Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide](#Step10)   
+[Using the Make On-premise agent](#Step11)   
+[Taking automation a step further?](#Step12)   
+
+<br>
+
+
 In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with Compute Ops Management.
 
 Imagine having a high-powered alert system not just sounding alarms but also triggering action in real-time. That's exactly what webhooks do! They're like digital workhorses, tirelessly communicating between applications and kicking off automated workflows with precision.
 
 Now, let's peel back the layers to discover how this impacts organizations like yours.
 
+<a name="Step1"></a>
 
 ## What are webhooks?
 
 At their core, webhooks are automated messages sent from apps when something happens. They're a way for apps to communicate and pass information along instantly, setting off a chain reaction of tasks without the need for manual intervention.
+
+<a name="Step2"></a>
 
 ## The magic of automation
 
@@ -77,6 +97,9 @@ Upon receiving the POST request, the destination application at the webhook URL 
 After the event has been processed according to the instructions laid out in the event handler, the loop comes to a close. The workflow ends until a new event is triggered, and the process starts all over again.
 
 
+
+<a name="Step3"></a>
+
 ## Available resources in Compute Ops Management
 
 The concept of available resources in the context of webhooks refers to the different types of events or actions within an application or service that a webhook can be configured to listen for. With Compute Ops Management, you can be set up webhooks to monitor a large range of event resources such as servers, alerts, groups, server settings, jobs, compliance checks, and firmware bundles. 
@@ -135,6 +158,8 @@ For each resource, certain specific properties are capable of initiating the dis
 
  > More information about these monitorable properties can be found in the related API documentation which is linked in this table.
 
+
+<a name="Step4"></a>
 
 ## Filtering options
 
@@ -217,6 +242,8 @@ The specifics of these filter attributes are described in the following table:
 </tbody>
 </table>
 
+<a name="Step5"></a>
+
 ### New and Old
 
 `new` and `old` can be employed to determine when to trigger webhooks based on changes in data. These filters can be used to monitor for specific updates or modifications that occur.
@@ -224,6 +251,8 @@ The specifics of these filter attributes are described in the following table:
 When an event occurs that modifies data, the system can look at the `new` state (the updated data) and the `old` state (the data before it was updated). Using these two snapshots, you can apply filters to decide whether to fire a webhook.
 
 Suppose a group named "Group1" is created at the initial stage (referred to as event 0) and then, after a sequence of n events, its name is altered to "Group2". Using a filter with criteria such as `type eq 'compute-ops/group'` combined with `new/name eq 'Group1'`, you would capture all events from the start (event 0) up to but not including the event where the change occurs (event n-1). In contrast, if the filter is set to `old/name`, it targets a different set of events, in this case from event 1 through to the event where the update happens (event n).
+
+<a name="Step6"></a>
 
 ### OData style filters
 
@@ -235,6 +264,8 @@ The general syntax for an OData filter looks like `property op value` with:
 - `value` is the value to compare against the property.
 
 Logical Operators can also be used to combine conditions using `and`, `or`, and `not`. The nesting separator to specify a nested resource is `/` (e.g. `property eq 'compute-ops/group'`).
+
+<a name="Step7"></a>
 
 ### Filter examples
 
@@ -322,6 +353,8 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
   => Match any server events whose connected state transitions out of a `false` state, which occurs after the iLO establishes a connection with COM
 
+
+<a name="Step8"></a>
 
 ## Secure handshake mechanism
 
@@ -490,6 +523,7 @@ Description of the different requests:
         > The webhook transitions to a `state` of `DISABLED` and a `status` of `WARNING` when the endpoint fails to respond with the expected body or when it returns a non-200 status code. 
           In addition, `statusReason` indicates `Incorrect handshake response.`
 
+<a name="Step9"></a>
 
 ## Integrating COM webhooks with automation tools
 
@@ -508,8 +542,9 @@ When an event occurs—for instance, a server shutdown—Compute Ops Management 
 
 The potential applications are extensive.
 
+<a name="Step10"></a>
 
-## Creating a workflow in Make for COM webhook integration
+## Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide
 
 To illustrate this, let's explore how to create a typical workflow using Make (formerly known as Integromat). 
 
@@ -1059,6 +1094,7 @@ The following steps describe how to implement this scenario in Make:
     [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 <br>  
 
+<a name="Step11"></a>
 
 ## Using the Make On-premise agent
 
@@ -1069,6 +1105,8 @@ Good news, Make offers an On-premise agent designed to bridge the gap between Ma
 To learn more, see [Using the On-premise agent](https://www.make.com/en/help/connections/using-an-on-premise-agent).
 
 > According to the Make website as of April 2024, the On-premise agent is still in beta and is exclusively available with their Enterprise plan.
+
+<a name="Step12"></a>
 
 ## Taking automation a step further?
 
