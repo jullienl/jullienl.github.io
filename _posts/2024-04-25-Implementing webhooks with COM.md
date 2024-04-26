@@ -40,7 +40,7 @@ mermaid: true
 <br>
 
 
-In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with Compute Ops Management.
+In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with Compute Ops Management (COM).
 
 Imagine having a high-powered alert system not just sounding alarms but also triggering action in real-time. That's exactly what webhooks do! They're like digital workhorses, tirelessly communicating between applications and kicking off automated workflows with precision.
 
