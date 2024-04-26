@@ -67,22 +67,22 @@ In a webhook scenario, there is typically a source application (i.e., Compute Op
 <div class="mermaid">
 graph LR;
     A["`**Compute Ops Management**
-    (Source application)`"]
+    [Source application]`"]
     B["`**Destination Application**
-    (Webhook endpoint)`"];
+    [Webhook endpoint]`"];
     A--Webhook<br>(resource data)-->B
 </div>   
 <br/>
    
-Here's a simple sequence diagram that illustrates a webhook process:   
+Here's a simple sequence diagram that illustrates a webhook process with COM:   
 <br/>
 
 <div class="mermaid">
 sequenceDiagram
     autonumber
     actor User as User
-    participant SourceApp as COM - Source Application
-    participant WebhookURL as Webhook endpoint destination
+    participant SourceApp as Compute Ops Management<br>[Source Application]
+    participant WebhookURL as Destination application<br>[Webhook endpoint]
     participant Handler as Event Handler
 
     User->>SourceApp: Perform action
