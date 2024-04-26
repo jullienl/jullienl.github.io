@@ -81,7 +81,7 @@ Here's a simple sequence diagram that illustrates a webhook process with COM:
 sequenceDiagram
     autonumber
     actor User as User
-    participant SourceApp as Compute Ops Management<br>[Source Application]
+    participant SourceApp as Compute Ops Management
     participant WebhookURL as Destination application<br>[Webhook endpoint]
     participant Handler as Event Handler
 
