@@ -78,12 +78,11 @@ Here's a simple sequence diagram that illustrates a webhook process:
 <br/>
 
 <div class="mermaid">
-
 sequenceDiagram
     autonumber
     actor User as User
-    participant SourceApp as Source Application<br/><br/> (Compute Ops Management)
-    participant WebhookURL as Destination Application<br/><br/> (Webhook endpoint)
+    participant SourceApp as COM - Source Application
+    participant WebhookURL as Webhook endpoint destination
     participant Handler as Event Handler
 
     User->>SourceApp: Perform action
