@@ -1156,8 +1156,35 @@ Moreover, using filters, offers another layer of automation. Consider a webhook 
 
 [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-65.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-65.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-[Filters](https://www.make.com/en/help/scenarios/filtering) in this case must be configured with the `text` variable where the server tags have been stored from module `6` and must use the `Contains()` operator with the string value that you want to filter:  
 
-[![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
+Details about the different modules to use in Make to interact with COM:
+
+- To create a COM session, you can use the HTTP: `Make a request` module with the following configuration:
+
+  [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-68.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-68.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
+- To capture the COM access token, use:
+
+  [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-69.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-69.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
+- To create a `GET` request, use:  
+
+  [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-70.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-70.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
+- To capture the `GET` response into a variable: 
+
+  [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-71.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-71.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
+- To create a POST request with a particular payload, use:
+
+  [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-72.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-72.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
+  > Note that, for some obscure reason, I had to remove all spaces in my JSON payload for the COM API to accept my request!
+
+ - [Filters](https://www.make.com/en/help/scenarios/filtering) used to detect the application name in the Tag values, must be configured with the `text` variable where the server tags have been stored from module `6` and must use the `Contains()` operator with the string value that you want to filter:  
+
+   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png){:class="body-image-post"}{: data-lightbox="gallery"}  
+
 
 To wrap things up, I'm genuinely excited about the opportunities here! The combo of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake spaces. Imagine having complicated tasks just flow smoothly on their own—less grunt work for us humans, and we get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, we're looking at a real game-changer for boosting how we handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what we can achieve with this tech! 🚀
