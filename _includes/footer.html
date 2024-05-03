@@ -20,7 +20,11 @@
             {%- endif -%}
             {%- if site.copyright -%}
             <li>&copy; <font size="2"><i>{{ site.copyright }} {{'now' | date: "%Y" }}</i></font></li>
-          {%- endif -%}
+            {%- endif -%}
+            <!-- Blank line (empty list item for visual space) -->
+            <li style="height: 1em;"></li> <!-- Adjust the height as needed -->
+            <li><a href="https://developer.hpe.com" target="_blank" style="font-size: 14px;">HPE Developer Community</a></li>
+
         </ul>
       </div>
 
