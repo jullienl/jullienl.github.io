@@ -4,55 +4,55 @@ title: "Automating IT Operations with Compute Ops Management Webhooks"
 categories: Compute Ops Management
 image: /assets/images/COM-Webhooks/Webhooks-Title.jpg
 excerpt: Harnessing the Power of Webhooks for Real-Time Event Handling
-tags: GreenLake COM Ansible 
+tags: GreenLake COM  
 mermaid: true
 ---
 
-**Contents**   
-[What are webhooks?](#Step1)  
-[The magic of automation](#Step2)  
-[Available resources in Compute Ops Management](#Step3)  
-[Filtering options](#Step4)   
-&nbsp;&nbsp;&nbsp;[New and Old](#Step5)   
-&nbsp;&nbsp;&nbsp;[OData style filters](#Step6)   
-&nbsp;&nbsp;&nbsp;[Filter examples](#Step7)   
-[Secure handshake mechanism](#Step8)   
-[Integrating COM webhooks with automation tools](#Step9)   
-&nbsp;&nbsp;&nbsp;[Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide](#Step10)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1-Setup your Make account](#Step10-1)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2-Create a new scenario](#Step10-2)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3-Search and add the webhooks module](#Step10-3)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4-Configure the webhook trigger](#Step10-4)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5-Run the webhooks module once](#Step10-5)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6-Create the webhook using the COM API](#Step10-6)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7-Create a variable to capture the verification challenge sent by COM](#Step10-7)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8-Renegociate the webhook handshake to set the variable](#Step10-8)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[9-Use the verification challenge in the webhook response](#Step10-9)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[10-Renegociate the webhook handshake to generate the response](#Step10-10)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[11-Check the webhook status in COM (optional)](#Step10-11)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12-Configure a variable to store the server tags](#Step10-12)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[13-Configure the event handlers](#Step10-13)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[14-Scheduling and Activation](#Step10-14)      
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[15-Trigger a webhook to test the full flow](#Step10-15)      
-[Using the Make On-premise agent](#Step11)   
-[Taking automation a step further?](#Step12)   
+
+**Contents**
+- [What are webhooks?](#what-are-webhooks)   
+- [The magic of automation](#the-magic-of-automation)
+- [Available resources in Compute Ops Management](#available-resources-in-compute-ops-management)
+- [Filtering options](#filtering-options)
+  * [New and Old](#new-and-old)
+  * [OData style filters](#odata-style-filters)
+  * [Filter examples](#filter-examples)
+- [Secure handshake mechanism](#secure-handshake-mechanism)
+- [Integrating COM webhooks with automation tools](#integrating-com-webhooks-with-automation-tools)
+  * [Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide](#integrating-com-webhooks-with-make-a-step-by-step-workflow-creation-guide)
+    * [1-Setup your Make account](#1-setup-your-make-account)
+    * [2-Create a new scenario](#2-create-a-new-scenario) 
+    * [3-Search and add the webhooks module](#3-search-and-add-the-webhooks-module)
+    * [4-Configure the webhook trigger](#4-configure-the-webhook-trigger) 
+    * [5-Run the webhooks module once](#5-run-the-webhooks-module-once)     
+    * [6-Create the webhook using the COM API](#6-create-the-webhook-using-the-com-api)
+    * [7-Create a variable to capture the verification challenge sent by COM](#7-create-a-variable-to-capture-the-verification-challenge-sent-by-com)
+    * [8-Renegociate the webhook handshake to set the variable](#8-renegociate-the-webhook-handshake-to-set-the-variable)
+    * [9-Use the verification challenge in the webhook response](#9-use-the-verification-challenge-in-the-webhook-response)
+    * [10-Renegociate the webhook handshake to generate the response](#10-renegociate-the-webhook-handshake-to-generate-the-response)
+    * [11-Check the webhook status in COM (optional)](#11-check-the-webhook-status-in-com-optional)
+    * [12-Configure a variable to store the server tags](#12-configure-a-variable-to-store-the-server-tags)
+    * [13-Configure the event handlers](#13-Configure-the-event-handlers)
+    * [14-Scheduling and Activation](#14-scheduling-and-activation)
+    * [15-Trigger a webhook to test the full flow](#15-trigger-a-webhook-to-test-the-full-flow)
+- [Using the Make On-premise agent](#using-the-make-on-premise-agent)
+- [Taking automation a step further?](#taking-automation-a-step-further)
+
+
 
 <br>
-
-
+<br>
 In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with Compute Ops Management (COM).
 
 Imagine having a high-powered alert system not just sounding alarms but also triggering action in real-time. That's exactly what webhooks do! They're like digital workhorses, tirelessly communicating between applications and kicking off automated workflows with precision.
 
 Now, let's peel back the layers to discover how this impacts organizations like yours.
 
-<a name="Step1"></a>
 
 ## What are webhooks?
 
 At their core, webhooks are automated messages sent from apps when something happens. They're a way for apps to communicate and pass information along instantly, setting off a chain reaction of tasks without the need for manual intervention.
 
-<a name="Step2"></a>
 
 ## The magic of automation
 
@@ -112,7 +112,6 @@ After the event has been processed according to the instructions laid out in the
 
 
 
-<a name="Step3"></a>
 
 ## Available resources in Compute Ops Management
 
@@ -173,7 +172,6 @@ For each resource, certain specific properties are capable of initiating the dis
  > More information about these monitorable properties can be found in the related API documentation which is linked in this table.
 
 
-<a name="Step4"></a>
 
 ## Filtering options
 
@@ -222,7 +220,7 @@ The specifics of these filter attributes are described in the following table:
 <td><code class="language-text">operation</code></td>
 <td>Allows matching on different operations</td>
 <td><code class="language-text">Created</code>, <code class="language-text">Deleted</code>, <code class="language-text">Updated</code></td>
-<td><code class="language-text">type eq 'compute-ops/alert' and operation eq 'Created</code></td>
+<td><code class="language-text">type eq 'compute-ops/alert' and operation eq 'Created'</code></td>
 <td>Match all events related to created alerts</td>
 </tr>
 <tr>
@@ -256,7 +254,6 @@ The specifics of these filter attributes are described in the following table:
 </tbody>
 </table>
 
-<a name="Step5"></a>
 
 ### New and Old
 
@@ -266,7 +263,6 @@ When an event occurs that modifies data, the system can look at the `new` state 
 
 Suppose a group named "Group1" is created at the initial stage (referred to as event 0) and then, after a sequence of n events, its name is altered to "Group2". Using a filter with criteria such as `type eq 'compute-ops/group'` combined with `new/name eq 'Group1'`, you would capture all events from the start (event 0) up to but not including the event where the change occurs (event n-1). In contrast, if the filter is set to `old/name`, it targets a different set of events, in this case from event 1 through to the event where the update happens (event n).
 
-<a name="Step6"></a>
 
 ### OData style filters
 
@@ -279,7 +275,6 @@ The general syntax for an OData filter looks like `property op value` with:
 
 Logical Operators can also be used to combine conditions using `and`, `or`, and `not`. The nesting separator to specify a nested resource is `/` (e.g. `property eq 'compute-ops/group'`).
 
-<a name="Step7"></a>
 
 ### Filter examples
 
@@ -368,7 +363,6 @@ Filtering with OData allows for both simple and complex querying possibilities, 
   => Match any server events whose connected state transitions out of a `false` state, which occurs after the iLO establishes a connection with COM
 
 
-<a name="Step8"></a>
 
 ## Secure handshake mechanism
 
@@ -537,7 +531,6 @@ Description of the different requests:
         > The webhook transitions to a `state` of `DISABLED` and a `status` of `WARNING` when the endpoint fails to respond with the expected body or when it returns a non-200 status code. 
           In addition, `statusReason` indicates `Incorrect handshake response.`
 
-<a name="Step9"></a>
 
 ## Integrating COM webhooks with automation tools
 
@@ -556,7 +549,6 @@ When an event occurs—for instance, a server shutdown—Compute Ops Management 
 
 The potential applications are extensive.
 
-<a name="Step10"></a>
 
 ### Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide
 
@@ -575,8 +567,7 @@ The multifaceted automated workflow must handle the initial validation challenge
 - Create a new record in a Notion database, cataloging particulars of the affected server.
 
 The following steps describe how to implement this scenario in Make:
-
-<a name="Step10-1"></a>
+<a name="1-setup-your-make-account"></a>
 
 1. **Setup your Make account**
    
@@ -586,13 +577,13 @@ The following steps describe how to implement this scenario in Make:
 
      > Make offers a free plan that includes 1,000 operations per month. This can be a good option if you're looking to test your COM webhooks. The operations quota can comfortably accommodate testing your COM webhook setup to see how the integration works and ensure that your workflow is correctly configured.  If your testing phase or ongoing usage consumes more than the allotted operations, you may need to consider upgrading to a higher-tier plan.
    <br>
-<a name="Step10-2"></a>
+<a name="2-create-a-new-scenario"></a>
 
 2. **Create a new scenario**
   
    - Go to the Scenarios section and click on `Create a new scenario`.   
    <br>
-<a name="Step10-3"></a>
+<a name="3-search-and-add-the-webhooks-module"></a>
 
 3. **Search and add the webhooks module**
    
@@ -600,7 +591,7 @@ The following steps describe how to implement this scenario in Make:
       
      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-3.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-3.png){:class="body-image-post"}{: data-lightbox="gallery"}  
  <br> 
-<a name="Step10-4"></a>
+<a name="4-configure-the-webhook-trigger"></a>
 
 4. **Configure the webhook trigger**
 
@@ -616,7 +607,7 @@ The following steps describe how to implement this scenario in Make:
     
      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-7.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-7.png){:class="body-image-post"}{: data-lightbox="gallery"}  
    <br>
-<a name="Step10-5"></a>
+<a name="5-run-the-webhooks-module-once"></a>
 
 5. **Run the webhooks module once**
 
@@ -624,7 +615,7 @@ The following steps describe how to implement this scenario in Make:
       
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-12.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-12.png){:class="body-image-post"}{: data-lightbox="gallery"}  
   <br>
-<a name="Step10-6"></a>
+<a name="6-create-the-webhook-using-the-com-api"></a>
 
 6. **Create the webhook using the COM API**
 
@@ -677,7 +668,7 @@ The following steps describe how to implement this scenario in Make:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-14.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-14.png){:class="body-image-post"}{: data-lightbox="gallery"}  
   <br>
-<a name="Step10-7"></a>
+<a name="7-create-a-variable-to-capture-the-verification-challenge-sent-by-com"></a>
 
 7. **Create a variable to capture the verification challenge sent by COM**
 
@@ -718,8 +709,8 @@ The following steps describe how to implement this scenario in Make:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-27.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-27.png){:class="body-image-post"}{: data-lightbox="gallery"} 
   <br>
-<a name="Step10-8"></a>
 <br>
+<a name="8-renegociate-the-webhook-handshake-to-set-the-variable"></a>
 
 8. **Renegociate the webhook handshake to set the variable**
 
@@ -750,7 +741,7 @@ The following steps describe how to implement this scenario in Make:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-29.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-29.png){:class="body-image-post"}{: data-lightbox="gallery"}  
   <br>
-<a name="Step10-9"></a>
+<a name="9-use-the-verification-challenge-in-the-webhook-response"></a>
 
 9. **Use the verification challenge in the webhook response**
 
@@ -778,8 +769,8 @@ The following steps describe how to implement this scenario in Make:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-22.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-22.png){:class="body-image-post"}{: data-lightbox="gallery"}
  <br>
-<a name="Step10-10"></a>
 <br>
+<a name="10-renegociate-the-webhook-handshake-to-generate-the-response"></a>
 
 10. **Renegociate the webhook handshake to generate the response**
 
@@ -791,8 +782,8 @@ The following steps describe how to implement this scenario in Make:
 
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-33.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-33.png){:class="body-image-post"}{: data-lightbox="gallery"}
  <br>
-<a name="Step10-11"></a>
 <br>
+<a name="11-check-the-webhook-status-in-com-optional"></a>
 
 11. **Check the webhook status in COM (optional)**
 
@@ -805,8 +796,8 @@ The following steps describe how to implement this scenario in Make:
 
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35.png){:class="body-image-post"}{: data-lightbox="gallery"}
  <br>
-<a name="Step10-12"></a>
 <br>
+<a name="12-configure-a-variable-to-store-the-server-tags"></a>
 
 12. **Configure a variable to store the server tags**
       
@@ -885,8 +876,8 @@ The following steps describe how to implement this scenario in Make:
                 
        You may now proceed to configure the event handlers, which will enable the triggering of specific actions.
  <br>
-<a name="Step10-13"></a>
 <br>
+<a name="13-Configure-the-event-handlers"></a>
 
 13. **Configure the event handlers**
 
@@ -1043,7 +1034,7 @@ The following steps describe how to implement this scenario in Make:
 
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-55.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-55.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 <br>
-<a name="Step10-14"></a>
+<a name="14-scheduling-and-activation"></a>
 
 14. **Scheduling and Activation**   
 
@@ -1058,7 +1049,7 @@ The following steps describe how to implement this scenario in Make:
 
       This completes the configuration of the scenario. You are ready to test the full flow. 
   <br>  
-<a name="Step10-15"></a>
+<a name="15-trigger-a-webhook-to-test-the-full-flow"></a>
 
 15. **Trigger a webhook to test the full flow**
 
@@ -1132,7 +1123,6 @@ The following steps describe how to implement this scenario in Make:
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png){:class="body-image-post"}{: data-lightbox="gallery"}  
   <br>  
 
-  <a name="Step11"></a>
 
 ## Using the Make On-premise agent
 
@@ -1144,7 +1134,6 @@ To learn more, see [Using the On-premise agent](https://www.make.com/en/help/con
 
 > According to the Make website as of April 2024, the On-premise agent is still in beta and is exclusively available with their Enterprise plan.
 
-<a name="Step12"></a>
 
 ## Taking automation a step further?
 
@@ -1155,7 +1144,6 @@ An enhanced scenario could incorporate more sophisticated actions, such as sendi
 Moreover, using filters, offers another layer of automation. Consider a webhook that activates upon the integration of new servers into the HPE GreenLake platform. In this case, it's feasible to automate diverse operations within Make. For instance, servers can be automatically added to specific groups utilizing filters based on their tag values — such as location or application type — to apply particular configurations and firmware levels:
 
 [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-65.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-65.png){:class="body-image-post"}{: data-lightbox="gallery"}  
-
 
 
 Details about the different modules to use in Make to interact with COM:
