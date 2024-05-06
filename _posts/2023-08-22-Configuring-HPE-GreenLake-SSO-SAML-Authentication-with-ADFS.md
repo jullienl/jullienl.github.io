@@ -3,34 +3,14 @@ layout: post
 title:  "Configuring HPE GreenLake SSO SAML Authentication with ADFS"
 categories: GreenLake
 image: /assets/images/AD-ADFS/idp.jpg
-excerpt: The goal of this post is to walk you through the steps required to configure ADFS as a SAML identity provider (IdP) for HPE GreenLake
-tags: sso saml greenlake adfs idp
+# excerpt: The goal of this post is to walk you through the steps required to configure ADFS as a SAML identity provider (IdP) for HPE GreenLake
+tags: 
+   - greenlake
+   - adfs
+   - idp
+
 ---
 
-**Contents**   
-[SAML Authentication workflows](#SAMLAuthenticationworkflow)    
-[Prerequisites](#prerequisites)   
-[Step 1: Certificate Requirements for Federation Servers](#step1)   
-[Step 2: Configuring an ADFS service user](#step2)   
-[Step 3: Configuring AD user accounts and groups](#step3)   
-[Step 4: Inviting an AD administrator user to HPE GreenLake](#step4)   
-[Step 5: ADFS installation](#step5)   
-[Step 6: ADFS configuration](#step6)   
-[Step 7: Configuring ADFS for iDP-initiated SSO](#step7)   
-[Step 8: HPE GreenLake configuration for SAML federation](#step8)   
-[Step 9: Collecting the HPE GreenLake SAML attributes values](#step9)   
-[Step 10: Adding HPE GreenLake as an ADFS relying party trust](#step10)   
-&nbsp;&nbsp;&nbsp;[Step 10.1: LDAP Attributes Mappings](#step10.1)   
-&nbsp;&nbsp;&nbsp;[Step 10.2: Attribute to identify users](#step10.2)   
-&nbsp;&nbsp;&nbsp;[Step 10.3: Roles and permission attribute](#step10.3)   
-[Testing step 1: Testing the ADFS sign on page](#testingADFSsignonpage)   
-[Testing step 2: SP-Initiated test authentication](#SPInitiatedtest)   
-[Testing step 3: iDP-Initiated test authentication](#iDPInitiatedtest)   
-[Troubleshooting SAML connectivity errors](#troubleshooting)   
- <br/>
-
-
-# Introduction
 
 In this blog post, I will walk you through the steps required to configure Microsoft Active Directory Federation Services as a SAML identity provider (IdP) for [HPE GreenLake](https://www.hpe.com/us/en/greenlake.html) and [HPE Compute Ops Management](https://www.hpe.com/us/en/hpe-greenlake-compute-ops-management.html). 
 
@@ -42,7 +22,7 @@ The motivation for using LDAP as a source for user/group information for HPE Gre
 
 - **Convenience for end users and improved security**: With the spread of cloud-hosted Saas applications, users have to memorize a long list of passwords, which can lead to compromise, lost productivity and security breaches, as users will end up using easy-to-remember passwords. By having a single set of LDAP credentials, end users can access multiple systems seamlessly. This eliminates the need to remember and manage different sets of credentials for different systems, thereby improving user convenience, productivity and security.
 
-[Active Directory Federation Services](https://learn.microsoft.com/en-us/windows-server/identity/) (ADFS), which is a feature of Windows servers, allows users to use their Active Directory (AD) credentials to authenticate themselves to trusted resources on external networks such as the HPE GreenLake edge-to-cloud platform. This functionality is commonly referred to as a single sign-on (SSO) service.
+[Active Directory Federation Services](https://learn.microsoft.com/en-us/windows-server/identity/) (ADFS), which is a feature of Windows servers, allows users to use their Active Directory (AD) credentials to authenticate themselves to trusted resources on external networks such as HPE GreenLake. This functionality is commonly referred to as a single sign-on (SSO) service.
 
 Unlike Azure AD, the Microsoft cloud-native IAM service, ADFS utilizes your existing local Active Directory instance for single sign-on (SSO) functionality. It operates similarly to other SSO services, but instead of relying on a third-party SSO tool, you leverage your own local Active Directory for authentication and authorization purposes.
 
@@ -693,7 +673,7 @@ Installation is now complete, you can start testing your configuration.
 
 <a name="testingADFSsignonpage"></a>
 
-## Step 1: Testing the ADFS sign on page
+## Testing step 1: Testing the ADFS sign on page
 
 To test your ADFS  sign on page, open a web browser, and go to [https://\<FQDN\>/adfs/ls/IdPInitiatedSignon.aspx](https://\<your_Fully_Qualified_Domain_Name\>/adfs/ls/IdPInitiatedSignon.aspx) with \<FQDN\> the fully qualified domain name (FQDN) host name of your ADFS server.
 
@@ -713,7 +693,7 @@ You can then close this page for now.
 
 <a name="SPInitiatedtest"></a>
 
-## Step 2: SP-Initiated test authentication
+## Testing step 2: SP-Initiated test authentication
 
 
 **Prerequisite**: Before continuing and testing the SSO connection, make sure you are disconnected from the HPE GreenLake platform.
@@ -783,7 +763,7 @@ And check that you have observer rights in **Manage** / **Identity & Access** / 
 
 <a name="iDPInitiatedtest"></a>
 
-## Step 3: iDP-Initiated test authentication
+## Testing step 3: iDP-Initiated test authentication
 
 
 This time, you want to test the authentication initiated by the identity provider, i.e. ADFS.

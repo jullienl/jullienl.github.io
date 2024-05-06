@@ -1,76 +1,106 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
+# Basic site setup
 title: Welcome to my blog
-email: lio@hpe.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Welcome to the world of DevOps, scripting, and much more for HPE products and solutions! 
+description: Welcome to the world of DevOps, scripting, and much more for HPE products and solutions! 
   This blog is your one-stop destination for insightful articles, tutorials,
   and best practices on all things related to DevOps, scripting, and how it 
   connects with HPE products and solutions.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://jullienl.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: 
-github_username:  jullienl
+accent_colour: "#acacac"
+theme_version: 1.0.15
+url: https://jullienl.github.io/
 
-# Author is the default for posts
-author: Lionel Jullien
-linkedin_username: lionel-jullien-793b56
-linkedin_short_username: lionel-jullien #used as I have a long linkedin_username so it display only the short version in the footer...
-postman_username: lionel-jullien
-youtube_username: LionelJullien
+# Optional native feature customisation (delete to turn off)
+table_of_contents_header: "Jump to:"
+table_of_contents_collapsible: true
+post_end_promo: <i><b>Enjoyed this article? Discover more on the <a href="https://developer.hpe.com/">HPE Developer Community</a> site,<br> your hub for all HPE software-related content!</b></i>
+google_analytics: GTM-NLJ9J84H
+replace_read_time_with_word_count: false
+show_excerpts_html: true
+open_external_links_in_new_tab: true
+
+# Third party feature customisation (delete to turn off)
+giscus_repo: jullienl/jullienl.github.io
+giscus_repo_id: R_kgDOKG9STg
+giscus_category: Comments
+giscus_category_id: DIC_kwDOKG9STs4CfLVZ
+# kofi_id: internethistory
+# kofi_button_text: Tip on Ko-fi
+# kofi_floating_text: Tip / Suggest
+
+# Network site picker
+network:
+  # - { name: Programming, url: "https://blog.jakelee.co.uk", colour: "#2a7ae2" }
+  # - {
+  #     name: Internet History,
+  #     url: "https://history.jakelee.co.uk",
+  #     colour: "#075e78",
+  #   }
+  # - { name: Theme, url: "https://minima.jakelee.co.uk", colour: "#951A00" }
+  # - { name: Cat Charity, url: "https://news.codecured.org", colour: "#111b6d" }
+  # - {
+  #     name: Fragments,
+  #     url: "https://fragments.jakelee.co.uk",
+  #     colour: "#ad33a9",
+  #   }
+  # - { name: Everything Else, url: "https://jakelee.co.uk", colour: "#acacac" }
+
+# Social / dark mode settings
+minima:
+  skin: auto
+  social_links:
+    - { platform: github, user_url: "https://github.com/jullienl" }
+    - { platform: youtube, user_url: "https://youtube.com/@LionelJullien" }  
+    - {
+        platform: postman,
+        user_url: "https://www.postman.com/jullienl/workspace/lionel-jullien-s-public-workspace/overview",
+      }
+    - { platform: linkedin, user_url: "https://www.linkedin.com/in/lionel-jullien-793b56" }
+    - {
+        platform: email,
+        user_url: "mailto:lio@hpe.com",
+        user_title: "lio@hpe.com",
+      }
+    - { platform: rss, user_url: "/feed.xml", user_title: "RSS Feed" }
+ 
+  #   - { platform: devto,          user_url: "https://dev.to/jekyll" }
+  #   - { platform: dribbble,       user_url: "https://dribbble.com/jekyll" }
+  #   - { platform: facebook,       user_url: "https://www.facebook.com/jekyll" }
+  #   - { platform: flickr,         user_url: "https://www.flickr.com/photos/jekyll" }
+  #   - { platform: google_scholar, user_url: "https://scholar.google.com/citations?user=qc6CJjYAAAAJ" }
+  #   - { platform: instagram,      user_url: "https://www.instagram.com/jekyll" }
+  #   - { platform: keybase,        user_url: "https://keybase.io/jekyll" }
+  #   - { platform: microdotblog,   user_url: "https://micro.blog/jekyll" }
+  #   - { platform: pinterest,      user_url: "https://www.pinterest.com/jekyll" }
+  #   - { platform: telegram,       user_url: "https://t.me/jekyll" }
+  #   - { platform: youtube,        user_url: "https://www.youtube.com/jekyll" }
+
+###
+# Below here probably doesn't need changing #
+###
+
+# Site settings
+permalink: /:title/
+timezone: Europe/Paris
+title-logo: #/assets/images/favicon/favicon-32x32.png
+
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Pagination settings
+paginate: 5
+paginate_path: page/:num/
+
+# Syntax highlighter settings
+kramdown:
+  syntax_highlighter_opts:
+    default_lang: kotlin
+    guess_lang: true
 
 # New fields not defaulted by jekyll-new with the minima theme
 # Add a copyright. A copyright symbol and year will be added automatically
 # copyright: Company name, Inc.
 copyright: "Hewlett Packard Enterprise"
-
-# title-logo is a new field that when used, displays a title-logo
-# instead of a custom text. Ideally image is 50px high and takes update
-# minimum horizontal space. 
-title-logo: #/assets/images/favicon/favicon-32x32.png
-
-show_excerpts: true
-
-# Build settings
-# Removed minima theme as it is now a regular theme
-# theme: minima
-plugins:
-  - jekyll-feed
-
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
