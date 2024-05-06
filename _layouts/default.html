@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-{%- include head.html -%}
+  {%- include head.html -%}
 
-<body>
+  <body>
 
-  {%- include header.html -%}
-  <div class="page-content" aria-label="Content">
-    <div class="wrapper">
-      {{ content }}
-    </div>
-  </div>
+    {%- include header.html -%}
 
-  {%- include footer.html -%}
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
 
-  <!-- Lightbox CSS -->
-  <script type="text/javascript" src="/assets/js/lightbox.js"></script>
-  <link rel="stylesheet" href="/assets/css/lightbox.css">
+    {%- include footer.html -%}
 
-</body>
+    <!-- Lightbox CSS -->
+    <script type="text/javascript" src="/assets/js/lightbox.js"></script>
+    <link rel="stylesheet" href="/assets/css/lightbox.css">
+
+
+  </body>
 
 </html>

@@ -3,7 +3,7 @@ layout: post
 title: "Bare metal provisioning with Compute Ops Management and Ansible"
 categories: Compute Ops Management
 image: /assets/images/COM-Baremetal/Baremetal-Title.jpg
-excerpt: Streamline your server deployments with HPE GreenLake
+# excerpt: Streamline your server deployments with HPE GreenLake
 tags: GreenLake COM Ansible 
 ---
 
@@ -46,11 +46,11 @@ In this project, automating the provisioning of operating systems on bare metal 
 - **Comprehensive documentation**: Detailed guides, videos and examples help you customize the workflow to your specific requirements.
 
 
-## Mastering server management with HPE GreenLake for Compute Ops Management
+## Mastering server management with COM
 
 HPE GreenLake for Compute Ops Management is a comprehensive solution for hardware resource management, providing a seamless way to handle server deployments. With its ability to manage health monitoring, orchestrate server configuration and firmware update workflows, and automate bare metal provisioning, administrators can ensure their data centers operate optimally with less effort and greater oversight. To learn more, see [HPE GreenLake for Compute Ops Management](https://www.hpe.com/emea_europe/en/hpe-greenlake-compute-ops-management.html)
 
-## Bridging HPE GreenLake for Compute Ops Management and Ansible
+## Bridging HPE GreenLake for COM and Ansible
 
 HPE GreenLake for Compute Ops Management provides the foundational management capabilities essential for maintaining data center health and efficiency. When combined with the automation capabilities of Ansible, IT administrators can achieve unprecedented levels of automation.
 
@@ -99,15 +99,21 @@ Upon running this command, Ansible will prompt you to enter the vault password a
 
 Dive into this series of videos showcasing the seamless bare metal operation across three major operating systems. Each video provides a walk through over the different variables involved and the files that are required to update HPE drivers and software, along with the explanation of the different steps of each playbook.
 
-### Windows Server Bare Metal Provisioning on 2 x HPE ProLiant DL360 Gen10 Plus
+### Windows Server provisioning
+
+Windows Server Bare Metal Provisioning on 2 x HPE ProLiant DL360 Gen10 Plus
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/A6RD6nIAFmw?si=_kEqBAsVx20nvONy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-### RHEL 9.3 Bare Metal Provisioning on 2 x HPE ProLiant DL360 Gen10 Plus
+### RHEL 9.3 provisioning
+
+RHEL 9.3 Bare Metal Provisioning on 2 x HPE ProLiant DL360 Gen10 Plus
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/6_o8yB4cvag?si=OGQob5dNNF28rTF-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-### VMware ESXi  Bare Metal Provisioning on 2 x HPE ProLiant DL360 Gen10 Plus
+### VMware ESXi provisioning 
+
+VMware ESXi  Bare Metal Provisioning on 2 x HPE ProLiant DL360 Gen10 Plus
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/_ySgROdd_Bw?si=CSzCklbTeRzaRtFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

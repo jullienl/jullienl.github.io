@@ -3,45 +3,14 @@ layout: post
 title: "Automating IT Operations with Compute Ops Management Webhooks"
 categories: Compute Ops Management
 image: /assets/images/COM-Webhooks/Webhooks-Title.jpg
-excerpt: Harnessing the Power of Webhooks for Real-Time Event Handling
-tags: GreenLake COM  
+# excerpt: Harnessing the Power of Webhooks for Real-Time Event Handling
+tags: 
+  - GreenLake
+  - COM  
 mermaid: true
 ---
 
 
-**Contents**
-- [What are webhooks?](#what-are-webhooks)   
-- [The magic of automation](#the-magic-of-automation)
-- [Available resources in Compute Ops Management](#available-resources-in-compute-ops-management)
-- [Filtering options](#filtering-options)
-  * [New and Old](#new-and-old)
-  * [OData style filters](#odata-style-filters)
-  * [Filter examples](#filter-examples)
-- [Secure handshake mechanism](#secure-handshake-mechanism)
-- [Integrating COM webhooks with automation tools](#integrating-com-webhooks-with-automation-tools)
-  * [Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide](#integrating-com-webhooks-with-make-a-step-by-step-workflow-creation-guide)
-    * [1-Setup your Make account](#1-setup-your-make-account)
-    * [2-Create a new scenario](#2-create-a-new-scenario) 
-    * [3-Search and add the webhooks module](#3-search-and-add-the-webhooks-module)
-    * [4-Configure the webhook trigger](#4-configure-the-webhook-trigger) 
-    * [5-Run the webhooks module once](#5-run-the-webhooks-module-once)     
-    * [6-Create the webhook using the COM API](#6-create-the-webhook-using-the-com-api)
-    * [7-Create a variable to capture the verification challenge sent by COM](#7-create-a-variable-to-capture-the-verification-challenge-sent-by-com)
-    * [8-Renegociate the webhook handshake to set the variable](#8-renegociate-the-webhook-handshake-to-set-the-variable)
-    * [9-Use the verification challenge in the webhook response](#9-use-the-verification-challenge-in-the-webhook-response)
-    * [10-Renegociate the webhook handshake to generate the response](#10-renegociate-the-webhook-handshake-to-generate-the-response)
-    * [11-Check the webhook status in COM (optional)](#11-check-the-webhook-status-in-com-optional)
-    * [12-Configure a variable to store the server tags](#12-configure-a-variable-to-store-the-server-tags)
-    * [13-Configure the event handlers](#13-Configure-the-event-handlers)
-    * [14-Scheduling and Activation](#14-scheduling-and-activation)
-    * [15-Trigger a webhook to test the full flow](#15-trigger-a-webhook-to-test-the-full-flow)
-- [Using the Make On-premise agent](#using-the-make-on-premise-agent)
-- [Taking automation a step further?](#taking-automation-a-step-further)
-
-
-
-<br>
-<br>
 In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with Compute Ops Management (COM).
 
 Imagine having a high-powered alert system not just sounding alarms but also triggering action in real-time. That's exactly what webhooks do! They're like digital workhorses, tirelessly communicating between applications and kicking off automated workflows with precision.
@@ -282,7 +251,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for group and server events only**:  
  
-  ```
+  ```txt
   type eq 'compute-ops/group' or type eq 'compute-ops/server'
   ```
   => Match all group and server events
@@ -290,7 +259,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all servers that are shut down**:   
  
-  ```
+  ```txt
   type eq 'compute-ops/server' and old/hardware/powerState eq 'ON' and changed/hardware/powerState eq True
   ```
   => Match any server events whose power state transitions from `ON` to `OFF`
@@ -300,7 +269,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all servers that get disconnect from Compute Ops Management**:   
   
-  ```
+  ```txt
   type eq 'compute-ops/server' and old/state/connected eq True and changed/state/connected eq True
   ```
 
@@ -313,7 +282,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all jobs that run a server firmware update**:
 
-  ```
+  ```txt
   type eq 'compute-ops/job' and contains(name, 'FirmwareUpdate.New') and new/state eq 'RUNNING'
   ```
 
@@ -322,7 +291,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all servers that transition to an unhealthy status**:
 
-  ```
+  ```txt
   type eq 'compute-ops/server' and old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True
   ```
 
@@ -331,7 +300,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all events within a specified group**:
 
-  ```
+  ```txt
   type eq 'compute-ops/group' and contains(name, 'Production')
   ```
 
@@ -340,7 +309,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all new firmware bundles that are available**:
 
-  ```
+  ```txt
   type eq 'compute-ops/firmware-bundle' and operation eq 'Created'
   ```
 
@@ -348,7 +317,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all servers added to COM that require activation**:
 
-  ```
+  ```txt
   type eq 'compute-ops/server' and operation eq 'Created'
   ```
 
@@ -356,7 +325,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 - **To receive webhooks for all new servers added and connected to COM**:
 
-  ```
+  ```txt
   type eq 'compute-ops/server' and old/state/connected eq False and changed/state/connected eq True
   ```
 
@@ -550,7 +519,7 @@ When an event occurs—for instance, a server shutdown—Compute Ops Management 
 The potential applications are extensive.
 
 
-### Integrating COM Webhooks with Make: A Step-by-Step Workflow Creation Guide
+### A step-by-step workflow creation guide with Make
 
 To illustrate this, let's explore how to create a typical workflow using Make (formerly known as Integromat). 
 
@@ -703,8 +672,8 @@ The following steps describe how to implement this scenario in Make:
 
     - Then click on `OK`:
 
-      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-26.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-26.png){:class="body-image-post"}{: data-lightbox="gallery"}
-
+      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-26.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-26.png){:class="body-image-post"}{: data-lightbox="gallery"}   
+      
     - Then click on `Run once` 
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-27.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-27.png){:class="body-image-post"}{: data-lightbox="gallery"} 
@@ -714,7 +683,7 @@ The following steps describe how to implement this scenario in Make:
 
 8. **Renegociate the webhook handshake to set the variable**
 
-    - For the moment, the `verification` variable just set is not populated, and we need to ask COM to renegotiate the handshake again To do so, you have to modify the existing webhook by sending a `PATCH` request with the previously used payload, targeting the webhook ID recorded earlier:
+    - For the moment, the `verification` variable just set is not populated, and you need to ask COM to renegotiate the handshake again To do so, you have to modify the existing webhook by sending a `PATCH` request with the previously used payload, targeting the webhook ID recorded earlier:
 
         ```
           PATCH /compute-ops-mgmt/v1beta1/webhooks/<webhook-id>
@@ -763,7 +732,7 @@ The following steps describe how to implement this scenario in Make:
       - Key: `content-type` 
       - Value: `application/json`   
       <br>
-      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-18.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-18.png){:class="body-image-post"}{: data-lightbox="gallery"}
+      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-18.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-18.png){:class="body-image-post"}{: data-lightbox="gallery"}   
     <br>
     - Click on `OK` then click on `Run once` 
 
@@ -813,7 +782,7 @@ The following steps describe how to implement this scenario in Make:
       ```
       Given the importance of tags in facilitating server identification, it's clear that our Make scenario must include a mechanism to process tag information found within the server resource. 
       
-       > Toward the end of this blog, we'll demonstrate an enhanced scenario utilizing tags.
+       > Toward the end of this blog, I'll demonstrate an enhanced scenario utilizing tags.
 
       This process will involve converting the key-value pair structure into a human-readable text format, which might look like the following:
 
@@ -881,7 +850,7 @@ The following steps describe how to implement this scenario in Make:
 
 13. **Configure the event handlers**
 
-      To configure the following actions: sending an email, posting on a Slack channel, and adding a record in a Notion database, a router module in Make is essential. The router module enables you to create multiple branches within your scenario, allowing different actions to take place either conditionally or in parallel. For this particular scenario, no conditions will be used since we want to trigger various actions from the same webhook event concurrently. The router effectively manages these simultaneous executions, ensuring that each action is processed without the need for any conditional logic.
+      To configure the following actions: sending an email, posting on a Slack channel, and adding a record in a Notion database, a router module in Make is essential. The router module enables you to create multiple branches within your scenario, allowing different actions to take place either conditionally or in parallel. For this particular scenario, no conditions will be used since I want to trigger various actions from the same webhook event concurrently. The router effectively manages these simultaneous executions, ensuring that each action is processed without the need for any conditional logic.
 
       - From the Webhooks response module, click on `+` and add the `Router` module:
 
@@ -986,7 +955,7 @@ The following steps describe how to implement this scenario in Make:
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-41.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-41.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
 
-      - For the final action in this scenario, we aim to create a record in a Notion database to capture historical activity. Click on the router module to add another module, and then select the **Notion**: `Create a Database Item` module:
+      - For the final action in this scenario, I aim to create a record in a Notion database to capture historical activity. Click on the router module to add another module, and then select the **Notion**: `Create a Database Item` module:
 
           [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-42.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-42.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -1137,7 +1106,7 @@ To learn more, see [Using the On-premise agent](https://www.make.com/en/help/con
 
 ## Taking automation a step further?
 
-An enhanced scenario could incorporate more sophisticated actions, such as sending HTTP requests to Compute Ops Management to execute tasks informed by data received from a webhook. For example, expanding on the initial scenario, we could introduce an additional action to automatically restart a server. This enhancement would necessitate the integration of several modules:
+An enhanced scenario could incorporate more sophisticated actions, such as sending HTTP requests to Compute Ops Management to execute tasks informed by data received from a webhook. For example, expanding on the initial scenario, I could introduce an additional action to automatically restart a server. This enhancement would necessitate the integration of several modules:
 
 [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-64.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-64.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
@@ -1175,4 +1144,4 @@ Details about the different modules to use in Make to interact with COM:
    [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
 
-To wrap things up, I'm genuinely excited about the opportunities here! The combo of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake spaces. Imagine having complicated tasks just flow smoothly on their own—less grunt work for us humans, and we get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, we're looking at a real game-changer for boosting how we handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what we can achieve with this tech! 🚀
+To wrap things up, I'm genuinely excited about the opportunities here! The combo of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake spaces. Imagine having complicated tasks just flow smoothly on their own—less grunt work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀

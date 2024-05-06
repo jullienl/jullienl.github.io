@@ -2,10 +2,9 @@
 layout: post
 title:  "Welcome to my blog!"
 categories: Blog
-excerpt:  I have decided to create a blog on DevOps for HPE products and solutions...
+image: /assets/images/welcome.jpg
+# excerpt:  I have decided to create a blog on DevOps for HPE products and solutions...
 ---
-
-Welcome to my blog !
 
 I have decided to create a blog on DevOps for HPE products and solutions that would show the benefits of using DevOps practices with HPE products and solutions, as well as some of the specific tools and techniques that can be used.
 
