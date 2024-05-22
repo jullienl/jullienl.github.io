@@ -180,7 +180,7 @@ The specifics of these filter attributes are described in the following table:
 <tbody>
 <tr>
 <td><code class="language-text">type</code></td>
-<td>Allows matching on <a href="/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">resource types</a></td>
+<td>Allows matching on <a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">resource types</a></td>
 <td><code class="language-text">compute-ops/job</code>, <code class="language-text">compute-ops/server</code></td>
 <td><code class="language-text">type eq 'compute-ops/job'</code></td>
 <td>Match all events related to jobs</td>
@@ -194,21 +194,21 @@ The specifics of these filter attributes are described in the following table:
 </tr>
 <tr>
 <td><code class="language-text">changed</code></td>
-<td>Allows matching on <a href="/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">monitorable properties</a> if the value has changed</td>
+<td>Allows matching on <a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">monitorable properties</a> if the value has changed</td>
 <td><code class="language-text">changed/name</code>, <code class="language-text">changed/state</code></td>
 <td><code class="language-text">type eq 'compute-ops/group' and changed/name eq True</code></td>
 <td>Match any events related to groups whose <code class="language-text">name</code> property changed</td>
 </tr>
 <tr>
 <td><code class="language-text">new</code></td>
-<td>Allows matching on <a href="/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">monitorable properties</a> of the current state of the resource</td>
+<td>Allows matching on <a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">monitorable properties</a> of the current state of the resource</td>
 <td><code class="language-text">new/complianceStatus</code>, <code class="language-text">new/isActive</code></td>
 <td><code class="language-text">type eq 'compute-ops/group' and new/groupComplianceStatus ne 'Compliant'</code></td>
 <td>Match any events related to groups whose <code class="language-text">groupComplianceStatus</code> is not currently <code class="language-text">Compliant</code></td>
 </tr>
 <tr>
 <td><code class="language-text">old</code></td>
-<td>Allows matching on <a href="/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">monitorable properties</a> of the previous state of the resource</td>
+<td>Allows matching on <a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/webhooks/resources/#resource-types">monitorable properties</a> of the previous state of the resource</td>
 <td><code class="language-text">old/devices</code>, <code class="language-text">old/settings</code></td>
 <td><code class="language-text">type eq 'compute-ops/group' and old/name eq 'Group Name'</code></td>
 <td>Match any events related to a group whose previous <code class="language-text">name</code> was "Group Name" until the group's name is changed again</td>
