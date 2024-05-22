@@ -102,37 +102,37 @@ For each resource, certain specific properties are capable of initiating the dis
 <tbody>
 <tr>
 <td align="left">compute-ops/server</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta2_server_by_id/">Get v1beta2 server by ID</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta2_server_by_id/">Get v1beta2 server by ID</a></td>
 <td align="center"><code class="language-text">hardware</code>, <code class="language-text">state</code>, <code class="language-text">firmwareInventory</code>, <code class="language-text">softwareInventory</code>, <code class="language-text">lastFirmwareUpdate</code>, <code class="language-text">tags</code>, <code class="language-text">autoIloFwUpdate</code></td>
 </tr>
 <tr>
 <td align="left">compute-ops/alert</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta2_server_alerts/">Get v1beta2 server alerts</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta2_server_alerts/">Get v1beta2 server alerts</a></td>
 <td align="center">N/A - no specific properties can be monitored. Will only send <code class="language-text">Created</code> and <code class="language-text">Deleted</code> events</td>
 </tr>
 <tr>
 <td align="left">compute-ops/group</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta2_group_by_id/">Get v1beta2 group by ID</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta2_group_by_id/">Get v1beta2 group by ID</a></td>
 <td align="center"><code class="language-text">name</code>, <code class="language-text">autoFwUpdateOnAdd</code>, <code class="language-text">groupComplianceStatus</code>, <code class="language-text">serverSettingsUris</code>, <code class="language-text">devices</code>, <code class="language-text">serverPolicies</code>, <code class="language-text">autoAddServerTags</code></td>
 </tr>
 <tr>
 <td align="left">compute-ops/server-setting</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta1_server_settings_by_id/">Get v1beta1 server settings by ID</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta1_server_settings_by_id/">Get v1beta1 server settings by ID</a></td>
 <td align="center"><code class="language-text">name</code>, <code class="language-text">settings</code></td>
 </tr>
 <tr>
 <td align="left">compute-ops/job</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta3_job_by_id/">Get v1beta3 job by ID</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta3_job_by_id/">Get v1beta3 job by ID</a></td>
 <td align="center"><code class="language-text">state</code></td>
 </tr>
 <tr>
 <td align="left">compute-ops/group/compliance</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta2_compliance_by_compliance_id/#!c=200&#x26;path=id&#x26;t=response">Get v1beta2 compliance by compliance ID</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta2_compliance_by_compliance_id/#!c=200&#x26;path=id&#x26;t=response">Get v1beta2 compliance by compliance ID</a></td>
 <td align="center"><code class="language-text">complianceStatus</code></td>
 </tr>
 <tr>
 <td align="left">compute-ops/firmware-bundle</td>
-<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/get_v1beta2_firmware_bundle_by_id/">Get v1beta2 firmware bundle by id</a></td>
+<td align="center"><a href="https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/get_v1beta2_firmware_bundle_by_id/">Get v1beta2 firmware bundle by id</a></td>
 <td align="center"><code class="language-text">advistories</code>, <code class="language-text">isActive</code></td>
 </tr>
 </tbody>
@@ -365,7 +365,7 @@ sequenceDiagram
 
 Description of the different requests:
 
-- **Stage 1**: Webhook creation ([API Reference](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest/operation/post_v1beta1_webhooks/))
+- **Stage 1**: Webhook creation ([API Reference](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-latest-mgmt/operation/post_v1beta1_webhooks/))
 
     - `POST` **Request**: Compute Ops Management offers an API that lets you register your webhook endpoint by sending a POST request containing the URL of your webhook listener, the events you wish to subscribe to, a name, a state and a header:
 
