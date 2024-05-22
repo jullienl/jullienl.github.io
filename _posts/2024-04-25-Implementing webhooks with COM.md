@@ -11,9 +11,9 @@ mermaid: true
 ---
 
 
-In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with Compute Ops Management (COM).
+In today's fast-paced digital landscape, operational efficiency isn't just nice to have; it's a cornerstone of success. But what if I told you there's a secret weapon that can turbocharge your operational processes? Enter webhooks—an incredibly powerful tool when integrated with HPE GreenLake for Compute Ops Management (COM).
 
-Imagine having a high-powered alert system not just sounding alarms but also triggering action in real-time. That's exactly what webhooks do! They're like digital workhorses, tirelessly communicating between applications and kicking off automated workflows with precision.
+Imagine having a high-powered alert system not just sounding alarms, but also triggering actions in real-time. That's exactly what webhooks do! They're like digital workhorses, tirelessly communicating between applications and kicking off automated workflows with precision.
 
 Now, let's peel back the layers to discover how this impacts organizations like yours.
 
@@ -29,7 +29,7 @@ With Compute Ops Management, webhooks offer a seamless avenue for triggering eve
 
 This integration translates to fewer hours lost to manual monitoring and more time reclaimed for innovation and strategy. It’s about letting technology take the wheel when it comes to routine, yet critical, tasks.
 
-Take for example a common webhook use case: If a server unexpectedly goes offline—whether due to manual intervention or an automated script—a webhook can react immediately by dispatching an email notification to the relevant personnel and concurrently logging an incident in a designated database. This proactive approach ensures that teams are promptly alerted, allowing for swift action and minimizing potential downtime or disruptions.
+Take a common webhook use case: If a server unexpectedly goes offline—whether due to manual intervention or an automated script—a webhook can react immediately by dispatching an email notification to the relevant personnel and concurrently logging an incident in a designated database. This proactive approach ensures that teams are promptly alerted, allowing for swift action and minimizing potential downtime or disruptions.
 
 In a webhook scenario, there is typically a source application (i.e., Compute Ops Management) that sends event notifications to a webhook endpoint (the destination URL) which is set up to receive and process these events.   
  
@@ -235,7 +235,7 @@ Suppose a group named "Group1" is created at the initial stage (referred to as e
 
 ### OData style filters
 
-Filters use OData style filters as described in the [HPE GreenLake specification](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops/public/guide/#filtering). 
+Filters use OData style filters as described in the [HPE GreenLake specification](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/guide/#filtering). 
 
 The general syntax for an OData filter looks like `property op value` with:
 - `property` refers to the field or property to filter on in the entity.
@@ -275,7 +275,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
   => Match any server events whose connected state transitions from `True` to `False`
 
-  **Note**: The `connected` property of the servers API is a Boolean as indicated in the [API reference](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops/public/openapi/compute-ops-latest/operation/get_v1beta2_server_by_id/#tag/servers-v1beta2/operation/get_v1beta2_server_by_id!c=200&path=state/connected&t=response), therefore ensure you use the Boolean value `True` without enclosing it in quotation marks as they represent Boolean literals for both expressions because quotation marks would indicate a string type rather than a Boolean type:
+  **Note**: The `connected` property of the servers API is a Boolean as indicated in the [API reference](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta2_server_by_id/#tag/servers-v1beta2/operation/get_v1beta2_server_by_id!c=200&path=state&t=response), therefore ensure you use the Boolean value `True` without enclosing it in quotation marks as they represent Boolean literals for both expressions because quotation marks would indicate a string type rather than a Boolean type:
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-1.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-1.png){:class="body-image-post"}{: data-lightbox="gallery"}
   
@@ -335,7 +335,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 ## Secure handshake mechanism
 
-Compute Ops Management uses webhook verification through challenge in headers. This is a common security measure used by providers to verify the receiver's endpoint authenticity before starting to send webhook data. 
+Compute Ops Management uses webhook verification through challenges in headers. This is a common security measure used by providers to verify the receiver's endpoint authenticity before starting to send webhook data. 
 
 Here's an overview of typical API request interactions that take place between Compute Ops Management and a webhook endpoint when a user initiates webhook creation:
 <br>
@@ -514,16 +514,14 @@ When an event occurs—for instance, a server shutdown—Compute Ops Management 
 - Trigger backup procedures
 - Scale down operations in a load balancer
 - Create a record in ServiceNow
-- And more
 
-The potential applications are extensive.
-
+And more - there are numerous potential applications!
 
 ### A step-by-step workflow creation guide with Make
 
 To illustrate this, let's explore how to create a typical workflow using Make (formerly known as Integromat). 
 
-Make is a powerful no-code/low-code automation tool that greatly enhances Compute Ops Management's webhook capabilities to streamline and automate workflows without requiring extensive coding knowledge. With its intuitive visual interface, complex integrations between various online services become much simpler, significantly reducing the time spent on otherwise manual tasks.
+Make is a powerful no-code/low-code automation tool that greatly enhances Compute Ops Management's webhook capabilities to streamline and automate workflows without requiring extensive coding knowledge. With its intuitive visual interface, complex integrations between various online services become much simpler, significantly reducing the time spent on manual tasks.
 
 [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-5.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-5.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
@@ -533,14 +531,14 @@ Make is a powerful no-code/low-code automation tool that greatly enhances Comput
 The multifaceted automated workflow must handle the initial validation challenge issued during the setup of the COM webhook but also execute several actions each time a webhook is triggered by a server shutdown event. The workflow will include the following actions:
 - Dispatch an email notification containing information about the impacted server to a designated inbox.
 - Post an update to a specified Slack channel, detailing the shutdown server.
-- Create a new record in a Notion database, cataloging particulars of the affected server.
+- Create a new record in a Notion database, cataloguing particulars of the affected server.
 
 The following steps describe how to implement this scenario in Make:
 <a name="1-setup-your-make-account"></a>
 
 1. **Setup your Make account**
    
-   - Sign in to your Make (formerly Integromat) account.
+   - Sign in to your Make account.
    
    - If you don’t have an account, create one from [https://www.make.com/en](https://www.make.com/en).   
 
@@ -550,13 +548,13 @@ The following steps describe how to implement this scenario in Make:
 
 2. **Create a new scenario**
   
-   - Go to the Scenarios section and click on `Create a new scenario`.   
+   - Go to the Scenarios section and click on **Create a new scenario**.   
    <br>
 <a name="3-search-and-add-the-webhooks-module"></a>
 
 3. **Search and add the webhooks module**
    
-   - Search for the Webhooks module then select `Custom webhook` and add it to the scenario.
+   - Search for the Webhooks module then select **Custom webhook** and add it to the scenario.
       
      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-3.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-3.png){:class="body-image-post"}{: data-lightbox="gallery"}  
  <br> 
@@ -564,15 +562,15 @@ The following steps describe how to implement this scenario in Make:
 
 4. **Configure the webhook trigger**
 
-   - Click on `Create a webhook` in the Webhooks module.
+   - Click on **Create a webhook** in the Webhooks module.
 
      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-4.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-4.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-   - Set up the webhook by giving it a name and click on `Show advanced settings` and turn the `Get request headers` to `Yes`.
+   - Set up the webhook by giving it a name and click on **Show advanced settings** and turn the **Get request headers** to **Yes**.
     
      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-6.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-6.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-   - Save it to get the unique URL then copy the webhook URL by clicking on `Copy address to clipboard` then click `OK`.
+   - Save it to get the unique URL then copy the webhook URL by clicking on **Copy address to clipboard** then click **OK**.
     
      [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-7.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-7.png){:class="body-image-post"}{: data-lightbox="gallery"}  
    <br>
@@ -580,7 +578,7 @@ The following steps describe how to implement this scenario in Make:
 
 5. **Run the webhooks module once**
 
-    - Click on the `Run once button`. This action is necessary to capture the data structure that will be transmitted by COM when you create the webhook in the following step.  
+    - Click on the **Run once** button. This action is necessary to capture the data structure that will be transmitted by COM when you create the webhook in the following step.  
       
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-12.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-12.png){:class="body-image-post"}{: data-lightbox="gallery"}  
   <br>
@@ -641,15 +639,15 @@ The following steps describe how to implement this scenario in Make:
 
 7. **Create a variable to capture the verification challenge sent by COM**
 
-    - Click on `+` to add another module 
+    - Click on **+** to add another module 
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-9.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-9.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-    - Search for the Tools module then select `Set variable`
+    - Search for the Tools module then select **Set variable**
     
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-10.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-10.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-    - Enter `verification` as the variable name and for the variable value, enter:
+    - Enter **verification** as the variable name and for the variable value, enter:
       
       \{\{get(toCollection(;&quot;name&quot;;&quot;value&quot;); &quot;x-compute-ops-mgmt-verification-challenge&quot;)\}\}
 
@@ -657,12 +655,12 @@ The following steps describe how to implement this scenario in Make:
       
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-15.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-15.png){:class="body-image-post"}{: data-lightbox="gallery"}  
     
-    - Then click just after `toCollection(`:
+    - Click just after `toCollection(`:
   
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-24.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-24.png){:class="body-image-post"}{: data-lightbox="gallery"}
           
 
-    - Then click on the `Headers[]` item from the Make mapping pane:
+    - Click on the `Headers[]` item from the Make mapping pane:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-25.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-25.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -670,20 +668,20 @@ The following steps describe how to implement this scenario in Make:
 
       > `Headers[]` represents the variable holding headers from the first module, the Webhooks module. This is where the verification challenge sent by COM is found.
 
-    - Then click on `OK`:
+    - Click on **OK**:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-26.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-26.png){:class="body-image-post"}{: data-lightbox="gallery"}   
       
-    - Then click on `Run once` 
+    - Click on **Run once** 
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-27.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-27.png){:class="body-image-post"}{: data-lightbox="gallery"} 
   <br>
 <br>
 <a name="8-renegociate-the-webhook-handshake-to-set-the-variable"></a>
 
-8. **Renegociate the webhook handshake to set the variable**
+8. **Renegotiate the webhook handshake to set the variable**
 
-    - For the moment, the `verification` variable just set is not populated, and you need to ask COM to renegotiate the handshake again To do so, you have to modify the existing webhook by sending a `PATCH` request with the previously used payload, targeting the webhook ID recorded earlier:
+    - For the moment, the `verification` variable just set is not populated, and you need to ask COM to renegotiate the handshake again. To do so, you have to modify the existing webhook by sending a `PATCH` request with the previously used payload, targeting the webhook ID recorded earlier:
 
         ```
           PATCH /compute-ops-mgmt/v1beta1/webhooks/<webhook-id>
@@ -702,7 +700,7 @@ The following steps describe how to implement this scenario in Make:
     
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-31.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-31.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-    - Once the request has been sent, return to the Make interface and verify that the execution stopped and the the status of all modules is green:
+    - Once the request has been sent, return to the Make interface and verify that the execution stopped and the status of all modules is green:
   
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-28.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-28.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -714,11 +712,11 @@ The following steps describe how to implement this scenario in Make:
 
 9. **Use the verification challenge in the webhook response**
 
-    - In the next step, you need to add aother module that will generate the response expected by COM. From the Tools module, click on `+` and add the `Webhook response` module.
+    - In the next step, you need to add another module that will generate the response expected by COM. From the Tools module, click on **+** and add the **Webhook response** module.
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-16.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-16.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-    - Leave the status as `200`. Click on the body field, and enter:
+    - Leave the status as **200**. Click on the body field, and enter:
     
         {&quot;verification&quot;: &quot;&quot;}
     
@@ -728,22 +726,22 @@ The following steps describe how to implement this scenario in Make:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-30.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-30.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
-    - Click on `Show advanced settings` then `Add item` then enter the following header: 
+    - Click on **Show advanced settings** then **Add item** then enter the following header: 
       - Key: `content-type` 
       - Value: `application/json`   
       <br>
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-18.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-18.png){:class="body-image-post"}{: data-lightbox="gallery"}   
     <br>
-    - Click on `OK` then click on `Run once` 
+    - Click on **OK** then click on **Run once** 
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-22.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-22.png){:class="body-image-post"}{: data-lightbox="gallery"}
  <br>
 <br>
 <a name="10-renegociate-the-webhook-handshake-to-generate-the-response"></a>
 
-10. **Renegociate the webhook handshake to generate the response**
+10. **Renegotiate the webhook handshake to generate the response**
 
-      - The Make scenario is now ready to return the verification challenge key to COM in order to enable the handshake mechanism. To force renegotiation, you can run again the PATCH request using again the same payload content targeting the same webhook ID.
+      - The Make scenario is now ready to return the verification challenge key to COM to enable the handshake mechanism. To force renegotiation, you can run the PATCH request again using the same payload content targeting the same webhook ID.
 
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-32.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-32.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -795,7 +793,7 @@ The following steps describe how to implement this scenario in Make:
 
       1. Transform the tags structure into an array: 
       
-          - Add the module **Tools**: `Set variable`.
+          - Add the module **Tools**: **Set variable**.
 
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-46.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-46.png){:class="body-image-post"}{: data-lightbox="gallery"}
           
@@ -805,7 +803,7 @@ The following steps describe how to implement this scenario in Make:
 
       2. Split the array into individual elements: 
       
-          - Add the module `Iterator`.
+          - Add the module **Iterator**.
 
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-48.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-48.png){:class="body-image-post"}{: data-lightbox="gallery"}
           
@@ -815,7 +813,7 @@ The following steps describe how to implement this scenario in Make:
 
       3. Combine multiple tag items into a single text block: 
       
-          - Add the module **Tools**: `Text aggregator`.
+          - Add the module **Tools**: **Text aggregator**.
 
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-50.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-50.png){:class="body-image-post"}{: data-lightbox="gallery"}
           
@@ -825,11 +823,11 @@ The following steps describe how to implement this scenario in Make:
 
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-51.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-51.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-          - Then drag and drop the `Bundle order position` variable from module `5` between `Tag` and `:` 
+          - Then drag and drop the `Bundle order position` variable from module `5` between **Tag** and **:** 
           
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-52.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-52.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-          - Click on `Show advanced settings`, then select `New row` for the `Row separator` option: 
+          - Click on **Show advanced settings**, then select **New row** for the **Row separator** option: 
           
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-53.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-53.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -852,16 +850,16 @@ The following steps describe how to implement this scenario in Make:
 
       To configure the following actions: sending an email, posting on a Slack channel, and adding a record in a Notion database, a router module in Make is essential. The router module enables you to create multiple branches within your scenario, allowing different actions to take place either conditionally or in parallel. For this particular scenario, no conditions will be used since I want to trigger various actions from the same webhook event concurrently. The router effectively manages these simultaneous executions, ensuring that each action is processed without the need for any conditional logic.
 
-      - From the Webhooks response module, click on `+` and add the `Router` module:
+      - From the Webhooks response module, click on **+** and add the **Router** module:
 
           [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-36.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-36.png){:class="body-image-post"}{: data-lightbox="gallery"}
         
 
-      - Let's begin with the action to post a message on a Slack channel, click on the first `+` sign to add a new module, then select the **Slack**: `Create a message` module:
+      - Let's begin with the action to post a message on a Slack channel, click on the first **+** sign to add a new module, then select the **Slack**: **Create a message** module:
 
           [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-37.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-37.png){:class="body-image-post"}{: data-lightbox="gallery"}
         
-      - Once you select the `Create a message` action, you will need to configure it with the necessary details: 
+      - Once you select the **Create a message** action, you will need to configure it with the necessary details: 
 
           - Connect to your Slack account if not already connected. Refer to the Make online help for more information.
           - Select the channel where the message will be posted.
@@ -914,19 +912,19 @@ The following steps describe how to implement this scenario in Make:
 
             > To build an interactive block message, you can use [Block Kit Builder](https://app.slack.com/block-kit-builder/).
 
-          - Once the block is set, click `OK`.
+          - Once the block is set, click **OK**.
 
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-39.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-39.png){:class="body-image-post"}{: data-lightbox="gallery"}
           
-          - Let's continue; this time, with the action to send a message to an email recipient, click on the second `+` sign to add another module, then select the **Email**: `Send an Email` module:
+          - Let's continue with the action to send a message to an email recipient, click on the second **+** sign to add another module, then select the **Email**: **Send an Email** module:
 
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-40.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-40.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-          - Once you select the `Send an Email` action, you will need to configure it with the necessary details:
+          - Once you select the **Send an Email** action, you will need to configure it with the necessary details:
 
             - Create a connection to your email account if not already done. You can connect your email account to Make using different methods such as using a Gmail account, an IMAP, or a Microsoft SMTP/IMAP OAuth connection. Refer to the Make online help for more information.
 
-            - In the `To` field, add a recipient email address and enter the subject you want to have.
+            - In the **To** field, add a recipient email address and enter the subject you want to have.
 
             - Enter the message you want to send. As an example, you can use the following HTML in the content field:
 
@@ -950,12 +948,12 @@ The following steps describe how to implement this scenario in Make:
                 </html>{% endraw %}
               ```
 
-            - Configure any additional options then click `OK`.
+            - Configure any additional options then click **OK**.
 
               [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-41.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-41.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
 
-      - For the final action in this scenario, I aim to create a record in a Notion database to capture historical activity. Click on the router module to add another module, and then select the **Notion**: `Create a Database Item` module:
+      - For the final action in this scenario, I aim to create a record in a Notion database to capture historical activity. Click on the router module to add another module, and then select the **Notion**: **Create a Database Item** module:
 
           [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-42.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-42.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -963,7 +961,7 @@ The following steps describe how to implement this scenario in Make:
 
               > Notion is an all-in-one workspace application that allows users to create, organize, and collaborate on notes, tasks, databases, and documents. It combines the functionalities of note-taking, project management, and database management into a single, flexible platform for personal use or team collaboration.
 
-          - Select the database where the record will be created. Use the `Select from the list` option, then click on the `Search` button. You can press the `OK` button directly afterward, even without providing any query parameters:
+          - Select the database where the record will be created. Use the **Select from the list** option, then click on the **Search** button. You can press the **OK** button directly afterward, even without providing any query parameters:
 
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-44.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-44.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
@@ -1007,11 +1005,11 @@ The following steps describe how to implement this scenario in Make:
 
 14. **Scheduling and Activation**   
 
-      - To ensure the scenario runs automatically every time webhook data is received from COM, click on the `Scheduling` button and make sure the `Immediately as data arrives` option is selected:
+      - To ensure the scenario runs automatically every time webhook data is received from COM, click on the **Scheduling** button and make sure the **Immediately as data arrives** option is selected:
 
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-57.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-57.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-      - Finally, save your scenario by clicking on the `Save` button:
+      - Finally, save your scenario by clicking on the **Save** button:
 
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-56.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-56.png){:class="body-image-post"}{: data-lightbox="gallery"}  
   <br>  
@@ -1075,7 +1073,7 @@ The following steps describe how to implement this scenario in Make:
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-66.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-66.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
 
-      In Make, monitor the scenario. Ensure that the webhook is received and that it triggers the corresponding actions. Check logs for any issues. All modules should turn green, indicating success, with no errors displayed:
+      In Make, monitor the scenario. Ensure that the webhook is received and that it triggers the corresponding actions. Check the [Make history](https://www.make.com/en/help/scenarios/scenario-execution-history) for any issues. All modules should turn green, indicating success, with no errors displayed:
 
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-60.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-60.png){:class="body-image-post"}{: data-lightbox="gallery"}  
     
@@ -1117,7 +1115,7 @@ Moreover, using filters, offers another layer of automation. Consider a webhook 
 
 Details about the different modules to use in Make to interact with COM:
 
-- To create a COM session, you can use the HTTP: `Make a request` module with the following configuration:
+- To create a COM session, you can use the HTTP: **Make a request** module with the following configuration:
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-68.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-68.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
@@ -1125,23 +1123,23 @@ Details about the different modules to use in Make to interact with COM:
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-69.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-69.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-- To create a `GET` request, use:  
+- To create a **GET** request, use:  
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-70.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-70.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-- To capture the `GET` response into a variable: 
+- To capture the **GET** response into a variable: 
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-71.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-71.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-- To create a POST request with a particular payload, use:
+- To create a **POST** request with a particular payload, use:
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-72.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-72.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
-  > Note that, for some obscure reason, I had to remove all spaces in my JSON payload for the COM API to accept my request!
+  > Note that you must remove all spaces in the JSON payload for the COM API to accept the request.
 
  - [Filters](https://www.make.com/en/help/scenarios/filtering) used to detect the application name in the Tag values, must be configured with the `text` variable where the server tags have been stored from module `6` and must use the `Contains()` operator with the string value that you want to filter:  
 
    [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png){:class="body-image-post"}{: data-lightbox="gallery"}  
 
 
-To wrap things up, I'm genuinely excited about the opportunities here! The combo of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake spaces. Imagine having complicated tasks just flow smoothly on their own—less grunt work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀
+To wrap things up, I'm genuinely excited about the opportunities here! The combination of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake. Imagine having complicated tasks just flow smoothly on their own—less manual work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀
