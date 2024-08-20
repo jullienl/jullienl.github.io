@@ -1029,7 +1029,7 @@ The following steps describe how to implement this scenario in Make:
       1. Shut down a server for real in COM using the GUI to test the entire flow:
 
           - Navigate to the control panel within your COM user interface.
-          - Locate the server that needs to be shut down.
+          - Identify the server you want to stop.
           - Use the server options to initiate a shut down.
 
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-58.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-58.png){:class="body-image-post"}{: data-lightbox="gallery"}  
