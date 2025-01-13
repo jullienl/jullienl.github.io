@@ -60,12 +60,7 @@ In an Identity Provider SSO workflow, the SSO request originates from the identi
 5. HPE GreenLake accepts the request, establishes who the identity of the user from the NameID element of the SAML assertion, discovers the user's effective roles in the hpe_ccs_attribute element
 6. The authentication process completes, and the user is granted access to the HPE GreenLake application encoded in the ADFS url as known as the RelayState.
 
-<a name="configurationsteps"></a>
-
-# Configuration steps
-
 <a name="prerequisites"></a>
-
 
 ## Prerequisites
 
@@ -74,6 +69,58 @@ In an Identity Provider SSO workflow, the SSO request originates from the identi
 3. An Active Directory instance
 4. A server running Microsoft Windows Server 2022 (or 2016)
     
+<a name="keycomponents"></a>    
+
+## Environment setup and automated certificate renewal
+
+Here are the key components I’m using in my lab environment to support ADFS services and automate certificate renewal:
+
+- [pfSense](https://www.pfsense.org/) as my firewall/router. It provides a wide range of network security solutions, including firewalling, routing, VPN, and intrusion detection and prevention.
+
+- [HAProxy](https://docs.netgate.com/pfsense/en/latest/packages/haproxy.html) package in **pfSense** to publish ADFS, providing load balancing, high availability, and enhanced security for ADFS services. See Andreas Helland's excellent article: [Publishing ADFS through pfSense with HAProxy](https://contos.io/publishing-adfs-through-pfsense-with-haproxy-e5c86fc4b5e1)
+
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-HAProxy-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-HAProxy-1.png){:class="body-image-post"}{: data-lightbox="gallery"}
+
+- [Acme](https://docs.netgate.com/pfsense/en/latest/packages/acme/index.html) package in **pfSense** to automatically generate a free [Let's Encrypt](https://letsencrypt.org/) signed certificate for my domain every 60 days (Let's Encrypt certificates expire after 90 days).  
+
+   - With the **Write Certificates** option checked in **Acme** settings, to save the Let's Encrypt-signed certificate in pfSense's local */cf/conf/acme* folder.  This option is important because it allows a script to retrieve the new certificate and initiate all the necessary steps for renewing the ADFS server certificate.
+
+     [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-1.png){:class="body-image-post"}{: data-lightbox="gallery"}
+
+   - With a shell command added to the **Actions list**  to restart **HAProxy** after the certificate has been renewed:  `/usr/local/etc/rc.d/haproxy.sh restart`   
+
+     [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-2.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-2.png){:class="body-image-post"}{: data-lightbox="gallery"}
+
+- [Dynu DNS](https://www.dynu.com):
+
+  - To register my domain name 
+
+    [![]( {{ site.baseurl }}/assets/images/AD-ADFS/dynu-DNS.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/dynu-DNS.png){:class="body-image-post"}{: data-lightbox="gallery"}
+
+  - To prove to **Let's Encrypt** that I control the domain for which I'm requesting an SSL/TLS certificate. This proof of ownership is fully supported by the **DNS_Dynu** method in the **ACME** service within **pfSense**:     
+
+    [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-3.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-3.png){:class="body-image-post"}{: data-lightbox="gallery"}
+   
+- A [script](https://github.com/jullienl/HPE-GreenLake/blob/main/ADFS/Renew-ADFS-certificate.ps1) that is scheduled to run every 60 days (so before the Let's Encrypt certificate expires) and includes all the necessary steps required after the certificate is renewed. This script is executed from the ADFS server and includes:
+
+   - **Downloading the ADFS certificate from pfSense** (generated from Let's Encrypt using the Acme package/service).    
+   - **Updating the ADFS Windows server certificate**:
+      - Checking that the new and existing certificates found in the ADFS server personal trust store are identical.
+      - If not identical, removing the existing certificate and importing the new one to the ADFS server personal trust store.
+      - Assigning full control permission to the new certificate private key for the ADFS service account.
+      - Updating the SSL certificate of the ADFS service and restarting the ADFS service.    
+
+   - **Updating HPE GreenLake workspace SAML SSO details with the new ADFS certificate**:    
+      - Connecting to the HPE GreenLake workspace using the SAML SSO recovery email (the only user who can update the SAML SSO domain).
+      - Checking that the HPE GreenLake SAML SSO Domain is set with the correct ADFS server certificate.
+      - If different, modifying the SAML SSO domain with the new ADFS certificate using the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module.     
+
+   - **Updating the ADFS Relying Party with the HPE GreenLake server certificate** (only if renewed):
+      - Retrieving the X509 certificate thumbprint of the Service Provider (from HPE GreenLake).
+      - Comparing it with the one configured in ADFS.
+      - If not the same, updating the ADFS Relying Party set for HPE GreenLake with the new HPE GreenLake certificate.
+
+
 <a name="step1"></a>
 
 ## Step 1: Certificate Requirements for Federation Servers
@@ -84,28 +131,19 @@ Active Directory Federation Services (ADFS) requires a certificate for Secure So
    
    [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-cert.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-cert.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-   > See [Certificate Requirements for Federation Servers](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/design/certificate-requirements-for-federation-servers) and [Enroll an SSL Certificate for AD FS](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/enroll-an-ssl-certificate-for-ad-fs)
-    > 
-    > In my environment, I use the [Acme](https://docs.netgate.com/pfsense/en/latest/packages/acme/index.html) package in pfsense to automatically generate every 60 days (Let's Encrypt certificates expire after 90 days) a free [Let's Encrypt](https://letsencrypt.org/) signed certificate for my domain. 
-    >
-    > I also use the **Write Certificates** Acme option to save my signed certificate in the **/cf/conf/acme** folder of pfsense:
-    >
-    [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-1.png){:class="body-image-post"}{: data-lightbox="gallery"}
-    >
-    >
-    > For the initial ADFS configuration (so before you run [Step 6: ADFS configuration](#step6)), a p12 certificate must be generated from the certificate files supplied by the Acme package. The following command can be run from a pfsense shell console:      
-    > `openssl pkcs12 -export -in /cf/conf/acme/<name>.all.pem -inkey /cf/conf/acme/<name>.key -out /cf/conf/acme/<name>.p12 -passout pass:password -name <name>.com -caname root`    
-    > Then to import the p12 certificate into ADFS, open the Start menu on the ADFS server and search for **Manage Computer Certificates** then import the p12 file available in pfsense in /cf/conf/acme into the Personal store. 
-    >
-    > Then once ADFS is installed, a scheduled [script](https://github.com/jullienl/HPE-GreenLake/blob/main/ADFS/Renew-ADFS-certificate.ps1) can be run every 60 days (so before the Let's Encrypt certificate expires) to import the Let's Encrypt certificate from pfsense into ADFS and then to restart the ADFS services.
+   See [Certificate Requirements for Federation Servers](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/design/certificate-requirements-for-federation-servers) and [Enroll an SSL Certificate for AD FS](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/enroll-an-ssl-certificate-for-ad-fs)
 
+   For the initial ADFS configuration (so before you run [Step 6: ADFS configuration](#step6)), a p12 certificate must be generated from the certificate files supplied by the Acme package. The following command can be run from a pfSense shell console:      
 
+   ```
+   openssl pkcs12 -export -in /cf/conf/acme/<name>.all.pem -inkey /cf/conf/acme/<name>.key -out /cf/conf/acme/<name>.p12 -passout pass:password -name <name>.com -caname root
+   ```
+
+   Then to import the p12 certificate into ADFS, open the Start menu on the ADFS server and search for **Manage Computer Certificates** then import the p12 file available in pfSense in /cf/conf/acme into the Personal store. 
+      
 2. Ensure that the Fully Qualified Domain Name (FQDN) of your certificate is correctly mapped to the public IP address of your ADFS server.
 
-    > I use [Dynu DNS](https://www.dynu.com) to register my domain name but there are many free dynamic DNS services available.   
-    >
-    > In my environment, I use my pfsense's public IP address because I use pfsense HAproxy to publish ADFS. See Andreas Helland's excellent article: [Publishing ADFS through pfSense with HAProxy](https://contos.io/publishing-adfs-through-pfsense-with-haproxy-e5c86fc4b5e1)
- 
+
 <a name="step2"></a>
 
 ## Step 2: Configuring an ADFS service user 
