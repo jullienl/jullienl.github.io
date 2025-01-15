@@ -87,17 +87,19 @@ Here are the key components I’m using in my lab environment to support ADFS se
 
 - [Acme](https://docs.netgate.com/pfsense/en/latest/packages/acme/index.html) package in **pfSense** to automatically generate a free [Let's Encrypt](https://letsencrypt.org/) signed certificate for my domain every 60 days (Let's Encrypt certificates expire after 90 days).  
 
-   - With the **Write Certificates** option checked in **Acme** settings, to save the Let's Encrypt-signed certificate in pfSense's local */cf/conf/acme* folder.  This option is important because it allows a script to retrieve the new certificate and initiate all the necessary steps for renewing the ADFS server certificate.
+   - With the **Write Certificates** option checked in **Acme** settings, to save the Let's Encrypt-signed certificate in pfSense's local */cf/conf/acme* folder.  This option is important because it allows a script to retrieve the new certificate and initiate all the necessary steps for renewing the ADFS server certificates.
 
      [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-1.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
-   - With a shell command added to the **Actions list**  to restart **HAProxy** after the certificate has been renewed:  `/usr/local/etc/rc.d/haproxy.sh restart`   
+   - With a shell command added to the **Actions list**  to restart **HAProxy** after the certificate has been renewed:  `/usr/local/etc/rc.d/haproxy.sh restart`. This ensures that the ADFS sign-on webpage uses the new Let's Encrypt certificate once it is renewed.    
 
      [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-2.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-2.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
 - [Dynu DNS](https://www.dynu.com):
 
-  - To register my domain name 
+  - To register my domain name for free. 
+
+      > You can register your domain name with Dynu by visiting their website, creating an account, and following the domain registration process.
 
     [![]( {{ site.baseurl }}/assets/images/AD-ADFS/dynu-DNS.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/dynu-DNS.png){:class="body-image-post"}{: data-lightbox="gallery"}
 
