@@ -107,7 +107,7 @@ Here are the key components I’m using in my lab environment to support ADFS se
 
     [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-3.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-ACME-3.png){:class="body-image-post"}{: data-lightbox="gallery"}
    
-- A [script](https://github.com/jullienl/HPE-GreenLake/blob/main/ADFS/Renew-ADFS-certificate.ps1) that is scheduled to run every 60 days (so before the Let's Encrypt certificate expires) and includes all the necessary steps required after the certificate is renewed. This script is executed from the primary ADFS server and includes:
+- A [script](https://github.com/jullienl/HPE-GreenLake/blob/main/ADFS/Renew-ADFS-certificate.ps1) that is scheduled to run every 60 days (so before the Let's Encrypt certificate expires) and includes all the necessary steps required after the certificate is renewed. This script should be executed on all ADFS servers in an ADFS farm and includes:
 
    - **Downloading the ADFS certificate from pfSense** (generated from Let's Encrypt using the Acme package/service).    
    - **Updating the ADFS certificates**:
