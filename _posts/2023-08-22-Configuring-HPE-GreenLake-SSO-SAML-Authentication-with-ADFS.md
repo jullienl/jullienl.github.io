@@ -222,11 +222,11 @@ So if you are not connected to HPE GreenLake with an email from your SAML domain
 > The administrator role will be needed to configure SAML authentication in your workspace, which will be done later. 
 >
 > Then click on **Send Invite**. This will send an email invitation to the mailbox of your AD user. 
+
+> Note that you don't necessarily need to accept the invitation by clicking on the email accept invitation button because once the invitation is sent, the user is granted access to the workspace.
 > 
 > ![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-12.png){:class="body-image-post"}{:width="50%"}
 
->
-> Accept the invitation by clicking on the **Accept invitation** button and complete the HPE GreenLake registration.
 
 
 <a name="step5"></a>
