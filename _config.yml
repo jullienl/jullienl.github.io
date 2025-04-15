@@ -6,7 +6,7 @@ description: Welcome to the world of DevOps, scripting, and much more for HPE pr
   connects with HPE products and solutions.
 accent_colour: "#acacac"
 theme_version: 1.0.15
-url: https://jullienl.github.io/
+url: https://jullienl.github.io
 
 # Optional native feature customisation (delete to turn off)
 table_of_contents_header: "Jump to:"
