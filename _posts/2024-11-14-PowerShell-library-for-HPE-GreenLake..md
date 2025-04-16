@@ -68,87 +68,179 @@ These features collectively provide a comprehensive set of cmdlets to manage var
 
 - **Supported authentication methodes**:
 
-    - **Single-factor** authentication.
+    1. **Single-Factor Authentication**: Authenticate using your email and password.
 
-    - **Multi-factor** authentication (MFA) using **Google Authenticator** or **Okta Verify**. 
+    2. **Multi-Factor Authentication (MFA)**: Supported via **Google Authenticator** or **Okta Verify**.
+        - **Requirements**:
+            - Ensure the **Google Authenticator** or **Okta Verify** app is installed on your mobile device and linked to your account.
+                - MFA with security keys or biometric authenticators is not supported. If your account is configured for these methods only, enable Google Authenticator or Okta Verify in your account settings.
 
-        > **Note**: To use MFA, ensure that the **Okta Verify** or **Google Authenticator** app is installed on your **mobile device** and properly linked to your account before initiating the connection process.   
-        > - MFA with security keys or biometric authenticators is not supported. 
-        >   - If your HPE GreenLake account is configured to use only security keys or biometric authenticators for MFA, you must enable either Google Authenticator or Okta Verify in your account settings to use this library.
-        > - For accounts with Google Authenticator enabled, you will be prompted to enter the verification code. 
-        > - For accounts with Okta Verify enabled, you will need to approve the push notification on your phone.
-        > - If both Google Authenticator and Okta Verify are enabled, the library defaults to using Okta Verify push notifications.  
+        - **Behavior**:
+            - For accounts with **Google Authenticator**, you will be prompted to enter the verification code.
+            - For accounts with **Okta Verify**, approve the push notification on your Okta-enabled device.
 
-    - **SAML Single Sign-On** (SSO) but exclusively with **Okta**. 
-        > **Note**: To use SSO, ensure that the **Okta Verify** app is installed on your **mobile device** and properly linked to your account before initiating the connection process. 
-        > - Users leveraging SAML SSO through other identity providers cannot authenticate directly using their corporate credentials with the `Connect-HPEGL` cmdlet. 
-        >   - As a workaround, invite a user with an email address that is not associated with any SAML SSO domains configured in the workspace. This can be done via the HPE GreenLake GUI under `User Management` by selecting `Invite Users`. Assign the HPE GreenLake Account Administrator role to the invited user. Once the invitation is accepted, the user can set a password and use these credentials to log in with `Connect-HPEGL`.
-        
+                > Note: If both methods are enabled, the library defaults to **Okta Verify**.
+
+    3. **SAML Single Sign-On (SSO)**: Supported exclusively with **Okta**.
+        - **Requirements**:
+            - Ensure the **Okta Verify** app is installed on your mobile device and linked to your account.
+
+        - **Limitations**:
+            - SAML SSO through other identity providers is not supported for direct authentication with the `Connect-HPEGL` cmdlet.
+            - **Workaround**: Invite a user with an email address not associated with any SAML SSO domains configured in the workspace. This can be done via the HPE GreenLake GUI under **User Management** by selecting **Invite Users**. Assign the **HPE GreenLake Account Administrator** role to the invited user. Once the invitation is accepted, the user can set a password and use these credentials to log in with `Connect-HPEGL`.     
 
 
-## Installation 
+## Installation
 
-To install the library, download the module and import it into your PowerShell session:
+To install the library, use the following command to download and install the module from the official PowerShell Gallery:
 
-```sh
+```powershell
 Install-Module HPECOMCmdlets
 ```
 
-This will download and install the module from the official PowerShell Gallery repository. If this is your first time installing a module from the PowerShell Gallery, it will ask you to confirm whether you trust the repository or not. You can type `Y` and press `Enter` to continue with the installation.
+If this is your first time installing a module from the PowerShell Gallery, you will be prompted to confirm whether you trust the repository. Type `Y` and press `Enter` to proceed.   
 
->**Note**: You must have an internet connection to install the module from the PowerShell Gallery. 
+### Common Issues and Troubleshooting
+- **Internet Connection**: An active internet connection is required to install the module from the PowerShell Gallery.
+- **No Dependencies**: This library has no external dependencies, so no additional software or modules are required for it to function.
+- **Common Issues**:
+    - **Insufficient Permissions**: If you encounter permission issues, run PowerShell as an administrator or use the `-Scope CurrentUser` parameter:
 
->**Note**: This library has no dependencies, so it does not require the installation of any other software or modules to function properly.
+        ```powershell
+        Install-Module HPECOMCmdlets -Scope CurrentUser
+        ```
+    - **Execution Policy Restrictions**: If the execution policy is set to `Restricted`, it may block the installation. Check your current policy using:
 
->**Note**: You may encounter several issues while using the `Install-Module` cmdlet in PowerShell, including:
->    * **Insufficient Permissions**: You might need administrative privileges to install modules. If you lack these privileges, run your PowerShell client as an administrator or use: `Install-Module HPECOMCmdlets -Scope CurrentUser`.
->    * **Blocked Security Protocols**: PowerShell's security settings can sometimes block the installation process, especially if the execution policy is set to `Restricted`. If `Get-ExecutionPolicy` returns `Restricted`, run `Set-ExecutionPolicy RemoteSigned` to change it.
+        ```powershell
+        Get-ExecutionPolicy
+        ```
+        If it returns `Restricted`, update it to `RemoteSigned`:
+        ```powershell
+        Set-ExecutionPolicy RemoteSigned
+        ```
+        > **Warning**: Changing the execution policy affects the security of your system. Ensure you understand the implications before proceeding.
+
+By following these steps, you can successfully install the `HPECOMCmdlets` module and begin using it in your PowerShell 7 environment.
+
+### How to Upgrade the Module
+
+To ensure you are using the latest version of the `HPECOMCmdlets` module, follow these steps:
+
+1. Uninstall all currently installed versions of the module:
+
+    ```powershell
+    Get-InstalledModule -Name HPECOMCmdlets -AllVersions | Uninstall-Module
+    ```
+
+2. Install the latest version from the PowerShell Gallery:
+
+    ```powershell
+    Install-Module HPECOMCmdlets
+    ```
+
+> **Note**: If you encounter permission issues during the upgrade process, run PowerShell as an administrator or use the `-Scope CurrentUser` parameter with the `Install-Module` cmdlet.
 
 
 ## Getting Started
 
-To get started, create a credentials object using your HPE GreenLake user's email and password and connect to your HPE GreenLake workspace:
+### Using Single or Multi-Factor Authentication
 
-```sh
-$credentials = Get-Credential
-Connect-HPEGL -Credential $credentials -Workspace "YourWorkspaceName"
+To connect using single or multi-factor authentication, follow these steps:
+
+1. **Single-Factor Authentication**:
+
+    Use the following command to connect with your email and password:
+
+    ```powershell
+    Connect-HPEGL -Credential (Get-Credential) -Workspace "YourWorkspaceName"
+    ```
+
+    [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+
+    - **Note**: If you do not have a workspace yet, omit the `-Workspace` parameter. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
+
+    - **Note**: The `-Credential` parameter is optional. If omitted, the module will prompt you to enter your username and password interactively.
+
+    - **Tip**: Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
+
+2. **Multi-Factor Authentication (MFA)**:
+
+    The library supports MFA using **Google Authenticator** or **Okta Verify**. Ensure the relevant app is installed and linked to your account before proceeding.
+
+    - For accounts with **Google Authenticator**, you will be prompted to enter the verification code.
+
+    - For accounts with **Okta Verify**, approve the push notification on your mobile device.
+
+    - If both are enabled, the library defaults to **Okta Verify**.     
+                                   
+    Use the same command as above to connect using Multi-Factor Authentication (MFA):
+
+    ```powershell
+    Connect-HPEGL -Credential (Get-Credential) -Workspace "YourWorkspaceName"
+    ```
+
+    > **Note**: MFA with security keys or biometric authenticators is not supported. If your account is configured for these methods only, enable Google Authenticator or Okta Verify in your account settings.
+
+   
+         
+### Using SAML Single Sign-On (SSO) with Okta
+
+To connect using SAML SSO with Okta, use the following command:
+
+```powershell
+Connect-HPEGL -SSOEmail "firstname.lastname@domain.com" -Workspace "YourWorkspaceName"
 ```
 
-If you don't have a workspace yet, use:
+ - **Note**: If you do not have a workspace yet, omit the `-Workspace` parameter. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
 
-```sh
-Connect-HPEGL -Credential $credentials 
-```
+ - **Tip**: Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
 
 
- > **Note**: You do not need an existing HPE GreenLake workspace to connect. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
 
+### Global Session Object: `$HPEGreenLakeSession`
 
-If you have multiple workspaces assigned to your account and are unsure which one to connect to, use:
-
-```sh
-Connect-HPEGL -Credential $credentials 
-# Get the list of workspaces
-Get-HPEGLWorkspace 
-# Connect to the workspace you want using the workspace name
-Connect-HPEGLWorkspace -Name "<WorkspaceName>"
-```
-
-These commands establishe and manage your connection to the HPE GreenLake platform. 
-
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png){:class="body-image-post"}{: data-lightbox="gallery"} 
-
-Upon successful connection, it creates a persistent session for all subsequent module cmdlet requests. 
+Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
 [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
-Additionally, the cmdlet generates temporary API client credentials for both HPE GreenLake and any Compute Ops Management service instances provisioned in the workspace.
+- A persistent session that is used for all subsequent cmdlet requests within the module.
+- Temporary API client credentials for both HPE GreenLake and any Compute Ops Management service instances provisioned in the workspace.
+- A global session object stored in the `$HPEGreenLakeSession` variable, which contains session details, API client credentials, access tokens, and other relevant information for interacting with HPE GreenLake and Compute Ops Management APIs.
 
-The global variable `$HPEGreenLakeSession` stores session information, API client credentials, API access tokens, and other relevant details for both HPE GreenLake and Compute Ops Management APIs.
 
 [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
-To learn more about this object, refer to the help documentation of `Connect-HPEGL`.
+#### Key Properties of `$HPEGreenLakeSession`:
+
+- **Access Tokens**: Temporary tokens used for authenticating API requests.
+- **Workspace Details**: Information about the connected HPE GreenLake workspace.
+- **Session Expiry**: The expiration time of the current session.
+- **API Client Credentials**: Credentials used for API interactions.
+- **User Information**: Details about the authenticated user.
+
+#### Usage Example:
+
+To view the details of the `$HPEGreenLakeSession` object, simply run:
+
+```powershell
+$HPEGreenLakeSession
+```
+
+This will display all the properties and their current values.
+
+#### Managing Sessions:
+
+- To disconnect and clear the session, use the `Disconnect-HPEGL` cmdlet.
+- To refresh an expired session, re-run the `Connect-HPEGL` cmdlet with the appropriate credentials.
+
+For more details, refer to the help documentation of the `Connect-HPEGL` cmdlet:
+
+```powershell
+Get-Help Connect-HPEGL -Full
+```
+
+
+
 
 ## Script Samples
 
