@@ -83,7 +83,7 @@ These features collectively provide a comprehensive set of cmdlets to manage var
 
     3. **SAML Single Sign-On (SSO)**: Supported exclusively with **Okta**.
         - **Requirements**:
-            - Ensure the **Okta Verify** app is installed on your mobile device and linked to your account.
+            - Ensure that **Okta Verify** is properly installed and configured on your device. You must have an active Okta account linked to your email address to complete the authentication process successfully.
 
         - **Limitations**:
             - SAML SSO through other identity providers is not supported for direct authentication with the `Connect-HPEGL` cmdlet.
