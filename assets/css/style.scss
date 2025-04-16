@@ -204,3 +204,17 @@ h1:hover .octicon, h2:hover .octicon, h3:hover .octicon, h4:hover .octicon, h5:h
   color: #ffffff !important;
   white-space: nowrap;
 }
+
+
+.iPhone-image-post img {
+  width: 300px;
+  height: auto;
+  // object-fit: cover;
+}
+
+
+.body-image-post img {
+  width: 100%;
+  height: auto;
+  // object-fit: cover;
+}

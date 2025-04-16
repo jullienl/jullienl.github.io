@@ -165,7 +165,7 @@ To connect using single or multi-factor authentication, follow these steps:
 
 2. **Multi-Factor Authentication (MFA)**:
 
-    The library supports MFA using **Google Authenticator** or **Okta Verify**. Ensure the relevant app is installed and linked to your account before proceeding.
+    The library supports Multi-Factor Authentication (MFA) using **Google Authenticator** or **Okta Verify**. Before proceeding, ensure the appropriate app is installed on your device and linked to your account. For detailed guidance on setting up and using MFA with HPE GreenLake, refer to the [Multifactor Authentication Guide](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-61890E9B-F692-43F5-8229-0824797897D6.html#ariaid-title1).
 
     - For accounts with **Google Authenticator**, you will be prompted to enter the verification code.
 
@@ -181,19 +181,57 @@ To connect using single or multi-factor authentication, follow these steps:
 
     > **Note**: MFA with security keys or biometric authenticators is not supported. If your account is configured for these methods only, enable Google Authenticator or Okta Verify in your account settings.
 
-   
+	- When MFA is enabled with **Okta**:
+        - The cmdlet will prompt you to validate the push notification from **Okta Verify**.
+
+            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+
+        - On your Okta-enabled device, press "Yes, it’s me" to approve the authentication request from **Okta Verify**.
+
+
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="iPhone-image-post"}{: data-lightbox="gallery"}
+
+
+    - When MFA is enabled with **Google Authenticator**:
+       - The cmdlet will pause and prompt you to enter the MFA token.
+
+            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+
+        - Open the **Google Authenticator** app on your device to retrieve the token and enter it when prompted.
+
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="iPhone-image-post"}{: data-lightbox="gallery"}
          
 ### Using SAML Single Sign-On (SSO) with Okta
 
-To connect using SAML SSO with Okta, use the following command:
+The library provides support for SAML Single Sign-On (SSO) exclusively with Okta. To ensure a successful authentication process, follow these steps:
 
-```powershell
-Connect-HPEGL -SSOEmail "firstname.lastname@domain.com" -Workspace "YourWorkspaceName"
-```
+1. **Install and Configure Okta Verify**:
+    - Download and install the **Okta Verify** app on your device.
 
- - **Note**: If you do not have a workspace yet, omit the `-Workspace` parameter. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
+    - Link your Okta account to the app by following the setup instructions provided by your organization.
 
- - **Tip**: Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
+2. **Authentication Process**:
+    - Use the following command to connect using SAML SSO with Okta:
+
+      ```powershell
+      Connect-HPEGL -SSOEmail "firstname.lastname@domain.com" -Workspace "YourWorkspaceName"
+      ```
+
+    - If you do not have a workspace yet, omit the `-Workspace` parameter. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
+
+3. **Validation**:
+    - During the connection process, you will be prompted to validate the push notification sent to your Okta Verify app.
+
+        [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+
+    - Open the **Okta Verify** app on your device and approve the authentication request by selecting the code provided to complete the authentication process.
+
+        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="iPhone-image-post"}{: data-lightbox="gallery"}
+
+4. **Tips**:
+    - Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
+
+For detailed guidance on setting up and using SAML Single Sign-On (SSO) with HPE GreenLake, refer to the [Authentication Guide](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-D7192971-EF71-4304-B51E-548E7954E644.html#ariaid-title1).
 
 
 
@@ -201,7 +239,7 @@ Connect-HPEGL -SSOEmail "firstname.lastname@domain.com" -Workspace "YourWorkspac
 
 Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
 - A persistent session that is used for all subsequent cmdlet requests within the module.
 - Temporary API client credentials for both HPE GreenLake and any Compute Ops Management service instances provisioned in the workspace.
