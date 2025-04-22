@@ -231,7 +231,7 @@ For detailed guidance on setting up and using SAML Single Sign-On (SSO) with HPE
 
 Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="body-image-post"}{: data-lightbox="gallery"} 
 
 - A persistent session that is used for all subsequent cmdlet requests within the module.
 - Temporary API client credentials for both HPE GreenLake and any Compute Ops Management service instances provisioned in the workspace.
