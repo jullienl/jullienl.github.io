@@ -124,20 +124,12 @@ By following these steps, you can successfully install the `HPECOMCmdlets` modul
 
 ### How to Upgrade the Module
 
-To ensure you are using the latest version of the `HPECOMCmdlets` module, follow these steps:
+If you have already installed the module and need to update it to the latest version, run the following commands:
 
-1. Uninstall all currently installed versions of the module:
-
-    ```powershell
-    Get-InstalledModule -Name HPECOMCmdlets -AllVersions | Uninstall-Module
-    ```
-
-2. Install the latest version from the PowerShell Gallery:
-
-    ```powershell
-    Install-Module HPECOMCmdlets
-    ```
-
+```powershell
+Install-Module -Name HPECOMCmdlets -Force -AllowClobber
+```
+   
 > **Note**: If you encounter permission issues during the upgrade process, run PowerShell as an administrator or use the `-Scope CurrentUser` parameter with the `Install-Module` cmdlet.
 
 
