@@ -456,7 +456,15 @@ Finally click on **Download Metadata File** and save the file as *HPE_GreenLake_
 
 ![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-9.png){:class="body-image-post"}
 
+> Alternatively, you can retrieve the HPE GreenLake metadata using the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module with the following command:
+>
+> ```powershell
+> Get-HPEGLWorkspaceSAMLSSODomain -DomainName your_domain_name -DownloadServiceProviderMetadata metadata.xml
+> ```   
+
 > If you configure SAML Federation for more than one workspace, it is not necessary to save this file for each workspace, as only one workspace metadata file is required.
+
+
 
 You should now have a new SAML configuration available on your Authentication page:
 
