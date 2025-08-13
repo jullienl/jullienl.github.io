@@ -486,6 +486,16 @@ The SSO domain configuration in HPE GreenLake is now complete.
  
    [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-11.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-11.png){:class="body-image-post"}{:data-lightbox="gallery"}
 
+   > Alternatively, you can retrieve the SAML attribute values using the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module with the following command:
+   >
+   > ```powershell
+   > Get-HPEGLWorkspaceSAMLSSODomain -DomainName your_domain_name -ShowSAMLAttributes
+   > ```  
+   >
+   > [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-11-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-11-1.png){:class="body-image-post"}{:data-lightbox="gallery"}
+   >  
+
+
    You must record:
    - The HPE GreenLake platform Customer ID for each workspace you own     
    
