@@ -98,6 +98,8 @@ To install the library, use the following command to download and install the mo
 Install-Module HPECOMCmdlets
 ```
 
+Note: As a best practice, always install the newest release to get all the latest features and fixes.
+
 If this is your first time installing a module from the PowerShell Gallery, you will be prompted to confirm whether you trust the repository. Type `Y` and press `Enter` to proceed.   
 
 ### Common Issues and Troubleshooting
