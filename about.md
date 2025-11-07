@@ -8,12 +8,39 @@ permalink: /about/
 <!-- ![Lionel Jullien]( {{ site.baseurl }}/assets/images/about/lionel-small.png){:height="30%" width="30%"} -->
 
 
-<!-- {:class="body-image-post"} -->
+<!-- {:class="img-100pct"} -->
 
-In my role as a senior technology consultant in the WW Compute Business Group at Hewlett Packard Enterprise (HPE), I have the responsibility of enabling and supporting sales, pre-sales, channel partners, and end-user customers on various aspects related to HPE Compute, HPE solutions, and HPE edge-to-cloud services.
+# Lionel Jullien
 
-I have a deep passion for staying up-to-date with the latest developments and trends in DevOps, Infrastructure-as-Code, datacenter automation, and the various tools and integration techniques associated with them. I firmly believe in the benefits that using DevOps with HPE can bring, including increased agility, faster time to market, and improved quality.
+**Senior Technology Consultant @ Hewlett Packard Enterprise**  
+**20+ years in enterprise technology**
 
-I have created numerous demonstration scripts for HPE GreenLake, HPE OneView, HPE Synergy, and other related technologies. 
+## 👨‍💻 About Me
 
-These scripts are available on my [GitHub repository](https://github.com/jullienl) for public access.
+I'm the lead developer and maintainer of the **[HPECOMCmdlets PowerShell library](https://github.com/jullienl/HPECOMCmdlets)**, an open-source toolkit for automating HPE infrastructure. Based in France 🇫🇷, I work with HPE's Worldwide Compute Business Group, enabling customers, partners, and teams to adopt Infrastructure-as-Code and automation best practices.
+
+## 🚀 What I Do
+
+- Lead development of automation tools for HPE GreenLake, HPE OneView, HPE Synergy, and HPE iLO
+- Create demo scripts, technical content, and educational resources
+- Provide technical enablement for Sales, Pre-Sales, Channel Partners, and customers
+- Occasional speaker at conferences, webinars, and user groups
+- Focus on Infrastructure-as-Code, DevOps, and data center automation
+
+## 🔗 Connect
+
+- 📝 Blog: [jullienl.github.io](https://jullienl.github.io/)
+- 💼 LinkedIn: [lionel-jullien-793b56](https://fr.linkedin.com/in/lionel-jullien-793b56)
+- 🐙 GitHub: [@jullienl](https://github.com/jullienl)
+
+## 🛠️ Technologies & Expertise
+
+`PowerShell` ·  `Ansible` ·  `Infrastructure-as-Code` · `REST APIs` · `Automation` · `DevOps` · `HPE GreenLake` · `HPE OneView` · `HPE Synergy` · `HPE iLO` · `SAML/SSO` 
+
+## 🌟 Featured Projects
+
+### [HPECOMCmdlets](https://github.com/jullienl/HPECOMCmdlets)
+PowerShell library for HPE Compute Ops Management automation
+
+### [Demo Scripts Repository](https://github.com/jullienl)
+Collection of automation scripts for HPE GreenLake, OneView, Synergy, and iLO

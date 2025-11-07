@@ -46,9 +46,10 @@
 }
 
 blockquote {
-  // text-indent: -35px !important;
-  // padding-left: 50px !important;
+//   // text-indent: -35px !important;
+//   // padding-left: 50px !important;
 }
+
 
 /* Makes the meta info pretty */
 .contact-list li+li {
@@ -206,15 +207,146 @@ h1:hover .octicon, h2:hover .octicon, h3:hover .octicon, h4:hover .octicon, h5:h
 }
 
 
-.iPhone-image-post img {
-  width: 300px;
-  height: auto;
-  // object-fit: cover;
+
+// Custom blockquote styling: Tight gaps + compact bullets
+
+blockquote {
+  margin: 0;
+  margin-bottom: 1em; // Space after entire blockquote
+}
+
+blockquote p {
+  margin-bottom: 0 !important; // No gap after intro text
+}
+
+// Zero gap between paragraph and following list
+blockquote p + ul,
+blockquote p + ol {
+  margin-top: 0 !important;
+}
+
+// List styling: Compact outer margins, aligned bullets
+blockquote ul,
+blockquote ol {
+  margin: 0 0 0.5em 0 !important; // Small bottom for flow
+  padding-left: 1.2em; // Tighter indent for bullets
+}
+
+// Tighten space between bullets
+blockquote ul li,
+blockquote ol li {
+  margin-bottom: 0.25em; // Reduced from default ~1em
+  line-height: 1.2; // Compact vertical rhythm
+}
+
+// Theme wrappers (adjust .post-content/.site-main if needed)
+.post-content blockquote p,
+.site-main blockquote p {
+  margin-bottom: 0 !important;
+}
+
+.post-content blockquote ul,
+.site-main blockquote ul,
+.post-content blockquote ol,
+.site-main blockquote ol {
+  margin-top: 0 !important;
+  padding-left: 1.2em;
+}
+
+.post-content blockquote ul li,
+.post-content blockquote ol li {
+  margin-bottom: 0.25em !important; // Override theme if persistent
+}
+
+// Optional: For nested sub-bullets (e.g., deeper lists)
+blockquote ul ul li,
+blockquote ol ol li {
+  margin-bottom: 0.2em; // Even tighter for hierarchy
+}
+// Custom list spacing for numbered sections (with tighter sub-bullet indents)
+// Add to end of style.scss
+
+.post-content ol,  // Adjust .post-content to your content wrapper class if different
+.site-main ol {
+  list-style-position: outside;  // Ensures numbers/bullets align left
+}
+
+.post-content ol li,
+.site-main ol li {
+  margin-bottom: 1.5em;  // Adds space after each numbered section (e.g., between 1 and 2)
+  line-height: 1.4;      // Improves readability within items
+}
+
+.post-content ol li:last-child,
+.site-main ol li:last-child {
+  margin-bottom: 1em;    // Slightly less at the very end of the list
+}
+
+// Sub-lists: Tighter indent + compact spacing
+.post-content ol ul,    // Targets sub-bullets under numbered items
+.post-content ol ol,    // Also covers sub-numbered lists
+.site-main ol ul,
+.site-main ol ol {
+  margin-top: 0.5em;     // Small lift for sub-lists
+  margin-bottom: 0.5em;  // Keeps subs compact but separated
+  padding-left: 1.5em !important;  // Reduced from 2em for closer alignment to parent
+  margin-left: 0;        // Zaps extra theme margins
+}
+
+.post-content ol ul li,
+.post-content ol ol li,
+.site-main ol ul li,
+.site-main ol ol li {
+  margin-bottom: 0.5em;  // Tight spacing within sub-bullets
+  list-style-type: disc; // Ensures consistent bullet style (or 'decimal' for ol)
+  padding-left: 0;       // No extra on items themselves
+}
+
+// Optional: Deeper nesting (prevents over-indent on sub-sub-bullets)
+.post-content ol ul ul,
+.site-main ol ul ul {
+  padding-left: 1.8em !important;  // Gradual increase for hierarchy
 }
 
 
-.body-image-post img {
+/* Responsive image size classes */
+.img-300 img {
+  width: 300px;
+  max-width: 100%;  /* Never exceed container width on mobile */
+  height: auto;
+}
+
+.img-400 img {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-500 img {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-600 img {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-700 img {
+  width: 700px;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-800 img {
+  width: 800px;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-100pct img {
   width: 100%;
   height: auto;
-  // object-fit: cover;
 }

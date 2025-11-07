@@ -13,7 +13,7 @@ After long months of hard work, I am excited to announce the release of my new P
 
 Development is ongoing, and my efforts are far from finished. As we all know, SaaS cloud applications evolve over time. Therefore, this library will be continuously updated to incorporate new features as they are released by HPE.
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 This module is available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/HPECOMCmdlets) under the name `HPECOMCmdlets`, following the naming convention used by most HPE modules.
 
@@ -50,45 +50,7 @@ These features collectively provide a comprehensive set of cmdlets to manage var
 
 ## Requirements
 
-- **Supported PowerShell Version**: 7 or higher. 
-
-    > **Note**: PowerShell version 5 is no longer supported. 
-
-- **Supported PowerShell Editions**: PowerShell Core version 7 or higher.
-
-    > **Note**: PowerShell Core is cross-platform and compatible with Windows, macOS, and Linux. 
-
-    > **Note**: PowerShell Desktop (Windows PowerShell 5.1) is not supported.
-
-- **HPE Account**: An HPE Account is necessary to connect to the HPE GreenLake platform and any Compute Ops Management services.
-     
-    > **Note**: If you do not have an HPE Account, you can create one [here](https://common.cloud.hpe.com). To learn how to create an HPE account, see [Getting started with HPE GreenLake](https://support.hpe.com/hpesc/public/docDisplay?docId=a001.0.122en_us&page=GUID-497192AA-FDC2-49C5-B572-0D2F58A23745.html)
-
-    > **Note**: To interact with an HPE GreenLake workspace and a Compute Ops Management instance using this library, you must have at least the ***Observer*** role for both ***HPE GreenLake Platform*** and ***Compute Ops Management*** service managers. This role grants view-only privileges. For modification capabilities, you need either the ***Operator*** (view and edit privileges) or the ***Administrator*** (view, edit, and delete privileges) role. Alternatively, you can create a custom role that meets your specific access requirements.
-
-- **Supported authentication methodes**:
-
-    1. **Single-Factor Authentication**: Authenticate using your email and password.
-
-    2. **Multi-Factor Authentication (MFA)**: Supported via **Google Authenticator** or **Okta Verify**.
-        - **Requirements**:
-            - Ensure the **Google Authenticator** or **Okta Verify** app is installed on your mobile device and linked to your account.
-                - MFA with security keys or biometric authenticators is not supported. If your account is configured for these methods only, enable Google Authenticator or Okta Verify in your account settings.
-
-        - **Behavior**:
-            - For accounts with **Google Authenticator**, you will be prompted to enter the verification code.
-            - For accounts with **Okta Verify**, approve the push notification on your Okta-enabled device.
-
-                > Note: If both methods are enabled, the library defaults to **Okta Verify**.
-
-    3. **SAML Single Sign-On (SSO)**: Supported exclusively with **Okta**.
-        - **Requirements**:
-            - Ensure that **Okta Verify** is properly installed and configured on your device. You must have an active Okta account linked to your email address to complete the authentication process successfully.
-
-        - **Limitations**:
-            - SAML SSO through other identity providers is not supported for direct authentication with the `Connect-HPEGL` cmdlet.
-            - **Workaround**: Invite a user with an email address not associated with any SAML SSO domains configured in the workspace. This can be done via the HPE GreenLake GUI under **User Management** by selecting **Invite Users**. Assign the **HPE GreenLake Account Administrator** role to the invited user. Once the invitation is accepted, the user can set a password and use these credentials to log in with `Connect-HPEGL`.     
-
+For detailed system requirements and prerequisites, please refer to the [README.md](https://github.com/jullienl/HPE-COM-PowerShell-Library) file in the GitHub repository.
 
 ## Installation
 
@@ -149,7 +111,7 @@ To connect using single or multi-factor authentication, follow these steps:
     Connect-HPEGL -Credential (Get-Credential) -Workspace "YourWorkspaceName"
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+    [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
     - **Note**: If you do not have a workspace yet, omit the `-Workspace` parameter. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
 
@@ -178,22 +140,22 @@ To connect using single or multi-factor authentication, follow these steps:
 	- When MFA is enabled with **Okta**:
         - The cmdlet will prompt you to validate the push notification from **Okta Verify**.
 
-            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
         - On your Okta-enabled device, press "Yes, it’s me" to approve the authentication request from **Okta Verify**.
 
 
-            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="iPhone-image-post"}{: data-lightbox="gallery"}
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="img-400"}{: data-lightbox="gallery"}
 
 
     - When MFA is enabled with **Google Authenticator**:
        - The cmdlet will pause and prompt you to enter the MFA token.
 
-            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
         - Open the **Google Authenticator** app on your device to retrieve the token and enter it when prompted.
 
-            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="iPhone-image-post"}{: data-lightbox="gallery"}
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="img-400"}{: data-lightbox="gallery"}
          
 ### Using SAML Single Sign-On (SSO) with Okta
 
@@ -216,11 +178,11 @@ The library provides support for SAML Single Sign-On (SSO) exclusively with Okta
 3. **Validation**:
     - During the connection process, you will be prompted to validate the push notification sent to your Okta Verify app.
 
-        [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+        [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
     - Open the **Okta Verify** app on your device and approve the authentication request by selecting the code provided to complete the authentication process.
 
-        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="iPhone-image-post"}{: data-lightbox="gallery"}
+        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="img-400"}{: data-lightbox="gallery"}
 
 4. **Tips**:
     - Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
@@ -233,14 +195,14 @@ For detailed guidance on setting up and using SAML Single Sign-On (SSO) with HPE
 
 Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 - A persistent session that is used for all subsequent cmdlet requests within the module.
 - Temporary API client credentials for both HPE GreenLake and any Compute Ops Management service instances provisioned in the workspace.
 - A global session object stored in the `$HPEGreenLakeSession` variable, which contains session details, API client credentials, access tokens, and other relevant information for interacting with HPE GreenLake and Compute Ops Management APIs.
 
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 #### Key Properties of `$HPEGreenLakeSession`:
 
@@ -278,7 +240,7 @@ Get-Help Connect-HPEGL -Full
 
 To help you get started quickly, I have provided a [sample script](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/Examples/sample.ps1). 
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 This file contains a variety of examples demonstrating how to use the different cmdlets available in the library to accomplish various tasks.
 
@@ -311,7 +273,7 @@ For more detailed information on each cmdlet and its usage, refer to the module'
 Get-Help <CmdletName> -full
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 To see detailed examples of how to use a specific cmdlet, use the **Get-Help** cmdlet with the **\-Examples** parameter followed by the cmdlet name.
 
@@ -319,7 +281,7 @@ To see detailed examples of how to use a specific cmdlet, use the **Get-Help** c
 Get-Help <CmdletName> -Examples
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 To list all commands exported by the module, use:
 
@@ -327,7 +289,7 @@ To list all commands exported by the module, use:
 Get-Command -Module HPECOMCmdlets
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 To find cmdlets related to a specific resource, use:
 
@@ -337,7 +299,7 @@ Get-Command -Module HPECOMCmdlets | ? Name -match "<ResourceName>"
 Get-Command -Module HPECOMCmdlets | ? Name -match group
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="body-image-post"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
 ## Support
 
