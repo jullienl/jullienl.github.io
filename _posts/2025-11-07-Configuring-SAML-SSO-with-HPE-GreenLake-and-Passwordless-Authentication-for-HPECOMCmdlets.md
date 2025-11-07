@@ -3,6 +3,7 @@ layout: post
 title:  "Configuring SAML SSO Authentication with HPE GreenLake: A Guide for the Top 3 Identity Providers and Passwordless Integration for HPECOMCmdlets"
 categories: GreenLake
 image: /assets/images/banner-image.jpg
+reading_time: 75
 # excerpt: A comprehensive guide to configuring SAML SSO authentication with the three main identity providers for HPE GreenLake and setting up passwordless authentication for the HPECOMCmdlets PowerShell module
 tags: 
    - greenlake
@@ -14,6 +15,12 @@ tags:
 
 ---
 <a id="top"></a>
+
+> Last updated: November 2025. 
+> 
+> Configuration steps verified with Okta, Microsoft Entra ID, and PingOne as of November 2025.
+
+
 In this comprehensive blog post, I will guide you through the process of configuring SAML Single Sign-On (SSO) authentication with [HPE GreenLake](https://www.hpe.com/us/en/greenlake.html) using the three most popular enterprise identity providers, and show you how to set up passwordless authentication for seamless integration with the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module.
 
 ## Introduction
@@ -35,6 +42,7 @@ This guide covers:
 - Enable seamless HPECOMCmdlets module integration
 
 **Time Required:** 45-60 minutes per identity provider  
+**Reading Time:** ~60-75 minutes (complete guide)  
 **Skill Level:** Intermediate (identity management experience recommended)
 
 ## Why SAML SSO?
@@ -73,7 +81,7 @@ While configuring SAML SSO with an identity provider is a crucial step, the auth
 
 > **Note**: SAML SSO authentication with identity providers is supported in HPECOMCmdlets module version 1.0.18 and later.
 
-The HPECOMCmdlets module requires **passwordless authentication** when working with SAML SSO-enabled workspaces. 
+The HPECOMCmdlets module is designed for modern security standards and requires **passwordless authentication** for SAML SSO-enabled workspaces. This method replaces traditional passwords with more secure and user-friendly alternatives, such as push notifications from an authenticator app or biometric verification.
 
 ### Why Passwordless Authentication?
 
@@ -226,7 +234,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-16.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-16.png){:class="img-600"}{: data-lightbox="gallery"} 
 
-- Modify **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname** and set the source atrtribute to **user.surname**
+- Modify **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname** and set the source attribute to **user.surname**
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-17.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-17.png){:class="img-600"}{: data-lightbox="gallery"} 
 
@@ -682,6 +690,7 @@ Import-Module HPECOMCmdlets
 # Attempt SSO login with your verified email address
 Connect-HPEGL -SSOEmail "test.user@company.com"
 ```
+
 **Expected Authentication Flow:**
 
 1. **Command Execution**:
@@ -1249,6 +1258,7 @@ Import-Module HPECOMCmdlets
 # Attempt SSO login with your verified email address
 Connect-HPEGL -SSOEmail "test.user@company.com"
 ```
+
 **Expected Authentication Flow:**
 
 1. **Command Execution**:
@@ -1825,6 +1835,7 @@ Import-Module HPECOMCmdlets
 # Attempt SSO login with your verified email address
 Connect-HPEGL -SSOEmail "test.user@company.com"
 ```
+
 **Expected Authentication Flow:**
 
 1. **Command Execution**:
@@ -1895,7 +1906,8 @@ If users cannot authenticate or are missing permissions, verify the following:
 - **hpe_ccs_attribute format**: If using role-based access control through SAML, validate that the `hpe_ccs_attribute` value follows the correct syntax as described in the [Building hpe_ccs_attribute value](https://jullienl.github.io/Configuring-HPE-GreenLake-SSO-SAML-Authentication-with-ADFS/#building-hpe_ccs_attribute-value) documentation
 - **Group membership**: Verify that users are assigned to the correct security group in your identity provider that grants access to the HPE GreenLake application
 
-For additional troubleshooting guidance, refer to the [Troubleshooting SAML connectivity errors](http://127.0.0.1:4000/Configuring-HPE-GreenLake-SSO-SAML-Authentication-with-ADFS/#troubleshooting-saml-connectivity-errors) section.
+For additional troubleshooting guidance, refer to the [Troubleshooting SAML connectivity errors](https://jullienl.github.io/Configuring-HPE-GreenLake-SSO-SAML-Authentication-with-ADFS/#troubleshooting-saml-connectivity-errors) section.
+
 
 ### Certificate Issues
 
