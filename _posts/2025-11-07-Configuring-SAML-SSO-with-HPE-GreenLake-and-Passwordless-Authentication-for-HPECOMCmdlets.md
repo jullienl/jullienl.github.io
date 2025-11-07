@@ -28,6 +28,15 @@ This guide covers:
 - Setting up passwordless authentication for the HPECOMCmdlets PowerShell module
 - Troubleshooting tips
 
+**What You'll Learn:**
+- Configure SAML SSO with Entra ID, Okta, or Ping Identity
+- Set up passwordless authentication for PowerShell automation
+- Test and troubleshoot your SSO implementation
+- Enable seamless HPECOMCmdlets module integration
+
+**Time Required:** 45-60 minutes per identity provider  
+**Skill Level:** Intermediate (identity management experience recommended)
+
 ## Why SAML SSO?
 
 The motivation for implementing SAML SSO with HPE GreenLake is driven by several key factors:
@@ -42,9 +51,20 @@ The motivation for implementing SAML SSO with HPE GreenLake is driven by several
 
 Before you begin, ensure you have:
 
-1. An active HPE GreenLake workspace with administrator access
-2. Access to one of the supported identity providers (Entra ID, Okta or Ping Identity)
-3. Administrative privileges in your identity provider
+**HPE GreenLake Requirements:**
+- An active HPE GreenLake workspace with **Workspace Administrator** access
+- A verified domain for SSO (you'll claim this during configuration)
+
+**Identity Provider Requirements:**
+Choose ONE of the following:
+- **Microsoft Entra ID:** Global Administrator or Application Administrator role
+- **Okta:** Super Administrator or Organization Administrator role  
+- **Ping Identity:** Environment Administrator access to PingOne
+
+**Optional (for HPECOMCmdlets):**
+- PowerShell 7+
+- HPECOMCmdlets module v1.0.18 or later
+- Mobile device for authenticator app (Microsoft Authenticator, Okta Verify, or PingID)
 
 
 ## HPECOMCmdlets SAML SSO Authentication Support
@@ -53,35 +73,48 @@ While configuring SAML SSO with an identity provider is a crucial step, the auth
 
 > **Note**: SAML SSO authentication with identity providers is supported in HPECOMCmdlets module version 1.0.18 and later.
 
-The HPECOMCmdlets module requires **passwordless authentication** when working with SAML SSO-enabled workspaces. This requirement aligns with industry security best practices from Microsoft, NIST, and the FIDO Alliance, which advocate for eliminating traditional passwords in favor of cryptographic keys, biometric verification, and hardware tokens. Passwordless authentication mitigates common security threats, including phishing, credential stuffing, and brute force attacks, while delivering a streamlined user experience for both interactive and automated scenarios.
+The HPECOMCmdlets module requires **passwordless authentication** when working with SAML SSO-enabled workspaces. 
 
-This guide demonstrates how to configure compatible passwordless authentication methods for each supported identity provider, ensuring seamless integration with the HPECOMCmdlets module while maintaining robust security standards.
+### Why Passwordless Authentication?
 
-**Compatible Authentication Methods for HPECOMCmdlets**
+When you run `Connect-HPEGL -SSOEmail user@company.com`, the HPECOMCmdlets module intentionally **does not support password-based credentials**. This design aligns with modern security frameworks from Microsoft, NIST, and the FIDO Alliance, which advocate eliminating traditional passwords in favor of cryptographic authentication methods.
 
-The following passwordless authentication methods are supported across Microsoft Entra ID, Okta, and Ping Identity:
+**Key Benefits:**
+- **Enhanced Security**: Eliminates attack vectors including phishing, credential stuffing, and password reuse
+- **Streamlined Experience**: Provides faster, more convenient authentication for both interactive sessions and automated workflows
+- **Compliance**: Meets modern security standards and regulatory requirements
 
-**✅ Supported Passwordless Methods:**
-- **Push notifications**: Mobile authenticator apps (Microsoft Authenticator, Okta Verify) with push notification approval
-    - Standard push approval (tap to approve)
-    - Number matching challenge (enhanced security)
-- **Time-based One-Time Passwords (TOTP)**: Authenticator apps generating time-sensitive verification codes
-    - Compatible with Microsoft Authenticator, Okta Verify, Google Authenticator, and other RFC 6238-compliant apps
-    - Ideal for environments requiring offline authentication capability
+This guide, after walking you through SAML SSO configuration with your identity provider, demonstrates how to enable compatible passwordless authentication methods that work seamlessly with the HPECOMCmdlets module while maintaining enterprise-grade security.
 
-**❌ Unsupported Methods:**
+### Compatible Authentication Methods
 
-While the following passwordless methods provide excellent security for interactive browser-based authentication, they are not compatible with PowerShell automation scenarios:
+Not all passwordless methods work with PowerShell automation. The following table identifies which authentication methods are compatible with the HPECOMCmdlets module:
 
-- **FIDO2 security keys**: Hardware tokens (e.g., YubiKey, Titan Security Key) using the WebAuthn protocol
-- **Platform authenticators**: Biometric authentication methods including Windows Hello for Business, Touch ID, and Face ID
-- **Passkeys**: Platform-bound or cross-device synced passwordless credentials
+<div class="table-wrapper" markdown="block">
 
-> **Technical Limitation**: FIDO2 and platform authenticator methods (Windows Hello, Touch ID, Face ID) rely on browser-native WebAuthn APIs and hardware security modules that are not accessible from PowerShell's execution context. The HPECOMCmdlets module cannot interface with these browser-based authentication mechanisms due to PowerShell's non-interactive nature and lack of WebAuthn API support.
+| Authentication Method | Browser Support | PowerShell Support | Technical Implementation | User Experience |
+|:---------------------|:---------------:|:------------------:|:-------------------------|:----------------|
+| **Push Notifications** | ✅ Yes | ✅ Yes | Mobile authenticator apps send approval requests to registered devices | Tap to approve notification on mobile device |
+| **TOTP (Time-based codes)** | ✅ Yes | ✅ Yes | RFC 6238-compliant authenticator apps generate rotating codes | Enter 6-digit time-sensitive code |
+| **FIDO2 Security Keys** | ✅ Yes | ❌ No | Hardware tokens (YubiKey, Titan Security Key) using WebAuthn protocol | Insert key and tap physical button |
+| **Platform Authenticators** | ✅ Yes | ❌ No | Windows Hello, Touch ID, Face ID using device biometrics | Biometric scan or device PIN |
+| **Passkeys** | ✅ Yes | ❌ No | FIDO2-based credentials (device-bound or cloud-synced) | Touch/scan device or approve on synced device |
 
-Step 4 in each identity provider section of this guide covers the verification and configuration of these supported passwordless authentication methods.
+</div>
 
+**Key:**
+- ✅ **Supported** - Works with HPECOMCmdlets PowerShell module
+- ❌ **Not Supported** - Browser only, incompatible with PowerShell automation
 
+> **Technical Limitation Explained:**: FIDO2, biometric, and passkey methods rely on browser-native WebAuthn APIs that PowerShell cannot access. PowerShell operates in a non-interactive context without access to:
+>    - Hardware security module integration
+>    - Browser authentication frameworks
+>    - Device biometric sensors
+>    - Platform credential managers
+
+For successful PowerShell automation with HPECOMCmdlets, configure either **push notifications** or **TOTP** as your primary authentication method.
+
+> **Configuration Guidance**: Step 4 in each identity provider section of this guide covers the detailed verification and configuration of these supported passwordless authentication methods.
 
 
 ## Part 1: Configuring SAML SSO with Microsoft Entra ID
@@ -193,7 +226,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-16.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-16.png){:class="img-600"}{: data-lightbox="gallery"} 
 
-- Modify **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname** and set the source atrtribute to **user.surename**
+- Modify **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname** and set the source atrtribute to **user.surname**
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-17.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-17.png){:class="img-600"}{: data-lightbox="gallery"} 
 
@@ -237,11 +270,22 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-    > **Best Practice:** For future-proofing your HPE GreenLake configuration, use the metadata URL directly rather than downloading and uploading the XML file manually. This method promotes long-term stability and ease of updates.
-    
-    > As of November 2025, HPE GreenLake does not yet support automatic certificate retrieval from metadata URLs. However, I have submitted a feature request for this capability, and the team is actively working on it.
-    
-    > By configuring the metadata URL today, you position yourself for seamless automatic certificate updates in the future. This will eliminate the need for manual management and help avoid authentication issues during certificate rotations, which Entra ID typically handles every three years.
+    > 🎯 **CRITICAL RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
+    >
+    > &nbsp;
+    > 
+    > **Why?** Identity providers rotate SAML certificates every 2-3 years. When certificates expire:
+    > - ❌ **Manual XML:** Users cannot authenticate until you manually upload new certificate
+    > - ✅ **Metadata URL:** Positions you for potential future automatic updates (feature under consideration)
+    >
+    > &nbsp;
+    > 
+    > **Current State (Nov 2025):** HPE GreenLake retrieves metadata at configuration time but doesn't auto-refresh. However, configuring the URL today positions you for seamless updates when this feature launches.
+    >
+    > &nbsp;
+    > 
+    > **What to do:** Always configure the metadata URL in HPE GreenLake, even though manual updates are still required today.
+
 
 This completes the Entra ID application configuration for HPE GreenLake. You can now proceed to Step 2 to register Entra ID as your identity provider in the HPE GreenLake platform.
 
@@ -311,7 +355,7 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
 
     - On the next page, you have two options to provide the identity provider metadata:
 
-        - **Metadata URL** (Recommended): Enter the App Federation Metadata URL copied from Entra ID in Step 1. This future-proofs your configuration by enabling seamless automatic certificate retrieval and updates once HPE GreenLake supports it (feature in development as of November 2025). It ensures uninterrupted authentication and eliminates manual interventions during Entra ID's standard 3-year certificate rotations.
+        - **Metadata URL** (Recommended): Enter the App Federation Metadata URL copied from Entra ID in Step 1. This future-proofs your configuration by enabling seamless automatic certificate retrieval and updates once HPE GreenLake supports it (feature under consideration as of November 2025). It ensures uninterrupted authentication and eliminates manual interventions during Entra ID's standard 3-year certificate rotations.
 
             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29a.png){:class="img-600"}{: data-lightbox="gallery"}
 
@@ -803,11 +847,21 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-53.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-53.png){:class="img-600"}{: data-lightbox="gallery"} 
 
-    > **Best Practice:** For future-proofing your HPE GreenLake configuration, use the metadata URL directly rather than downloading and uploading the XML file manually. This method promotes long-term stability and ease of updates.
-    
-    > As of November 2025, HPE GreenLake does not yet support automatic certificate retrieval from metadata URLs. However, I have submitted a feature request for this capability, and the team is actively working on it.
-    
-    > By configuring the metadata URL today, you position yourself for seamless automatic certificate updates in the future. This will eliminate the need for manual management and help avoid authentication issues during Okta certificate rotations.
+    > 🎯 **CRITICAL RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
+    >
+    > &nbsp;
+    > 
+    > **Why?** Identity providers rotate SAML certificates every 2-3 years. When certificates expire:
+    > - ❌ **Manual XML:** Users cannot authenticate until you manually upload new certificate
+    > - ✅ **Metadata URL:** Positions you for potential future automatic updates (feature under consideration)
+    >
+    > &nbsp;
+    > 
+    > **Current State (Nov 2025):** HPE GreenLake retrieves metadata at configuration time but doesn't auto-refresh. However, configuring the URL today positions you for seamless updates when this feature launches.
+    >
+    > &nbsp;
+    > 
+    > **What to do:** Always configure the metadata URL in HPE GreenLake, even though manual updates are still required today.
 
 
 - Before proceeding to Step 2, assign the HPE GreenLake application to the security group created earlier. Navigate to the **Assignments** tab and click **Assign** → **Assign to Groups**
@@ -1414,11 +1468,22 @@ With the security group created, you can now proceed to register the HPE GreenLa
     
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-89.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-89.png){:class="post-image-post"}{: data-lightbox="gallery"}
     
-       > **Best Practice:** For future-proofing your HPE GreenLake configuration, use the metadata URL directly rather than downloading and uploading the XML file manually. This method promotes long-term stability and ease of updates.
-    
-       > As of November 2025, HPE GreenLake does not yet support automatic certificate retrieval from metadata URLs. However, I have submitted a feature request for this capability, and the team is actively working on it.
-    
-       > By configuring the metadata URL today, you position yourself for seamless automatic certificate updates in the future. This will eliminate the need for manual management and help avoid authentication issues during Ping Identity certificate rotations.
+    > 🎯 **CRITICAL RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
+    >
+    > &nbsp;
+    > 
+    > **Why?** Identity providers rotate SAML certificates every 2-3 years. When certificates expire:
+    > - ❌ **Manual XML:** Users cannot authenticate until you manually upload new certificate
+    > - ✅ **Metadata URL:** Positions you for potential future automatic updates (feature under consideration)
+    >
+    > &nbsp;
+    > 
+    > **Current State (Nov 2025):** HPE GreenLake retrieves metadata at configuration time but doesn't auto-refresh. However, configuring the URL today positions you for seamless updates when this feature launches.
+    >
+    > &nbsp;
+    > 
+    > **What to do:** Always configure the metadata URL in HPE GreenLake, even though manual updates are still required today.
+
 
 This completes the Ping Identity application configuration for HPE GreenLake. You can now proceed to Step 2 to register Ping Identity as your identity provider in the HPE GreenLake platform.
 
@@ -1839,7 +1904,7 @@ Certificate mismatches are a common cause of SAML authentication failures. To re
 - **Validate certificate expiration**: Verify that the SAML signing certificate configured in your HPE GreenLake workspace has not expired. Expired certificates will cause all authentication attempts to fail
 - **Verify certificate matching**: Confirm that the certificate thumbprint in HPE GreenLake matches exactly with the certificate published by your identity provider. Even minor discrepancies will prevent successful SAML authentication
 - **Check certificate renewal**: If your identity provider automatically rotates SAML signing certificates, ensure you update the certificate in HPE GreenLake before the old certificate expires to prevent service interruption
-- **Review metadata updates**: To future-proof your HPE GreenLake SAML setup against certificate rotations, configure the federation metadata URL upfront. Although automatic retrieval isn't supported yet (as of November 2025—feature in development), this enables seamless updates once available, avoiding manual uploads and downtime. HPE GreenLake fetches metadata statically at config time without auto-refreshing certificates currently. If authentication fails post-rotation, verify the URL is reachable and includes the latest `<X509Certificate>` in `<KeyDescriptor use="signing">` (check via browser or curl), then temporarily upload the updated XML file to test SSO. 
+- **Review metadata updates**: To future-proof your HPE GreenLake SAML setup against certificate rotations, configure the federation metadata URL upfront. Although automatic retrieval isn't supported yet (as of November 2025—feature under consideration), this enables seamless updates once available, avoiding manual uploads and downtime. HPE GreenLake fetches metadata statically at config time without auto-refreshing certificates currently. If authentication fails post-rotation, verify the URL is reachable and includes the latest `<X509Certificate>` in `<KeyDescriptor use="signing">` (check via browser or curl), then temporarily upload the updated XML file to test SSO. 
 
 > **Best Practice: Proactive Certificate Management**
 >   
@@ -1875,7 +1940,9 @@ Implementing SAML SSO authentication with HPE GreenLake enhances security, simpl
 
 Whether you choose Entra ID, Okta, or Ping Identity as your identity provider, the configuration steps are straightforward, and the benefits are immediate. By following the guidelines in this post, you'll be well on your way to a more secure and efficient HPE GreenLake environment.
 
-I hope you find this guide useful. Should you have any questions or feedback, please feel free to [reach out](mailto:lio@hpe.com).
+I hope you find this guide useful. 
+
+Drop a comment below or ping me at [lio@hpe.com](mailto:lio@hpe.com) with your setup wins!
 
 ## Additional Resources
 
