@@ -327,7 +327,7 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
 
     - Click on **Assign role** and assign the built-in **Identity domain and SSO administrator** HPE GreenLake Platform role:
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22d.png){:class="img-400"}{: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22d.png){:class="img-300"}{: data-lightbox="gallery"}
 
         > **Important**: The **Identity domain and SSO administrator** role grants the necessary permissions to configure the SAML domain. While a "Workspace Administrator" also has these permissions, this built-in role is specifically designed for this task. The user's email address must belong to the domain being claimed for SSO.
 
@@ -395,7 +395,6 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
     
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d.png){:class="img-600"}{: data-lightbox="gallery"}
 
-
     - On the **Map SAML attributes** page, review the default configuration settings. These attribute mappings should correspond to the claims you configured in Entra ID during Step 1. Verify that the following mappings are present:
 
         | SAML Attribute | Entra ID Claim |
@@ -440,7 +439,7 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
 
     -  Select **Verified domain** for domain type, select your claimed domain and your SSO connection just created:
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png){:class="img-600"}{: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30a.png){:class="img-600"}{: data-lightbox="gallery"}
 
     - Configure the authorization method based on your SAML attribute configuration:
 
@@ -467,6 +466,17 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
               3. Assign the desired roles and permissions for the user.
               4. The user will receive an invitation and can log in via SSO. Their access will be determined by the roles you assigned in HPE GreenLake.     
 
+    - Then create a recovery user account to prevent lockout in the event that the configuration does not work 
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d1.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - Once complete, click **Create authentication policy**
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d2.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d2.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - After a few minutes, the authentication policy turns **Active**
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-33.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-33.png){:class="img-900"}{: data-lightbox="gallery"}
 
 
         
