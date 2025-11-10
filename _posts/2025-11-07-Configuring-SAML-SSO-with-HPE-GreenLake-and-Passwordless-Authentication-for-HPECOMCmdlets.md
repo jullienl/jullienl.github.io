@@ -299,6 +299,8 @@ This completes the Entra ID application configuration for HPE GreenLake. You can
 
 ### Step 2: Register Entra ID in HPE GreenLake
 
+> **Learn More**: For detailed instructions on configuring SAML in HPE GreenLake, refer to the official [SAML-SSO authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-D7192971-EF71-4304-B51E-548E7954E644.html#ariaid-title1) documentation.
+
 To complete the SAML SSO configuration, you need to register your Entra ID identity provider in HPE GreenLake and designate a workspace administrator:
 
 1. **Access Workspace Management**
@@ -311,16 +313,32 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
 
     Before registering the identity provider, you must designate a workspace administrator to finalize the SAML SSO configuration. This administrator's email address must belong to the domain you are claiming for SSO (e.g., `admin@your-sso-domain.com`).
 
-    - Navigate to the **Workspace identity & access** tile and select **Invite users**.
-    - Invite a user from your SAML domain and assign the **Workspace Administrator** HPE GreenLake role.
+    - Navigate to the **Identity & access management** tile:
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-23.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-23.png){:class="img-400"}{: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22a.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-        > **Important**: The invited user must be a workspace administrator to complete the SAML domain setup. This user does not need to be a member of the identity provider security group configured in Step 1, but their email address must belong to the domain being claimed for SSO.
+    - Select **Add users**:
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22b.png){:class="img-100pct"}{: data-lightbox="gallery"}
+    
+    - In the **Add users** dialog, select **New user** and enter the email address of the designated administrator. This user must belong to the domain you intend to claim for SSO.     
+    
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22c.png){:class="img-700"}{: data-lightbox="gallery"}
+
+    - Click on **Assign role** and assign the built-in **Identity domain and SSO administrator** HPE GreenLake Platform role:
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22d.png){:class="img-400"}{: data-lightbox="gallery"}
+
+        > **Important**: The **Identity domain and SSO administrator** role grants the necessary permissions to configure the SAML domain. While a "Workspace Administrator" also has these permissions, this built-in role is specifically designed for this task. The user's email address must belong to the domain being claimed for SSO.
+
+    - Make sure **Send welcome invitation email** is checked then click **Add user**.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-23.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-23.png){:class="img-700"}{: data-lightbox="gallery"}
+
 
     **Complete the claiming process:**
 
-    The invited user must complete the following steps to claim workspace administrator access:
+    The invited user must complete the following steps to claim Identity domain and SSO administrator access:
 
     1. Check email for the HPE GreenLake invitation and click **Accept invitation**.
         
@@ -329,57 +347,54 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
     2. Complete the HPE account creation form.
 
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-25.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-25.png){:class="img-400"}{: data-lightbox="gallery"}
-
+    
     3. Check email again for the account activation message and click **Activate HPE account**.
 
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26.png){:class="img-600"}{: data-lightbox="gallery"}
 
-    4. Upon activation, the user will be redirected to the HPE GreenLake console and can log in to proceed with the SAML configuration.
+    6. Upon activation, the user will be redirected to the HPE GreenLake console and ask to choose a password for the account. 
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26a.png){:class="img-700"}{: data-lightbox="gallery"}
+
+    7. Once the password is defined, the user can log in to proceed with the SAML configuration.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26b.png){:class="img-600"}{: data-lightbox="gallery"}
+
 
 3. **Register Identity Provider in HPE GreenLake**
 
-    With the workspace administrator successfully claimed and logged in, you can now proceed to configure the SAML identity provider connection. This step will establish the trust relationship between HPE GreenLake and your Entra ID tenant, enabling SSO authentication for all users in your verified domain.
+    With the workspace administrator successfully logged in, you can now register your identity provider and claim your domain for SSO. This process establishes the trust relationship between HPE GreenLake and your identity provider, enabling SSO for all users in your verified domain.
 
-    - Navigate again to **Manage Workspace** → **Authentication** 
+    - Navigate to **Manage Workspace** → **SSO configuration**.
 
-    - Click on **Add Domain** to setup-up your SAML domain 
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png){:class="img-900"}{: data-lightbox="gallery"}
+
+    - Click **Add Domain** to begin the SAML domain setup.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26d.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - Enter your domain name (e.g., `s7kzp.onmicrosoft.com`) and click **Continue**.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27.png){:class="img-600"}{: data-lightbox="gallery"}
+
+        > **Important**: An SSO domain can only be claimed by a single HPE GreenLake workspace. Once claimed, it cannot be used for SSO configuration in another workspace.
+
+    - Follow the on-screen instructions to verify domain ownership by adding the provided TXT record to your domain's DNS settings.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27a.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - Wait for the domain claim to complete. This may take some time depending on DNS propagation.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27b.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - Once the claim is complete, navigate back to **Manage Workspace** → **SSO configuration** and click **Create SSO connection**.     
     
-    - Enter your domain name (e.g., `4lldxf.onmicrosoft.com`)
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27c.png){:class="img-600"}{: data-lightbox="gallery"}
 
-       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27.png){:class="img-600"}{: data-lightbox="gallery"}
+    - On the **Create SSO connection** page, enter a descriptive **SSO connection name** (e.g., `Entra ID SSO`). Ensure **SAML 2.0** is selected as the authentication protocol, then click **Next**.     
+    
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27d.png){:class="img-600"}{: data-lightbox="gallery"}
 
-    - Configure the authorization method based on your SAML attribute configuration:
-
-        - **If you configured `hpe_ccs_attribute` in Step 1**: 
-            - Select **Use the SSO SAML response for session-based authorization**.
-
-              [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-28.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-28.png){:class="img-100pct"}{: data-lightbox="gallery"}     
-              
-              This option enables role-based access control (RBAC) by using the `hpe_ccs_attribute` from your SAML response to dynamically assign user permissions in HPE GreenLake. Users are authenticated and assigned access to workspaces and roles during each SSO session.
-        
-        - **If you did not configure `hpe_ccs_attribute` in Step 1**:
-            
-            - Select **Manage authorization locally via the GreenLake Platform**. 
-            
-              [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-28b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-28b.png){:class="img-100pct"}{: data-lightbox="gallery"}
-
-              With this option, you'll manually create users and assign roles and permissions to them within HPE GreenLake to provide user access to workspaces after they authenticate through the identity provider. To do this:
-            
-              1. Navigate to **Manage Workspace** → **Workspace Identity & Access**.
-              2. Click **Invite users** and enter the user's email address.
-
-                  > **Important**: The user's email address **must** belong to the SSO-claimed domain (e.g., `user@your-sso-domain.com`).
-                  
-              3. Assign the desired roles and permissions for the user.
-              4. The user will receive an invitation and can log in via SSO. Their access will be determined by the roles you assigned in HPE GreenLake.     
-
-    - On the next page, you have two options to provide the identity provider metadata:
-
-        - **Metadata URL** (Recommended): Enter the App Federation Metadata URL copied from Entra ID in Step 1. This future-proofs your configuration by enabling seamless automatic certificate retrieval and updates once HPE GreenLake supports it (feature under consideration as of November 2025). It ensures uninterrupted authentication and eliminates manual interventions during Entra ID's standard 3-year certificate rotations.
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29a.png){:class="img-600"}{: data-lightbox="gallery"}
-
-        - **Metadata File**: Upload the Federation Metadata XML file downloaded from Entra ID in Step 1. Note that this method requires manual updates to the file in HPE GreenLake every time Entra ID rotates its signing certificate (typically every 3 years), which could lead to temporary authentication disruptions if not addressed promptly.
 
     - On the **Map SAML attributes** page, review the default configuration settings. These attribute mappings should correspond to the claims you configured in Entra ID during Step 1. Verify that the following mappings are present:
 
@@ -391,20 +406,73 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
         | **hpe_ccs_attribute** | (if configured) |
 
         > **Note**: These mappings enable HPE GreenLake to properly identify users and apply the appropriate permissions based on the SAML assertion received from Entra ID.
+  
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27e.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - The UI then display the different service provider detais that we have used earlier to set our "HPE GreenLake" application in Entra ID, click **Next**:
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27f.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27f.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - On the **Add identity provider details** page, you will configure the connection to your identity provider. While three methods are available, using the metadata URL is the only recommended approach.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29a.png){:class="img-600"}{: data-lightbox="gallery"}
+
+        - **Specify a metadata URL (Recommended)**: Select this option and paste the **App Federation Metadata Url** copied from your identity provider in Step 1. Click **Validate URL** to automatically populate the configuration details.
+
+           > **Why this is the best practice**: Using the metadata URL future-proofs your configuration. Although HPE GreenLake does not yet auto-refresh certificates (as of Nov 2025), this method positions you for seamless updates when the feature becomes available, preventing future authentication outages caused by certificate rotation.
+
+        - **Upload a metadata XML file (Not Recommended)**: This method requires you to manually re-upload the file every time your identity provider's signing certificate rotates, risking authentication downtime.
+
+        - **Manual entry of configuration details (Not Recommended)**: This approach is error-prone and carries the same risk of authentication failure during certificate rotation as the XML upload method.
+
+    - After validating the URL, the configuration details, including the SSO URL and X.509 certificate, will be populated automatically. Click **Next**.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29b.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - At the session timeout page, enter the desired session duration (e.g., 30 minutes) and click **Next**.
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29c.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    - At the **Review and create**, verify your settings and click **Create SSO connection**
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29d.png){:class="img-600"}{: data-lightbox="gallery"}
+
+
+    - Once the SSO Connection is complete, navigate again to **SSO configuration**, then select **Create authentication policy**
 
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png){:class="img-600"}{: data-lightbox="gallery"}
 
-    - Create the recovery user per the instructions
+    -  Select **Verified domain** for domain type, select your claimed domain and your SSO connection just created:
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-31.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-31.png){:class="img-600"}{: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png){:class="img-600"}{: data-lightbox="gallery"}
 
-    - Review all configuration settings carefully to ensure accuracy, then click **Finish** 
+    - Configure the authorization method based on your SAML attribute configuration:
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-32.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-32.png){:class="img-600"}{: data-lightbox="gallery"}
+        - **If you configured `hpe_ccs_attribute` in Step 1**: 
+            - Select **SSO role assignments**.
 
-    - This completes the identity provider registration and activate SAML SSO for your domain
+              [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-31.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-31.png){:class="img-700"}{: data-lightbox="gallery"}     
+              
+              This option enables role-based access control (RBAC) by using the `hpe_ccs_attribute` from your SAML response to dynamically assign user permissions in HPE GreenLake. Users are authenticated and assigned access to workspaces and roles during each SSO session.
+        
+        - **If you did not configure `hpe_ccs_attribute` in Step 1**:
+            
+            - Select **Local role assignments**. 
+            
+              [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-32.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-32.png){:class="img-700"}{: data-lightbox="gallery"}
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-33.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-33.png){:class="img-600"}{: data-lightbox="gallery"}
+              With this option, you'll manually create users and assign roles and permissions to them within HPE GreenLake to provide user access to workspaces after they authenticate through the identity provider. To do this:
+            
+              1. Navigate to **Manage Workspace** → **Identity & access management**.
+              2. Click **Invite users** and enter the user's email address.
+
+                  > **Important**: The user's email address **must** belong to the SSO-claimed domain (e.g., `user@your-sso-domain.com`).
+
+              3. Assign the desired roles and permissions for the user.
+              4. The user will receive an invitation and can log in via SSO. Their access will be determined by the roles you assigned in HPE GreenLake.     
+
+
+
         
 ### Step 3: Testing SAML SSO Authentication
 
