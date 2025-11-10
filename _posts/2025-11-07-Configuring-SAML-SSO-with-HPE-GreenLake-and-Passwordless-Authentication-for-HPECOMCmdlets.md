@@ -425,10 +425,6 @@ To complete the SAML SSO configuration, you need to register your Entra ID ident
 
         - **Manual entry of configuration details (Not Recommended)**: This approach is error-prone and carries the same risk of authentication failure during certificate rotation as the XML upload method.
 
-    - After validating the URL, the configuration details, including the SSO URL and X.509 certificate, will be populated automatically. Click **Next**.
-
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29b.png){:class="img-600"}{: data-lightbox="gallery"}
-
     - At the session timeout page, enter the desired session duration (e.g., 30 minutes) and click **Next**.
 
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29c.png){:class="img-600"}{: data-lightbox="gallery"}
