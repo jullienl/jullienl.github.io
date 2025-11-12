@@ -536,7 +536,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 2. Enter your verified email address from the SSO-claimed domain (e.g., `lionel@hpelabs.ddnsfree.com`) and click **Continue**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-400"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-500"}{: data-lightbox="gallery"}
 
 3. Click on **Organization Single Sign-On**
 
@@ -544,7 +544,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 4. You will be redirected to your Entra ID login page. Authenticate using your organizational credentials
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36.png){:class="img-400"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36.png){:class="img-600"}{: data-lightbox="gallery"}
 
     > **Note**: If prompted for authentication, complete the required authentication method (such as push notification approval) configured in your Conditional Access policy.
 
