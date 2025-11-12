@@ -566,6 +566,8 @@ Identity Provider initiated SSO (IdP-Initiated) provides users with direct acces
 
 3. You should be automatically redirected to HPE GreenLake and logged in without additional authentication prompts
 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a1.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
 4. Verify successful authentication by confirming your user profile and workspace access are displayed correctly in the HPE GreenLake console
 
 
