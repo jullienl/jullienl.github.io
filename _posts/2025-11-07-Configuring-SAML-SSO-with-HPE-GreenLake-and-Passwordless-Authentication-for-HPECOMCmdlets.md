@@ -178,7 +178,7 @@ Before configuring the HPE GreenLake enterprise application in Entra ID, it's es
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-1.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
-- Create a **Security** group for the HPE GreenLake application. Name it *HPE GreenLake* and add the members who will be granted access to the application. 
+- Create a **Security** group for the HPE GreenLake application. Name it `HPE GreenLake` and add the members who will be granted access to the application. 
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-2.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-2.png){:class="img-600"}{: data-lightbox="gallery"} 
 
@@ -291,14 +291,14 @@ With the security group created, you can now proceed to register the HPE GreenLa
     - **Source**: `Attribute`
     - **Value**: Enter your constructed attribute value (see below)
 
-        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [Building hpe_ccs_attribute value](https://jullienl.github.io/Configuring-HPE-GreenLake-SSO-SAML-Authentication-with-ADFS/#building-hpe_ccs_attribute-value).
+        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
 
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
         Example for one workspace and two applications (HPE GreenLake and COM):
 
-        ```         
-        version_1#248aa396805c11ed88e216588ab64ce9:00000000-0000-0000-0000-000000000000:Account Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Administrator:ALL_SCOPES
+        ```yaml 
+        version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
         ```
 
 - Remove any remaining default claims that were not explicitly configured above. Your final claims configuration should include only:
@@ -532,15 +532,15 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 **Authentication Flow**: User → HPE GreenLake → Entra ID → Back to HPE GreenLake
 
-1. To ensure a clean test without cached credentials, open a new private browser window (e.g., Incognito, InPrivate) and navigate to the HPE GreenLake login page: [https://common.cloud.hpe.com/newlogin](https://common.cloud.hpe.com/newlogin)
+1. To ensure a clean test without cached credentials, open a new private browser window (e.g., Incognito, InPrivate) and navigate to the HPE GreenLake login page: [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
 
-2. Enter your verified email address from the SSO-claimed domain (e.g., `lionel@hpelabs.ddnsfree.com`) and click **Continue**
+2. Click on the **Sign in with SSO** button
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-500"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34a.png){:class="img-400"}{: data-lightbox="gallery"}
 
-3. Click on **Organization Single Sign-On**
+3. Enter your verified email address from the SSO-claimed domain (e.g., `lionel@hpelabs.ddnsfree.com`) and click **Continue**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-35.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-35.png){:class="img-400"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-400"}{: data-lightbox="gallery"}
 
 4. You will be redirected to your Entra ID login page. Authenticate using your organizational credentials
 
@@ -551,6 +551,31 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 5. After successful authentication, you should be redirected back to HPE GreenLake and automatically logged in
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+#### Verify the authentication
+
+- **Confirm User Profile and Access**:
+    - Verify that your user profile information (name, email) is displayed correctly in the HPE GreenLake console.
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36a.png){:class="img-900"}{: data-lightbox="gallery"}
+
+    - Ensure you have access to the expected workspaces and resources.
+<br>
+
+- **Verify Role-Based Permissions (if applicable)**:
+
+    - If you configured the `hpe_ccs_attribute` for SAML-based role assignments, confirm that the correct roles have been applied:
+
+        1. Navigate to **Manage workspace** → **Identity & access management** → **Users**.
+
+        2. Locate your user account, which should be identified with an **SSO** authorization source.
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+        3. Select your user and verify that the assigned roles match the permissions defined in your `hpe_ccs_attribute`.
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
 
 #### Test the SSO IdP-Initiated login flow (User starts at Entra ID portal)
 
@@ -571,11 +596,6 @@ Identity Provider initiated SSO (IdP-Initiated) provides users with direct acces
 4. Verify successful authentication by confirming your user profile and workspace access are displayed correctly in the HPE GreenLake console
 
 
-#### Verify the authentication
-
-- Confirm that your user profile displays correctly in HPE GreenLake
-- Check that the appropriate workspace access and permissions are applied
-- If you configured `hpe_ccs_attribute`, verify that role-based permissions are correctly assigned
 
 #### Troubleshooting
 
@@ -900,7 +920,7 @@ Before configuring the HPE GreenLake enterprise application in Okta, it's essent
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-46.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-46.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
-- Create a group for the HPE GreenLake application. Name it *HPE GreenLake* and add the members who will be granted access to the application. 
+- Create a group for the HPE GreenLake application. Name it `HPE GreenLake` and add the members who will be granted access to the application. 
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-47.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-47.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
@@ -969,12 +989,12 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
         **To configure this attribute:**
 
-        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [Building hpe_ccs_attribute value](https://jullienl.github.io/Configuring-HPE-GreenLake-SSO-SAML-Authentication-with-ADFS/#building-hpe_ccs_attribute-value).
+        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
 
         **Example attribute value** for one workspace and two applications (HPE GreenLake and COM):
 
-        ```
-        version_1#248aa396805c11ed88e216588ab64ce9:00000000-0000-0000-0000-000000000000:Account Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Administrator:ALL_SCOPES
+        ```yaml 
+        version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
         ```
 
 - Click **Next** to proceed to the feedback page
@@ -1038,15 +1058,15 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 **Authentication Flow**: User → HPE GreenLake → Okta → Back to HPE GreenLake
 
-1. Navigate to the HPE GreenLake SSO login page: [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
+1. To ensure a clean test without cached credentials, open a new private browser window (e.g., Incognito, InPrivate) and navigate to the HPE GreenLake login page: [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
 
-2. Enter your verified email address from the SSO-claimed domain (e.g., `jullienl@4lldxf.onmicrosoft.com`) and click **Continue**
+2. Click on the **Sign in with SSO** button
+
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34a.png){:class="img-400"}{: data-lightbox="gallery"}
+
+3. Enter your verified email address from the SSO-claimed domain (e.g., `lionel@hpelabs.ddnsfree.com`) and click **Continue**
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-400"}{: data-lightbox="gallery"}
-
-3. Click on **Organization Single Sign-On**
-
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-35.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-35.png){:class="img-400"}{: data-lightbox="gallery"}
 
 4. You will be redirected to your Okta login page. Authenticate using your organizational credentials
 
@@ -1057,6 +1077,30 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 5. After successful authentication, you should be redirected back to HPE GreenLake and automatically logged in
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+#### Verify the authentication
+
+- **Confirm User Profile and Access**:
+    - Verify that your user profile information (name, email) is displayed correctly in the HPE GreenLake console.
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36a.png){:class="img-900"}{: data-lightbox="gallery"}
+
+    - Ensure you have access to the expected workspaces and resources.
+<br>
+
+- **Verify Role-Based Permissions (if applicable)**:
+
+    - If you configured the `hpe_ccs_attribute` for SAML-based role assignments, confirm that the correct roles have been applied:
+
+        1. Navigate to **Manage workspace** → **Identity & access management** → **Users**.
+
+        2. Locate your user account, which should be identified with an **SSO** authorization source.
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+        3. Select your user and verify that the assigned roles match the permissions defined in your `hpe_ccs_attribute`.
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
 #### Test the SSO IdP-Initiated login flow (User starts at Okta portal)
 
@@ -1073,13 +1117,6 @@ Identity Provider initiated SSO (IdP-Initiated) enables users to access HPE Gree
 3. You should be automatically redirected to HPE GreenLake and logged in without additional authentication prompts (assuming you've already authenticated to Okta)
 
 4. Verify successful authentication by confirming your user profile and workspace access are displayed correctly in the HPE GreenLake console
-
-
-**Verify the authentication:**
-
-- Confirm that your user profile displays correctly in HPE GreenLake
-- Check that the appropriate workspace access and permissions are applied
-- If you configured `hpe_ccs_attribute`, verify that role-based permissions are correctly assigned
 
 #### Troubleshooting
 
@@ -1540,12 +1577,12 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
         **To configure this attribute:**
 
-        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [Building hpe_ccs_attribute value](https://jullienl.github.io/Configuring-HPE-GreenLake-SSO-SAML-Authentication-with-ADFS/#building-hpe_ccs_attribute-value).
+        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
 
         **Example attribute value** for one workspace and two applications (HPE GreenLake and COM):
 
-        ```
-        version_1#248aa396805c11ed88e216588ab64ce9:00000000-0000-0000-0000-000000000000:Account Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Administrator:ALL_SCOPES
+        ```yaml 
+        version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
         ```
 
         **Steps to add this attribute in Ping Identity:**
@@ -1647,23 +1684,50 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 **Authentication Flow**: User → HPE GreenLake → Ping Identity → Back to HPE GreenLake
 
-1. Navigate to the HPE GreenLake SSO login page: [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
+1. To ensure a clean test without cached credentials, open a new private browser window (e.g., Incognito, InPrivate) and navigate to the HPE GreenLake login page: [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
 
-2. Enter your verified email address from the SSO-claimed domain (e.g., `jullienl@4lldxf.onmicrosoft.com`) and click **Continue**
+2. Click on the **Sign in with SSO** button
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-500"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34a.png){:class="img-400"}{: data-lightbox="gallery"}
 
-3. Click on **Organization Single Sign-On**
+3. Enter your verified email address from the SSO-claimed domain (e.g., `lionel@hpelabs.ddnsfree.com`) and click **Continue**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-35.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-35.png){:class="img-400"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34.png){:class="img-400"}{: data-lightbox="gallery"}
 
 4. You will be redirected to your Ping Identity login page. Authenticate using your organizational credentials
+
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-34b.png){:class="img-400"}{: data-lightbox="gallery"}
 
     > **Note**: If prompted for multi-factor authentication, complete the required authentication method (such as push notification approval or TOTP code) configured in your Ping Identity policy.
 
 5. After successful authentication, you should be redirected back to HPE GreenLake and automatically logged in
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+#### Verify the authentication
+
+- **Confirm User Profile and Access**:
+    - Verify that your user profile information (name, email) is displayed correctly in the HPE GreenLake console.
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-36a.png){:class="img-900"}{: data-lightbox="gallery"}
+
+    - Ensure you have access to the expected workspaces and resources.
+<br>
+
+- **Verify Role-Based Permissions (if applicable)**:
+
+    - If you configured the `hpe_ccs_attribute` for SAML-based role assignments, confirm that the correct roles have been applied:
+
+        1. Navigate to **Manage workspace** → **Identity & access management** → **Users**.
+
+        2. Locate your user account, which should be identified with an **SSO** authorization source.
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+        3. Select your user and verify that the assigned roles match the permissions defined in your `hpe_ccs_attribute`.
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
 
 #### Test the SSO IdP-Initiated login flow (User starts at PingOne Apps portal)
 
@@ -1681,11 +1745,6 @@ Identity Provider initiated SSO (IdP-Initiated) provides users with direct acces
 
 4. Verify successful authentication by confirming your user profile and workspace access are displayed correctly in the HPE GreenLake console
 
-**Verify the authentication:**
-
-- Confirm that your user profile displays correctly in HPE GreenLake
-- Check that the appropriate workspace access and permissions are applied
-- If you configured `hpe_ccs_attribute`, verify that role-based permissions are correctly assigned
 
 #### Troubleshooting
 
