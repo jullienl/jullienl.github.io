@@ -168,6 +168,33 @@ Key capabilities relevant to HPE GreenLake integration include:
 
 The following steps will guide you through creating a custom SAML 2.0 application integration in Entra ID, configuring the required SAML attributes for seamless integration with HPE GreenLake, and establishing passwordless authentication policies. While HPE GreenLake itself supports standard password-based SAML authentication, this guide will also demonstrate how to configure passwordless authentication methods that are essential for users who plan to leverage the HPECOMCmdlets PowerShell module for automation and management tasks.
 
+### Quick Start Checklist
+
+For experienced administrators familiar with Entra ID and SAML configuration, here's the high-level workflow:
+
+**Entra ID Configuration:**
+- ☐ Create security group: `HPE GreenLake`
+- ☐ Create enterprise application (non-gallery)
+- ☐ Configure SAML: Entity ID, ACS URL, RelayState
+- ☐ Configure claims: NameId, FirstName, LastName, (optional) hpe_ccs_attribute
+- ☐ Copy Federation Metadata URL
+
+**HPE GreenLake Configuration:**
+- ☐ Claim and verify domain (DNS TXT record)
+- ☐ Create SSO connection (use metadata URL)
+- ☐ Create authentication policy (link domain to SSO connection)
+- ☐ Test SP-initiated and IdP-initiated flows
+
+**Passwordless Setup (for HPECOMCmdlets):**
+- ☐ Enable Microsoft Authenticator authentication method
+- ☐ Create enrollment tracking group: `HPE-GreenLake-Enrollment`
+- ☐ Create two Conditional Access policies (grace period + enforcement)
+- ☐ Enroll users via https://aka.ms/mysecurityinfo
+
+**Estimated Time**: 45-60 minutes for initial setup
+
+> **Note**: Detailed step-by-step instructions with screenshots follow below.
+
 ### Step 1: Register HPE GreenLake in Entra ID
 
 Before configuring the HPE GreenLake enterprise application in Entra ID, it's essential to create a security group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Entra ID groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use local authorization instead of SAML-based RBAC.
@@ -218,6 +245,9 @@ With the security group created, you can now proceed to register the HPE GreenLa
 - To make the app visible to users to enable IDP-Initiated SSO logins, go to **Properties**, and make sure **Visible to Users** is enabled
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-9.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-9.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+
+    - This setting controls whether the HPE GreenLake application appears in users' MyApps portal (https://myapps.microsoft.com)
+    - If set to **No**, users won't see the app tile and can only use SP-initiated SSO (starting from HPE GreenLake login page)
 
     > **Tip**: For better visual integration, consider uploading the HPE logo to make the application easily identifiable in your users' app launchers.
  
@@ -368,7 +398,6 @@ With the security group created, you can now proceed to register the HPE GreenLa
             - `Workspace Observer`: Read-only access to workspace resources
             - `Compute Ops Management administrator`: Full access to COM features
             - `Compute Ops Management viewer`: Read-only access to COM features
-
 
 
 - Remove any remaining default claims that were not explicitly configured above. Your final claims configuration should include only:
@@ -771,6 +800,10 @@ This strategy uses two Conditional Access policies and an enrollment tracking gr
 
 ##### Implementation Steps
 
+> **How Policies Work Together**: Entra ID evaluates Conditional Access policies independently. 
+> Users in the enrollment group will match Policy 1 (grace period) because they're excluded 
+> from Policy 2, even though they're members of the HPE GreenLake group. Exclusions always take precedence.
+
 **Step 1: Create the Enrollment Tracking Group**
 
 First, create a security group to track users who are in the enrollment phase:
@@ -784,26 +817,8 @@ First, create a security group to track users who are in the enrollment phase:
 
     > **Purpose**: This group identifies users who are still setting up passwordless authentication and need the grace period policy.
 
-**Step 2: Enable Registration Campaign**
 
-The Registration Campaign automatically prompts users to set up passwordless authentication:
-
-- Navigate to **Authentication methods** → **Registration campaign**
-- Click on **Edit** settings
-- Set **State** to **Enabled**
-- Configure the following settings:
-    - **Days allowed to snooze**: `3` (allows users to postpone enrollment up to 3 days)
-    - **Limited number of snoozes**: `Enabled`
-    - **Include targets**: Select **All users** or the **HPE GreenLake** group
-    - **Authentication method**: **Microsoft Authenticator** should be shown
-
-      [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39b.png){:class="img-100pct"}{: data-lightbox="gallery"}
-
-- Click **Save**
-
-    > **Note**: This campaign displays a prompt during user sign-in that reads: "Your organization requires more information to keep your account secure. Select Next to begin." This guides users through the passwordless setup wizard.
-
-**Step 3: Create Policy 1 - Enrollment Grace Period**
+**Step 2: Create Policy 1 - Enrollment Grace Period**
 
 This policy applies to users in the enrollment group, allowing them to authenticate with password + push while setting up passwordless:
 
@@ -847,7 +862,7 @@ This policy applies to users in the enrollment group, allowing them to authentic
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39g.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39g.png){:class="img-800"}{: data-lightbox="gallery"}
 
-**Step 4: Create Policy 2 - Passwordless Enforcement**
+**Step 3: Create Policy 2 - Passwordless Enforcement**
 
 This policy applies to users who have completed passwordless enrollment, enforcing passwordless-only authentication:
 
@@ -908,7 +923,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
         > **Result**: The user now has HPE GreenLake access AND can authenticate with password + push during enrollment.
 
 2. **User Completes Passwordless Setup**:
-    - The user receives the Registration Campaign prompt during their next sign-in
+    - Direct the user to visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo) to set up passwordless authentication
     - User follows the enrollment wizard (detailed steps in next section)
     - User notifies you when setup is complete
 
