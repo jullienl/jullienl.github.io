@@ -795,7 +795,7 @@ This strategy uses two Conditional Access policies and an enrollment tracking gr
 **Benefits:**
 - ✅ Works for initial rollout AND ongoing user additions
 - ✅ Individual grace periods (not time-based)
-- ✅ Automated enrollment prompts via Registration Campaign
+- ✅ Manual enrollment via secure Microsoft portal
 - ✅ ~2 minutes of admin effort per user
 
 ##### Implementation Steps
@@ -1028,7 +1028,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
         >
         > &nbsp;
         >
-        > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png){:class="img-900"}{: data-lightbox="gallery"}
+        > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png){:class="img-700"}{: data-lightbox="gallery"}
 
 
 4. **Notify Administrator**:
