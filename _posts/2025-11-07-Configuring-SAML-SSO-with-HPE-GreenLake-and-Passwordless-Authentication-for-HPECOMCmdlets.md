@@ -279,9 +279,9 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     > **Note**: These SAML claims define how user identity information is transmitted from Entra ID to HPE GreenLake during authentication. Proper configuration ensures users are correctly identified and authorized when accessing the platform.
 
-- Add a claim named **hpe_ccs_attribute** (case-sensitive). This attribute enables role-based access control (RBAC) by mapping your Entra ID group to specific HPE GreenLake roles and permissions. 
+-  <a id="hpe_ccs_settings"></a>Add a claim named **hpe_ccs_attribute** (case-sensitive). This attribute enables role-based access control (RBAC) by mapping your Entra ID group to specific HPE GreenLake roles and permissions. 
 
-    **Note**: This claim is optional—if you prefer to manage user authorization directly within the HPE GreenLake platform instead of through SAML attributes, you can skip this step.
+    **Note**: <u>This claim is optional</u>. If you prefer to manage user authorization directly within the HPE GreenLake platform instead of through SAML attributes, you can skip this step.
 
     Configure the claim with the following settings:
     
@@ -295,11 +295,81 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-        Example for one workspace and two applications (HPE GreenLake and COM):
+        The `hpe_ccs_attribute` value follows this format:
 
-        ```yaml 
-        version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
+        ```yaml
+        version_1#<workspace_id>:<app_id_1>:<role_1>:ALL_SCOPES:<app_id_2>:<role_2>:ALL_SCOPES
         ```
+
+        - **Example 1** (single workspace, single service):
+
+            ```yaml
+            version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES
+            ```
+
+            This example grants:
+            - Observer access to the HPE GreenLake workspace
+
+        - **Example2** (single workspace, two services: HPE GreenLake and COM):
+
+            ```yaml 
+            version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
+            ```
+
+            This example grants:
+            - Administrator access to the HPE GreenLake workspace
+            - Administrator access to Compute Ops Management 
+
+        - **Example3** (two workspaces, two services: HPE GreenLake and COM):
+
+            ```yaml 
+            version_1#248aa396805c11ed88e216588ab64ce9:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES#34652ff0317711ec9bc096872580fd6d:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
+            ```
+
+            This example grants:
+            - Observer access to the HPE GreenLake workspaces
+            - Administrator access to Compute Ops Management 
+
+        To construct the `hpe_ccs_attribute` value, you need to gather three key pieces of information from your HPE GreenLake workspace:
+        1. **Workspace ID**: The unique identifier for your HPE GreenLake workspace
+        2. **Service ID**: The unique identifier for each service you want to grant access to
+        3. **Role**: The permission level to assign for each service
+
+        **How to Find These Values:**
+
+        1. **Locate Your Workspace ID**:
+            - Log in to HPE GreenLake at [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
+            - Navigate to **Manage Workspace**
+            - The Workspace ID is displayed on the workspace card.
+
+                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20a.png){:class="img-900"}{: data-lightbox="gallery"}
+
+        2. **Find Service IDs**:
+            - Navigate to **Services** → **Catalog** in HPE GreenLake
+            - Select the service you want to grant access to
+            - In the **Details** section, locate and copy the **Service ID**
+
+                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20b.png){:class="img-900"}{: data-lightbox="gallery"}    
+            
+            **Common Application IDs:**
+            - HPE GreenLake Platform: `00000000-0000-0000-0000-000000000000`
+            - Compute Ops Management: `b394fa01-8858-4d73-8818-eadaf12eaf37`
+
+        3. **Identify Available Roles**:
+            - Navigate to **Manage Workspace** → **Identity & access management** → **Roles & permissions**
+            - Review the available roles for each application
+
+                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20c.png){:class="img-900"}{: data-lightbox="gallery"}    
+
+                > **Note**: Role names are case-sensitive and must match exactly as displayed in the HPE GreenLake console. Always verify role names before adding them to your SAML attribute configuration.
+
+            **Common Roles:**
+            - `Workspace Administrator`: Full administrative access to the workspace
+            - `Workspace Observer`: Read-only access to workspace resources
+            - `Compute Ops Management administrator`: Full access to COM features
+            - `Compute Ops Management viewer`: Read-only access to COM features
+
+
 
 - Remove any remaining default claims that were not explicitly configured above. Your final claims configuration should include only:
 
@@ -309,7 +379,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-    > 🎯 **CRITICAL RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
+    > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
     > &nbsp;
     > 
@@ -346,6 +416,8 @@ To complete the registration in HPE GreenLake, your account must be assigned one
 The SSO configuration steps in this guide apply exclusively to HPE GreenLake workspaces with **enhanced Identity and Access Management (IAM)**. This guide is not compatible with legacy IAM workspaces.
 
 - For **legacy IAM workspaces**, do not use this guide. Instead, refer to the [legacy SAML SSO configuration guide](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-F86AA0D3-D2D7-4B10-A041-6496E97D0633.html#ariaid-title1).
+
+    > ⚠️ **Warning**: If your workspace uses legacy IAM, the HPE GreenLake interface will show different menus and navigation paths. The configuration steps in this guide will not match your interface. Always verify your workspace type first to ensure you follow the correct procedure for your environment.
 
 - To determine your workspace type, navigate to **Manage Workspace**. The presence of **SSO configuration** and **Domains** tiles confirms your workspace uses enhanced IAM:
 
@@ -610,7 +682,7 @@ Common authentication failures include misconfigured SAML attributes, certificat
 
 **Purpose**: Configure Entra ID to support passwordless SSO authentication for the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module when connecting to HPE GreenLake.
 
-**Use Case**: Enable `Connect-HPEGL -SSOEmail user@company.com` to authenticate via Micosoft Authenticator push notification without requiring password entry.
+**Use Case**: Enable `Connect-HPEGL -SSOEmail user@company.com` to authenticate via Microsoft Authenticator push notification without requiring password entry.
 
 To support HPECOMCmdlets SSO functionality, Entra ID must be configured to:
 
@@ -632,73 +704,154 @@ The following sections guide you through verifying and configuring each requirem
 
 > **Note**: As of November 2025, number matching cannot be disabled for Microsoft Authenticator push notifications in Microsoft Entra ID. Microsoft enforced it globally starting May 8, 2023, to combat MFA fatigue and phishing attacks.
 
-#### 1. Check authentication method policies
+#### 1. Verify authentication method prerequisites
 
-Before implementing passwordless authentication for the HPECOMCmdlets module, verify that your Entra ID tenant is configured with compatible authentication methods. As outlined earlier in this guide, only push notifications and TOTP-based authenticators support PowerShell automation scenarios, while FIDO2 and platform authenticators (Touch ID, Face ID, Windows Hello) remain incompatible due to WebAuthn API limitations.
+Before implementing the two-phase enrollment strategy, verify that your Entra ID tenant has the required authentication methods enabled:
 
-1. Navigate to **Authentication methods** → **Policies** and verify that Microsoft Authenticator is enabled 
+**Quick Prerequisites Check:**
+
+1. Navigate to **Authentication methods** → **Policies**
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-    > **Important**: Software and hardware OATH tokens are password-based methods that do not support passwordless authentication. Therefore, these methods are not compatible with the HPECOMCmdlets module.
+2. Verify **Microsoft Authenticator** is enabled:
+    - Status should show **Enabled**
+    - Target should include your HPE GreenLake users (either **All users** or the **HPE GreenLake** group)
+    - **Authentication mode** should be set to **Any** or **Push**
 
-    > **Configuration Recommendation**: If your Entra ID account is configured exclusively for FIDO2/passkey authentication methods, you must enable either push notifications or TOTP authentication to use the HPECOMCmdlets module. This does not compromise your security posture—push notifications with number matching (as implemented in Microsoft Authenticator) meet the same phishing-resistant security standards as FIDO2 authentication, while maintaining compatibility with PowerShell automation scenarios.
+    > **If Microsoft Authenticator is not enabled:**
+    > - Click **Microsoft Authenticator** → Set **Enable** to **Yes**
+    > - Configure target users and authentication mode as described above
+    > - Click **Save**
 
-    - If Microsoft Authenticator is not enabled: 
-        - Click on **Microsoft Authenticator**
-        - Set the **Enable** toggle to **Yes**
-        - Configure the target users (either **All users** or specific groups that include your HPE GreenLake users). 
-        - Ensure **Authentication mode** is set to **Any** or **Push** to support passwordless authentication methods compatible with the HPECOMCmdlets module.
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38a.png){:class="img-100pct"}{: data-lightbox="gallery"}
-
-    - **Configure SMS and Email fallback methods (Optional)**
-
-        While Microsoft Authenticator provides the primary passwordless authentication experience, enabling SMS and Email authentication methods offers users alternative verification options when they cannot access their mobile device (e.g., device lost, out of battery, or temporarily unavailable).
-
-        > **Important Limitation**: While SMS and Email fallback methods provide recovery options for **browser-based authentication**, they are **not compatible with the HPECOMCmdlets PowerShell module** due to manual code entry requirements. Users leveraging HPECOMCmdlets for automation should ensure they maintain access to their primary authenticator (Microsoft Authenticator) for push notification approval. If a user loses access to their primary authenticator device, they will need to re-enroll before using the module for PowerShell automation.
-
-        > **Security Note**: SMS and Email are less secure than push notifications and should only be used as fallback methods for browser-based access. Microsoft recommends limiting their use to recovery scenarios rather than primary authentication.
-
-        To enable SMS authentication:
-        - Navigate to **Authentication methods** → **Policies**
-        - Click on **SMS**
-        - Set **Enable** to **Yes**
-        - Configure target users (recommend limiting to specific groups or using "All users" with exclusions for high-privilege accounts)
-        - Click **Save**
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38b.png){:class="img-100pct"}{: data-lightbox="gallery"}
-
-        To enable Email OTP authentication:
-        - Navigate to **Authentication methods** → **Policies**
-        - Click on **Email OTP**
-        - Set **Enable** to **Yes**
-        - Configure target users as appropriate for your security requirements
-        - Click **Save**
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38c.png){:class="img-100pct"}{: data-lightbox="gallery"}
-
-        > **Note**: Unlike Okta, which offers per-authenticator "Authentication vs Recovery" settings, Entra ID controls authentication method behavior through **Conditional Access policies** rather than per-method configuration. When you enable SMS and Email OTP here but exclude them from your Conditional Access authentication strength (as shown in Section 2 below), they become available for **recovery scenarios only**. This approach achieves the same security outcome as Okta's explicit "Recovery only" setting—SMS and Email codes remain available for account recovery and password resets, but cannot be used as primary authentication methods for accessing HPE GreenLake.
-
-        > **Important**: These fallback methods will be available to users when enrolling in MFA or when they cannot access their primary authentication method for browser-based access. The Conditional Access policy configured in Section 2 will still enforce multi-factor authentication requirements using only the methods included in the "Passwordless MFA" authentication strength.
-
-2. Navigate to **Authentication methods** → **Authentication strengths**
+3. Navigate to **Authentication methods** → **Authentication strengths**
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-    - Review the built-in **Passwordless MFA** authentication strength. This strength includes methods that support true passwordless authentication with multi-factor authentication. Other authentication strengths shown (such as MFA strength or Phishing-resistant MFA) may include password-based methods and therefore do not meet the passwordless requirement for the HPECOMCmdlets module. 
-  
+4. Verify the built-in **Passwordless MFA** authentication strength exists:
+    - This is a built-in strength that includes Microsoft Authenticator push notifications and TOTP
+    - You'll reference this strength when creating Conditional Access policies in the next section
+
       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40.png){:class="img-400"}{: data-lightbox="gallery"}
 
-#### 2. Conditional access policies
+> **Optional - SMS/Email Fallback Methods:** If you want to provide recovery options when users can't access their mobile device, you can enable SMS and Email OTP authentication methods. These are useful for browser-based recovery but are NOT compatible with the HPECOMCmdlets PowerShell module. Enable them at **Authentication methods** → **Policies** → **SMS** or **Email OTP**.
 
-Conditional Access policies determine when and how multi-factor authentication (MFA) or passwordless authentication is required for your organization. To support the HPECOMCmdlets module while maintaining security best practices, you'll need to create a policy that enforces passwordless authentication methods.
+#### 2. Conditional access policies and passwordless enrollment strategy
 
-The following steps guide you through creating a Conditional Access policy that enforces passwordless MFA using authentication methods compatible with the HPECOMCmdlets module:
+Conditional Access policies determine when and how multi-factor authentication (MFA) or passwordless authentication is required for your organization. To support the HPECOMCmdlets module while maintaining security best practices, you need to implement a two-phase enrollment strategy that allows users to set up passwordless authentication before enforcing it.
 
-- Navigate to **Protection** → **Conditional Access** → **Policies** → **New policy**
+##### Understanding the Two-Phase Enrollment Strategy
+
+**Why Two Phases Are Necessary:**
+
+If you immediately enforce passwordless-only authentication for all users, those who haven't yet enrolled in passwordless methods will encounter an authentication loop: they'll be required to use a passwordless method they don't have configured, preventing them from accessing the system to complete enrollment.
+
+**The Solution: Hybrid Enrollment with Grace Period**
+
+This strategy uses two Conditional Access policies and an enrollment tracking group to enable a smooth transition:
+
+1. **Phase 1 - Enrollment Grace Period**: New users authenticate with password + MFA while setting up passwordless methods
+2. **Phase 2 - Passwordless Enforcement**: After enrollment verification, users must use passwordless authentication only
+
+**How It Works:**
+
+1. Admin adds user to both **HPE GreenLake** (access) and **HPE-GreenLake-Enrollment** (grace period) groups
+2. User signs in with password + push notification, receives automated prompt to set up passwordless
+3. User completes passwordless enrollment in Microsoft Authenticator app
+4. Admin verifies enrollment and removes user from enrollment group
+5. User now authenticates passwordless-only on future sign-ins
+
+> **Key Advantage**: Each user gets their own individual enrollment window. Whether you're onboarding your first user or adding someone 6 months later, the process is identical. This solves the "new user problem" where time-based approaches lock out users added after the initial rollout.
+
+**Benefits:**
+- ✅ Works for initial rollout AND ongoing user additions
+- ✅ Individual grace periods (not time-based)
+- ✅ Automated enrollment prompts via Registration Campaign
+- ✅ ~2 minutes of admin effort per user
+
+##### Implementation Steps
+
+**Step 1: Create the Enrollment Tracking Group**
+
+First, create a security group to track users who are in the enrollment phase:
+
+- Navigate to **Groups** → **Overview** → **New group**
+- Create a **Security** group named `HPE-GreenLake-Enrollment`
+- **Do not add any members yet** - this group will be populated as new users need enrollment
+- Click **Create**
+
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39a.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+    > **Purpose**: This group identifies users who are still setting up passwordless authentication and need the grace period policy.
+
+**Step 2: Enable Registration Campaign**
+
+The Registration Campaign automatically prompts users to set up passwordless authentication:
+
+- Navigate to **Authentication methods** → **Registration campaign**
+- Click on **Edit** settings
+- Set **State** to **Enabled**
+- Configure the following settings:
+    - **Days allowed to snooze**: `3` (allows users to postpone enrollment up to 3 days)
+    - **Limited number of snoozes**: `Enabled`
+    - **Include targets**: Select **All users** or the **HPE GreenLake** group
+    - **Authentication method**: **Microsoft Authenticator** should be shown
+
+      [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39b.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+- Click **Save**
+
+    > **Note**: This campaign displays a prompt during user sign-in that reads: "Your organization requires more information to keep your account secure. Select Next to begin." This guides users through the passwordless setup wizard.
+
+**Step 3: Create Policy 1 - Enrollment Grace Period**
+
+This policy applies to users in the enrollment group, allowing them to authenticate with password + push while setting up passwordless:
+
+- Navigate to **Conditional Access** → **Policies** → **New policy**
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-41.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-41.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+- Configure the policy with the following settings:
+
+    **Policy name**: `HPE GreenLake - Enrollment Grace Period`
+
+    **Assignments**:
+    - **Users**: 
+        - Include: Select the **HPE-GreenLake-Enrollment** group
+
+          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39c.png){:class="img-600"}{: data-lightbox="gallery"}
+
+        - Exclude: At least one administrator account (not in HPE GreenLake group) to prevent accidental lockout
+        - Exclude: Emergency access (break-glass) accounts
+
+    - **Target resources**: 
+        - Select **Resources (formerly cloud apps)** → **Select resources**
+        - Choose the **HPE GreenLake** application created in Step 1
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39d.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    **Access controls**:
+    - **Grant**: 
+        - Select **Grant access**
+        - Check **Require authentication strength**
+        - From the dropdown, select **Multifactor authentication**
+
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39e.png){:class="img-300"}{: data-lightbox="gallery"}
+
+            > **Important**: Use "Multifactor authentication" (NOT "Passwordless MFA") for the enrollment policy. This allows password + push notifications during the enrollment phase.
+    
+    - **Session**: (Optional) Configure **Sign-in frequency** to control how often users must re-authenticate
+
+- Set **Enable policy** to **On**
+- Click **Create** to activate the policy
+
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39g.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39g.png){:class="img-800"}{: data-lightbox="gallery"}
+
+**Step 4: Create Policy 2 - Passwordless Enforcement**
+
+This policy applies to users who have completed passwordless enrollment, enforcing passwordless-only authentication:
+
+- Navigate to **Conditional Access** → **Policies** → **New policy**
 
 - Configure the policy with the following settings:
 
@@ -706,19 +859,20 @@ The following steps guide you through creating a Conditional Access policy that 
 
     **Assignments**:
     - **Users**: 
-        - Include the HPE GreenLake security group (e.g., *HPE GreenLake*)
+        - Include: Select the **HPE GreenLake** group
+        - Exclude: Select the **HPE-GreenLake-Enrollment** group
+        - Exclude: At least one administrator account (not in HPE GreenLake group) to prevent accidental lockout
+        - Exclude: Emergency access (break-glass) accounts
 
-          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-42.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-42.png){:class="img-600"}{: data-lightbox="gallery"}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39h.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39h.png){:class="img-600"}{: data-lightbox="gallery"}
 
-          > **Important**: Exclude at least one administrator account that is not a member of the HPE GreenLake group to prevent accidental lockout
-        
-        - Exclude emergency access (break-glass) accounts
+            > **Key Configuration**: By including the main group but excluding the enrollment group, this policy only applies to users who have completed passwordless setup.
 
     - **Target resources**: 
         - Select **Resources (formerly cloud apps)** → **Select resources**
-        - Choose the HPE GreenLake application created in Step 1
+        - Choose the **HPE GreenLake** application created in Step 1
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-43.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-43.png){:class="img-600"}{: data-lightbox="gallery"}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39i.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39i.png){:class="img-600"}{: data-lightbox="gallery"}
 
     **Access controls**:
     - **Grant**: 
@@ -726,101 +880,191 @@ The following steps guide you through creating a Conditional Access policy that 
         - Check **Require authentication strength**
         - From the dropdown, select **Passwordless MFA**
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44.png){:class="img-300"}{: data-lightbox="gallery"}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39j.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39j.png){:class="img-300"}{: data-lightbox="gallery"}
 
-            > **Note**: The "Passwordless MFA" authentication strength you select here corresponds to the built-in strength reviewed earlier in the Authentication methods section. This ensures that only compatible passwordless methods (Microsoft Authenticator push notifications and TOTP) are accepted for authentication, while excluding FIDO2 and platform authenticators that are incompatible with PowerShell automation.
+            > **Note**: The "Passwordless MFA" authentication strength ensures only compatible passwordless methods (Microsoft Authenticator push notifications and TOTP) are accepted, while excluding FIDO2 and platform authenticators that are incompatible with PowerShell automation.
     
     - **Session**: (Optional) Configure **Sign-in frequency** to control how often users must re-authenticate
-      
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45.png){:class="img-600"}{: data-lightbox="gallery"}
 
-- Review all settings carefully to ensure accuracy then set **Enable policy** to **On**
+- Set **Enable policy** to **On**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45a.png){:class="img-300"}{: data-lightbox="gallery"} 
-        
 - Click **Create** to activate the policy
+
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39f.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39f.png){:class="img-900"}{: data-lightbox="gallery"}
+
+##### Operational Procedures
+
+**Adding a New User to HPE GreenLake:**
+
+When you need to grant HPE GreenLake access to a new user, follow this process:
+
+1. **Grant Access and Enrollment Period**:
+    - Navigate to **Groups** → **All groups**
+    - Open the **HPE GreenLake** group → Click **Members** → **Add members**
+    - Select the new user → Click **Select**
+    - Open the **HPE-GreenLake-Enrollment** group → Click **Members** → **Add members**
+    - Select the same user → Click **Select**
+
+        > **Result**: The user now has HPE GreenLake access AND can authenticate with password + push during enrollment.
+
+2. **User Completes Passwordless Setup**:
+    - The user receives the Registration Campaign prompt during their next sign-in
+    - User follows the enrollment wizard (detailed steps in next section)
+    - User notifies you when setup is complete
+
+3. **Verify Passwordless Enrollment**:
+    - Navigate to **Users** → **All users** → Select the user
+    - Click **Authentication methods**
+    - Verify **Microsoft Authenticator** is listed under **Usable authentication methods**
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+        > **IMPORTANT: How to Verify Passwordless is Actually Enabled**
+        >
+        > The Entra ID admin portal does NOT clearly distinguish between password+push MFA and true passwordless in the authentication methods view. Both show as "Microsoft Authenticator" with device details.
+        >
+        > **To confirm passwordless is truly enabled**, ask the user to:
+        > 1. Visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo)
+        > 2. Verify they see **"Passwordless sign-in"** listed as a method (with a key icon 🔑)
+        >
+        > **OR** verify directly in the Microsoft Authenticator app:
+        > - Open the app → Tap the account → Verify **"Passwordless sign-in requests"** is shown as an available option
+        >
+        > ✅ **ACCEPTABLE**: User portal shows "Passwordless sign-in" (confirms correct setup)  
+        > ❌ **NOT ACCEPTABLE**: User only sees "Phone" or "Push notification" methods (passwordless not enabled)
+
+4. **Graduate to Passwordless Enforcement**:
+    - Navigate to **Groups** → **All groups**
+    - Open the **HPE-GreenLake-Enrollment** group → Click **Members**
+    - Select the user → Click **Remove members**
+
+        > **Result**: Policy 2 now applies to this user, enforcing passwordless-only authentication.
+
+**Time Estimate**: 2 minutes per user
+
+##### User Enrollment Experience
+
+1. **Initial Sign-In**:
+    - Navigate to [https://common.cloud.hpe.com/newlogin](https://common.cloud.hpe.com/newlogin) and enter your email address
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png){:class="img-500"}{: data-lightbox="gallery"}
+
+    - Select **Sign in with SSO**
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40b.png){:class="img-400"}{: data-lightbox="gallery"}
+
+    - The Microsoft sign-in page appears. Enter your username
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40c.png){:class="img-400"}{: data-lightbox="gallery"}
+
+    - Enter your password
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40d.png){:class="img-400"}{: data-lightbox="gallery"}
+    
+    - After successful authentication, a prompt appears: "Let's keep your account secure"
+    
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40e.png){:class="img-400"}{: data-lightbox="gallery"}
+
+2. **Passwordless Setup Wizard** (click **Next** to begin):
+    
+    - **Step 1 - Install Authenticator**: "Install Microsoft Authenticator on your mobile device" → Click **Next**
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44e.png){:class="img-300"}{: data-lightbox="gallery"}
+
+    - **Step 2 - Scan QR Code**: A QR code appears. Open Microsoft Authenticator on your mobile device and scan the code to pair your device
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44f.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44f.png){:class="img-300"}{: data-lightbox="gallery"}
+
+    - **Step 3 - Test Notification**: A test notification is sent to your device. Approve the notification, then tap **Yes**
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40g.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40g.png){:class="img-300"}{: data-lightbox="gallery"}
+
+    - **Step 4 - Completion**: "Microsoft Authenticator is now ready to approve sign-ins" → Click **Done**
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40h.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40h.png){:class="img-300"}{: data-lightbox="gallery"}
+
+3. **Enable Passwordless Sign-In** (**CRITICAL STEP**):
+    
+    > 🔴 **CRITICAL: THIS IS THE MOST COMMONLY MISSED STEP**
+    >
+    > Completing the enrollment wizard only sets up traditional MFA (password + push). 
+    > You MUST manually enable "Passwordless sign-in requests" in the Authenticator app.
+    > Without this step, the HPECOMCmdlets module will <u>NOT</u> work.
+
+    - Open Microsoft Authenticator on your mobile device
+    - Tap the newly added account for your organization
+    - Tap **Set up passwordless sign-in requests** 
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39k.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39k.png){:class="img-300"}{: data-lightbox="gallery"}
+
+    - Complete the authentication request when prompted
+    - Set up device biometrics (fingerprint, face recognition, or PIN) if requested     
+    - Verify that **Passwordless sign-in requests** now appears as an available method in your account settings
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39l.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39l.png){:class="img-300"}{: data-lightbox="gallery"}
+
+    - To confirm successful enrollment, visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo)
+    
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39m.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39m.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+        The page should display: **Microsoft Authenticator - Passwordless sign-in** (with a key icon 🔑)
+
+        > **Verification Checkpoint**: You must see the "Passwordless sign-in" method listed. If you see "Push multi-factor authentication (MFA)" (with a lock icon 🔒), passwordless authentication is not enabled and the HPECOMCmdlets module will <u>NOT</u> work.
+        >
+        > &nbsp;
+        >
+        > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png){:class="img-900"}{: data-lightbox="gallery"}
+
+
+4. **Notify Administrator**:
+    - User sends email/message to administrator: "Passwordless setup complete for HPE GreenLake"
+    - Administrator removes user from enrollment group
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40i.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40i.png){:class="img-900"}{: data-lightbox="gallery"}
+
+
 
 #### 3. Test SSO Authentication with Browser
 
 To verify that your passwordless authentication configuration is working correctly, test the complete authentication flow using a web browser:
 
-1. Open a web browser and navigate to your Microsoft Entra ID MyApps portal at [https://myapps.microsoft.com](https://myapps.microsoft.com)
+1. Open a web browser and navigate to [https://common.cloud.hpe.com/newlogin](https://common.cloud.hpe.com/newlogin)
 
-2. **Expected Authentication Flow:**
+2. **Initial Sign-In**:
+    - Enter your email address on the HPE GreenLake login page
 
-    - **Initial Login Screen**: The Microsoft sign-in screen appears. Enter your email address then your password. 
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png){:class="img-500"}{: data-lightbox="gallery"}
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45b.png){:class="img-400"}{: data-lightbox="gallery"} 
+    - Click **Sign in with SSO**
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40b.png){:class="img-400"}{: data-lightbox="gallery"}
+
+    - The Microsoft sign-in page appears. Enter your username
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40c.png){:class="img-400"}{: data-lightbox="gallery"}
+
+3. **Passwordless Authentication Prompt**:
+    - If prompted for a password, click **Use an app instead** to proceed with passwordless authentication
+
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40k.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40k.png){:class="img-400"}{: data-lightbox="gallery"}
+
+    > **Note**: If Microsoft Authenticator is already configured as your default sign-in method, you will bypass the password prompt and proceed directly to the push notification authentication step.
     
-    - **First-Time Authenticator Setup** (if applicable):
+    - The browser displays an **Approve sign-in request** page, confirming that a push notification has been sent to your registered mobile device. A challenge number appears on the screen (e.g., "80")
 
-        If this is your first time using Microsoft Authenticator for MFA, you'll be prompted to configure it:
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45c.png){:class="img-400"}{: data-lightbox="gallery"} 
 
-        - A "Let's keep your account secure" screen appears. Click **Next** to begin the setup process
+    - Open **Microsoft Authenticator** on your mobile device
+    - A push notification appears requesting authentication approval
+    - **Enter the matching number**: Type the challenge number displayed in your browser (e.g., "80") into the authenticator app to approve the request
+            
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45d.png){:class="img-300"}{: data-lightbox="gallery"} 
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44a.png){:class="img-400"}{: data-lightbox="gallery"} 
-
-        - A message appears stating "Additional authentication is required to complete this sign-in." Click the **mysecurityinfo** link to proceed
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44b.png){:class="img-400"}{: data-lightbox="gallery"} 
-
-        - On the Security Info page, click the **+** icon to add a new sign-in method
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44c.png){:class="img-100pct"}{: data-lightbox="gallery"} 
-
-        - Select **Microsoft Authenticator** from the available methods
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44d.png){:class="img-400"}{: data-lightbox="gallery"} 
-
-        - Install Microsoft Authenticator on your mobile device if you haven't already, then click **Next**
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44e.png){:class="img-300"}{: data-lightbox="gallery"} 
-
-        - At the "Set up your account in app" screen, click **Next** to display the QR code
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44f.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44f.png){:class="img-300"}{: data-lightbox="gallery"} 
-
-        - On your mobile device:
-            * Open the Microsoft Authenticator app
-            * Tap the **+** icon to add a new account
-            * Select **Work or school account**
-
-                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44g.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44g.png){:class="img-300"}{: data-lightbox="gallery"} 
-
-            * Scan the QR code displayed on your computer screen to complete device pairing
-
-        - Once pairing is complete, Microsoft Authenticator appears as an available sign-in method in your security settings
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44h.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44h.png){:class="img-100pct"}{: data-lightbox="gallery"} 
-
-        - After setup completes, the browser automatically proceeds to push notification authentication
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44i.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44i.png){:class="img-300"}{: data-lightbox="gallery"} 
-
-        - After successfully approving the push notification, your browser displays a confirmation message indicating that Microsoft Authenticator is now configured and set as your default sign-in method for future authentication requests     
-        
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44j.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-44j.png){:class="img-300"}{: data-lightbox="gallery"} 
-
-    
-    - **Push Notification Authentication**:
-
-        > **Note**: If Microsoft Authenticator is already configured and set as your default sign-in method, you will skip the first-time setup process above and proceed directly to the push notification authentication step below.
-
-        - The Microsoft authentication page displays in your browser, confirming a push notification has been sent to your registered mobile device. A challenge number appears on the screen (e.g., "80")
-
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45c.png){:class="img-400"}{: data-lightbox="gallery"} 
-
-        - Open Microsoft Authenticator on your mobile device
-        - A push notification appears requesting number verification
-        - Enter the challenge number displayed in your browser to approve the authentication request     
-        
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-45d.png){:class="img-300"}{: data-lightbox="gallery"} 
-
-        - Complete biometric authentication if enabled on your device
+    - Complete biometric authentication (fingerprint, face recognition, or PIN) if configured on your device
 
     - **Authentication Completion**:
-        - The browser automatically completes the authentication process
-        - You are redirected to the Microsoft MyApps portal with full access
+        - After successful approval, the browser automatically completes the authentication flow
+        - You are redirected to the HPE GreenLake console with your assigned permissions and workspace access
 
 > **Troubleshooting**: If you don't receive a push notification, verify that:
 > - The Microsoft Authenticator app is installed and properly configured
@@ -989,13 +1233,9 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
         **To configure this attribute:**
 
-        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
+        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to the [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1) documentation.
 
-        **Example attribute value** for one workspace and two applications (HPE GreenLake and COM):
-
-        ```yaml 
-        version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
-        ```
+        For comprehensive guidance on building and formatting the `hpe_ccs_attribute` value, including workspace IDs, service IDs, and role assignments, see the detailed configuration instructions in the [Entra ID hpe_ccs_attribute settings section](#hpe_ccs_settings).
 
 - Click **Next** to proceed to the feedback page
 
@@ -1006,7 +1246,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-53.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-53.png){:class="img-600"}{: data-lightbox="gallery"} 
 
-    > 🎯 **CRITICAL RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
+    > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
     > &nbsp;
     > 
@@ -1579,11 +1819,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
         The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
 
-        **Example attribute value** for one workspace and two applications (HPE GreenLake and COM):
-
-        ```yaml 
-        version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
-        ```
+        For comprehensive guidance on building and formatting the `hpe_ccs_attribute` value, including workspace IDs, service IDs, and role assignments, see the detailed configuration instructions in the [Entra ID hpe_ccs_attribute settings section](#hpe_ccs_settings).
 
         **Steps to add this attribute in Ping Identity:**
 
@@ -1645,7 +1881,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
     
         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-89.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-89.png){:class="post-image-post"}{: data-lightbox="gallery"}
     
-    > 🎯 **CRITICAL RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
+    > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
     > &nbsp;
     > 

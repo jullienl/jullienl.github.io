@@ -271,41 +271,97 @@ blockquote ol ol li {
   list-style-position: outside;  // Ensures numbers/bullets align left
 }
 
-.post-content ol li,
-.site-main ol li {
-  margin-bottom: 1.5em;  // Adds space after each numbered section (e.g., between 1 and 2)
-  line-height: 1.4;      // Improves readability within items
+.site-main ul {
+  list-style-position: outside;  // Ensures bullets align left
 }
 
-.post-content ol li:last-child,
-.site-main ol li:last-child {
-  margin-bottom: 1em;    // Slightly less at the very end of the list
+// UNIVERSAL RULE: Let kramdown handle ALL list spacing based on Markdown blank lines
+// - Blank lines in Markdown = loose list with <p> tags = natural browser spacing
+// - No blank lines in Markdown = tight list without <p> tags = tight spacing
+// This applies to: numbered lists (ol), bullet lists (ul), nested lists, any depth
+
+// Override the Minima theme's forced margin-bottom: 0 on nested lists
+// This creates spacing after nested lists (when followed by content)
+.post-content li > ul,
+.post-content li > ol,
+.site-main li > ul,
+.site-main li > ol {
+  margin-top: 0.5em !important;   // Space between parent bullet and nested list
+  margin-bottom: 1em !important;  // Restore the spacing that was working before
 }
 
-// Sub-lists: Tighter indent + compact spacing
-.post-content ol ul,    // Targets sub-bullets under numbered items
-.post-content ol ol,    // Also covers sub-numbered lists
+// Add spacing from paragraphs that are immediately followed by lists (in list items)
+.post-content li > p + ul,
+.post-content li > p + ol,
+.site-main li > p + ul,
+.site-main li > p + ol {
+  margin-top: 0.5em !important;   // Space between paragraph and nested list
+}
+
+// Reduce bottom margin from paragraphs followed by lists within list items
+.post-content li > p:has(+ ul),
+.post-content li > p:has(+ ol),
+.site-main li > p:has(+ ul),
+.site-main li > p:has(+ ol) {
+  margin-bottom: 0.25em !important;  // Small space instead of removing entirely
+}
+
+// Control spacing for list items
+// - line-height: spacing within wrapped text (narrower)
+// - margin-bottom: spacing between separate bullets (wider)
+.post-content li,
+.site-main li {
+  line-height: 1.4;        // Tight spacing when text wraps within same bullet
+  margin-bottom: 0.5em;    // Spacing between different bullets
+}
+
+// Nested list indentation (but no forced margins)
+.post-content ol ul,
+.post-content ol ol,
+.post-content ul ul,
+.post-content ul ol,
 .site-main ol ul,
-.site-main ol ol {
-  margin-top: 0.5em;     // Small lift for sub-lists
-  margin-bottom: 0.5em;  // Keeps subs compact but separated
-  padding-left: 1.5em !important;  // Reduced from 2em for closer alignment to parent
-  margin-left: 0;        // Zaps extra theme margins
+.site-main ol ol,
+.site-main ul ul,
+.site-main ul ol {
+  padding-left: 1.5em;   // Consistent indent for all nested lists
+  margin-left: 0;        // Remove extra theme margins
 }
 
-.post-content ol ul li,
-.post-content ol ol li,
-.site-main ol ul li,
-.site-main ol ol li {
-  margin-bottom: 0.5em;  // Tight spacing within sub-bullets
-  list-style-type: disc; // Ensures consistent bullet style (or 'decimal' for ol)
-  padding-left: 0;       // No extra on items themselves
-}
-
-// Optional: Deeper nesting (prevents over-indent on sub-sub-bullets)
+// Deeper nesting
 .post-content ol ul ul,
-.site-main ol ul ul {
-  padding-left: 1.8em !important;  // Gradual increase for hierarchy
+.post-content ol ol ol,
+.post-content ul ul ul,
+.site-main ol ul ul,
+.site-main ol ol ol,
+.site-main ul ul ul {
+  padding-left: 1.8em;  // Gradual increase for hierarchy
+}
+
+// Remove spacing between paragraphs and lists when no blank line in Markdown
+.post-content p + ul,
+.post-content p + ol,
+.site-main p + ul,
+.site-main p + ol {
+  margin-top: 0;
+}
+
+// Only images get custom spacing (they need it regardless of Markdown)
+.post-content ol li > p:has(a[data-lightbox]),
+.post-content ul li > p:has(a[data-lightbox]),
+.site-main ol li > p:has(a[data-lightbox]),
+.site-main ul li > p:has(a[data-lightbox]) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.post-content ol li > p > a[data-lightbox],
+.post-content ul li > p > a[data-lightbox],
+.site-main ol li > p > a[data-lightbox],
+.site-main ul li > p > a[data-lightbox] {
+  display: block;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
 }
 
 
