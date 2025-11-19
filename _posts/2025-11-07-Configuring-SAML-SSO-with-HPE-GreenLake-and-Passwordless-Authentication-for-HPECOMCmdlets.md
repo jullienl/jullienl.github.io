@@ -410,17 +410,17 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **Why?** Identity providers rotate SAML certificates every 2-3 years. When certificates expire:
     > - ❌ **Manual XML:** Users cannot authenticate until you manually upload new certificate
     > - ✅ **Metadata URL:** Positions you for potential future automatic updates (feature under consideration)
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **Current State (Nov 2025):** HPE GreenLake retrieves metadata at configuration time but doesn't auto-refresh. However, configuring the URL today positions you for seamless updates when this feature launches.
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **What to do:** Always configure the metadata URL in HPE GreenLake, even though manual updates are still required today.
 
@@ -477,11 +477,8 @@ The first step is to claim and verify the domain you will use for single sign-on
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png){:class="img-900"}{: data-lightbox="gallery"}
 
     > **Important note**: If you don't see the **SSO configuration** tile, you must first enable enterprise capabilities for your workspace:
-    >
-    > &nbsp;
-    >
+    >{: .small-space}
     > 1. Click **Enable enterprise capabilities** to unlock single sign-on functionality
-    > 
     >    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21c.png){:class="img-500"}{: data-lightbox="gallery"}
     > 
     > 2. **Organization setup (recommended for multiple workspaces)**: If you manage multiple standalone workspaces, follow these best practices:
@@ -495,7 +492,7 @@ The first step is to claim and verify the domain you will use for single sign-on
     >
     > **Note for MSP Workspaces**: If you're managing an MSP (Managed Service Provider) workspace, enterprise capabilities are automatically enabled, and you won't see the "Enable enterprise capabilities" card. Each MSP tenant workspace is created as a separate organization with its own directory. SSO configuration works the same way—simply proceed to the domain claiming step below.
     >
-    > &nbsp;
+    >{: .small-space}
     >
     > To learn more, see [Enterprise capabilities in workspaces with enhanced IAM](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-A34FB7D7-F0D4-4FD9-87F6-DB15B1F2600D.html#ariaid-title1)
 
@@ -547,7 +544,6 @@ The first step is to claim and verify the domain you will use for single sign-on
     - **FirstName**: The user's first name.
     - **LastName**: The user's last name.
     - **hpe_ccs_attribute**: (Optional) For role-based access control.
-<br>
 <br>
  
    > **Note**: These mappings are critical for user identification and authorization. Incorrect values will cause authentication failures or permission errors.
@@ -633,15 +629,15 @@ With the SSO connection established, the final step is to create an authenticati
     > - **Recovery account contact email**: Enter a shared team email alias (e.g., `admin-team@company.com`) rather than a personal address. This email will be used to regain access to the recovery account if its password is forgotten or expires. It is recommended to use an email alias that is not dependent on any one person so that this point of contact is not dependent on any one person.
     > - **Recovery account password**: Must be at least 8 characters and include upper-case, lower-case, number, and symbol.
     >
-    > &nbsp;
+    >{: .small-space}
     >
     > **When to Use**: Access this recovery account if SSO fails due to identity provider misconfiguration, certificate expiration, network issues, or policy errors.
     >
-    > &nbsp;
+    >{: .small-space}
     >
     > **Post-Deployment**: Once the authentication policy creation and testing is successful, the recovery user account may be deleted or retained at your discretion. Retaining a recovery user account even when not making further changes within GreenLake is useful in the event that something changes outside of GreenLake (e.g. on the IDP) and disrupts the ability to SSO.
     >
-    > &nbsp;
+    >{: .small-space}
     >
     > **Security Best Practice**: Store the recovery account credentials in your organization's password vault or break-glass procedure documentation with appropriate access controls.
 
@@ -970,7 +966,11 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
         > **IMPORTANT: How to Verify Passwordless is Actually Enabled**
         >
+        >{: .small-space}
+        >
         > The Entra ID admin portal does NOT clearly distinguish between password+push MFA and true passwordless in the authentication methods view. Both show as "Microsoft Authenticator" with device details.
+        >
+        >{: .small-space}
         >
         > **To confirm passwordless is truly enabled**, ask the user to:
         > 1. Visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo)
@@ -978,6 +978,8 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
         >
         > **OR** verify directly in the Microsoft Authenticator app:
         > - Open the app → Tap the account → Verify **"Passwordless sign-in requests"** is shown as an available option
+        >
+        >{: .small-space}
         >
         > ✅ **ACCEPTABLE**: User portal shows "Passwordless sign-in" (confirms correct setup)  
         > ❌ **NOT ACCEPTABLE**: User only sees "Phone" or "Push notification" methods (passwordless not enabled)
@@ -1060,7 +1062,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
         > **Verification Checkpoint**: You must see the "Passwordless sign-in" method listed. If you see "Push multi-factor authentication (MFA)" (with a lock icon 🔒), passwordless authentication is not enabled and the HPECOMCmdlets module will <u>NOT</u> work.
         >
-        > &nbsp;
+        >{: .small-space}
         >
         > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40j.png){:class="img-700"}{: data-lightbox="gallery"}
 
@@ -1173,7 +1175,9 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
 
 
 > **Important**: The authentication flow must complete within the timeout period configured in your Conditional Access policy (typically 60-90 seconds). If the timeout expires before approval, the connection attempt will fail and you'll need to retry the `Connect-HPEGL` command.
-
+>
+> {: .small-space}
+>
 > If authentication fails, consult the [HPECOMCmdlets documentation](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) or review the authentication logs in Entra ID Portal under **Monitoring & health** → **Sign-in logs**.
 
 
@@ -1261,16 +1265,16 @@ With the security group created, you can now proceed to register the HPE GreenLa
     
 - Scroll down to **Attribute Statements** and configure the following SAML attributes by clicking **Add Another** for each entry:
 
-    | Name | Name format | Value |
-    |------|-------------|-------|
-    | **NameId** | `Unspecified` | `user.email` |
-    | **FirstName** | `Unspecified` | `user.firstName` |
-    | **LastName** | `Unspecified` | `user.lastName` |
-    | **hpe_ccs_attribute** | `Unspecified` | See configuration below |
-
+   | Name | Name format | Value |
+   |------|-------------|-------|
+   | **NameId** | `Unspecified` | `user.email` |
+   | **FirstName** | `Unspecified` | `user.firstName` |
+   | **LastName** | `Unspecified` | `user.lastName` |
+   | **hpe_ccs_attribute** | `Unspecified` | See configuration below |
+   
     > **Note**: These SAML attributes define how user identity information is transmitted from Okta to HPE GreenLake during authentication. Proper configuration ensures users are correctly identified and authorized when accessing the platform.
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-52.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-52.png){:class="img-600"}{: data-lightbox="gallery"} 
+   [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-52.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-52.png){:class="img-600"}{: data-lightbox="gallery"} 
 
     > **Note**: The `hpe_ccs_attribute` name is case-sensitive and must match exactly as shown above. Other attribute names (FirstName, LastName, NameId) are also case-sensitive.
 
@@ -1297,17 +1301,17 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **Why?** Identity providers rotate SAML certificates every 2-3 years. When certificates expire:
     > - ❌ **Manual XML:** Users cannot authenticate until you manually upload new certificate
     > - ✅ **Metadata URL:** Positions you for potential future automatic updates (feature under consideration)
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **Current State (Nov 2025):** HPE GreenLake retrieves metadata at configuration time but doesn't auto-refresh. However, configuring the URL today positions you for seamless updates when this feature launches.
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **What to do:** Always configure the metadata URL in HPE GreenLake, even though manual updates are still required today.
 
@@ -1761,7 +1765,9 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
 
 
 > **Important**: The authentication flow must complete within the timeout period configured in your Okta authentication policy (typically 60-90 seconds). If the timeout expires before approval, the connection attempt will fail and you'll need to retry the `Connect-HPEGL` command.
-
+>
+> {: .small-space}
+>
 > If authentication fails, consult the [HPECOMCmdlets documentation](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) or review the authentication logs in Okta Admin Console under **Reports** → **System Log**.
 
 
@@ -1932,17 +1938,17 @@ With the security group created, you can now proceed to register the HPE GreenLa
     
     > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **Why?** Identity providers rotate SAML certificates every 2-3 years. When certificates expire:
     > - ❌ **Manual XML:** Users cannot authenticate until you manually upload new certificate
     > - ✅ **Metadata URL:** Positions you for potential future automatic updates (feature under consideration)
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **Current State (Nov 2025):** HPE GreenLake retrieves metadata at configuration time but doesn't auto-refresh. However, configuring the URL today positions you for seamless updates when this feature launches.
     >
-    > &nbsp;
+    >{: .small-space}
     > 
     > **What to do:** Always configure the metadata URL in HPE GreenLake, even though manual updates are still required today.
 
@@ -1956,7 +1962,9 @@ To complete the SAML SSO configuration, you need to register your Ping Identity 
 Follow the detailed instructions in [Step 2: Register Entra ID in HPE GreenLake](#step-2-register-entra-id-in-hpe-greenlake), using your Ping Identity metadata URL in the same way as described for Entra ID.
 
 > **Note**: When configuring the metadata in HPE GreenLake, paste the IDP Metadata URL copied in Step 1, just as you would with the Entra ID App Federation Metadata URL.
-
+>
+> {: .small-space}
+>
 > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-91.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-91.png){:class="img-700"}{: data-lightbox="gallery"}
 
 ### Step 3: Testing SAML SSO Authentication
@@ -2145,24 +2153,23 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     6. Locate the **MOBILE APP AUTHENTICATION** section:
     
-       1. **ONE-TIME PASSCODE FALLBACK**
-        - Select **Enable** to allow users to enter TOTP codes as a backup method if push notification delivery fails
+       - Scroll to the **ONE-TIME PASSCODE FALLBACK** sub-section, select **Enable** to allow users to enter TOTP codes as a backup method if push notification delivery fails
                 
-            > **Note**: This fallback option provides continuity when push notifications are unavailable due to network issues or device connectivity problems, while maintaining passwordless authentication compatibility with the HPECOMCmdlets module.     
+          > **Note**: This fallback option provides continuity when push notifications are unavailable due to network issues or device connectivity problems, while maintaining passwordless authentication compatibility with the HPECOMCmdlets module.     
 
-       2. **DIRECT PASSCODE USAGE**
-        - Select **Disable** to enforce push notification as the primary authentication method (prevents users from bypassing push notifications by entering OTP codes directly)
-        - Select **Enable** to allow users to enter OTP codes without attempting push notification first
+       - Scroll to the **DIRECT PASSCODE USAGE** sub-section, select **Disable** to enforce push notification as the primary authentication method (prevents users from bypassing push notifications by entering OTP codes directly)
+       
+       - Select **Enable** to allow users to enter OTP codes without attempting push notification first
             
-                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98.png){:class="img-600"}{: data-lightbox="gallery"}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98.png){:class="img-600"}{: data-lightbox="gallery"}
 
             > **Recommendation**: Disable this option to prioritize push notifications while maintaining TOTP as a fallback method. This configuration ensures a consistent passwordless experience while preserving backup authentication capability.
 
-            3. Scroll to the bottom of the page and click **Save** to save the configuration
+        - Scroll to the bottom of the page and click **Save** to save the configuration
 
-            4. Scroll back to the **OTP PUSH NOTIFICATION** section and click **Go to PingID Mobile App** link     
+        - Scroll back to the **OTP PUSH NOTIFICATION** section and click **Go to PingID Mobile App** link     
             
-                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98a.png){:class="img-600"}{: data-lightbox="gallery"}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-98a.png){:class="img-600"}{: data-lightbox="gallery"}
 
     7. In the **PingID Mobile** App, select the **Configuration** tab and click the **Edit** button
 
@@ -2188,9 +2195,9 @@ The following sections demonstrate how to configure PingID with push notificatio
         - **Allow users to unpair or change device from the PingID mobile app**: Checked (allows users to manage their own device pairing)
         - **Allow authentication from lock screen for legacy Android devices**: Checked (provides better user experience on older Android devices)
         
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99b.png){:class="img-500"}{: data-lightbox="gallery"}
+          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99b.png){:class="img-500"}{: data-lightbox="gallery"}
 
-        These settings provide users with flexibility to manage their authentication devices while maintaining security.
+          These settings provide users with flexibility to manage their authentication devices while maintaining security.
 
     10. Click **Save** at the bottom of the page to preserve your PingID Mobile app configuration
 
@@ -2355,7 +2362,9 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
 
 
 > **Important**: The authentication flow must complete within the timeout period configured in your PingID policy (typically 60-90 seconds). If the timeout expires before approval, the connection attempt will fail and you'll need to retry the `Connect-HPEGL` command.
-
+>
+> {: .small-space}
+>
 > If authentication fails, consult the [HPECOMCmdlets documentation](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) or review the authentication logs in your PingOne Admin Console under **Monitoring** → **Audit**.
 
 <br>
