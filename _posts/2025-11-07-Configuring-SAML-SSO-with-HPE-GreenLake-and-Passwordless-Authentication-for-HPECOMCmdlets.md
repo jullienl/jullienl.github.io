@@ -447,10 +447,19 @@ The SSO configuration steps in this guide apply exclusively to HPE GreenLake wor
 - For **legacy IAM workspaces**, do not use this guide. Instead, refer to the [legacy SAML SSO configuration guide](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-F86AA0D3-D2D7-4B10-A041-6496E97D0633.html#ariaid-title1).
 
     > ⚠️ **Warning**: If your workspace uses legacy IAM, the HPE GreenLake interface will show different menus and navigation paths. The configuration steps in this guide will not match your interface. Always verify your workspace type first to ensure you follow the correct procedure for your environment.
+    **How to Verify Your Workspace Type:**
 
-- To determine your workspace type, navigate to **Manage Workspace**. The presence of **SSO configuration** and **Domains** tiles confirms your workspace uses enhanced IAM:
+    Navigate to **Manage Workspace** and look for one of these indicators:
 
-  [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png){:class="img-100pct"}{: data-lightbox="gallery"}
+    1. **New workspace (not yet activated)**: If you see **Enable enterprise capabilities**, your workspace uses enhanced IAM but hasn't been activated yet:
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21d.png){:class="img-500"}{: data-lightbox="gallery"}
+
+    2. **Activated workspace**: If you see **SSO configuration** and **Domains** tiles, your workspace uses enhanced IAM and is ready for SSO configuration:
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png){:class="img-100pct"}{: data-lightbox="gallery"}
+
+    If you don't see any of these elements, your workspace uses legacy IAM and requires a different configuration procedure.
 
 
 #### 1. Claim and verify a domain
