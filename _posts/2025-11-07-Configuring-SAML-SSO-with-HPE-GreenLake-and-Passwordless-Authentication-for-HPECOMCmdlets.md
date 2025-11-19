@@ -474,27 +474,29 @@ The first step is to claim and verify the domain you will use for single sign-on
     
 - Navigate to **Manage Workspace** → **SSO configuration**.
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png){:class="img-900"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-26c.png){:class="img-900"}{: data-lightbox="gallery"}      
 
-    > **Important note**: If you don't see the **SSO configuration** tile, you must first enable enterprise capabilities for your workspace:
-    >{: .small-space}
-    > 1. Click **Enable enterprise capabilities** to unlock single sign-on functionality
-    >    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21c.png){:class="img-500"}{: data-lightbox="gallery"}
-    > 
-    > 2. **Organization setup (recommended for multiple workspaces)**: If you manage multiple standalone workspaces, follow these best practices:
-    >    - Create an organization from your primary workspace (this becomes the organization management workspace)
-    >    - Join other workspaces to this organization as member tenants
-    >    - **Benefits**: 
-    >      - Centralized SSO management across all workspaces
-    >      - Organization-wide user governance
-    >      - Simplified administration and consistent security policies
-    >      - **Shared domain claiming**: A domain can only be claimed once globally. By creating an organization, you claim the domain in the organization management workspace and automatically enable SSO for all member workspaces—eliminating the need to claim the domain separately for each workspace.
-    >
-    > **Note for MSP Workspaces**: If you're managing an MSP (Managed Service Provider) workspace, enterprise capabilities are automatically enabled, and you won't see the "Enable enterprise capabilities" card. Each MSP tenant workspace is created as a separate organization with its own directory. SSO configuration works the same way—simply proceed to the domain claiming step below.
-    >
-    >{: .small-space}
-    >
-    > To learn more, see [Enterprise capabilities in workspaces with enhanced IAM](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-A34FB7D7-F0D4-4FD9-87F6-DB15B1F2600D.html#ariaid-title1)
+   > **Important note**: If you don't see the **SSO configuration** tile, you must first enable enterprise capabilities for your workspace:
+   >{: .small-space}
+   > 1. Click **Enable enterprise capabilities** to unlock single sign-on functionality
+   >    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21c.png){:class="img-500"}{: data-lightbox="gallery"}
+   > 
+   > 2. **Organization setup (recommended for multiple workspaces)**: If you manage multiple standalone workspaces, follow these best practices:
+   >    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21e.png){:class="img-700"}{: data-lightbox="gallery"}
+   >
+   >   - Create an organization from your primary workspace (this becomes the organization management workspace)
+   >   - Join other workspaces to this organization as member tenants
+   >   - **Benefits**: 
+   >        - Centralized SSO management across all workspaces
+   >        - Organization-wide user governance
+   >        - Simplified administration and consistent security policies
+   >        - **Shared domain claiming**: A domain can only be claimed once globally. By creating an organization, you claim the domain in the organization management workspace and automatically enable SSO for all member workspaces—eliminating the need to claim the domain separately for each workspace.
+   >
+   > **Note for MSP Workspaces**: If you're managing an MSP (Managed Service Provider) workspace, enterprise capabilities are automatically enabled, and you won't see the "Enable enterprise capabilities" card. Each MSP tenant workspace is created as a separate organization with its own directory. SSO configuration works the same way—simply proceed to the domain claiming step below.
+   >
+   >{: .small-space}
+   >
+   > To learn more, see [Enterprise capabilities in workspaces with enhanced IAM](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-A34FB7D7-F0D4-4FD9-87F6-DB15B1F2600D.html#ariaid-title1)
 
 
 
