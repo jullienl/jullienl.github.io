@@ -71,7 +71,7 @@ This guide focuses exclusively on **configuring SSO for organization users**—e
 - **SSO Connection**: Configure SAML 2.0 integration with your identity provider (Entra ID, Okta, or Ping Identity)
 - **Authentication Policy**: Link your claimed domain to the SSO connection
 
-**Use Case Example**: Your employees with email addresses like `john@acme.com` and `sarah@acme.com` authenticate through your organization's identity provider (Entra ID, Okta, or Ping Identity) to access your HPE GreenLake workspace.
+**Use Case Example**: Your employees with email addresses like `john@acme.com` and `sarah@acme.com` authenticate through your organization's IdP (Identity Provider) (Entra ID, Okta, or Ping Identity) to access your HPE GreenLake workspace.
 
 ### What This Guide Does NOT Cover: External SSO for Partner/Contractor Access
 
@@ -183,7 +183,7 @@ For experienced administrators familiar with Entra ID and SAML configuration, he
 - ☐ Claim and verify domain (DNS TXT record)
 - ☐ Create SSO connection (use metadata URL)
 - ☐ Create authentication policy (link domain to SSO connection)
-- ☐ Test SP-initiated and IdP-initiated flows
+- ☐ Test SP (Service Provider)-initiated and IdP (Identity Provider)-initiated flows
 
 **Passwordless Setup (for HPECOMCmdlets):**
 - ☐ Enable Microsoft Authenticator authentication method
@@ -745,7 +745,7 @@ Common authentication failures include misconfigured SAML attributes, certificat
 
 **Use Case**: Enable `Connect-HPEGL -SSOEmail user@company.com` to authenticate via Microsoft Authenticator push notification without requiring password entry.
 
-To support HPECOMCmdlets SSO functionality, Entra ID must be configured to:
+To support HPECOMCmdlets SSO functionality, Entra ID must be configured to enable MFA (Multi-Factor Authentication) with passwordless methods:
 
 - ✅ Allow user enrollment during first authentication
 - ✅ Support push notifications to mobile devices
@@ -759,7 +759,7 @@ The following sections guide you through verifying and configuring each requirem
 1. **Authentication Method Policies** (Section 1): Enables Microsoft Authenticator with push notifications and configures optional SMS/Email fallback methods
 2. **Conditional Access Policies** (Section 2): Enforces passwordless authentication for the HPE GreenLake application
 
-> **Note**: User enrollment occurs automatically during the first authentication attempt when users are prompted to set up Microsoft Authenticator. No additional configuration is required to enable first-time enrollment.
+> **Note**: User enrollment occurs automatically during the first authentication attempt when users are prompted to set up Microsoft Authenticator. No additional configuration is required to enable first-time enrollment. OTP (One-Time Password/Passcode) methods like TOTP are also supported as fallback options.
 
 > **Learn more**: For detailed guidance on passwordless authentication methods and best practices, see [Microsoft's passwordless authentication recommendations](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods).
 
