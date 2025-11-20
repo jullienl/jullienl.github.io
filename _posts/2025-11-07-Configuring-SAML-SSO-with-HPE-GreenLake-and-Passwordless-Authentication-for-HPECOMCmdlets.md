@@ -1639,6 +1639,30 @@ This completes the passwordless authentication configuration for Okta. Users in 
   
 #### 3. Test SSO Authentication with Browser
 
+> ⚠️ **CRITICAL: First-Time User Enrollment Requirement**
+>
+> {: .small-space}
+>
+> Because the HPE GreenLake application uses a **passwordless authentication policy** (disallowing password authentication method), users **MUST** complete their initial Okta Verify device enrollment through the **Okta End-User Dashboard** - NOT by attempting to log in directly to HPE GreenLake.
+>
+> {: .small-space}
+>
+> **Why this matters:**
+> - The passwordless policy (`HPE GreenLake - Passwordless MFA`) **never prompts for a password** during authentication
+> - Without a password authentication step, Okta cannot trigger the self-enrollment flow
+> - If a user without a registered device tries to access HPE GreenLake directly, they will encounter authentication errors or be unable to complete enrollment
+> - This creates a chicken-and-egg problem: the user needs a device to authenticate, but cannot enroll a device without authenticating
+>
+> {: .small-space}
+>
+> **Correct enrollment workflow:**
+> 1. **First-time users**: Log in to Okta Dashboard (using standard Okta authentication) → Click HPE GreenLake app tile → Complete device enrollment with QR code
+> 2. **Subsequent logins**: Users can access HPE GreenLake directly via SP-Initiated SSO using passwordless authentication
+>
+> {: .small-space}
+>
+> **Important**: If you need users to enroll when accessing HPE GreenLake directly (SP-Initiated), you must modify the authentication policy to allow password authentication as a fallback method, which contradicts the pure passwordless design. For pure passwordless deployments, initial enrollment via the Okta Dashboard is required.
+
 To verify that your passwordless authentication configuration is working correctly, test the complete authentication flow using a web browser:
 
 1. Open a web browser and navigate to your Okta End-User Dashboard at your organization's Okta URL (typically `https://<your-domain>.okta.com/app/UserHome`)
@@ -2147,9 +2171,19 @@ The following sections demonstrate how to configure PingID with push notificatio
        
            > **Note**: This setting allows users to pair their mobile device with PingID during their first login attempt, eliminating the need for a separate enrollment process. This streamlines the initial setup experience while maintaining security.
 
-       - Verify the **Enforce Policy evaluation after new device registration** checkbox is selected
+       - Verify the **Enforce Policy evaluation after new device registration** checkbox is **UNCHECKED**
        
-           > **Important**: This option ensures that authentication policies are immediately enforced after device pairing, preventing users from bypassing security requirements during the initial enrollment process.
+           > **Important**: This option must be **disabled** to allow new users to complete device enrollment successfully. When enabled, PingID immediately re-evaluates all authentication policy requirements after a device is registered. This can cause enrollment failures because:
+           >
+           > {: .small-space}
+           >
+           > - The newly registered device may not yet be fully activated in the system
+           > - Additional policy requirements (like device trust level) might not be immediately satisfied
+           > - This creates a timing issue where the device exists but isn't yet "usable" according to policy evaluation
+           >
+           > {: .small-space}
+           >
+           > By leaving this option **unchecked**, the enrollment process completes fully before policy enforcement occurs, ensuring a smooth first-time user experience. After initial deployment and all users have enrolled their devices, you may optionally enable this setting if you require immediate policy validation after device registration.
 
             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-96.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-96.png){:class="img-700"}{: data-lightbox="gallery"}
 
@@ -2234,7 +2268,31 @@ This completes the passwordless authentication configuration for Ping Identity. 
 
 #### 3. Test SSO Authentication with Browser
 
-Since the passwordless authentication policy configured in this guide (`HPEGreenLake_PingID_Passwordless`) is assigned specifically to the HPE GreenLake application and not to the PingOne portal itself, we'll test the passwordless flow by directly launching the HPE GreenLake application from the portal rather than testing the portal login process.
+> ⚠️ **CRITICAL: First-Time User Enrollment Requirement**
+>
+> {: .small-space}
+>
+> Because the HPE GreenLake application uses a **passwordless authentication policy** (PingID Authentication only, no password step), users **MUST** complete their initial PingID device enrollment through the **PingOne application portal** - NOT by attempting to log in directly to HPE GreenLake.
+>
+> {: .small-space}
+>
+> **Why this matters:**
+> - The passwordless policy (`HPEGreenLake_PingID_Passwordless`) **never prompts for a password** during authentication
+> - Without a password authentication step, PingID cannot trigger the self-enrollment flow
+> - If a user without a registered device tries to access HPE GreenLake directly, they will encounter the error: **"Blocked - User has no usable devices"**
+> - This creates a chicken-and-egg problem: the user needs a device to authenticate, but cannot enroll a device without authenticating
+>
+> {: .small-space}
+>
+> **Correct enrollment workflow:**
+> 1. **First-time users**: Log in to PingOne portal → Click HPE GreenLake app tile → Complete device enrollment with QR code
+> 2. **Subsequent logins**: Users can access HPE GreenLake directly via SP-Initiated SSO using passwordless authentication
+>
+> {: .small-space}
+>
+> **Important**: If you need users to enroll when accessing HPE GreenLake directly (SP-Initiated), you must modify the authentication policy to include a password authentication step BEFORE the PingID step, which contradicts the passwordless design. For pure passwordless deployments, initial enrollment via the PingOne portal is required.
+
+To verify that your passwordless authentication configuration is working correctly, test the complete authentication flow using a web browser:
 
 **Authentication Flow**: User **→** PingOne Portal (standard login) **→** HPE GreenLake Application **→** PingID Passwordless Authentication → HPE GreenLake Console
 
