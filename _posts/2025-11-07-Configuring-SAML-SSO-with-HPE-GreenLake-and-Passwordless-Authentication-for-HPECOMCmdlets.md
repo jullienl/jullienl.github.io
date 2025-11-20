@@ -287,27 +287,47 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
-- Modify **Unique User Identifier (Name ID)**. In the Source attribute dropdown, select **Email** (this maps to the user's user.mail attribute from Entra ID).
+    > **Important**: Entra ID creates default SAML claims when you add a new enterprise application. Before configuring the required attributes, you must **remove all default claims** except for the **Unique User Identifier (Name ID)**. These typically include claims with URIs like `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`, `emailaddress`, `name`, etc. Click the **...** menu next to each unwanted claim and select **Delete** to remove them.
+    >
+    >{: .small-space}
+    >
+    > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14a.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-15.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-15.png){:class="img-600"}{: data-lightbox="gallery"} 
+   For the HPE GreenLake integration, the following SAML attributes must be defined:
 
-- Modify **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname** and set the source attribute to **user.givenname**
+    | Name | Value |
+    |------|-------|
+    | **Unique User Identifier (Name ID)** | `user.email` |
+    | **FirstName** | `user.firstName` |
+    | **LastName** | `user.lastName` |
+    | **hpe_ccs_attribute** | See configuration below |
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-16.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-16.png){:class="img-600"}{: data-lightbox="gallery"} 
+    > **Important**: Attribute names (FirstName, LastName, hpe_ccs_attribute) are case-sensitive and must match exactly as shown. The **Unique User Identifier (Name ID)** should already be configured with `user.email` by default - verify this setting but do not modify it.
 
-- Modify **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname** and set the source attribute to **user.surname**
+    These SAML attributes define how user identity information is transmitted from Entra ID to HPE GreenLake during authentication:
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-17.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-17.png){:class="img-600"}{: data-lightbox="gallery"} 
+    - **Unique User Identifier (Name ID)**: Maps the user's email address to the SAML NameID, serving as the primary identifier for authentication
+    - **FirstName**: Provides the user's given name for profile information
+    - **LastName**: Provides the user's family name for profile information
+    - **hpe_ccs_attribute**: (Optional) Enables role-based access control when configured
 
-- Add a claim named **FirstName** (careful it's case sensitive) with the attribute **user.givenname** then click **Save** 
+-  Click on the **Unique User Identifier (Name ID)** claim. Verify that **Source attribute** is set to `user.mail`. If it shows a different value, update it to `user.mail` and click **Save**.
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-18.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-18.png){:class="img-600"}{: data-lightbox="gallery"} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-15.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-15.png){:class="img-600"}{: data-lightbox="gallery"}
 
-- Add a claim named **LastName** (careful it's case sensitive) with the attribute **user.surname**
+-  Add a claim named **FirstName** (case-sensitive) with **Source attribute** set to `user.givenname`, then click **Save**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-19.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-19.png){:class="img-600"}{: data-lightbox="gallery"} 
+     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-18.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-18.png){:class="img-600"}{: data-lightbox="gallery"}
 
-    > **Note**: These SAML claims define how user identity information is transmitted from Entra ID to HPE GreenLake during authentication. Proper configuration ensures users are correctly identified and authorized when accessing the platform.
+-  Add a claim named **LastName** (case-sensitive) with **Source attribute** set to `user.surname`, then click **Save**
+
+     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-19.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-19.png){:class="img-600"}{: data-lightbox="gallery"}
+
+    > **Verification**: At this point, your **Attributes & Claims** section should contain only the **Unique User Identifier (Name ID)**, **FirstName**, and **LastName** claims. If you see any other default claims (such as those with `http://schemas.xmlsoap.org/` URIs), delete them now before proceeding.
+    >
+    >{: .small-space}
+    >
+    > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-15.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-15.png){:class="img-700"}{: data-lightbox="gallery"}
 
 -  <a id="hpe_ccs_settings"></a>Add a claim named **hpe_ccs_attribute** (case-sensitive). This attribute enables role-based access control (RBAC) by mapping your Entra ID group to specific HPE GreenLake roles and permissions. 
 
@@ -316,95 +336,97 @@ With the security group created, you can now proceed to register the HPE GreenLa
     Configure the claim with the following settings:
     
     - **Name**: `hpe_ccs_attribute`
-    - **User type**: `Any`
-    - **Scoped Groups**: Select the security group created earlier (i.e. *HPE GreenLake*)
-    - **Source**: `Attribute`
-    - **Value**: Enter your constructed attribute value (see below)
+    - In the **Claim conditions** section, enter:
+       - **User type**: `Any`
+       - **Scoped Groups**: Select the security group created earlier (i.e. *HPE GreenLake*)
+       - **Source**: `Attribute`
+       - **Value**: Enter your constructed attribute value (see below)
 
-        The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
+    The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png){:class="img-100pct"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-        The `hpe_ccs_attribute` value follows this format:
+    The `hpe_ccs_attribute` value follows this format:
 
-        ```yaml
-        version_1#<workspace_id>:<app_id_1>:<role_1>:ALL_SCOPES:<app_id_2>:<role_2>:ALL_SCOPES
-        ```
+    ```yaml
+    version_1#<workspace_id>:<app_id_1>:<role_1>:ALL_SCOPES:<app_id_2>:<role_2>:ALL_SCOPES
+    ```
 
-        - **Example 1** (single workspace, single service):
+    - **Example 1** (single workspace, single service):
 
-            ```yaml
-            version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES
-            ```
+      ```yaml
+      version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES
+      ```
 
-            This example grants:
-            - Observer access to the HPE GreenLake workspace
+      This example grants:
+      - Observer access to the HPE GreenLake workspace
 
-        - **Example2** (single workspace, two services: HPE GreenLake and COM):
+    - **Example2** (single workspace, two services: HPE GreenLake and COM):
 
-            ```yaml 
-            version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
-            ```
+      ```yaml 
+      version_1#40aab0a48e5811f0bc31ca04dee87a18:00000000-0000-0000-0000-000000000000:Workspace Administrator:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
+      ```
 
-            This example grants:
-            - Administrator access to the HPE GreenLake workspace
-            - Administrator access to Compute Ops Management 
+      This example grants:
+      - Administrator access to the HPE GreenLake workspace
+      - Administrator access to Compute Ops Management 
 
-        - **Example3** (two workspaces, two services: HPE GreenLake and COM):
+    - **Example3** (two workspaces, two services: HPE GreenLake and COM):
 
-            ```yaml 
-            version_1#248aa396805c11ed88e216588ab64ce9:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES#34652ff0317711ec9bc096872580fd6d:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
-            ```
+      ```yaml 
+      version_1#248aa396805c11ed88e216588ab64ce9:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES#34652ff0317711ec9bc096872580fd6d:00000000-0000-0000-0000-000000000000:Workspace Observer:ALL_SCOPES:b394fa01-8858-4d73-8818-eadaf12eaf37:Compute Ops Management administrator:ALL_SCOPES
+      ```
 
-            This example grants:
-            - Observer access to the HPE GreenLake workspaces
-            - Administrator access to Compute Ops Management 
+      This example grants:
+      - Observer access to the HPE GreenLake workspaces
+      - Administrator access to Compute Ops Management 
 
-        To construct the `hpe_ccs_attribute` value, you need to gather three key pieces of information from your HPE GreenLake workspace:
-        1. **Workspace ID**: The unique identifier for your HPE GreenLake workspace
-        2. **Service ID**: The unique identifier for each service you want to grant access to
-        3. **Role**: The permission level to assign for each service
+      To construct the `hpe_ccs_attribute` value, you need to gather three key pieces of information from your HPE GreenLake workspace:
+      1. **Workspace ID**: The unique identifier for your HPE GreenLake workspace
+      2. **Service ID**: The unique identifier for each service you want to grant access to
+      3. **Role**: The permission level to assign for each service
 
-        **How to Find These Values:**
+      **How to Find These Values:**
 
-        1. **Locate Your Workspace ID**:
-            - Log in to HPE GreenLake at [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
-            - Navigate to **Manage Workspace**
-            - The Workspace ID is displayed on the workspace card.
+      1. **Locate Your Workspace ID**:
+        - Log in to HPE GreenLake at [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/)
+        - Navigate to **Manage Workspace**
+        - The Workspace ID is displayed on the workspace card.
 
-                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20a.png){:class="img-900"}{: data-lightbox="gallery"}
+             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20a.png){:class="img-900"}{: data-lightbox="gallery"}
 
-        2. **Find Service IDs**:
-            - Navigate to **Services** → **Catalog** in HPE GreenLake
-            - Select the service you want to grant access to
-            - In the **Details** section, locate and copy the **Service ID**
+      2. **Find Service IDs**:
+          - Navigate to **Services** → **Catalog** in HPE GreenLake
+          - Select the service you want to grant access to
+          - In the **Details** section, locate and copy the **Service ID**
 
-                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20b.png){:class="img-900"}{: data-lightbox="gallery"}    
-            
-            **Common Application IDs:**
-            - HPE GreenLake Platform: `00000000-0000-0000-0000-000000000000`
-            - Compute Ops Management: `b394fa01-8858-4d73-8818-eadaf12eaf37`
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20b.png){:class="img-900"}{: data-lightbox="gallery"}    
+          
+          **Common Application IDs:**
+          - HPE GreenLake Platform: `00000000-0000-0000-0000-000000000000`
+          - Compute Ops Management: `b394fa01-8858-4d73-8818-eadaf12eaf37`
+    
+      3. **Identify Available Roles**:
+          - Navigate to **Manage Workspace** → **Identity & access management** → **Roles & permissions**
+          - Review the available roles for each application
+     
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20c.png){:class="img-900"}{: data-lightbox="gallery"}    
+     
+            > **Note**: Role names are case-sensitive and must match exactly as displayed in the HPE GreenLake console. Always verify role names before adding them to your SAML attribute configuration.
+            >
+            >{: .small-space}
+            >
+            > **Common Roles:**
+            > - `Workspace Administrator`: Full administrative access to the workspace
+            > - `Workspace Observer`: Read-only access to workspace resources
+            > - `Compute Ops Management administrator`: Full access to COM features
+            > - `Compute Ops Management viewer`: Read-only access to COM features
 
-        3. **Identify Available Roles**:
-            - Navigate to **Manage Workspace** → **Identity & access management** → **Roles & permissions**
-            - Review the available roles for each application
+- Once completed, your final claims configuration should include only:
 
-                [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20c.png){:class="img-900"}{: data-lightbox="gallery"}    
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21.png){:class="img-700"}{: data-lightbox="gallery"}
 
-                > **Note**: Role names are case-sensitive and must match exactly as displayed in the HPE GreenLake console. Always verify role names before adding them to your SAML attribute configuration.
-
-            **Common Roles:**
-            - `Workspace Administrator`: Full administrative access to the workspace
-            - `Workspace Observer`: Read-only access to workspace resources
-            - `Compute Ops Management administrator`: Full access to COM features
-            - `Compute Ops Management viewer`: Read-only access to COM features
-
-
-- Remove any remaining default claims that were not explicitly configured above. Your final claims configuration should include only:
-
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21.png){:class="img-600"}{: data-lightbox="gallery"}
-
-- The SAML SSO configuration is now complete. To proceed with the HPE GreenLake integration, you need to obtain the Federation Metadata. Navigate to the **SAML Certificates** tile and locate the **App Federation Metadata Url**. Click **Copy** to copy the metadata URL to your clipboard.
+- The SAML SSO configuration is now complete, you can close the **Attributes & Claims** page. To proceed with the HPE GreenLake integration, you need to obtain the Federation Metadata. Navigate to the **SAML Certificates** tile and locate the **App Federation Metadata Url**. Click **Copy** to copy the metadata URL to your clipboard.
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
