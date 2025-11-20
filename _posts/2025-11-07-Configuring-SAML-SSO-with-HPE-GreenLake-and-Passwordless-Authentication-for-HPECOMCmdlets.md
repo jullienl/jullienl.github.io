@@ -151,7 +151,7 @@ Not all passwordless methods work with PowerShell automation. The following tabl
 >    - Device biometric sensors
 >    - Platform credential managers
 
-For successful PowerShell automation with HPECOMCmdlets, configure either **push notifications** or **TOTP** as your primary authentication method.
+For successful PowerShell automation with HPECOMCmdlets, ensure that either **push notifications** or **TOTP** (Time-based One-Time Password) is enabled as an available authentication method.
 
 > **Configuration Guidance**: Step 4 in each identity provider section of this guide covers the detailed verification and configuration of these supported passwordless authentication methods.
 
