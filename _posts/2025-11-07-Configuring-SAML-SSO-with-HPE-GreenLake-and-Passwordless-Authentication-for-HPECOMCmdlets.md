@@ -469,6 +469,7 @@ The SSO configuration steps in this guide apply exclusively to HPE GreenLake wor
 - For **legacy IAM workspaces**, do not use this guide. Instead, refer to the [legacy SAML SSO configuration guide](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-F86AA0D3-D2D7-4B10-A041-6496E97D0633.html#ariaid-title1).
 
     > ⚠️ **Warning**: If your workspace uses legacy IAM, the HPE GreenLake interface will show different menus and navigation paths. The configuration steps in this guide will not match your interface. Always verify your workspace type first to ensure you follow the correct procedure for your environment.
+    
     **How to Verify Your Workspace Type:**
 
     Navigate to **Manage Workspace** and look for one of these indicators:
