@@ -982,6 +982,8 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
     - User follows the enrollment wizard (detailed steps in next section)
     - User notifies you when setup is complete
 
+    > **Note**: Detailed step-by-step instructions are provided in the **User Enrollment Experience** section below.
+    
 3. **Verify Passwordless Enrollment**:
     - Navigate to **Users** → **All users** → Select the user
     - Click **Authentication methods**
@@ -989,7 +991,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png){:class="img-100pct"}{: data-lightbox="gallery"}
 
-        > **IMPORTANT: How to Verify Passwordless is Actually Enabled**
+        > **IMPORTANT: How to Verify Passwordless is Actually Enabled** 
         >
         >{: .small-space}
         >
@@ -999,7 +1001,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
         >
         > **To confirm passwordless is truly enabled**, ask the user to:
         > 1. Visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo)
-        > 2. Verify they see **"Passwordless sign-in"** listed as a method (with a key icon 🔑)
+        > 2. Verify they see **"Passwordless sign-in"** listed as a method (with a key icon 🔑) in **My account** > **Security info** 
         >
         > **OR** verify directly in the Microsoft Authenticator app:
         > - Open the app → Tap the account → Verify **"Passwordless sign-in requests"** is shown as an available option
@@ -1008,6 +1010,10 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
         >
         > ✅ **ACCEPTABLE**: User portal shows "Passwordless sign-in" (confirms correct setup)  
         > ❌ **NOT ACCEPTABLE**: User only sees "Phone" or "Push notification" methods (passwordless not enabled)
+        >
+        >{: .small-space}
+        >
+        > More instructions are provided in the **User Enrollment Experience** section below.
 
 4. **Graduate to Passwordless Enforcement**:
     - Navigate to **Groups** → **All groups**
