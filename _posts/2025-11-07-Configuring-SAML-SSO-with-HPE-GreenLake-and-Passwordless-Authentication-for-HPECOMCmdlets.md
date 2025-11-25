@@ -983,7 +983,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
     - User notifies you when setup is complete
 
     > **Note**: Detailed step-by-step instructions are provided in the **User Enrollment Experience** section below.
-    
+
 3. **Verify Passwordless Enrollment**:
     - Navigate to **Users** → **All users** → Select the user
     - Click **Authentication methods**
@@ -1001,7 +1001,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
         >
         > **To confirm passwordless is truly enabled**, ask the user to:
         > 1. Visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo)
-        > 2. Verify they see **"Passwordless sign-in"** listed as a method (with a key icon 🔑) in **My account** > **Security info** 
+        > 2. Verify they see **"Passwordless sign-in"** listed as a method (with a key icon 🔑)  
         >
         > **OR** verify directly in the Microsoft Authenticator app:
         > - Open the app → Tap the account → Verify **"Passwordless sign-in requests"** is shown as an available option
