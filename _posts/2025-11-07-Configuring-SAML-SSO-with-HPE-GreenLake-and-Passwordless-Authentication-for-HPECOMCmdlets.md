@@ -348,8 +348,14 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     The `hpe_ccs_attribute` value follows this format:
 
+    **Single Workspace:**
     ```yaml
     version_1#<workspace_id>:<app_id_1>:<role_1>:ALL_SCOPES:<app_id_2>:<role_2>:ALL_SCOPES
+    ```
+
+    **Multiple Workspaces:**
+    ```yaml
+    version_1#<workspace_id_1>:<app_id_1>:<role_1>:ALL_SCOPES:<app_id_2>:<role_2>:ALL_SCOPES#<workspace_id_2>:<app_id_1>:<role_1>:ALL_SCOPES:<app_id_2>:<role_2>:ALL_SCOPES
     ```
 
     - **Example 1** (single workspace, single service):
