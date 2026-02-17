@@ -47,59 +47,40 @@ and participate in
 This library provides a variety of key features for managing HPE
 GreenLake and Compute Ops Management. Here are the main features:
 
-**Authentication**: Establish secure connections to HPE GreenLake using
-Single Sign-On (SSO) or single/multi-factor authentication. Whether you
-have an existing workspace or not, the library supports flexible
+- **Authentication**: Establish secure connections to HPE GreenLake using Single Sign-On (SSO) or single/multi-factor authentication. Whether you have an existing workspace or not, the library supports flexible
 authentication methods to suit your needs.
 
-**Workspace Management**: Create and manage HPE GreenLake workspaces.
+- **Workspace Management**: Create and manage HPE GreenLake workspaces.
 
-**Session Tracking**: Automatically track sessions with the global
-session tracker $HPEGreenLakeSession.
+- **Session Tracking**: Automatically track sessions with the global session tracker $HPEGreenLakeSession.
 
-**User Management**: Invite and manage users within your HPE GreenLake
-environment, assign roles.
+- **User Management**: Invite and manage users within your HPE GreenLake environment, assign roles.
 
-**Resource Management**: Manage resources such as servers, storage, and
-networking within your HPE GreenLake environment.
+- **Resource Management**: Manage resources such as servers, storage, and networking within your HPE GreenLake environment.
 
-**Service Provisioning**: Provision services like Compute Ops
-Management, manage service roles and subscriptions.
+- **Service Provisioning**: Provision services like Compute Ops Management, manage service roles and subscriptions.
 
-**Device Management**: Add devices individually or in bulk using CSV
-files, manage device subscriptions and auto-subscriptions, set device
-locations and connect devices to services.
+- **Device Management**: Add devices individually or in bulk using CSV files, manage device subscriptions and auto-subscriptions, set device locations and connect devices to services.
 
-**Server configuration Management**: Create and apply BIOS, storage, OS,
-and firmware settings. Manager group and apply configurations to groups
-of servers.
+- **Server configuration Management**: Create and apply BIOS, storage, OS, and firmware settings. Manager group and apply configurations to groups of servers.
 
-**Security and Compliance**: Manage iLO security settings and run
-inventory and compliance checks.
+- **Security and Compliance**: Manage iLO security settings and run inventory and compliance checks.
 
-**Job Scheduling and Execution**: Schedule and execute various tasks
-like firmware updates, OS installations, and sustainability reports.
+- **Job Scheduling and Execution**: Schedule and execute various tasks like firmware updates, OS installations, and sustainability reports.
 
-**Notification and Integration**: Enable email notifications for service
-events and summaries, integrate with external services like ServiceNow.
+- **Notification and Integration**: Enable email notifications for service events and summaries, integrate with external services like ServiceNow.
 
-**Appliance Management**: Add HPE OneView and Secure Gateway appliances,
-upgrade HPE OneView appliances.
+- **Appliance Management**: Add HPE OneView and Secure Gateway appliances, upgrade HPE OneView appliances.
 
-**Monitoring and Alerts**: Monitor alerts for your resources to ensure
-optimal performance and uptime.
+- **Monitoring and Alerts**: Monitor alerts for your resources to ensure optimal performance and uptime.
 
-**Reporting**: Generate detailed reports on resource usage, performance,
-and other metrics.
+- **Reporting**: Generate detailed reports on resource usage, performance, and other metrics.
 
-**Automation**: Automate repetitive tasks and workflows using PowerShell
-scripts and cmdlets.
+- **Automation**: Automate repetitive tasks and workflows using PowerShell scripts and cmdlets.
 
-**Integration**: Seamlessly integrate with other tools and platforms
-using REST APIs and webhooks.
+- **Integration**: Seamlessly integrate with other tools and platforms using REST APIs and webhooks.
 
-**Security**: Implement security best practices and manage access
-control for your HPE GreenLake environment.
+- **Security**: Implement security best practices and manage access control for your HPE GreenLake environment.
 
 These features collectively provide a comprehensive set of cmdlets to
 manage various aspects of your HPE GreenLake environment and any
