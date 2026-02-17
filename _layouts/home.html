@@ -21,6 +21,7 @@ layout: default
     {%- endif -%}
     <ul class="post-list">
       {%- for post in posts -%}
+      {%- unless post.hidden -%}
       <li class="card">
         <a class="post-link" href="{{ post.url | relative_url }}">
           <div class="bg-img" style="background-image: url({{post.image}})"></div>
@@ -39,6 +40,7 @@ layout: default
           {% endif %}
         </div>
       </li>
+      {%- endunless -%}
       {%- endfor -%}
     </ul>
 
