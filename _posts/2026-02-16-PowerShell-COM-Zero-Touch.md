@@ -21,14 +21,14 @@ will be continuously updated to incorporate new features as they are released by
 
 This module is available in the PowerShell Gallery under the name [HPECOMCmdlets](https://www.powershellgallery.com/packages/HPECOMCmdlets), following the naming convention used by most HPE modules.
 
-![A screenshot of a computer Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image3.png)
+[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image3.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image3.png){:class="img-600"}{: data-lightbox="gallery"}
 
 The PowerShell Gallery is a repository for sharing and distributing
 PowerShell modules and scripts. It's a community-driven platform that
 provides access to various PowerShell resources, enabling you to easily
 discover, install, and publish your own PowerShell content. The
 PowerShell Gallery can be accessed through the PowerShellGet module
-(includes **Install-Module**, **Find-Module**, etc.), which comes
+(includes `Install-Module`, `Find-Module`, etc.), which comes
 pre-installed with Windows PowerShell 5.0 and above.
 
 This project is also associated with a new public GitHub
@@ -41,8 +41,7 @@ report and view
 and participate in
 [discussions](https://github.com/jullienl/HPE-COM-PowerShell-Library/discussions).
 
-![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png)
-
+[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png){:class="img-800"}{: data-lightbox="gallery"}
 
 This library provides a variety of key features for managing HPE
 GreenLake and Compute Ops Management. Here are the main features:
@@ -86,15 +85,6 @@ These features collectively provide a comprehensive set of cmdlets to
 manage various aspects of your HPE GreenLake environment and any
 existing Compute Ops Management service instances.
 
->⚠️ **Important Warning**: Before leaving this lab room, it is essential
-that you complete the cleanup process outlined in [Step
-11](#step-11-clean-the-lab-for-the-next-participant-required-before-leaving).
-This step ensures all resources used during your lab session are
-properly released and made available for the next participant.
-Neglecting to follow the cleanup instructions could disrupt subsequent
-lab sessions. Please carefully review and complete the cleanup process
-before departing.
-
 ## Preparation for using the PowerShell library
 
 To use the HPE Compute Ops Management PowerShell Library, an HPE
@@ -118,21 +108,26 @@ methods:
 If you have an HPE GreenLake account or a workspace with properly
 configured SSO for passwordless access, **skip this section.**
 
-> ⚠️ **Important note**
-> If your user account uses an identity provider---whether supported (Okta, Microsoft Entra ID, PingIdentity) or unsupported---that does
-> not use passwordless authentication methods (push notifications or TOTP), authentication with the *Connect-HPEGL* cmdlet will fail.
+> ⚠️ **Important note**   
+>
+>{: .small-space}
+> 
+> If your user account uses an identity provider---whether supported (Okta, Microsoft Entra ID, PingIdentity) or unsupported---that does not use passwordless authentication methods (push notifications or TOTP), authentication with the `Connect-HPEGL` cmdlet will fail.
 
-> 💡 Note
+> 💡 **Note**   
+>
+>{: .small-space}
+> 
 > Multi-factor authentication (MFA) was implemented with the release of version [1.0.12](https://github.com/jullienl/HPE-COM-PowerShell-Library/releases/tag/v1.0.12) of the HPECOMCmdlets PowerShell Library. SAML Single Sign-On (SSO) support for the three main providers was introduced beginning with version [1.0.18](https://github.com/jullienl/HPE-COM-PowerShell-Library/releases/tag/v1.0.18).
 
 1. To create your HPE account for this library, go the HPE GreenLake interface at <https://common.cloud.hpe.com> and click on **Sign up**:
 
-   ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png)
-
+   [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png){:class="img-600"}{: data-lightbox="gallery"}
+   
 2. Provide all the required information, accept the terms and conditions
 and click on **Create Account**:
 
-   ![A screenshot of a login form Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png)
+   [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png){:class="img-600"}{: data-lightbox="gallery"}
 
 3. Once completed, you are ready to access the lab, then to install and use the library.
 
@@ -148,15 +143,15 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
 2. On the Horizon login screen, click the **Omnissa Horizon Web Client** button.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png)
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png){:class="img-600"}{: data-lightbox="gallery"}
 
 3. Login with the credentials provided in your login sheet.
 
-    ![A screenshot of a login screen Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png)
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png){:class="img-500"}{: data-lightbox="gallery"}
 
 4. Click on the graphic that represents your Lab environment.
 
-    ![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png)
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png){:class="img-600"}{: data-lightbox="gallery"}
 
     Since Horizon is presenting a remote desktop session inside of your desktop's browser, it may be helpful to hit **F11** at this time to put the browser in full screen mode.
 
@@ -164,41 +159,44 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
 1. You'll start by opening **Visual Studio Code** using the shortcut in the VM's desktop:
 
-    ![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png)
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png){:class="img-600"}{: data-lightbox="gallery"}
 
 2. Once opened, click on **Mark Done**:
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png)
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png){:class="img-600"}{: data-lightbox="gallery"}
 
 3. Start by opening a new file:
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png)
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png){:class="img-600"}{: data-lightbox="gallery"}
 
     This new file will be useful to copy/paste all important information you find useful to keep an eye on.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image12.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image12.png){: .bordered-image-thin}
 
 4. Then open a PowerShell terminal using the **Terminal** menu / **New Terminal**: 
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13.png){: .bordered-image-thin}
 
     All the commands outlined in this lab guide should be executed in this window.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png){: .bordered-image-thin}
 
-    You can use the shortcuts **CTRL**+**C** to copy and **CTRL**+**V** to paste the commands that are provided in this lab guide.
-
-    > **⚠️ Important notes**
-    > Ensure that each command line you copy and paste from the lab guide
-    > into the Horizon session is pasted as a single line. Occasionally,
-    > the paste action may introduce hidden characters, causing the
-    > command to be interpreted as multiple lines by the target system.
+    > **💡 Tip: Using the Copy Button**  
+    >
+    >{: .small-space}
+    > 
+    > Throughout this lab, you'll see a **Copy** button in the midle-right corner of each code block. Click this button to instantly copy the command(s) to your clipboard, then use **CTRL**+**V** to paste them directly into the PowerShell terminal. This helps avoid typing errors and speeds up your workflow.
+    >
+    >{: .small-space}
+    > 
+    >
+    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png)
 
 5. While the PowerShell console is opened, you can optionally launch a browser to access the HPE GreenLake website and view the results of the commands you will be executing. If your browser is not already open and connected to HPE GreenLake, open a browser and navigate to <https://common.cloud.hpe.com>.
 
 6. Login with your HPE account credentials:
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image15.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image15.png){: .bordered-image-thin}{:class="img-300"}
 
     If this is your first time using HPE GreenLake, it is expected that no workspace will be available in your environment. If you already have one or more workspaces, there is no issue; you can still proceed with this lab.
 
@@ -209,15 +207,15 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
 - The first step is to install the library on your Windows virtual machine. Return to the PowerShell console and enter the following command:
 
-    ```powerShell
+    ```powershell
     Install-Module HPECOMCmdlets
     ```
 
-    ![A black screen with white text Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image16.png)
+    ![A black screen with white text Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image16.png){: .bordered-image-thin}
 
     This command will download and install the module from the official PowerShell Gallery repository. If this is your first time installing a module from the PowerShell Gallery, it will ask you to confirm whether you trust the repository or not. 
     
-- Type **Y** when prompted and press **Enter** to continue with the installation.
+- Type `Y` when prompted and press **Enter** to continue with the installation.
 
     This library has no dependencies, so it does not require the installation of any other software or modules to function properly.
 
@@ -229,49 +227,55 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
 - Now that the module is installed, you can get the list of commands exported by the module using:
 
-    ```powerShell
+    ```powershell
     Get-Command -Module HPECOMCmdlets
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image17.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image17.png){: .bordered-image-thin}
 
     Version **1.0.22** of the module includes over 200 cmdlets.
 
-- In PowerShell, cmdlets use a verb-noun naming convention (e.g., **Get-HPECOMServer** retrieves server data in HPE Compute Ops
-Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL** for HPE GreenLake (e.g., **New-HPEGL**User*). The library supports both platforms due to their close integration.
+- In PowerShell, cmdlets use a verb-noun naming convention (e.g., `Get-HPECOMServer` retrieves server data in HPE Compute Ops
+Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL** for HPE GreenLake (e.g., `New-HPEGLUser`). The library supports both platforms due to their close integration.
 
 - To list all cmdlets in the module related to server resources, use the following command:
 
-    ```powerShell
+    ```powershell
     Get-Command -Module HPECOMCmdlets | ? name -match server
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image18.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image18.png){: .bordered-image-thin}
 
     This command is especially helpful when you're dealing with many cmdlets and need to pinpoint the one that fits your needs best.
 
-    >💡**Note**: **?** is an alias for **Where-Object** in PowerShell, and **-match** is the operator used to determine if a string matches a regular expression, such as **server** in this example.
+    >💡**Note**   
+    >
+    >{: .small-space}
+    > 
+    > `?` is an alias for `Where-Object` in PowerShell, and `-match` is the operator used to determine if a string matches a regular expression, such as `server` in this example.
 
-- **Get-Help** cmdlet is another essential PowerShell command for locating information about new modules. To utilize this command,  enter:
+- `Get-Help` cmdlet is another essential PowerShell command for locating information about new modules. To utilize this command,  enter:
 
-    ```PowerShell
+    ```powershell
     Get-Help Get-HPECOMserver -Full
     ```
 
-    ![A screenshot of a computer program Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image19.png)
+    ![A screenshot of a computer program Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image19.png){: .bordered-image-thin}
 
-    **Get-Help** (or the alias **Help**) is a PowerShell cmdlet that allows you to retrieve information on other PowerShell cmdlets and functions. By running **Get-Help** in the PowerShell console, you can view detailed information about the specified cmdlet, including its syntax, parameters, examples, and related links. Additionally, you can use specific switches such as **-Detailed**, **-Examples**, or **-Full** to customize the output.
+    `Get-Help` (or the alias `Help`) is a PowerShell cmdlet that allows you to retrieve information on other PowerShell cmdlets and functions. 
+    
+    By running `Get-Help` in the PowerShell console, you can view detailed information about the specified cmdlet, including its syntax, parameters, examples, and related links. Additionally, you can use specific switches such as `-Detailed`, `-Examples`, or `-Full` to customize the output.
 
-- Each cmdlet exported from this module provides detailed examples of how to use the command. To view the examples for the   **Get-HPECOMServer** cmdlet, enter:
+- Each cmdlet exported from this module provides detailed examples of how to use the command. To view the examples for the   `Get-HPECOMServer` cmdlet, enter:
 
-    ```PowerShell
+    ```powershell
     Help Get-HPECOMServer -Examples
     ```
 
-    This will display a list of examples demonstrating how to use **Get-HPECOMServer** along with detailed explanations of what each
+    This will display a list of examples demonstrating how to use `Get-HPECOMServer` along with detailed explanations of what each
 example does.
 
-    ![A screenshot of a computer Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image20.png)
+    ![A screenshot of a computer Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image20.png){: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -279,7 +283,7 @@ example does.
 # Step 3 - Connection to HPE GreenLake
 (Step 3 of 12) ⏱️ ~15 min
 
-After the module is installed, the next first step is to connect to HPE GreenLake using the **Connect-HPEGL** command.
+After the module is installed, the next first step is to connect to HPE GreenLake using the `Connect-HPEGL` command.
 
 At this point, there are two authentication methods available:
 
@@ -294,37 +298,37 @@ Select the below option according to your user authentication method:
 
   1. Begin by creating a credential object to securely store your HPE account credentials (email and password):
 
-     ```PowerShell
+     ```powershell
      $MyEmail = "your_email@your_domain.com"
      $credentials = Get-Credential -UserName $MyEmail
      ```
 
   2. Once executed, the command prompts you for the password.
   
-  3. Then use the credential object with the **Connect-HPEGL** command:
+  3. Then use the credential object with the `Connect-HPEGL` command:
 
-     ```PowerShell
+     ```powershell
      Connect-HPEGL -Credential $credentials
      ```
 
-     ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image21.png)
+     ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image21.png){: .bordered-image-thin}
 
       - When MFA is enabled with Okta:
 
         The cmdlet will prompt you to validate the push notification from Okta.
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image22.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image22.png){: .bordered-image-thin}
 
         On your Okta-enabled device, press **Yes, it's me** to approve the authentication request.
 
-         [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png)]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){:class="img-400"}{: data-lightbox="gallery"}
+         [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){:class="img-300"}{: data-lightbox="gallery"}
 
 
       - When MFA is enabled with Google Authenticator:
 
         The cmdlet will pause and prompt you to enter the MFA token.
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image24.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image24.png){: .bordered-image-thin}
 
         Open the Google Authenticator app on your device to retrieve the token and enter it when prompted.
 
@@ -332,13 +336,13 @@ Select the below option according to your user authentication method:
 
   - Start by creating an email object:
 
-    ```PowerShell
+    ```powershell
     $MyEmail = "your_email@your_domain.com"
     ```
 
   - To connect with SAML SSO through your organization's identity provider (IdP), enter the following command in your terminal:
 
-    ```PowerShell
+    ```powershell
     Connect-HPEGL -SSOEmail $MyEmail
     ```
 
@@ -346,31 +350,38 @@ Select the below option according to your user authentication method:
 
   - Check your IdP-enabled device for a push notification or authentication request.
   
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image25.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image25.png){: .bordered-image-thin}
 
   - Approve the request (for example, tap the number or "Yes, it's me" in Okta or confirm in PingID/Entra ID).
   
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png)]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){:class="img-400"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){:class="img-300"}{: data-lightbox="gallery"}
 
   - Complete any additional steps required by your organization's security policies.
 
 Once authentication is successful, a secure connection to HPE GreenLake will be established, allowing you to proceed with subsequent operations.
-The **Connect-HPEGL** cmdlet is responsible for initiating and managing this connection. Upon establishment, it maintains a persistent session using the **$HPEGreenLakeSession** connection tracker variable, which supports all further module cmdlet activities. Furthermore, the cmdlet issues a temporary API client credential for both HPE GreenLake and any Compute Ops Management service instances provisioned within your workspace.
+The `Connect-HPEGL` cmdlet is responsible for initiating and managing this connection. Upon establishment, it maintains a persistent session using the `$HPEGreenLakeSession` connection tracker variable, which supports all further module cmdlet activities. Furthermore, the cmdlet issues a temporary API client credential for both HPE GreenLake and any Compute Ops Management service instances provisioned within your workspace.
 
-> **💡 Note**
-> You can use **Get-Help Connect-HPEGL -Full** to access the complete help documentation, technical details, and in-depth explanations for **Connect-HPEGL**.
+> **💡 Note** 
+>
+>{: .small-space}
+> 
+> You can use `Get-Help Connect-HPEGL -Full` to access the complete help documentation, technical details, and in-depth explanations for `Connect-HPEGL`.
 
-If you have no workspace tied to your HPE account, the **Connect-HPEGL** command will return a warning message indicating that you need to create your first workspace:
+If you have no workspace tied to your HPE account, the `Connect-HPEGL` command will return a warning message indicating that you need to create your first workspace:
 
-![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image27.png)
+![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image27.png){: .bordered-image-thin}
 
 If you already have one or more workspaces available, the command will return a warning message indicating that you need to use a second command to connect to one of the workspaces:
 
-![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image28.png)
+![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image28.png){: .bordered-image-thin}
 
-> **💡 Note**: The command to directly connect to an existing and known workspace (should not be used in this lab) is:
+> **💡 Note**   
 >
->  **Connect-HPEGL -Credential $credentials -Workspace "My_workspace_name"**
+>{: .small-space}
+> 
+> The command to directly connect to an existing and known workspace (should not be used in this lab) is:
+>
+>  `Connect-HPEGL -Credential $credentials -Workspace "My_workspace_name"`
 
 
 [⬆ Back to Top](#)
@@ -382,54 +393,85 @@ If you already have one or more workspaces available, the command will return a 
 
 1. To create your initial workspace (or an extra one just for this lab --- don't worry, it will be deleted once the lab ends), you need to provide a unique name. Since the name must be unique across all workspaces on the HPE GreenLake platform, we will use a random number to generate the name. Enter:
 
-    ```PowerShell
+    ```powershell
     $WorkspaceName = "HPEWorkspaceTxx_$(Get-Random)"
     ```
 
-    With **xx**, your team number. This command generates a name such as *HPEWorkspaceT01_12345678* for team 1. You can verify your workspace name by executing **$WorkspaceName**.
-
-    > **⚠️⚠️⚠️ IMPORTANT NOTE !!**  
-    > You must follow this specified naming convention exactly to ensure that our lab reset scripts function properly at the end of this session. Your strict adherence is required.
-
-2. Next, type the following command using your own parameters:
-
-    **New-HPEGLWorkspace -Name $WorkspaceName -Type** <Press the tab key and select 'Standard enterprise workspace'>
+    **⚠️ Replace `xx` with your team number** (e.g., `01` for team 1, `05` for team 5, `12` for team 12).
     
-    **-Country** <Press the tab key to get the list of supported countries and select one>
-    
-    **-Street** "A street address"
+    For example, **team 5** should use: `$WorkspaceName = "HPEWorkspaceT05_$(Get-Random)"`
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image29.png)
+    > ### ⚠️ CRITICAL REQUIREMENT ⚠️
+    > {: .no_toc }
+    >
+    > You **MUST** follow the naming convention **HPEWorkspaceTxx_** (with xx your team number) exactly. This is essential for the lab reset scripts to identify and clean up your workspace automatically.
+    > <br>   
+    > **⚠️ Failure to use this naming format will prevent automatic cleanup and may require manual intervention.**
 
-      
-    If you encounter any difficulties while creating your workspace, use this example below:
-    
-    ```PowerShell
-    New-HPEGLWorkspace -Name $WorkspaceName -Type 'Standard enterprise workspace' -Street "Street address" -Country Canada
+2. This command generates a name such as *HPEWorkspaceT01_12345678* for team 1. You can verify your workspace name by executing:
+
+    ```powershell
+    $WorkspaceName
     ```
-    
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image29.png)
 
-    >  **💡 Note**: The **Tab** key activates the auto-completion feature, which presents available property values for selection. This function enhances efficiency and accuracy by reducing manual entry errors and saving time.
+3. Build the command step by step using PowerShell's tab completion feature:
 
-    >  **📌 Note**: In the example above, only the **name**, **type**, **country**, and **street** parameters are included because they are required. However, you can also specify optional parameters like **city**, **state**, **email**, and others.
+    a. Start typing the command with the workspace name:
+   
+    ```powershell
+    New-HPEGLWorkspace -Name $WorkspaceName -Type 
+    ```
+   
+   b. After typing `-Type`, press **SPACE** then press the **Tab** key repeatedly to cycle through available workspace types. Select **'Standard enterprise workspace'**.
+   
+   c. Continue by adding the country parameter:
+   
+    ```powershell
+    -Country 
+    ```
+      
+    Press **SPACE** then press the **Tab** key to see the list of supported countries, then select your country.
+   
+   d. Complete the command by adding the street address:
+   
+    ```powershell
+    -Street "Your street address"
+    ```
+   
+   e. Your complete command should look like this:
+   
+    ```powershell
+    New-HPEGLWorkspace -Name $WorkspaceName -Type 'Standard enterprise workspace' -Country Canada -Street "123 Main Street"
+    ```
+
+    > **💡 Tip**   
+    >
+    >{: .small-space}
+    > 
+    > Press **SPACE** after a parameter name, then press **Tab** to activate PowerShell's auto-completion for parameter values. This shows you valid options and helps avoid typos.
+
+    >  **📌 Note**   
+    >
+    >{: .small-space}
+    > 
+    > In the example above, only the `name`, `type`, `country`, and `street` parameters are included because they are required. However, you can also specify optional parameters like `city`, `state`, `email`, and others.
 
 3. After executing this command, the workspace is created, and the command automatically disconnects the session. To connect to your new workspace, enter:
 
-    ```PowerShell
+    ```powershell
     Connect-HPEGL -Credential $credentials -Workspace $WorkspaceName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image30.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image30.png){: .bordered-image-thin}
 
 
 4. To check the content of your workspace, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLWorkspace
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image31.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image31.png){: .bordered-image-thin}
 
 
 ## Task 2 -- Add a user to your workspace
@@ -439,18 +481,22 @@ a new user with a specific role.
 
 1. Invite **admin@hpelabs.us** as an administrator to your newly created workspace:
 
-    ```PowerShell
+    ```powershell
     $NewUserEmail = "admin@hpelabs.us"
     New-HPEGLUser -Email $NewUserEmail -RoleName 'Workspace Administrator'
     ```
 
-    > **⚠️⚠️⚠️ IMPORTANT NOTE !!**  
-    > It is essential to add this admin user so that the lab reset scripts operate as intended at the conclusion of this session. Thank you for your cooperation.
+    > ### ⚠️ CRITICAL REQUIREMENT ⚠️
+    > {: .no_toc }
+    >
+    > You **MUST** add this admin user (**admin@hpelabs.us**) to your workspace. This is essential for the lab reset scripts to function properly at the end of your session.
+    > <br>  
+    > **⚠️ Failure to add this user will prevent cleanup and break the lab for the next participant.**
 
 
 2. To verify the new user, execute the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLUser
     ```
 
@@ -460,7 +506,7 @@ The following step involves setting up services. There are several kinds of serv
 
 1. To see all available services, use:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLService -ShowUnprovisioned
     ```
 
@@ -470,31 +516,39 @@ The following step involves setting up services. There are several kinds of serv
 
 2. In this lab exercise, you'll set up the Compute Ops Management (COM) service in the European central region. Enter:
 
-    ```PowerShell
+    ```powershell
     $Region = "eu-central"
     New-HPEGLService -Name "Compute Ops Management" -Region $Region
     ```
 
-    > **💡 Note**: Additional regions are available; to view different supported regions, use:  
-    > **Get-HPEGLService -Name "Compute Ops Management"**
+    > **💡 Note**   
+    >
+    >{: .small-space}
+    > 
+    > Additional regions are available; to view different supported regions, use:  
+    > `Get-HPEGLService -Name "Compute Ops Management"`
 
 3. To confirm that the COM instance is provisioned, run:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLService -ShowProvisioned
     ```
 
 4. Next, assign the 'Administrator' role for Compute Ops Management to both you and the invited user:
 
-    ```PowerShell
+    ```powershell
     $MyEmail, $NewUserEmail | Add-HPEGLRoleToUser -RoleName 'Compute Ops Management administrator'
     ```
 
-    > **💡 Note**: The **Tab** key can be used to display the available list of role names.
+    > **💡 Note**   
+    >
+    >{: .small-space}
+    > 
+    > The **Tab** key can be used to display the available list of role names.
 
 5. Finally, verify the role assignments with:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLUserRole -Email $MyEmail
     Get-HPEGLUserRole -Email $NewUserEmail
     ```
@@ -507,17 +561,21 @@ This step is essential for automatically creating a ticket with HPE support.
 
 1. To create a location, enter:
 
-    ```PowerShell
+    ```powershell
     $LocationName = "Your_customized_location_name"
     New-HPEGLLocation -Name $LocationName -Description "Your customized description" -Country "Your country" -Street "Your customized street address" -City $LocationName -State "NA" -PostalCode "123456789" -PrimaryContactEmail $MyEmail
     ```
 
-    > **💡 Note**: You can press the **Tab** key after typing **-Country** to view all supported countries.
+    > **💡 Note**   
+    >
+    >{: .small-space}
+    > 
+    > You can press the **Tab** key after typing `-Country` to view all supported countries.
 
 
 2. Check the location with:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLLocation
     ```
 
@@ -525,13 +583,13 @@ This step is essential for automatically creating a ticket with HPE support.
 
 1. To activate compute devices that will be added later to your workspace, you need to add a COM subscription key. Enter:
 
-    ```PowerShell
+    ```powershell
     New-HPEGLSubscription -SubscriptionKey "<key found in the login sheet>"
     ```
 
 2. To check the subscription, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLSubscription
     ```
 
@@ -543,20 +601,24 @@ This step is essential for automatically creating a ticket with HPE support.
 
     To retrieve these options, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLDeviceAutoSubscription
     Get-HPEGLDeviceAutoReassignSubscription
     ```
 
 4. Set the automatic subscription assignment for Compute:
 
-    ```PowerShell
+    ```powershell
     Set-HPEGLDeviceAutoSubscription -ComputeSubscriptionTier ENHANCED
     ```
 
-    > **💡 Note:** Auto-reassignment is enabled by default for all device types; therefore, manual configuration of automatic subscription
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > Auto-reassignment is enabled by default for all device types; therefore, manual configuration of automatic subscription
     > re-assignment for Compute devices is generally unnecessary. For reference, you may enable it manually using  
-    > **Set-HPEGLDeviceAutoReassignSubscription -Computes** if it was previously disabled with **Remove-HPEGLDeviceAutoReassignSubscription.**
+    > `Set-HPEGLDeviceAutoReassignSubscription -Computes` if it was previously disabled with `Remove-HPEGLDeviceAutoReassignSubscription.`
 
 
 [⬆ Back to Top](#)
@@ -569,7 +631,11 @@ Another option is to use a COM activation key, which lets you add single
 or multiple compute devices directly to a Compute Ops Management (COM)
 instance. In this lab, you'll be using that specific method.
 
-> **🎯 Note**: For onboarding multiple servers, use the [HPE Compute Ops
+> **🎯 Note**
+>
+>{: .small-space}
+> 
+> For onboarding multiple servers, use the [HPE Compute Ops
 > Management Onboarding
 > Script](https://github.com/jullienl/HPE-Compute-Ops-Management/tree/main/PowerShell/Onboarding).
 > This PowerShell tool automates connecting HPE servers to COM, applies
@@ -582,115 +648,141 @@ instance. In this lab, you'll be using that specific method.
 
 1. To generate an activation key for connecting your server to the Compute Ops Management instance in the region you provisioned earlier, use the following command:
 
-    ```PowerShell
+    ```powershell
     $Activation_Key = New-HPECOMServerActivationKey -Region $Region
     ```
 
-    This command should be used in conjunction with the **-Region** parameter, consistent with other HPECOM cmdlets, to specify the COM instance---that is, the region where the COM instance is provisioned and where the command will be executed. Please note that the auto-completion tab can be utilized to display the available region codes provisioned within your workspace.
+    This command should be used in conjunction with the `-Region` parameter, consistent with other HPECOM cmdlets, to specify the COM instance---that is, the region where the COM instance is provisioned and where the command will be executed. Please note that the auto-completion tab can be utilized to display the available region codes provisioned within your workspace.
 
-    > **🔔 Note:** This method is supported only for the following iLO versions:  
+    > **🔔 Note** 
+    >
+    >{: .small-space}
+    > 
+    > This method is supported only for the following iLO versions:  
     > - iLO 5: Version 3.09 or later  
     > - iLO 6: Version 1.64 or later
     > - iLO 7: Version 1.12.00 or later 
 
 2. To see the activation key that has been generated, you can enter:
 
-    ```PowerShell
+    ```powershell
     $Activation_key
     ```
 
-    > **💡 Note**: No subscription key is needed with this command because
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > No subscription key is needed with this command because
     > auto-subscription for Compute has been enabled earlier using
-    > **Set-HPEGLDeviceAutoSubscription**.
+    > `Set-HPEGLDeviceAutoSubscription`.
 
 3. Next, assign the IP address of your iLO to a variable by entering the
 following command. Be sure to use the IP address listed in the login
 sheet provided by your instructor. Enter:
 
-    ```PowerShell
-    $iLO_IP = "xx.xx.xx.xxx"
+    ```powershell
+    $iLO_IP = "xxx.xxx.xxx.xxx"
     ```
 
 4. And assign the password of your iLO, also found in the login sheet to another variable:
 
-    ```PowerShell
+    ```powershell
     $iLO_Password = "xxxxxxxxxxxx"
     ```
     
 5. Then execute the following commands to connect the iLO to the COM instance using the activation key that was generated earlier:
 
-    ```PowerShell
+    ```powershell
     $iLO_SecurePassword = ConvertTo-SecureString $iLO_Password -AsPlainText -Force
-    $iLO_credential = New-Object System.Management.Automation.PSCredential ("Administrator", $iLO_SecurePassword)
+    $iLO_credential = New-Object System.Management.Automation.PSCredential("Administrator", $iLO_SecurePassword)
     Connect-HPEGLDeviceComputeiLOtoCOM -iLOCredential $iLO_credential -IloIP $iLO_IP -ActivationKeyfromCOM $Activation_Key -SkipCertificateValidation
     ```
 
-    > **💡 Note**: The **SkipCertificateValidation** parameter bypasses
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > The `-SkipCertificateValidation` parameter bypasses
     > all certificate validation steps, including checks for expiration,
     > revocation, and trusted root authority. This approach is insecure
     > and generally discouraged. It should only be used with known hosts
     > that are using self-signed certificates, which applies in our
     > scenario.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image32.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image32.png){: .bordered-image-thin}
 
-    > 💡 **Note**: The **Connect-HPEGLDeviceComputeiLOtoCOM** cmdlet provides additional parameters to connect iLO through a COM Secure Gateway or through a web proxy.
+    > 💡 **Note**
+    >
+    >{: .small-space}
+    > 
+    > The `Connect-HPEGLDeviceComputeiLOtoCOM` cmdlet provides additional parameters to connect iLO through a COM Secure Gateway or through a web proxy.
 
-    > **💡Note**: In scenarios involving a Secure Gateway (**not applicable to this lab**), the commands would be as follows:
+    > **💡Note**
+    >
+    >{: .small-space}
+    > 
+    > In scenarios involving a Secure Gateway (**not applicable to this lab**), the commands would be as follows:
     > 1. Obtain a valid subscription key:  
-    > ```PowerShel
+    > ```powershell
     > $SubscriptionKey = Get-HPEGLSubscription -ShowWithAvailableQuantity -ShowValid -FilterBySubscriptionType Server | Select-Object -First 1 -ExpandProperty key
     > ```
     > 2. Retrieve the Secure Gateway object:  
-    > ```PowerShel
+    > ```powershell
     > $SG = Get-HPECOMAppliance -Region $Region -Name sg01.domain.com
     > ```
     > 3. Create a Secure Gateway activation key:  
-    > ```PowerShel
+    > ```powershell
     > $Activation_Key = New-HPECOMServerActivationKey -Region $Region -SecureGateway $SG -SubscriptionKey $SubscriptionKey
     > ```
     > 4. Use the Secure Gateway activation key to connect the iLO to COM and set the Secure Gateway as the iLO's proxy server:  
-    > ```PowerShel
+    > ```powershell
     > Connect-HPEGLDeviceComputeiLOtoCOM -iLOCredential $iLO_credential -IloIP "xxx.xxx.xxx.xxx" -ActivationKeyfromCOM $Activation_Key -SkipCertificateValidation -IloProxyServer sg01.domain.com -IloProxyPort 8080
     > ```
 
 6. You can then verify the onboarded servers using the following cmdlet:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLDevice
     ```
 
-    ![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image33.png)
+    ![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image33.png){: .bordered-image-thin}
 
-    > **💡 Note**: This method not only automatically assigns servers to
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > This method not only automatically assigns servers to
     > the COM service instance but also automatically applies a
     > subscription key to the devices.
 
 7. As the device has been automatically assigned to your COM instance with a subscription key, you are now able to utilize COM cmdlets. For instance, you may use:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image34.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image34.png){: .bordered-image-thin}
 
-    Note that the output differs slightly from the output of the **Get-HPEGLDevice** command. It adds additional information such as the power state, the connected state, the iLO IP address, and more. However, always remember that the output is a formatted view and does not show the entire content of the returned object. To get the full details, you need to pipe the command to **\| Format-List** (or **\| fl**) at the end.
+    Note that the output differs slightly from the output of the `Get-HPEGLDevice` command. It adds additional information such as the power state, the connected state, the iLO IP address, and more. 
+    
+    However, always remember that the output is a formatted view and does not show the entire content of the returned object. To get the full details, you need to pipe the command to `| Format-List` (or `| fl`) at the end.
 
 8. To determine the number of remaining licenses, execute the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -ShowSubscriptionDetails
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image35.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image35.png){: .bordered-image-thin}
 
 9. Before proceeding with the next steps in the lab, ensure that your server is powered on by checking the **PowerState** column in the output above. If the server is not **ON**, run the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region | Start-HPECOMServer
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image36.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image36.png){: .bordered-image-thin}
 
     This command will power on all servers managed by COM. Since you currently have only one server onboarded, it will specifically start that device.
 
@@ -698,25 +790,33 @@ sheet provided by your instructor. Enter:
 
 1. Next you need to set the device location. As indicated earlier, this step is important to ensure that support cases are automatically created in the event of device failures. To do so, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLdevice | Set-HPEGLDeviceLocation -LocationName $LocationName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image37.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image37.png){: .bordered-image-thin}
 
 2. To verify that the location has been correctly assigned to your device, use the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLdevice
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image38.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image38.png){: .bordered-image-thin}
 
-    > **📝 Note**: Expand the PowerShell console to its maximum width to ensure that you can see the Location property in the output.
+    > **📝 Note**
+    >
+    >{: .small-space}
+    > 
+    > Expand the PowerShell console to its maximum width to ensure that you can see the Location property in the output.
 
 3. Next, you can assign tags to your device. A tag is a form of metadata that uses a key-value pair (e.g., App=AI) and can be applied to any resource. Tags are primarily used to categorize resources based on purpose, owner, environment, or other criteria.
 
-    > **ℹ️ Note**: Tags are particularly important for extending filtering
+    > **ℹ️ Note**
+    >
+    >{: .small-space}
+    > 
+    > Tags are particularly important for extending filtering
     > capabilities and enhancing the use of scope-based access control,
     > which allows you to limit users' abilities to perform actions on a
     > selected list of resources. These resources can be categorized based
@@ -725,19 +825,19 @@ sheet provided by your instructor. Enter:
 
 4. Add two tags to your device: one for country location and one for AI application type. Use this command:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLDevice | Add-HPEGLDeviceTagToDevice -Tags "Country=FR, App=AI"
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image39.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image39.png){: .bordered-image-thin}
 
 5. To verify that the tags have been correctly assigned to your device, use the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLdevice -ShowTags
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image40.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image40.png){: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -761,33 +861,37 @@ as BIOS, internal storage, firmware, OS, etc.
 Server BIOS Settings allow you to create a new BIOS configuration for
 servers using either a workload profile or custom parameters, ensuring
 consistent settings across server groups. The
-**New-HPECOMSettingServerBios** cmdlet provides many options; for
+`New-HPECOMSettingServerBios` cmdlet provides many options; for
 details on available parameters and how they behave with different iLO
 versions and server generations, refer to the help section of the
 cmdlet.
 
-> **ℹ️ Note**: Server BIOS settings can't be managed from the UI---they
+> **ℹ️ Note**
+>
+>{: .small-space}
+> 
+> Server BIOS settings can't be managed from the UI---they
 > can only be created today through the COM API using the
-> **New-HPECOMSettingServerBios** cmdlet.
+> `New-HPECOMSettingServerBios` cmdlet.
 
 1. To create a bios setting with a few customized options, enter:
 
-    ```PowerShell
+    ```powershell
     $BiosSettingName = "Custom-Bios-For-AI"
     New-HPECOMSettingServerBios -Region $Region -Name $BiosSettingName -WorkloadProfileName  "Virtualization - Max Performance" -AsrStatus:$True -AsrTimeoutMinutes Timeout10
     ```
 
     This command creates a new BIOS setting configuration tailored for virtualization with maximum performance. It also enables the Automatic Server Recovery (ASR) feature and sets the timeout for the ASR feature to 10 minutes.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image41.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image41.png){: .bordered-image-thin}
 
 2. To verify the newly created BIOS setting, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSetting -Region $Region -Name $BiosSettingName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image42.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image42.png){: .bordered-image-thin}
 
 ### Server Internal Storage Settings
 
@@ -795,30 +899,30 @@ These settings allow you to configure a new server storage setup with different 
 
 3. To configure for example a configuration with two volumes: OS on RAID1 with two SAS drives, and data on RAID5 with three SSDs plus two spares, enter:
 
-    ```PowerShell
+    ```powershell
     $InternalStorageSettingName = "RAID-Configuration-for-AI-Servers"
     $volume1 = New-HPECOMSettingServerInternalStorageVolume -RAID RAID5 -DriveTechnology  NVME_SSD -IOPerformanceMode ENABLED -ReadCachePolicy OFF -WriteCachePolicy  WRITE_THROUGH -SizeinGB 100 -DrivesNumber 3 -SpareDriveNumber 2
     $volume2 = New-HPECOMSettingServerInternalStorageVolume -RAID RAID1 -DriveTechnology  SAS_HDD
     New-HPECOMSettingServerInternalStorage -Region $Region -Name $InternalStorageSettingName -Volumes $volume1, $volume2 -Description "RAID1 and RAID5 server settings for AI systems"
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image43.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image43.png){: .bordered-image-thin}
 
 4. To verify the newly created internal storage setting, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSetting -Region $Region -Name $InternalStorageSettingName
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image44.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image44.png){: .bordered-image-thin}
 
 5. To verify the two volumes that are defined:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSetting -Region $Region -Name $InternalStorageSettingName -ShowVolumes
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image45.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image45.png){: .bordered-image-thin}
 
 ### Server Firmware Settings
 
@@ -827,53 +931,53 @@ helping maintain consistent firmware versions across groups of servers.
 
 6. To set up firmware, start by finding the latest baseline for the relevant generation using:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMFirmwareBaseline -Region $Region -Generation 11 -LatestVersion
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image46.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image46.png){: .bordered-image-thin}
 
 7. To create the firmware setting with the latest baselines for both Gen10 and Gen11, enter:
 
-    ```PowerShell
+    ```powershell
     $FirmwareSettingName = "Latest-Firmware-Baselines-for-AI"
     $Gen10_Firmware_Baseline = Get-HPECOMFirmwareBaseline -Region $Region -LatestVersion -Generation 10 | select -ExpandProperty releaseVersion
     $Gen11_Firmware_Baseline = Get-HPECOMFirmwareBaseline -Region $Region -LatestVersion -Generation 11 | select -ExpandProperty releaseVersion
     New-HPECOMSettingServerFirmware -Region $Region -Name $FirmwareSettingName -Description "FW baseline for AI servers" -Gen10FirmwareBaselineReleaseVersion $Gen10_Firmware_Baseline -Gen11FirmwareBaselineReleaseVersion $Gen11_Firmware_Baseline
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image47.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image47.png){: .bordered-image-thin}
 
 8. To verify the newly created firmware setting, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSetting -Region $Region -Name $FirmwareSettingName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image48.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image48.png){: .bordered-image-thin}
 
 ### iLO Settings
 
-ILO settings enable the configuration of specific parameters to standardize iLO management across server groups. These settings support a range of options, including network protocols, SNMP, user accounts, security features, and update services. The **New-HPECOMSettingiLOSettings** cmdlet provides many options; for details on available parameters, refer to the help section of the cmdlet.
+ILO settings enable the configuration of specific parameters to standardize iLO management across server groups. These settings support a range of options, including network protocols, SNMP, user accounts, security features, and update services. The `New-HPECOMSettingiLOSettings` cmdlet provides many options; for details on available parameters, refer to the help section of the cmdlet.
 
 1. To configure iLO settings, enter:
 
-    ```PowerShell
+    ```powershell
     $iLOSettingName = "AI_iLO_Settings"
     New-HPECOMSettingiLOSettings -Region $Region -Name $iLOSettingName -Description "iLO Settings for AI Servers" -VirtualMedia Enabled -PasswordComplexity Enabled -WebServerSSL Enabled -AcceptThirdPartyFirmwareUpdates Disabled
     ```
     
     This command activates iLO virtual media, enforces password complexity, enables HTTPS, and disables third-party firmware updates.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image49.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image49.png){: .bordered-image-thin}
 
 2. To verify the newly created iLO settings, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSetting -Region $Region -Name $iLOSettingName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image50.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image50.png){: .bordered-image-thin}
 
 ## Task 2 -- Create a group
 
@@ -881,45 +985,49 @@ In this task you will create a new group incorporating the different settings cr
 
 1. To create a new group, enter:
 
-    ```PowerShell
+    ```powershell
     $GroupName = "AI_Group"
     New-HPECOMGroup -Region $Region -Name $GroupName -Description "My new group for AI servers"  -BiosSettingName $BiosSettingName -AutoBiosApplySettingsOnAdd:$false -iLOSettingName $iLOSettingName -AutoIloApplySettingsOnAdd:$true -FirmwareSettingName $FirmwareSettingName -AutoFirmwareUpdateOnAdd:$false -PowerOffServerAfterFirmwareUpdate:$false -FirmwareDowngrade:$false -StorageSettingName $InternalStorageSettingName -AutoStorageVolumeCreationOnAdd:$false -AutoStorageVolumeDeletionOnAdd:$false -TagUsedForAutoAddServer "App=AI"
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image51.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image51.png){: .bordered-image-thin}
 
     This command creates the new group "AI_Group" with previously configured BIOS, firmware, storage, and iLO settings. Additionally, the command specifies whether certain actions, such as applying settings or creating storage volumes, should be automated when servers are added to the group. These are called group policies. The "App=AI" tag is defined so that any server with this tag during onboarding will automatically be added to this group.
 
-    > **💡 Note**: The server operating system image setting is not used
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > The server operating system image setting is not used
     > in this command but is another setting that can be utilized to
     > install the operating system using an ISO image and optionally a
     > kickstart file.
 
 2. To verify the newly created group, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image52.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image52.png){: .bordered-image-thin}
 
     Note that, as configured earlier, 4 settings are applied to that group.
 
 3. To display the settings list, type:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowSettings
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image53.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image53.png){: .bordered-image-thin}
 
 4. Additionally, you may review the policies currently assigned to the group by using the following:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowPolicies
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image54.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image54.png){: .bordered-image-thin}
 
     Keep in mind that only the iLO settings take effect right away after you add servers to the group.
 
@@ -929,31 +1037,35 @@ The next task is to add your server to the new group. According to the group pol
 
 1. To assign all servers (in this instance, only one server) to the newly created group, proceed as follows:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region | Add-HPECOMServerToGroup -GroupName $GroupName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image55.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image55.png){: .bordered-image-thin}
 
 2. To verify that the new server has been added to the group, enter the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowMembers
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image56.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image56.png){: .bordered-image-thin}
 
 3. To monitor the progress of active related group jobs, execute the following command at regular intervals:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region -Category Group -ShowRunning
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image57.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image57.png){: .bordered-image-thin}
 
     This command shows all the running jobs associated with the group category.
 
-    > **📝 Note**: Each time a server is added to a group that includes
+    > **📝 Note**
+    >
+    >{: .small-space}
+    > 
+    > Each time a server is added to a group that includes
     > firmware or iLO settings, an automatic process is initiated. This
     > process triggers a group firmware compliance report job and a group
     > iLO settings compliance job to ensure the servers meet the
@@ -961,40 +1073,52 @@ The next task is to add your server to the new group. According to the group pol
 
 4. To review the related server jobs that are presently active, execute the command multiple times:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region -Category Server -ShowRunning
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image58.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image58.png){: .bordered-image-thin}
 
     This command lists active jobs for the server category, focusing on the "add to group" action.
 
 5. Once all jobs have finished running, execute the command below to check their status:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image59.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image59.png){: .bordered-image-thin}
 
-    > **📝 Note**: Compute Ops Management tracks iLO settings and compares
+    > **📝 Note**
+    >
+    >{: .small-space}
+    > 
+    > Compute Ops Management tracks iLO settings and compares
     > them to the desired configuration. Whenever iLO changes are
     > detected, Compute Ops Management automatically verifies compliance.
 
-6. You can check the compliance status of firmware and ILO settings in several ways, such as by using **Get-HPECOMGroup** or **Get-HPECOMServer**. To verify the group compliance, use the following method:
+6. You can check the compliance status of firmware and ILO settings in several ways, such as by using `Get-HPECOMGroup` or `Get-HPECOMServer`. To verify the group compliance, use the following method:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowCompliance
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image60.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image60.png){: .bordered-image-thin}
 
     This command generates a comprehensive compliance status report for all types, including firmware, iLO settings, and external storage. Notably, the iLO settings status is 'COMPLIANT,' which confirms that the group-defined iLO settings have been properly implemented on the iLO.
 
-    > **📝 Note**: The COM API does not track BIOS settings compliance.
+    > **📝 Note**
+    >
+    >{: .small-space}
+    > 
+    > The COM API does not track BIOS settings compliance.
     > This is why you only see these three compliance types in the cmdlets
 
-    > **💡 Note:** **Get-HPECOMServer** includes several parameters **-ShowGroupCompliance**, **-ShowGroupiLOSettingsCompliance**, or **-ShowGroupFirmwareCompliance**---that allow you to directly check compliance on a specified server.
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > `Get-HPECOMServer` includes several parameters `-ShowGroupCompliance`, `-ShowGroupiLOSettingsCompliance`, or `-ShowGroupFirmwareCompliance`---that allow you to directly check compliance on a specified server.
 
 
 [⬆ Back to Top](#)
@@ -1009,49 +1133,53 @@ streamlines this by automatically collecting and updating detailed
 server inventory, so administrators always have the latest information
 on hand.
 
-To obtain detailed server inventory information, use the
-**Get-HPECOMServerInventory** cmdlet along with the
-**-Name** parameter. The **-Name** parameter accepts either the server's
-name or its serial number, allowing you to specify the server from which
-you wish to retrieve inventory data.
+To obtain detailed server inventory information, use the `Get-HPECOMServerInventory` cmdlet along with the `-Name` parameter. The `-Name` parameter accepts either the server's name or its serial number, allowing you to specify the server from which you wish to retrieve inventory data.
 
 1. But before that, capture the serial number of your server to facilitate all subsequent commands, enter:
 
-    ```PowerShell
+    ```powershell
     $SN = Get-HPECOMServer -Region $Region | Select-Object -ExpandProperty SerialNumber
     ```
 
-2. Then to generate a detailed memory report of your server using the **$SN** variable, run:
+2. Then to generate a detailed memory report of your server using the `$SN` variable, run:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServerInventory -Region $Region -Name $SN -ShowMemory
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image61.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image61.png){: .bordered-image-thin}
 
 3. Additional reporting options are available via the same command, like for a report on the CPU:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServerInventory -Region $Region -Name $SN -ShowProcessor
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image62.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image62.png){: .bordered-image-thin}
 
-    There are several **-Show** commands for different server inventory data. For efficiency, type **-Show** and press **CTRL**+**SPACE** to view all property options or use **Tab** for auto-completion.
+    There are several **Show** commands for different server inventory data. For efficiency, type **-Show** and press **CTRL**+**SPACE** to view all property options or use **Tab** for auto-completion.
 
-    > **💡 Note**: Running **-ShowSoftware** may return no data if your
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > Running `-ShowSoftware` may return no data if your
     > server's operating system or HPE Agentless Management Service (AMS)
-    > is not installed or running. Same with **-ShowSmartUpdateTool** if SUT
+    > is not installed or running. Same with `-ShowSmartUpdateTool` if SUT
     > is not installed and running.
 
-    > 💡 **Note**: If it is necessary to initiate the collection of server
+    > 💡 **Note**
+    >
+    >{: .small-space}
+    > 
+    > If it is necessary to initiate the collection of server
     > inventory data (for example, if existing data may be outdated), the
     > following command can be used to force a hardware inventory
     > collection:
-    > ```PowerShell
+    > ```powershell
     > Get-HPECOMServer -Region $Region | New-HPECOMServerInventory -Async
     > ```
-    > The **-Async** parameter allows the cmdlet to return the asynchronous
+    > The `-Async` parameter allows the cmdlet to return the asynchronous
     > job resource immediately. By default, the cmdlet will wait for the job
     > to finish before returning.
 
@@ -1068,29 +1196,23 @@ management includes tasks such as confirming operational status,
 reviewing health summaries, monitoring current activities and alerts,
 retrieving support details and cases, and identifying servers with
 recent support incidents for proactive maintenance. The
-**Get-HPECOMServer** cmdlet, along with its related inventory and job
+`Get-HPECOMServer` cmdlet, along with its related inventory and job
 parameters, provides a comprehensive toolkit for these tasks.
 Specifically, you can:
 
 - Check overall server health and component status (fans, memory,
   network, power supplies, processor, storage, temperature, BIOS, health
-  LEDs) using **-ShowHealthStatus**.
+  LEDs) using `-ShowHealthStatus`.
 
-- Review current activities and alerts with **-ShowActivities** and
-  **-ShowAlerts**.
+- Review current activities and alerts with `-ShowActivities` and `-ShowAlerts`.
 
-- Retrieve detailed support information and warranty details using
-  **-ShowSupportDetails**.
+- Retrieve detailed support information and warranty details using `-ShowSupportDetails`.
 
-- Manage and track open support cases with **-ShowSupportCases**, and
-  identify servers with recent support cases via
-  -**ShowServersWithRecentSupportCases**.
+- Manage and track open support cases with `-ShowSupportCases`, and identify servers with recent support cases via `-ShowServersWithRecentSupportCases`.
 
-- Review recent jobs performed on the server using -ShowJobs.
+- Review recent jobs performed on the server using `-ShowJobs`.
 
-These features collectively enable robust monitoring, efficient
-troubleshooting, and proactive resolution of server issues, ensuring
-optimal server performance and support coverage.
+These features collectively enable robust monitoring, efficient troubleshooting, and proactive resolution of server issues, ensuring optimal server performance and support coverage.
 
 ## Task 1 -- Getting server health status, activities, jobs and alerts
 
@@ -1098,64 +1220,64 @@ The first step in server troubleshooting is to confirm that the server is operat
 
 1. To review your server's health status, execute the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowHealthStatus
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image63.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image63.png){: .bordered-image-thin}
 
 2. To retrieve the list of activities from the past month on your server, you can use:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowActivities
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image64.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image64.png){: .bordered-image-thin}
 
-    > You can use the dedicated cmdlet **Get-HPECOMActivity -Region $Region -SourceName $SN** to retrieve COM activities, which offers enhanced options such as filtering by time, category, or source name.
+    > You can use the dedicated cmdlet `Get-HPECOMActivity -Region $Region -SourceName $SN` to retrieve COM activities, which offers enhanced options such as filtering by time, category, or source name.
 
 3. To retrieve all alerts associated with your server, use:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowAlerts
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image65.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image65.png){: .bordered-image-thin}
 
     > Alerts provide security information and issues related to servers. By
     > default, all alerts associated with your server are returned. You can
-    > use the dedicated cmdlet **Get-HPECOMAlert** to get more options and
+    > use the dedicated cmdlet `Get-HPECOMAlert` to get more options and
     > filters.
 
 4. You may receive some returned alerts with a less-than-ideal output view. To view different properties, consider running:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowAlerts | Format-List
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image66.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image66.png){: .bordered-image-thin}
 
 5. To obtain a comprehensive list of jobs associated with your server for the last month, including their current state "PENDING" (waiting to start), "RUNNING" (in progress), "STALLED" (stuck), "ERROR" (failed), or "COMPLETE" (finished successfully), you can run:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowJobs
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image67.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image67.png){: .bordered-image-thin}
 
-    > You can also utilize the specialized cmdlet **Get-HPECOMJob -Region $Region -SourceName $SN** to retrieve a list of jobs associated with a specific source name. By default, this command returns jobs from the past seven days, but you can broaden your search using parameters like **-ShowLastMonth** to include the previous month or **-ShowAll** for the complete job history. Additionally, you have the option to filter results to display only jobs that are currently running with **-ShowRunning**, or to show only jobs that are waiting in the queue by using **-ShowPending**.
+    > You can also utilize the specialized cmdlet `Get-HPECOMJob -Region $Region -SourceName $SN` to retrieve a list of jobs associated with a specific source name. By default, this command returns jobs from the past seven days, but you can broaden your search using parameters like `-ShowLastMonth` to include the previous month or `-ShowAll` for the complete job history. Additionally, you have the option to filter results to display only jobs that are currently running with `-ShowRunning`, or to show only jobs that are waiting in the queue by using `-ShowPending`.
 
 6. Please be advised that to obtain the list of jobs related to your group, you may use the following method:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region -SourceName $GroupName
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image68.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image68.png){: .bordered-image-thin}
 
 7. If you need to view detailed job information or troubleshoot specific tasks, you can refine your queries further by using additional parameters. For example, to quickly identify and analyze the most recent job that has failed, you can target your search accordingly:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region | Where-Object resultCode -eq FAILURE | Select-Object -First 1 | Format-List
     ```
 
@@ -1169,25 +1291,33 @@ status and its duration.
 
 1. To make sure the server is still supported, you can run.
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowSupportDetails
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image69.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image69.png){: .bordered-image-thin}
 
-    > **⚠️ Note**: Your assigned lab server may not have a support contract warranty.
+    > **⚠️ Note**
+    >
+    >{: .small-space}
+    > 
+    > Your assigned lab server may not have a support contract warranty.
 
 2. You can use the following command to verify whether COM has automatically created a support case:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowSupportCases
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image70.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image70.png){: .bordered-image-thin}
 
     Note that if no support cases are found for the specified server, the cmdlet returns no output.
 
-    > **💡 Note**: **Get-HPECOMServer -Region $Region -ShowServersWithRecentSupportCases** can be used to list servers with recent support cases.
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > `Get-HPECOMServer -Region $Region -ShowServersWithRecentSupportCases` can be used to list servers with recent support cases.
 
 ## Task 3 -- Collecting and downloading server logs
 
@@ -1201,13 +1331,17 @@ efficient and accessible.
 
 1. To initiate the collection and download of server logs, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServerLogs -Region $Region -Name $SN -DownloadAHSLogs -Path .
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image71.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image71.png){: .bordered-image-thin}
 
-    > The **-DownloadAHSLogs** parameter enables you to include Active
+    > **💡 Note**
+    >
+    >{: .small-space}
+    > 
+    > The `-DownloadAHSLogs` parameter enables you to include Active
     > Health System (AHS) logs along with the regular server logs. AHS logs
     > offer extensive diagnostic information that HPE support often asks for
     > when investigating hardware problems or reviewing support cases. These
@@ -1215,9 +1349,10 @@ efficient and accessible.
     > Normally, only standard server logs are gathered, so activate this
     > option if HPE support requests AHS logs specifically for case
     > analysis.
+    >
+    >{: .small-space}
     >   
-    >   
-    > The **-Path** parameter allows you to specify the destination folder
+    > The `-Path` parameter allows you to specify the destination folder
     > for the downloaded server logs. In the example above, we used a single
     > period "." to indicate the current directory, so the logs will be
     > saved locally. Since no custom filename was provided, the module
@@ -1230,20 +1365,20 @@ efficient and accessible.
 
 2. Once the task completes, the zip file can be found using:
 
-    ```PowerShell
+    ```powershell
     Get-ChildItem -Path . -Filter *.zip | Select-Object Name, Length, LastWriteTime
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image72.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image72.png){: .bordered-image-thin}
 
 3. If you want to see what's inside, you can use Windows Explorer to open the zip file:
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image73.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image73.png){: .bordered-image-thin}
 
-4. Alternatively, you can use PowerShell's built-in **Expand-Archive** cmdlet to extract the contents of the zip file. Simply run the following by replacing the angle brackets with your server name, timestamp and destination folder:
+4. Alternatively, you can use PowerShell's built-in `Expand-Archive` cmdlet to extract the contents of the zip file. Simply run the following by replacing the angle brackets with your server name, timestamp and destination folder:
 
-    ```PowerShell
-    Expand-Archive -Path .server-logs-**< server name >**-**<timestamp >**.zip -DestinationPath .**<folder name>
+    ```powershell
+    Expand-Archive -Path .server-logs-<servername>-<timestamp>.zip -DestinationPath .<foldername>
     ```
 
     This makes it easy to inspect individual log files and share relevant data with support teams for further troubleshooting.
@@ -1260,21 +1395,25 @@ automatically applied.
 
 1. To subscribe your user account to receive email notifications, including service events, critical or warning severity events, and daily summary updates, execute the following command:
 
-    ```PowerShell
+    ```powershell
     Enable-HPECOMEmailNotificationPolicy -Region $Region -DailySummary -ServiceEventAndCriticalAndWarningIssues
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image74.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image74.png){: .bordered-image-thin}
 
-    > **📝 Note:** A service event refers to a failure that requires the creation of an HPE support case and may necessitate a service repair.
+    > **📝 Note**
+    >
+    >{: .small-space}
+    >     
+    > A service event refers to a failure that requires the creation of an HPE support case and may necessitate a service repair.
 
 2. To review the current status of the email notification policy, use the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMEmailNotificationPolicy -Region $Region
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image75.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image75.png){: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -1303,11 +1442,11 @@ efficiently.
 
 1. To check your group's current firmware compliance status, run this command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowFirmwareCompliance
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image76.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image76.png){: .bordered-image-thin}
 
     This command returns the following properties for the server:
 
@@ -1335,7 +1474,11 @@ efficiently.
 
     These properties describe the firmware compliance status of each group member. COM calculates the group compliance status by analyzing the group members for adherence to the server firmware settings configured in the group.
 
-    > **🔔 Note:** You may achieve a perfect 100% compliance score with no deviations depending on the status of your allocated server.
+    > **🔔 Note**
+    >
+    >{: .small-space}
+    >     
+    > You may achieve a perfect 100% compliance score with no deviations depending on the status of your allocated server.
 
 ## Task 2 -- Checking group firmware deviations
 
@@ -1348,11 +1491,11 @@ in the TotalDownloadSize column of the firmware compliance report.
 
 1. To view your group's firmware deviations, use:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServer -Region $Region -Name $SN -ShowGroupFirmwareDeviation
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image77.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image77.png){: .bordered-image-thin}
 
     This command returns the following properties for each firmware component that deviates:
 
@@ -1365,9 +1508,17 @@ in the TotalDownloadSize column of the firmware compliance report.
     - **ComponentFilename**: Filename of the firmware update package  
    
 
-> ⚠️ **Note:** If there are no deviations, this command will not return any response.  
+> ⚠️ **Note**
+>
+>{: .small-space}
+> 
+> If there are no deviations, this command will not return any response.  
 
-> 🔔 **Note:** The Firmware Compliance feature does not monitor HPE driver and software versions.
+> 🔔 **Note** 
+>
+>{: .small-space}
+> 
+> The Firmware Compliance feature does not monitor HPE driver and software versions.
 
 ## Task 3 -- Scheduling group firmware update
 
@@ -1377,60 +1528,68 @@ however, you will instead create a scheduled task to initiate the
 firmware update for all servers in your group during the upcoming
 weekend (in four days).
 
-> 🎯 **Note:** A live group firmware update will not be performed in
+> 🎯 **Note**
+>
+>{: .small-space}
+> 
+> A live group firmware update will not be performed in
 > this lab because of time constraints and the potential impact on
 > servers used by other sessions. Thank you for your understanding.
 
-1. To create a scheduled firmware update task, you need to use the **Update-HPECOMGroupFirmware** cmdlet with the **-ScheduleTime** parameter as shown below:
+1. To create a scheduled firmware update task, you need to use the `Update-HPECOMGroupFirmware` cmdlet with the `-ScheduleTime` parameter as shown below:
 
-    ```PowerShell
+    ```powershell
     Update-HPECOMGroupFirmware -Region $Region -GroupName $GroupName -AllowFirmwareDowngrade -InstallHPEDriversAndSoftware -ScheduleTime (Get-Date).AddDays(4)
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image78.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image78.png){: .bordered-image-thin}
 
     This update, scheduled in four days, allows firmware downgrades and installs HPE drivers and software.
 
-    > **📝 Note**: To benefit from HPE's drivers and software update
+    > **📝 Note**
+    >
+    >{: .small-space}
+    > 
+    > To benefit from HPE's drivers and software update
     > functionality, always make sure your servers fulfill the required
     > [prerequisites](https://support.hpe.com/hpesc/public/docDisplay?docId=sd00004003en_us&page=GUID-7D3436DF-F986-4910-AAC6-685CD5639A3F.html#ariaid-title1).
 
 2. To list all scheduled tasks, you can use:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSchedule -Region $Region
     ```
 
-    There are several other important parameters with the **Update-HPECOMGroupFirmware**:
+    There are several other important parameters with the `Update-HPECOMGroupFirmware`:
 
-    The **ServerSerialNumber** parameter allows you to update only a
+    The `-ServerSerialNumber` parameter allows you to update only a
     specific server within the group instead of updating all servers in the
     group at once. Testing firmware updates on an individual server prior to
     deploying them across the entire group is a recommended best practice.
 
-    By default, **Update-HPECOMGroupFirmware** runs updates in parallel
-    across eligible servers. The **SerialUpdates** parameter ensures that
+    By default, `-Update-HPECOMGroupFirmware` runs updates in parallel
+    across eligible servers. The `-SerialUpdates` parameter ensures that
     only one server in the group updates at a time. This prevents all
     servers from being offline simultaneously. When you combine
-    **SerialUpdates** with **StopOnFailure**, the update process stops
+    `-SerialUpdates` with `-StopOnFailure`, the update process stops
     immediately if any server fails the firmware update, preventing further
     servers from being updated until you investigate the issue.
 
-    The **PowerOffAfterUpdate** parameter automatically powers off servers
+    The `-PowerOffAfterUpdate` parameter automatically powers off servers
     after a successful firmware update, which can be useful for data center
     maintenance schedules or when you want to perform physical maintenance.
 
-    The **DisablePrerequisiteCheck** parameter bypasses prerequisite
+    The `-DisablePrerequisiteCheck` parameter bypasses prerequisite
     validation checks before the update starts. Use this parameter only in
     trusted environments where you have already verified that all
     prerequisites are met, as skipping these checks can lead to failed
     updates.
 
-    The **SkipComponentUpdatesThatAreBlockedByKnownIssues** parameter
+    The `-SkipComponentUpdatesThatAreBlockedByKnownIssues` parameter
     automatically avoids updating specific firmware components that are
     known to cause problems or issues in your environment.
 
-    The **Async** parameter returns control to your PowerShell prompt
+    The `-Async` parameter returns control to your PowerShell prompt
     immediately without waiting for the firmware update to complete. This is
     useful when you want to schedule multiple operations or continue with
     other tasks while the firmware updates run in the background.
@@ -1467,32 +1626,40 @@ and issuing utilization alerts.
 
 1. To check the current configuration status, you can run:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMMetricsConfiguration -Region $Region
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image79.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image79.png){: .bordered-image-thin}
 
     COM metrics provides information on CPU, memory bus, and I/O bus usage. These insights help organizations monitor and manage the performance of their server infrastructure.
 
 2. To view detailed CPU utilization insights for your server, use the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServerUtilizationInsights -Region $Region -SerialNumber $SN -CPUUtilization
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image80.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image80.png){: .bordered-image-thin}
 
 
-    > **⚠️ Note**: Please be advised that server utilization insights are only for HPE ProLiant **Intel** based servers and the utilization insight data might **not** be available at this time.
+    > **⚠️ Note**
+    >
+    >{: .small-space}
+    > 
+    > Please be advised that server utilization insights are only for HPE ProLiant **Intel** based servers and the utilization insight data might **not** be available at this time.
+    >
+    > {: .small-space}
     >    
-    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image81.png)  
-    >    
+    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image81.png){: .bordered-image-thin}  
+    >
+    > {: .small-space}
+    >
     > Since your server was only recently added to the COM instance, a minimum of one day is required for sufficient data collection. The screenshot is included to illustrate the anticipated output of the cmdlets after several days of data collection.
 
-3. By default, this cmdlet provides CPU utilization data for the past 90 days. If you want to customize the reporting period, add the **LookbackDays** parameter. For example, to see CPU utilization insights for the last 7 days, enter:
+3. By default, this cmdlet provides CPU utilization data for the past 90 days. If you want to customize the reporting period, add the `-LookbackDays` parameter. For example, to see CPU utilization insights for the last 7 days, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMServerUtilizationInsights -Region $Region -SerialNumber $SN -CPUUtilization -LookbackDays 7
     ```
 
@@ -1527,15 +1694,19 @@ operational expenses.
 
 1. To access in-depth energy consumption data for a specific server, use the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSustainabilityInsights -Region $Region -SerialNumber $SN -EnergyConsumption
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image82.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image82.png){: .bordered-image-thin}
 
     By default, similar to the server utilization insights, this cmdlet provides the total estimated figures for the previous 90 days. Specifying your server's serial number ensures that the results are focused on the server of interest.
 
-    > **⚠️ Note**: Please be advised that sustainability insight data will
+    > **⚠️ Note**
+    >
+    >{: .small-space}
+    > 
+    > Please be advised that sustainability insight data will
     > **not** be available at this time. Since your server was
     > only recently added to the COM instance, a minimum of one day is
     > required for sufficient data collection.
@@ -1544,32 +1715,32 @@ operational expenses.
 
 2. If you want to view aggregate sustainability metrics for all servers managed by your COM instance, use the following command:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSustainabilityInsights -Region $Region -EnergyConsumption
     ```
 
     > This screenshot illustrates the output generated by a COM instance operating with multiple servers:
-    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image83.png)
+    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image83.png){: .bordered-image-thin}
 
     The report provides the total estimated energy consumption (in kilowatt-hours, kWh) for all servers in the specified region. The data includes collected values from the past 90 days (3 months), as well as projected consumption for the next 180 days (6 months) helping with planning and decision-making.
 
 3. To retrieve this summary specifically for the EU Central region, use:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSustainabilityInsights -Region eu-central -EnergyConsumptionTotal
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image84.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image84.png){: .bordered-image-thin}
 
 4. Additionally, you can explore other sustainability insights by modifying the parameters:
 
-    - **EnergyCost**: Displays energy cost data for your servers.
+    - `-EnergyCost`: Displays energy cost data for your servers.
 
-    - **Co2Emissions**: Provides information about carbon emissions.
+    - `-Co2Emissions`: Provides information about carbon emissions.
 
-5. To extend your historical data analysis, you can look back up to 180 days by using the **LookBackDays** parameter. For example, to estimate future CO2 emissions based on trends from the past 3 months, run:
+5. To extend your historical data analysis, you can look back up to 180 days by using the `-LookBackDays` parameter. For example, to estimate future CO2 emissions based on trends from the past 3 months, run:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMSustainabilityInsights -Region $Region -Co2Emissions -LookBackDays 180
     ```
 
@@ -1592,9 +1763,9 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
 
 1. Generate an iLO SSO Session Object
 
-    Run the following command to obtain a session object for SSO authentication. Replace with your server's serial number and ensure **$Region** is set appropriately.
+    Run the following command to obtain a session object for SSO authentication. Replace with your server's serial number and ensure `$Region` is set appropriately.
 
-    ```PowerShell
+    ```powershell
     $SSOObject = Get-HPECOMServer -Region $Region -Name $SN | Get-HPECOMServeriLOSSO -GenerateXAuthToken -SkipCertificateValidation
     ```
     
@@ -1602,13 +1773,17 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
 
 2. To view the details of the session object, enter:
 
-    ```PowerShell
+    ```powershell
     $SSOObject
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image85.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image85.png){: .bordered-image-thin}
 
-    > **⚠️ Note**: SSO is currently not supported by servers managed
+    > **⚠️ Note**
+    >
+    >{: .small-space}
+    > 
+    > SSO is currently not supported by servers managed
     > through HPE OneView via HPE Compute Ops Management - OneView
     > Edition (COM-OVE).
 
@@ -1616,7 +1791,7 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
 
     If not already installed, add the HPEiLOCmdlets module to your environment and import it:
 
-    ```PowerShell
+    ```powershell
     Install-Module HPEiLOCmdlets
     Import-Module HPEiLOCmdlets
     ```
@@ -1625,7 +1800,7 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
 
     Use the following command to establish a connection to your iLO, substituting with the appropriate IP address. The SSO token will be passed from the session object.
 
-    ```PowerShell
+    ```powershell
     $connection = Connect-HPEiLO -Address $iLO_IP -XAuthToken $SSOObject."X-Auth-Token" -DisableCertificateAuthentication
     ```
 
@@ -1633,17 +1808,17 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
 
 5. To verify the connection, inspect the $connection object:
 
-    ```PowerShell
+    ```powershell
     $connection
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image86.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image86.png){: .bordered-image-thin}
 
 6. Perform iLO Operations
 
     With the established connection, you can now execute various iLO management tasks. For example, to retrieve the iLO event log, use:
 
-    ```PowerShell
+    ```powershell
     (Get-HPEiLOEventLog -Connection $connection).Eventlog
     ```
 
@@ -1661,13 +1836,13 @@ drift and re-applies the correct settings.
 
     Begin by querying the iLO directly with the HPEiLOCmdlets and your connection object to check the current firmware update policy. Use the following command to retrieve the firmware policy from your iLO:
 
-    ```PowerShell
+    ```powershell
     $FirmwareUpdatePolicy = Get-HPEiLOFirmwarePolicy -Connection $connection
     $FirmwareUpdatePolicy.Accept3rdPartyFirmware
     $FirmwareUpdatePolicy
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image87.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image87.png){: .bordered-image-thin}
 
     This command should return **false**, indicating that the AcceptThirdPartyFirmwareUpdates option is set to Disabled as per your group's iLO policy. With this setting, installation of third-party firmware on your server is blocked, aligning with recommended security
 best practices.
@@ -1676,21 +1851,21 @@ best practices.
 
     Now you will change the iLO setting in COM from ***Disabled*** to ***Enabled*** to simulate a configuration change. This will cause your server to become non-compliant with the group's iLO policy. Run this command to update the iLO setting:
 
-    ```PowerShell
+    ```powershell
     Set-HPECOMSettingiLOSettings -Region $Region -Name $iLOSettingName -Description "iLO Settings for AI Servers" -VirtualMedia Enabled -PasswordComplexity Enabled -WebServerSSL Enabled -AcceptThirdPartyFirmwareUpdates Enabled
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image88.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image88.png){: .bordered-image-thin}
 
 - **Step 3**: Check the compliance status
 
     After changing the setting, check the group's compliance status. You should see that the iLO settings are now marked as not compliant because the group policy expects Disabled but the setting now says Enabled:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowCompliance
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image89.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image89.png){: .bordered-image-thin}
 
     The compliance check will show that your server's iLO configuration no longer matches the group's iLO policy.
 
@@ -1698,11 +1873,11 @@ best practices.
 
     Now you will use COM to re-apply the correct iLO configuration to your server. This will change the **AcceptThirdPartyFirmwareUpdates** parameter back to **Enabled** on the iLO itself. Run the following command using the Async parameter so you don't have to wait for the job to complete:
 
-    ```PowerShell
+    ```powershell
     $task = Invoke-HPECOMGroupiLOConfiguration -Region $Region -GroupName $GroupName -ServerSerialNumber $SN -Async
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image90.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image90.png){: .bordered-image-thin}
 
     The command returns the job status, indicating that it is currently in a *Running* state.
 
@@ -1710,34 +1885,34 @@ best practices.
 
     While the iLO configuration is being applied, you can check the job status using these commands:
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region -Category Group -ShowRunning
     Get-HPECOMJob -Region $Region -Category Group -JobResourceUri $task.resourceUri
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image91.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image91.png){: .bordered-image-thin}
 
-    ```PowerShell
+    ```powershell
     Get-HPECOMJob -Region $Region -Category Group
     ```
     
-    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image92.png)
-    >
-    > The job will take approximately 1 to 2 minutes to complete.
-    >
-    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image93.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image92.png){: .bordered-image-thin}
+    
+    The job will take approximately 1 to 2 minutes to complete.
+    
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image93.png){: .bordered-image-thin}
 
 - **Step 6**: Verify the setting has been applied
 
     Once the job is completed, query the iLO again to verify that AcceptThirdPartyFirmwareUpdates has been changed back to Enabled on your iLO:
 
-    ```PowerShell
+    ```powershell
     $FirmwareUpdatePolicy = Get-HPEiLOFirmwarePolicy -Connection $connection
     $FirmwareUpdatePolicy.Accept3rdPartyFirmware
     $FirmwareUpdatePolicy
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image94.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image94.png){: .bordered-image-thin}
 
     This should now return "**true**" confirming that COM successfully applied the new iLO configuration to your server.
 
@@ -1774,21 +1949,21 @@ environment.
 
 1. Ensure you remove all devices from their service assignment by running:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLDevice | Remove-HPEGLDeviceFromService
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image95.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image95.png){: .bordered-image-thin}
 
 2. Confirm that the server has been removed from its assignment by running:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLDevice -ShowRequireAssignment
     ```
 
     The expected response should show no more service and region information:
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image96.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image96.png){: .bordered-image-thin}
 
 ## Task 2: Remove the subscription key
 
@@ -1797,42 +1972,42 @@ also important to delete your key from your workspace.
 
 1. To delete your subscription key, run:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLSubscription | Remove-HPEGLSubscription
     ```
     
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image97.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image97.png){: .bordered-image-thin}
 
 2. To verify that the subscription key has been removed, the following command should return no response:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLSubscription
     ```
 
 ## Task 3: Remove the COM service instance
 
-Next, remove the COM service instance (the **$Region** you set earlier)
+Next, remove the COM service instance (the `$Region` you set earlier)
 from your workspace. This will permanently remove all the COM resources,
 logs and settings you set during this lab. This helps reduce unused
 resources and lowers your carbon footprint.
 
 1. To remove the COM service instance, enter:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLService -ShowProvisioned | Remove-HPEGLService
     ```
     
     This action is permanent and cannot be undone. When you execute this cmdlet, you will receive a warning at runtime explaining the irreversible nature of the operation. The system will prompt you to confirm your choice.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image98.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image98.png){: .bordered-image-thin}
 
-3. Type **Y** and press **Enter** to proceed with the removal
+3. Type `Y` and press **Enter** to proceed with the removal
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image99.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image99.png){: .bordered-image-thin}
 
 4. To verify that the COM service instance has been removed, the following command should return no response:
 
-    ```PowerShell
+    ```powershell
     Get-HPEGLService -ShowProvisioned
     ```
 
@@ -1850,34 +2025,34 @@ your command line terminal.
 
 1. Begin by checking which HPE-related environment variables are still active in your session. To do this, run the following command:
 
-    ```PowerShell
+    ```powershell
     Get-Variable -Name hpe*
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image100.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image100.png){: .bordered-image-thin}
 
-    After completing the removal of the COM service instance in the previous task, you will observe that variables such as **$HPECOMRegions** are now empty. This confirms that the related resources have been successfully deleted from your environment.
+    After completing the removal of the COM service instance in the previous task, you will observe that variables such as `$HPECOMRegions` are now empty. This confirms that the related resources have been successfully deleted from your environment.
 
 2. To complete your session and disconnect from the HPE GreenLake platform, enter:
 
-    ```PowerShell
+    ```powershell
     Disconnect-HPEGL
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image101.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image101.png){: .bordered-image-thin}
 
     This command will terminate your session, remove any temporary API credentials, and clear related environment variables from your command line terminal.
 
 3. To ensure all environment variables have been cleared from your session, run the following command one final time:
 
-    ```PowerShell
+    ```powershell
     Get-Variable -Name hpe*
     ```
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image102.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image102.png){: .bordered-image-thin}
 
-    This will display any remaining HPE-related variables. You may notice that several variables, such as **$HPEGreenLakeSession** (session information), **$HPECOMInvokeReturnData** (recent request output),
-    **$HPEGLAPIClientCredentialName** (API credentials created during login), and **$HPEGLworkspaces** (workspace references) are no longer present, confirming their successful removal.
+    This will display any remaining HPE-related variables. You may notice that several variables, such as `$HPEGreenLakeSession` (session information), `$HPECOMInvokeReturnData` (recent request output),
+    `$HPEGLAPIClientCredentialName` (API credentials created during login), and `$HPEGLworkspaces` (workspace references) are no longer present, confirming their successful removal.
 
 
 [⬆ Back to Top](#)
@@ -1900,71 +2075,71 @@ progress.
 
 2. Click **Download raw file**.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image103.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image103.png){: .bordered-image-thin}
 
 3. Chrome automatically saves the script to your desktop's download folder; click **Show in folder**:
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image104.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image104.png){: .bordered-image-thin}
 
 4. Then right-click the script and select **Open with Code**.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image105.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image105.png){: .bordered-image-thin}
 
 5. Update these 5 variables using your HPE account information and team details, which you can find in the lab's login sheet:
 
-    - For **$MyEmail**, at line 251**,** substitute the value with your HPE account email you used earlier to connect to HPE GreenLake:
+    - For `$MyEmail`, at line **251**, substitute the value with your HPE account email you used earlier to connect to HPE GreenLake:
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image106.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image106.png){: .bordered-image-thin}
 
-    - For **$AdditionalUser**, at line 255, enter [admin@hpelabs.us]{.underline} as shown below, replacing the existing value:
+    - For `$AdditionalUser`, at line **255**, enter **admin@hpelabs.us** as shown below, replacing the existing value:
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image107.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image107.png){: .bordered-image-thin}
 
-    - For **$SubscriptionKeys**, at line 278, delete the second key and add the subscription key from the login sheet (make sure you remove the comma at the end of the line):
+    - For `$SubscriptionKeys`, at line **278**, delete the second key and add the subscription key from the login sheet (make sure you remove the comma at the end of the line):
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image108.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image108.png){: .bordered-image-thin}
 
-    - For **$Servers**, at lines 282+, substitute the value with your server's details (iLO IP and iLO password) found in the login sheet and remove the second server entry like below:
+    - For `$Servers`, at lines **282**+, substitute the value with your server's details (iLO IP and iLO password) found in the login sheet and remove the second server entry like below:
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image109.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image109.png){: .bordered-image-thin}
 
-    - For **$ParkingLotWorkspace**, at line 343, substitute the value with the name of your generated workspace. You may run **$WorkspaceName** to retrieve the name you configured previously
+    - For `$ParkingLotWorkspace`, at line **343**, substitute the value with the name of your generated workspace. You may run `$WorkspaceName` to retrieve the name you configured previously
 
-        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image110.png)
+        ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image110.png){: .bordered-image-thin}
 
 6. After you finish changing the variable, save the file (**File** /**Save**) and switch back to the PowerShell terminal.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image111.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image111.png){: .bordered-image-thin}
 
-7. Navigate to the Download folder:
+7. Navigate to the **Download** folder:
 
-    ```PowerShell
+    ```powershell
     cd Download
     ```
 
 8. Set the execution policy:
 
-    ```PowerShell
+    ```powershell
     Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
     ```
 
 9. Run the script:
 
-    ```PowerShell
+    ```powershell
     .\COM-Zero-Touch-Automation.ps1
     ```
 
 10. Enter your password when prompted.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image112.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image112.png){: .bordered-image-thin}
 
 11. After provisioning is finished, you can check how long it took.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image113.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image113.png){: .bordered-image-thin}
 
-12. Then, press **Y** when prompted with "Do you want to clean up the environment now? (Y/N)" to begin deprovisioning, which will remove everything, even the newly created workspace.
+12. Then, press `Y` when prompted with "Do you want to clean up the environment now? (Y/N)" to begin deprovisioning, which will remove everything, even the newly created workspace.
 
-    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image114.png)
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image114.png){: .bordered-image-thin}
 
     This completes the automation workflow, ensuring that your environment is both provisioned and then properly cleaned up, leaving no residual resources.
 

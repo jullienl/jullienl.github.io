@@ -445,3 +445,14 @@ blockquote ol ol li {
   background-color: #28a745;
   color: white;
 }
+
+/* Image borders */
+.bordered-image {
+  border: 1px solid #3b3939;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.bordered-image-thin {
+  border: 0.1px solid #3b3939;
+}
