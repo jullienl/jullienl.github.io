@@ -181,6 +181,10 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
     ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png){: .bordered-image-thin}
 
+4. I recommend you: **1️⃣** expand the window, **2️⃣** close the Copilot agent, and **3️⃣** increase the terminal size to improve your experience:
+
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13a.png){: .bordered-image-thin}
+
     > **💡 Tip: Using the Copy Button**  
     >
     >{: .small-space}
