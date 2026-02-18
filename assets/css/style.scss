@@ -447,12 +447,20 @@ blockquote ol ol li {
 }
 
 /* Image borders */
-.bordered-image {
-  border: 1px solid #3b3939;
-  padding: 5px;
-  border-radius: 4px;
+img.bordered-image,
+.bordered-image img,
+a.bordered-image img {
+  border: 1px solid #3b3939 !important;
+  padding: 5px !important;
+  border-radius: 4px !important;
+  display: inline-block !important;
 }
 
-.bordered-image-thin {
-  border: 0.1px solid #3b3939;
+img.bordered-image-thin,
+.bordered-image-thin img,
+a.bordered-image-thin img {
+  border: 0.1px solid #3b3939 !important;
+  padding: 5px !important;
+  border-radius: 4px !important;
+  display: inline-block !important;
 }
