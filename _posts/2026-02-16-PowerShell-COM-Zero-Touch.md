@@ -185,16 +185,11 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
     ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13a.png){: .bordered-image-thin}
 
-    > **💡 Tip: Using the Copy Button**  
-    >
-    >{: .small-space}
-    > 
-    > Throughout this lab, you'll see a **Copy** button in the midle-right corner of each code block. Click this button to instantly copy the command(s) to your clipboard, then use **CTRL**+**V** to paste them directly into the PowerShell terminal. This helps avoid typing errors and speeds up your workflow.
-    >
-    >{: .small-space}
-    > 
-    >
-    > ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png)
+    **💡 Tip: Using the Copy Button**  
+    
+    Throughout this lab, you'll see a **Copy** button in the midle-right corner of each code block. Click this button to instantly copy the command(s) to your clipboard, then use **CTRL**+**V** to paste them directly into the PowerShell terminal. This helps avoid typing errors and speeds up your workflow.
+
+    ![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png)
 
 5. While the PowerShell console is opened, you can optionally launch a browser to access the HPE GreenLake website and view the results of the commands you will be executing. If your browser is not already open and connected to HPE GreenLake, open a browser and navigate to <https://common.cloud.hpe.com>.
 
