@@ -260,7 +260,7 @@ Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL
     Get-Help Get-HPECOMserver -Full
     ```
 
-    ![A screenshot of a computer program Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image19.png){: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image19.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image19.png){:class="img-800"}{: data-lightbox="gallery"}
 
     `Get-Help` (or the alias `Help`) is a PowerShell cmdlet that allows you to retrieve information on other PowerShell cmdlets and functions. 
     
@@ -275,7 +275,7 @@ Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL
     This will display a list of examples demonstrating how to use `Get-HPECOMServer` along with detailed explanations of what each
 example does.
 
-    ![A screenshot of a computer Description automatically generated](/assets/images/HOLs/COM-ZeroTouch/image20.png){: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image20.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image20.png){:class="img-700"}{: data-lightbox="gallery"}
 
 
 [⬆ Back to Top](#)
