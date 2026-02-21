@@ -5,8 +5,8 @@
 @import
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize",
-  "breadcrumbs",
-  "home-enhancements";
+  "./breadcrumbs",
+  "./home-enhancements";
 
 /* ============================================
    ACCESSIBILITY ENHANCEMENTS
