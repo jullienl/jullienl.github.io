@@ -6,6 +6,11 @@
     DARK: 'dark'
   };
 
+  const ICONS = {
+    SUN: '☀',
+    MOON: '☾'
+  };
+
   function getGiscusTheme(theme) {
     return theme === THEMES.DARK ? 'dark_dimmed' : 'light';
   }
@@ -74,11 +79,11 @@
     if (!button) return;
 
     if (theme === THEMES.DARK) {
-      button.innerHTML = '☀️'; // Sun icon for switching to light
+      button.textContent = ICONS.SUN;
       button.setAttribute('aria-label', 'Switch to light theme');
       button.setAttribute('title', 'Switch to light theme');
     } else {
-      button.innerHTML = '🌙'; // Moon icon for switching to dark
+      button.textContent = ICONS.MOON;
       button.setAttribute('aria-label', 'Switch to dark theme');
       button.setAttribute('title', 'Switch to dark theme');
     }
