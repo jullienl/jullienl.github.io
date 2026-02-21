@@ -16,13 +16,16 @@ layout: default
   {% endif %}
 
   {%- if posts.size > 0 -%}
+    <!-- Category Filter Chips -->
+    {% include custom/category-filter.html %}
+    
     {%- if page.list_title -%}
       <h2 class="post-list-heading">{{ page.list_title }}</h2>
     {%- endif -%}
     <ul class="post-list">
       {%- for post in posts -%}
       {%- unless post.hidden -%}
-      <li class="card">
+      <li class="card" data-categories="{% for cat in post.categories %}{{ cat | slugify }} {% endfor %}">
         <a class="post-link" href="{{ post.url | relative_url }}">
           <div class="bg-img" style="background-image: url({{post.image}})"></div>
         </a>

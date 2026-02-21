@@ -4,7 +4,9 @@ title:  "PowerShell Library for HPE Compute Ops Management"
 categories: GreenLake
 image: /assets/images/HPECOMCmdlets/header.jpg
 # excerpt: The purpose of this blog is to familiarize readers with the PowerShell library for the HPE GreenLake edge-to-cloud platform.
-tags: COM Compute Ops Management
+tags: 
+  - greenlake
+  - com 
 ---
 
 Update: Avril 2025

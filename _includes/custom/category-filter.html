@@ -1,0 +1,27 @@
+<!-- Category Filter Chips -->
+{%- if site.posts.size > 0 -%}
+  {%- assign categories = "" | split: "" -%}
+  {%- for post in site.posts -%}
+    {%- if post.categories -%}
+      {%- for category in post.categories -%}
+        {%- unless categories contains category -%}
+          {%- assign categories = categories | push: category -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {%- if categories.size > 0 -%}
+  <div class="category-chips" role="group" aria-label="Filter posts by category">
+    <a href="#" class="category-chip active" data-category="all">
+      All Posts <span class="chip-count">({{ site.posts.size }})</span>
+    </a>
+    {%- for category in categories | sort -%}
+      {%- assign category_posts = site.posts | where: "categories", category | size -%}
+      <a href="#{{ category | slugify }}" class="category-chip" data-category="{{ category | slugify }}">
+        {{ category | escape }} <span class="chip-count">({{ category_posts }})</span>
+      </a>
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+{%- endif -%}

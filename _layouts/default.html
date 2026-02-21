@@ -5,13 +5,18 @@
 
   <body>
 
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    {%- if page.hide_header == true -%}
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+    {%- endif -%}
 
     {%- unless page.hide_header == true -%}
       {%- include header.html -%}
     {%- endunless -%}
 
-    <main class="page-content" aria-label="Content">
+    <main id="main-content" class="page-content" aria-label="Content" role="main">
       <div class="wrapper">
         {{ content }}
       </div>

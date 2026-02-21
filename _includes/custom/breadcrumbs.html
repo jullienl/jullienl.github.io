@@ -1,0 +1,31 @@
+<!-- Breadcrumb Navigation -->
+{%- if page.layout == 'post' -%}
+<nav class="breadcrumb" aria-label="Breadcrumb" role="navigation">
+  <ol class="breadcrumb-list">
+    <li class="breadcrumb-item">
+      <a href="{{ '/' | relative_url }}" aria-current="false">Home</a>
+    </li>
+    {%- if page.categories and page.categories.size > 0 -%}
+    <li class="breadcrumb-item">
+      <a href="{{ site.baseurl }}/blog/#{{ page.categories.first | slugify }}" aria-current="false">
+        {{ page.categories.first | escape }}
+      </a>
+    </li>
+    {%- endif -%}
+    <li class="breadcrumb-item" aria-current="page">
+      <span>{{ page.title | escape }}</span>
+    </li>
+  </ol>
+</nav>
+{%- elsif page.layout == 'page' -%}
+<nav class="breadcrumb" aria-label="Breadcrumb" role="navigation">
+  <ol class="breadcrumb-list">
+    <li class="breadcrumb-item">
+      <a href="{{ '/' | relative_url }}" aria-current="false">Home</a>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <span>{{ page.title | escape }}</span>
+    </li>
+  </ol>
+</nav>
+{%- endif -%}

@@ -75,18 +75,24 @@
 
   // Update the toggle button icon
   function updateToggleButton(theme) {
-    const button = document.getElementById('theme-toggle');
-    if (!button) return;
+    const buttons = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-header')
+    ];
 
-    if (theme === THEMES.DARK) {
-      button.textContent = ICONS.SUN;
-      button.setAttribute('aria-label', 'Switch to light theme');
-      button.setAttribute('title', 'Switch to light theme');
-    } else {
-      button.textContent = ICONS.MOON;
-      button.setAttribute('aria-label', 'Switch to dark theme');
-      button.setAttribute('title', 'Switch to dark theme');
-    }
+    buttons.forEach(button => {
+      if (!button) return;
+
+      if (theme === THEMES.DARK) {
+        button.textContent = ICONS.SUN;
+        button.setAttribute('aria-label', 'Switch to light theme');
+        button.setAttribute('title', 'Switch to light theme');
+      } else {
+        button.textContent = ICONS.MOON;
+        button.setAttribute('aria-label', 'Switch to dark theme');
+        button.setAttribute('title', 'Switch to dark theme');
+      }
+    });
   }
 
   // Toggle between themes
@@ -103,11 +109,17 @@
     bindGiscusFrameTheme();
     observeGiscus();
 
-    // Add click event to toggle button
-    const button = document.getElementById('theme-toggle');
-    if (button) {
-      button.addEventListener('click', toggleTheme);
-    }
+    // Add click event to both toggle buttons
+    const buttons = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-header')
+    ];
+
+    buttons.forEach(button => {
+      if (button) {
+        button.addEventListener('click', toggleTheme);
+      }
+    });
   }
 
   // Run on DOM ready

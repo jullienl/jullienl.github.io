@@ -1,0 +1,36 @@
+<!-- Related Posts Section -->
+{%- if page.layout == 'post' -%}
+  {%- assign related_posts = site.posts | where_exp: "post", "post.categories == page.categories" | where_exp: "post", "post.url != page.url" | limit: 3 -%}
+  
+  {%- if related_posts.size > 0 -%}
+  <aside class="related-posts" role="complementary" aria-label="Related articles">
+    <hr>
+    <h3>📚 Related Articles</h3>
+    <ul class="related-posts-list">
+      {%- for post in related_posts -%}
+      <li class="related-post-item">
+        <a href="{{ post.url | relative_url }}" class="related-post-link">
+          <div class="related-post-content">
+            <h4>{{ post.title | escape }}</h4>
+            <p class="related-post-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%b %d, %Y" }}
+              </time>
+              {%- if post.categories -%}
+               • <span class="related-post-category">{{ post.categories | first }}</span>
+              {%- endif -%}
+            </p>
+            {%- if post.excerpt -%}
+            <p class="related-post-excerpt">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+            {%- endif -%}
+          </div>
+          {%- if post.image -%}
+          <div class="related-post-image" style="background-image: url('{{ post.image }}')"></div>
+          {%- endif -%}
+        </a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </aside>
+  {%- endif -%}
+{%- endif -%}

@@ -5,6 +5,11 @@ hidden: true
 hide_header: true
 hide_footer: true
 image: /assets/images/banner-image.jpg
+tags: 
+   - greenlake
+   - com
+   - powershell
+   - scripting
 ---
 
 Living Lab experience

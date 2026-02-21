@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Welcome to my blog!"
-categories: Blog
 image: /assets/images/welcome.jpg
 # excerpt:  I have decided to create a blog on DevOps for HPE products and solutions...
 ---

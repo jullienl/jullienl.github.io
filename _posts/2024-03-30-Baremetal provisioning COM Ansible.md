@@ -1,10 +1,13 @@
 ---
 layout: post
 title: "Bare metal provisioning with Compute Ops Management and Ansible"
-categories: Compute Ops Management
+categories: ["Compute Ops Management"]
 image: /assets/images/COM-Baremetal/Baremetal-Title.jpg
 # excerpt: Streamline your server deployments with HPE GreenLake
-tags: GreenLake COM Ansible 
+tags: 
+  - greenlake
+  - com
+  - ansible 
 ---
 
 
