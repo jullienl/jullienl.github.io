@@ -5,7 +5,9 @@
 
   <body>
 
-    {%- include header.html -%}
+    {%- unless page.hide_header == true -%}
+      {%- include header.html -%}
+    {%- endunless -%}
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -13,7 +15,9 @@
       </div>
     </main>
 
-    {%- include footer.html -%}
+    {%- unless page.hide_footer == true -%}
+      {%- include footer.html -%}
+    {%- endunless -%}
 
     <!-- Lightbox CSS -->
     <script type="text/javascript" src="/assets/js/lightbox.js"></script>

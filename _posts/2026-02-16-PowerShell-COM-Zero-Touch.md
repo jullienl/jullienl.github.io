@@ -2,6 +2,8 @@
 layout: post
 title: "HPE Compute Ops Management Zero-Touch Automation"
 hidden: true
+hide_header: true
+hide_footer: true
 image: /assets/images/banner-image.jpg
 ---
 
@@ -378,7 +380,7 @@ If you already have one or more workspaces available, the command will return a 
 >
 >{: .small-space}
 > 
-> The command to directly connect to an existing and known workspace (should not be used in this lab) is:
+> The command to directly connect to an existing and known workspace is:
 >
 >  `Connect-HPEGL -Credential $credentials -Workspace "My_workspace_name"`
 

@@ -80,6 +80,7 @@ Upon receiving the POST request, the destination application at the webhook URL 
 After the event has been processed according to the instructions laid out in the event handler, the loop comes to a close. The workflow ends until a new event is triggered, and the process starts all over again.
 
 
+[⬆ Back to Top](#)
 
 
 ## Available resources in Compute Ops Management
@@ -140,6 +141,7 @@ For each resource, certain specific properties are capable of initiating the dis
 
  > More information about these monitorable properties can be found in the related API documentation which is linked in this table.
 
+[⬆ Back to Top](#)
 
 
 ## Filtering options
@@ -331,6 +333,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
   => Match any server events whose connected state transitions out of a `false` state, which occurs after the iLO establishes a connection with COM
 
+[⬆ Back to Top](#)
 
 
 ## Secure handshake mechanism
@@ -499,6 +502,8 @@ Description of the different requests:
 
         > The webhook transitions to a `state` of `DISABLED` and a `status` of `WARNING` when the endpoint fails to respond with the expected body or when it returns a non-200 status code. 
           In addition, `statusReason` indicates `Incorrect handshake response.`
+
+[⬆ Back to Top](#)
 
 
 ## Integrating COM webhooks with automation tools
@@ -1090,6 +1095,8 @@ The following steps describe how to implement this scenario in Make:
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png){:class="img-100pct"}{: data-lightbox="gallery"}  
   <br>  
 
+[⬆ Back to Top](#)
+
 
 ## Using the Make On-premise agent
 
@@ -1100,6 +1107,8 @@ Good news, Make offers an On-premise agent designed to bridge the gap between Ma
 To learn more, see [Using the On-premise agent](https://www.make.com/en/help/connections/using-an-on-premise-agent).
 
 > According to the Make website as of April 2024, the On-premise agent is still in beta and is exclusively available with their Enterprise plan.
+
+[⬆ Back to Top](#)
 
 
 ## Taking automation a step further?
@@ -1143,3 +1152,6 @@ Details about the different modules to use in Make to interact with COM:
 
 
 To wrap things up, I'm genuinely excited about the opportunities here! The combination of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake. Imagine having complicated tasks just flow smoothly on their own—less manual work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀
+
+
+[⬆ Back to Top](#)

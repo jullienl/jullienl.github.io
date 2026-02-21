@@ -11,6 +11,12 @@
   padding: 15px;
 }
 
+body > header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
 .site-header {
   border-top: 0px;
 }
@@ -458,7 +464,432 @@ a.bordered-image img {
 img.bordered-image-thin,
 .bordered-image-thin img,
 a.bordered-image-thin img {
-  border: 0.1px solid #3b3939 !important;
+  border: 1px solid #3b3939 !important;
   border-radius: 4px !important;
   display: inline-block !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Override minima auto skin for light theme */
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background-color: #ffffff !important;
+  color: #111 !important;
+}
+
+[data-theme="light"] .site-header {
+  background-color: #fdfdfd !important;
+  border-bottom-color: #e8e8e8 !important;
+}
+
+[data-theme="light"] .site-title,
+[data-theme="light"] .page-link {
+  color: #111 !important;
+}
+
+[data-theme="light"] .post-content,
+[data-theme="light"] .post-title,
+[data-theme="light"] .post-meta,
+[data-theme="light"] h1, [data-theme="light"] h2, 
+[data-theme="light"] h3, [data-theme="light"] h4,
+[data-theme="light"] h5, [data-theme="light"] h6 {
+  color: #111 !important;
+}
+
+[data-theme="light"] code {
+  background-color: #e8e8e8 !important;
+  color: #111 !important;
+  border: 1px solid #d0d0d0 !important;
+}
+
+[data-theme="light"] pre {
+  background-color: #e8e8e8 !important;
+  border-color: #d0d0d0 !important;
+  color: #111 !important;
+}
+
+[data-theme="light"] pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+}
+
+[data-theme="light"] blockquote {
+  color: #555 !important;
+  border-left-color: #e8e8e8 !important;
+}
+
+[data-theme="light"] table {
+  border-color: #e8e8e8 !important;
+  color: #404040 !important;
+}
+
+[data-theme="light"] th {
+  border-color: #e0e0e0 !important;
+  background-color: #f0f0f0 !important;
+  color: #111 !important;
+}
+
+[data-theme="light"] td {
+  border-color: #e8e8e8 !important;
+  background-color: #ffffff !important;
+  color: #404040 !important;
+}
+
+[data-theme="light"] tr:nth-child(even) td {
+  background-color: #f7f7f7 !important;
+}
+
+/* Apply thin border to ALL post images in light mode */
+[data-theme="light"] .post-content img {
+  border: 1px solid #c8c8c8 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="light"] img.bordered-image,
+[data-theme="light"] .bordered-image img,
+[data-theme="light"] a.bordered-image img {
+  border-color: #c8c8c8 !important;
+}
+
+[data-theme="light"] img.bordered-image-thin,
+[data-theme="light"] .bordered-image-thin img,
+[data-theme="light"] a.bordered-image-thin img {
+  border-color: #c8c8c8 !important;
+}
+
+[data-theme="light"] .site-footer {
+  background-color: #fdfdfd !important;
+  border-top-color: #e8e8e8 !important;
+}
+
+[data-theme="light"] .copy-code-button {
+  background-color: rgba(68, 68, 68, 0.8) !important;
+  color: white !important;
+}
+
+[data-theme="light"] .copy-code-button:hover {
+  background-color: rgba(40, 40, 40, 0.95) !important;
+}
+
+[data-theme="light"] .copy-code-button.copied,
+[data-theme="light"] .copy-code-button.copied:hover {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+[data-theme="light"] .highlight,
+[data-theme="light"] .highlighter-rouge {
+  background-color: #e8e8e8 !important;
+}
+
+/* Syntax highlighting for light theme - darker colors for better contrast */
+[data-theme="light"] .highlight .c,
+[data-theme="light"] .highlight .cm,
+[data-theme="light"] .highlight .c1 {
+  color: #008000 !important; /* Comments - green */
+}
+
+[data-theme="light"] .highlight .k,
+[data-theme="light"] .highlight .kd,
+[data-theme="light"] .highlight .kn,
+[data-theme="light"] .highlight .kt {
+  color: #0000ff !important; /* Keywords - blue */
+}
+
+[data-theme="light"] .highlight .s,
+[data-theme="light"] .highlight .s1,
+[data-theme="light"] .highlight .s2 {
+  color: #a31515 !important; /* Strings - red */
+}
+
+[data-theme="light"] .highlight .na,
+[data-theme="light"] .highlight .nc,
+[data-theme="light"] .highlight .nf {
+  color: #795e26 !important; /* Functions/attributes - dark yellow/brown */
+}
+
+[data-theme="light"] .highlight .n,
+[data-theme="light"] .highlight .no {
+  color: #001080 !important; /* Variables/constants - dark blue */
+}
+
+[data-theme="light"] .highlight .nn,
+[data-theme="light"] .highlight .nb {
+  color: #267f99 !important; /* Built-ins/namespaces - teal */
+}
+
+[data-theme="light"] .highlight .mi,
+[data-theme="light"] .highlight .mf,
+[data-theme="light"] .highlight .mh {
+  color: #098658 !important; /* Numbers - dark green */
+}
+
+[data-theme="light"] .highlight .o,
+[data-theme="light"] .highlight .ow {
+  color: #000000 !important; /* Operators - black */
+}
+
+[data-theme="light"] .highlight .p {
+  color: #000000 !important; /* Punctuation - black */
+}
+
+[data-theme="light"] .highlight .nv,
+[data-theme="light"] .highlight .vc,
+[data-theme="light"] .highlight .vg,
+[data-theme="light"] .highlight .vi {
+  color: #001080 !important; /* Variables - dark blue */
+}
+
+[data-theme="light"] .highlight .w {
+  color: #000000 !important; /* Whitespace - black */
+}
+
+/* Apply thin border to ALL post images in light mode (dark system override) */
+[data-theme="light"] .post-content img {
+  border: 1px solid #c8c8c8 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="light"] img.bordered-image,
+[data-theme="light"] .bordered-image img,
+[data-theme="light"] a.bordered-image img {
+  border-color: #c8c8c8 !important;
+}
+
+[data-theme="light"] img.bordered-image-thin,
+[data-theme="light"] .bordered-image-thin img,
+[data-theme="light"] a.bordered-image-thin img {
+  border-color: #c8c8c8 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="light"],
+  html[data-theme="light"] body,
+  html[data-theme="light"] .page-content,
+  html[data-theme="light"] .wrapper {
+    background-color: #ffffff !important;
+    color: #111 !important;
+  }
+  
+  [data-theme="light"] code {
+    background-color: #e8e8e8 !important;
+    color: #111 !important;
+  }
+  
+  [data-theme="light"] pre {
+    background-color: #e8e8e8 !important;
+    color: #111 !important;
+  }
+  
+  [data-theme="light"] .highlight,
+  [data-theme="light"] .highlighter-rouge {
+    background-color: #e8e8e8 !important;
+  }
+  
+  [data-theme="light"] pre code {
+    background-color: transparent !important;
+  }
+}
+
+/* Dark theme styles */
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+[data-theme="dark"] .page-content,
+[data-theme="dark"] .wrapper {
+  background-color: #1a1a1a !important;
+  color: #e0e0e0 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  html[data-theme="dark"],
+  html[data-theme="dark"] body,
+  html[data-theme="dark"] .page-content,
+  html[data-theme="dark"] .wrapper {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+  }
+}
+
+[data-theme="dark"] .site-header {
+  background-color: #1a1a1a !important;
+  border-bottom-color: #444 !important;
+}
+
+[data-theme="dark"] .site-header .wrapper {
+  background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .site-title,
+[data-theme="dark"] .page-link {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .post-content,
+[data-theme="dark"] .post-title,
+[data-theme="dark"] .post-meta,
+[data-theme="dark"] h1, [data-theme="dark"] h2, 
+[data-theme="dark"] h3, [data-theme="dark"] h4,
+[data-theme="dark"] h5, [data-theme="dark"] h6 {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .post-list h3 a {
+  color: #6db3f2 !important;
+}
+
+[data-theme="dark"] a {
+  color: #6db3f2 !important;
+}
+
+[data-theme="dark"] a:visited {
+  color: #b48ead !important;
+}
+
+[data-theme="dark"] code {
+  background-color: #2d2d2d !important;
+  color: #f8f8f2 !important;
+}
+
+[data-theme="dark"] pre {
+  background-color: #2d2d2d !important;
+  border-color: #444 !important;
+}
+
+[data-theme="dark"] blockquote {
+  color: #b0b0b0 !important;
+  border-left-color: #666 !important;
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: rgba(17, 17, 17, 0.95);
+  border-color: #444;
+}
+
+[data-theme="dark"] table {
+  border-color: #444 !important;
+}
+
+[data-theme="dark"] th,
+[data-theme="dark"] td {
+  border-color: #444 !important;
+  background-color: #2d2d2d !important;
+}
+
+[data-theme="dark"] .site-footer {
+  background-color: #2d2d2d !important;
+  border-top-color: #444 !important;
+  color: #b0b0b0 !important;
+}
+
+/* Light theme styles (default) */
+html[data-theme="light"],
+html[data-theme="light"] body,
+[data-theme="light"] .page-content,
+[data-theme="light"] .wrapper {
+  background-color: #ffffff !important;
+  color: #111 !important;
+}
+
+/* ===========================================================
+   Syntax highlight overrides for light theme on dark-mode systems
+   When system preference is dark but user toggled to light theme,
+   restore all light mode highlight token colors.
+   =========================================================== */
+
+/* Ensure .err (PowerShell parameters) is correct in light mode */
+html .highlight .err,
+body .highlight .err {
+  color: #0000cc !important;
+  background-color: transparent !important;
+}
+
+/* When system is dark mode but user explicitly chose light theme,
+   restore ALL light mode highlight colors */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="light"] .highlight .c     { color: #998 !important; font-style: italic !important; }
+  html[data-theme="light"] .highlight .err   { color: #0000cc !important; background-color: transparent !important; }
+  html[data-theme="light"] .highlight .k     { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .o     { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .cm    { color: #998 !important; font-style: italic !important; }
+  html[data-theme="light"] .highlight .cp    { color: #999 !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .c1    { color: #998 !important; font-style: italic !important; }
+  html[data-theme="light"] .highlight .cs    { color: #999 !important; font-weight: bold !important; font-style: italic !important; }
+  html[data-theme="light"] .highlight .gd    { color: #000 !important; background-color: #fdd !important; }
+  html[data-theme="light"] .highlight .ge    { font-style: italic !important; }
+  html[data-theme="light"] .highlight .gr    { color: #a00 !important; }
+  html[data-theme="light"] .highlight .gh    { color: #999 !important; }
+  html[data-theme="light"] .highlight .gi    { color: #000 !important; background-color: #dfd !important; }
+  html[data-theme="light"] .highlight .go    { color: #888 !important; }
+  html[data-theme="light"] .highlight .gp    { color: #555 !important; }
+  html[data-theme="light"] .highlight .gs    { font-weight: bold !important; }
+  html[data-theme="light"] .highlight .gu    { color: #aaa !important; }
+  html[data-theme="light"] .highlight .gt    { color: #a00 !important; }
+  html[data-theme="light"] .highlight .kc    { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .kd    { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .kp    { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .kr    { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .kt    { color: #458 !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .m     { color: #099 !important; }
+  html[data-theme="light"] .highlight .s     { color: #d14 !important; }
+  html[data-theme="light"] .highlight .na    { color: #008080 !important; }
+  html[data-theme="light"] .highlight .nb    { color: #0086B3 !important; }
+  html[data-theme="light"] .highlight .nc    { color: #458 !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .no    { color: #008080 !important; }
+  html[data-theme="light"] .highlight .ni    { color: #800080 !important; }
+  html[data-theme="light"] .highlight .ne    { color: #900 !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .nf    { color: #900 !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .nn    { color: #555 !important; }
+  html[data-theme="light"] .highlight .nt    { color: #000080 !important; }
+  html[data-theme="light"] .highlight .nv    { color: #008080 !important; }
+  html[data-theme="light"] .highlight .ow    { color: inherit !important; font-weight: bold !important; }
+  html[data-theme="light"] .highlight .w     { color: #bbb !important; }
+  html[data-theme="light"] .highlight .mf    { color: #099 !important; }
+  html[data-theme="light"] .highlight .mh    { color: #099 !important; }
+  html[data-theme="light"] .highlight .mi    { color: #099 !important; }
+  html[data-theme="light"] .highlight .mo    { color: #099 !important; }
+  html[data-theme="light"] .highlight .sb    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .sc    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .sd    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .s2    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .se    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .sh    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .si    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .sx    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .sr    { color: #009926 !important; }
+  html[data-theme="light"] .highlight .s1    { color: #d14 !important; }
+  html[data-theme="light"] .highlight .ss    { color: #990073 !important; }
+  html[data-theme="light"] .highlight .bp    { color: #999 !important; }
+  html[data-theme="light"] .highlight .vc    { color: #008080 !important; }
+  html[data-theme="light"] .highlight .vg    { color: #008080 !important; }
+  html[data-theme="light"] .highlight .vi    { color: #008080 !important; }
+  html[data-theme="light"] .highlight .il    { color: #099 !important; }
 }

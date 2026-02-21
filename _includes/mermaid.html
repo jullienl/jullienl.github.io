@@ -1,10 +1,55 @@
 <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ 
-        startOnLoad: true, 
-        // theme: "forest", 
-        theme: "dark", 
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 
+        const THEME_KEY = 'user-theme-preference';
 
-    });
+        function getSiteTheme() {
+            const htmlTheme = document.documentElement.getAttribute('data-theme');
+            if (htmlTheme === 'light' || htmlTheme === 'dark') return htmlTheme;
+
+            const savedTheme = localStorage.getItem(THEME_KEY);
+            if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
+
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function getMermaidTheme(siteTheme) {
+            return siteTheme === 'dark' ? 'dark' : 'default';
+        }
+
+        async function renderMermaid(theme) {
+            const blocks = Array.from(document.querySelectorAll('.mermaid'));
+            if (!blocks.length) return;
+
+            blocks.forEach((block) => {
+                if (!block.dataset.mermaidSource) {
+                    block.dataset.mermaidSource = block.textContent.trim();
+                }
+                block.innerHTML = block.dataset.mermaidSource;
+                block.removeAttribute('data-processed');
+            });
+
+            mermaid.initialize({ startOnLoad: false, theme });
+            await mermaid.run({ querySelector: '.mermaid' });
+        }
+
+        async function initMermaid() {
+            let currentTheme = getMermaidTheme(getSiteTheme());
+            await renderMermaid(currentTheme);
+
+            window.addEventListener('theme-changed', async (event) => {
+                const requestedTheme = event?.detail?.theme || getSiteTheme();
+                const nextTheme = getMermaidTheme(requestedTheme);
+                if (nextTheme === currentTheme) return;
+
+                currentTheme = nextTheme;
+                await renderMermaid(currentTheme);
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMermaid);
+        } else {
+            initMermaid();
+        }
   </script>

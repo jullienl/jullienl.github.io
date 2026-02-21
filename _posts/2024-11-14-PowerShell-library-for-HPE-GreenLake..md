@@ -96,6 +96,8 @@ Install-Module -Name HPECOMCmdlets -Force -AllowClobber
    
 > **Note**: If you encounter permission issues during the upgrade process, run PowerShell as an administrator or use the `-Scope CurrentUser` parameter with the `Install-Module` cmdlet.
 
+[⬆ Back to Top](#)
+
 
 ## Getting Started
 
@@ -233,6 +235,7 @@ For more details, refer to the help documentation of the `Connect-HPEGL` cmdlet:
 Get-Help Connect-HPEGL -Full
 ```
 
+[⬆ Back to Top](#)
 
 
 
@@ -263,6 +266,8 @@ With HPE Compute Ops Management:
 - Managing and upgrading HPE OneView and Secure Gateway appliances.
 
 Feel free to modify and expand upon these examples to suit your specific needs. This file is an excellent starting point for understanding the capabilities of the module and how to leverage it in your automation workflows.
+
+[⬆ Back to Top](#)
 
 
 ## Getting help
@@ -301,6 +306,9 @@ Get-Command -Module HPECOMCmdlets | ? Name -match group
 
 [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-100pct"}{: data-lightbox="gallery"} 
 
+[⬆ Back to Top](#)
+
+
 ## Support
 
 If you encounter any issues or unexpected behavior, please open a [new issue](https://github.com/jullienl/HPE-COM-PowerShell-Library/issues) on my GitHub issue tracker for assistance.
@@ -319,6 +327,7 @@ Please note that the HPE GreenLake APIs are subject to change. Such changes can 
 * [HPE Compute Ops Management User Guide](https://www.hpe.com/info/com-ug)
 * [HPE GreenLake Developer Portal](https://developer.greenlake.hpe.com/)
 
+[⬆ Back to Top](#)
 
 
 
