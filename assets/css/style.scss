@@ -472,8 +472,8 @@ a.bordered-image-thin img {
 /* Theme toggle button */
 .theme-toggle {
   position: fixed;
-  top: 10px;
-  right: 20px;
+  bottom: 20px;
+  left: 20px;
   z-index: 1101;
   color: #222;
   background: rgba(255, 255, 255, 0.9);
@@ -489,6 +489,8 @@ a.bordered-image-thin img {
   justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-variant-emoji: text;
+  -webkit-text-fill-color: currentColor;
 }
 
 .theme-toggle:hover {
