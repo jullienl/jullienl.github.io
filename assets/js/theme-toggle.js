@@ -7,8 +7,8 @@
   };
 
   const ICONS = {
-    SUN: '☀',
-    MOON: '☾'
+    SUN: '<svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1.5" x2="12" y2="4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="19.5" x2="12" y2="22.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1.5" y1="12" x2="4.5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19.5" y1="12" x2="22.5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.2" y1="4.2" x2="6.3" y2="6.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.2" y1="19.8" x2="6.3" y2="17.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    MOON: '<svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M20.9 14.2a8.7 8.7 0 1 1-11.1-11.1A9.5 9.5 0 0 0 20.9 14.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
   };
 
   function getGiscusTheme(theme) {
@@ -84,11 +84,11 @@
       if (!button) return;
 
       if (theme === THEMES.DARK) {
-        button.textContent = ICONS.SUN;
+        button.innerHTML = ICONS.SUN;
         button.setAttribute('aria-label', 'Switch to light theme');
         button.setAttribute('title', 'Switch to light theme');
       } else {
-        button.textContent = ICONS.MOON;
+        button.innerHTML = ICONS.MOON;
         button.setAttribute('aria-label', 'Switch to dark theme');
         button.setAttribute('title', 'Switch to dark theme');
       }
