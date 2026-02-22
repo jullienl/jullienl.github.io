@@ -3,8 +3,11 @@ GEM
   specs:
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    base64 (0.3.0)
+    bigdecimal (4.0.1)
     colorator (1.1.0)
     concurrent-ruby (1.2.3)
+    csv (3.3.5)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
@@ -72,18 +75,23 @@ GEM
     tzinfo-data (1.2024.1)
       tzinfo (>= 1.0.0)
     unicode-display_width (2.5.0)
+    wdm (0.2.0)
     webrick (1.8.1)
 
 PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  base64
+  bigdecimal
+  csv
   jekyll-feed (~> 0.12)
   jekyll-paginate
   jekyll-seo-tag
   jekyll-sitemap
   tzinfo (~> 1.2)
   tzinfo-data
+  wdm (>= 0.1.0)
 
 BUNDLED WITH
    2.5.10
