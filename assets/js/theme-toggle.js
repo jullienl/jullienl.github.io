@@ -102,6 +102,13 @@
     applyTheme(newTheme);
   }
 
+  function closeMobileMenu() {
+    const navTrigger = document.getElementById('nav-trigger');
+    if (navTrigger && navTrigger.checked) {
+      navTrigger.checked = false;
+    }
+  }
+
   // Initialize theme on page load
   function initTheme() {
     const savedTheme = getCurrentTheme();
@@ -117,7 +124,12 @@
 
     buttons.forEach(button => {
       if (button) {
-        button.addEventListener('click', toggleTheme);
+        button.addEventListener('click', (event) => {
+          toggleTheme();
+          if (event.currentTarget && event.currentTarget.id === 'theme-toggle-header') {
+            closeMobileMenu();
+          }
+        });
       }
     });
   }
