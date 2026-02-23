@@ -86,7 +86,7 @@ Here are the key components I’m using in my lab environment to support ADFS se
 
 - [HAProxy](https://docs.netgate.com/pfsense/en/latest/packages/haproxy.html) package in **pfSense** to publish ADFS, providing load balancing, high availability, and enhanced security for ADFS services. See Andreas Helland's excellent article: [Publishing ADFS through pfSense with HAProxy](https://contos.io/publishing-adfs-through-pfsense-with-haproxy-e5c86fc4b5e1)
 
-   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-HAProxy-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-HAProxy-1.png){:class="img-100pct"}{: data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-HAProxy-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/pfsense-HAProxy-1.png){:class="img-700"}{: data-lightbox="gallery"}
 
 - [Acme](https://docs.netgate.com/pfsense/en/latest/packages/acme/index.html) package in **pfSense** to automatically generate a free [Let's Encrypt](https://letsencrypt.org/) signed certificate for my domain every 60 days (Let's Encrypt certificates expire after 90 days).  
 
@@ -148,7 +148,7 @@ Active Directory Federation Services (ADFS) requires a certificate for Secure So
 
    For the initial ADFS configuration (so before you run [Step 6: ADFS configuration](#step6)), a p12 certificate must be generated from the certificate files supplied by the Acme package. The following command can be run from a pfSense shell console:      
 
-   ```
+   ```bash
    openssl pkcs12 -export -in /cf/conf/acme/<name>.all.pem -inkey /cf/conf/acme/<name>.key -out /cf/conf/acme/<name>.p12 -passout pass:password -name <name>.com -caname root
    ```
 
@@ -166,16 +166,16 @@ Active Directory Federation Services (ADFS) requires a certificate for Secure So
 
 From the **Active Directory Users and Computers**, create a new Active Directory (AD) user account:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-1.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-1.png){:class="img-700"}{:data-lightbox="gallery"}
 
 You can name it **adfssvc**:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-2.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-2.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-2.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-2.png){:class="img-500"}{:data-lightbox="gallery"}
 
 
 Add admin right to **adfssvc**
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-3.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-3.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-3.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-3.png){:class="img-500"}{:data-lightbox="gallery"}
 
 
 <a name="step3"></a>
@@ -189,31 +189,31 @@ The idea for users and groups is to create two AD user accounts to illustrate ho
 
 So create a first AD user account, for example Mike, for the Observer role on the HPE GreenLake platform, this will include both HPE Compute Ops Management and HPE GreenLake roles:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-4.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-4.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-4.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-4.png){:class="img-500"}{:data-lightbox="gallery"}
 
 > Ensure to provide the e-mail address of the external domain name in the E-mail field! This is important because the user will be authenticated on the HPE GreenLake platform by this e-mail address.
 
 Then create a second AD user account for the Administrator role: 
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-5.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-5.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-5.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-5.png){:class="img-500"}{:data-lightbox="gallery"}
 
 The next step is to create two AD groups. 
 
 Create a first group **GLCP-Admins** for the Administrator role:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-6.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-6.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-6.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-6.png){:class="img-500"}{:data-lightbox="gallery"}
 
 and a second group **GLCP-Observers** for the Observer role:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-7.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-7.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-7.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-7.png){:class="img-500"}{:data-lightbox="gallery"}
 
 Then add **Lionel** to the **GLCP-Admins** group:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-8.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-8.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-8.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-8.png){:class="img-500"}{:data-lightbox="gallery"}
 
 And add **Mike** to the **GLCP-Observers** group:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-9.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-9.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-9.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-9.png){:class="img-500"}{:data-lightbox="gallery"}
 
 <a name="step4"></a>
 
@@ -302,7 +302,7 @@ In the next page, click on **Select** to select the AD account we created earlie
 
 Enter the **adfssvc** account:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-21.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-21.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-21.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-21.png){:class="img-600"}{:data-lightbox="gallery"}
 
 Enter the password that you defined earlier:
 
@@ -388,10 +388,10 @@ There are two steps to this configuration:
    >
    > It is not recommended to use an application RelayState if you have more than one application on the HPE GreenLake platform.     
     
-   ![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-25-2.png){:class="img-100pct"}{:width="80%"}
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-25-2.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-25-2.png){:class="img-600"}{:data-lightbox="gallery"}
 
    Your encoded URL will then look like:     
-	```
+	```bash
    https://<FQDN>/adfs/ls/IdPInitiatedSignon.aspx?RelayState=RPID%3Dhttps%253A%252F%252Fsso.common.cloud.hpe.com%26RelayState%3Dhttps%253A%252F%252Fcommon.cloud.hpe.com%252F
    ```
 	Later, in the [Testing step 3: IdP-Initiated test authentication](#IdPInitiatedtest) section, you'll test your IdP-initiated SSO settings.
@@ -406,7 +406,7 @@ There are two steps to this configuration:
 
 Now it's time to configure your HPE GreenLake environment for SAML SSO authentication. Log in to your HPE GreenLake workspace using your AD administrative user account (i.e. lionel@\<your_domain_name.com\> created above).
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-1.png){:class="img-100pct"}{:width="50%"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-1.png){:class="img-700"}{:data-lightbox="gallery"}
 
 Then go to **Manage** / **Authentication**
 
@@ -432,7 +432,7 @@ On the next page, you need to decide how to configure SSO authentication based o
 
 The key difference is where and how user access is managed. Session-based authorization is dynamic and managed externally by the IdP for the duration of the session, while static local authorization is managed locally within the platform and remains consistent regardless of session state.
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-4-1.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-4-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-4-1.png){:class="img-800"}{:data-lightbox="gallery"}
 
 - If you choose **Static Local authorization**, select **Manage authorization locally via the GreenLake Platform** in the wizard. You will then skip the [Building hpe_ccs_attribute value](#hpe_ccs_attribute) section. The workspace administrator manages user access and assigns roles directly in HPE GreenLake under **Manage Workspace** / **Workspace identity & access** / **Roles & Permissions**.
 
@@ -442,7 +442,7 @@ Once selected, press **Next**.
 
 Then select the **Metadata File** method and upload the Federation Metadata XML file *ADFS_federation_metadata.ping.xml* from the previous section. 
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-5.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-5.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-5.png){:class="img-600"}{:data-lightbox="gallery"}
 
 > Another method you can use is the Metadata URL. The default URL for ADFS is  
 > https://\<domainName\>/federationmetadata/2007-06/federationmetadata.xml.
@@ -473,7 +473,7 @@ Keep the **Enable Recovery User** option to enable and enter a password for the 
 
 Validate the settings are correct:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-8.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-8.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-8.png){:class="img-600"}{:data-lightbox="gallery"}
 
 Then click on **Finish** to save the configuration.
 
@@ -481,7 +481,7 @@ Then click on **Finish** to save the configuration.
 
 Finally click on **Download Metadata File** and save the file as *HPE_GreenLake_federation_metadata.ping.xml*.
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-9.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-9.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-9.png){:class="img-600"}{:data-lightbox="gallery"}
 
 > Alternatively, you can retrieve the HPE GreenLake metadata using the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module with the following command:
 >
@@ -495,7 +495,7 @@ Finally click on **Download Metadata File** and save the file as *HPE_GreenLake_
 
 You should now have a new SAML configuration available on your Authentication page:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-10.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-10.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-10.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-GLCP-10.png){:class="img-700"}{:data-lightbox="gallery"}
 
 <a name="step9"></a>
 
@@ -553,23 +553,23 @@ And click on the **Add Relying Party Trust** actions from the **Relying Party Tr
 
 One the welcome page, select **Claims aware**:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-28.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-28.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-28.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-28.png){:class="img-800"}{:data-lightbox="gallery"}
 
 Select **Import data about relying party from a file** and provide the location of the *HPE_GreenLake_federation_metadata.ping.xml* file downloaded a the end of [step 6](#step6).
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-29.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-29.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-29.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-29.png){:class="img-700"}{:data-lightbox="gallery"}
 
 Enter a name for the relying party such as *HPE GreenLake*:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-30.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-30.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-30.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-30.png){:class="img-700"}{:data-lightbox="gallery"}
 
 Then select **Permit everyone**:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-31.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-31.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-31.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-31.png){:class="img-800"}{:data-lightbox="gallery"}
 
 Click **Next**:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-32.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-32.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-32.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-32.png){:class="img-800"}{:data-lightbox="gallery"}
 
 Then click **Close**.
 
@@ -587,11 +587,11 @@ The first step required for SAML authentication with HPE GreenLake is the defini
 
 To create this rule, click **Add Rule**:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-35.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-35.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-35.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-35.png){:class="img-500"}{:data-lightbox="gallery"}
 
 Then select **Send LDAP Attributes as Claims**:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-36.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-36.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-36.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-36.png){:class="img-700"}{:data-lightbox="gallery"}
 
 Enter a name such as **Send LDAP Attributes as Claims** and select **Active Directory** for *Attribute store*. 
 
@@ -605,14 +605,14 @@ Then, enter the following mapping of LDAP attributes to HPE GreenLake attributes
 
 The rule should look like the following: 
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-37.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-37.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-37.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-37.png){:class="img-600"}{:data-lightbox="gallery"}
 
 > These settings should match the SAML attributes set in the HPE GreenLake SAML configuration at [step 8](#AD-GLCP-6).
 
 
 Then click **OK** to save this new rule.
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-38.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-38.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-38.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-38.png){:class="img-500"}{:data-lightbox="gallery"}
 
 
 <a name="step10.3"></a>
@@ -627,7 +627,7 @@ Other rules must be defined to create user roles mapping rules for the various H
 
 To create the first rule for the administrators, click on **Add Rule** again, but this time select **Send Group Membership as a Claim** as the template:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-40.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-40.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-40.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-40.png){:class="img-700"}{:data-lightbox="gallery"}
 
 On the next screen:
 
@@ -636,12 +636,12 @@ On the next screen:
 
 2. Select the Active Directory group **GLCP-Admins** for User's group: 
    
-   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-41.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-41.png){:class="img-100pct"}{:data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-41.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-41.png){:class="img-500"}{:data-lightbox="gallery"}
 
 
 3. For the *Outgoing claim type*, enter **hpe_ccs_attribute**:
 
-   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42.png){:class="img-100pct"}{:data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42.png){:class="img-700"}{:data-lightbox="gallery"}
 
     > This name should match the **HPE GreenLake Attribute** sets in the HPE GreenLake SAML configuration at [step 8](#AD-GLCP-6).
     
@@ -652,7 +652,7 @@ On the next screen:
 
 For the **Outgoing claim value**, there is a special SAML format that must be used to define the HPE GreenLake platform's roles and permissions using  *hpe_ccs_attribute*. 
 
-> [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42-1.png){:class="img-100pct"}{:data-lightbox="gallery"}
+> [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42-1.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-42-1.png){:class="img-600"}{:data-lightbox="gallery"}
 
 
 It must comply with the following SAML attribute format:
@@ -687,7 +687,7 @@ version_1#{workspace_id_1}:{application_id}:{role_name}:{resource_restriction_po
    >
    > Adding a relying party trust for an additional HPE GreenLake workspace in ADFS when one already exists, returns the following error message: "MSIS7612: Each identifier for a relying party trust must be unique across all relaying party trusts in AD FS configuration.". So it is required to modify the existing HPE GreenLake relying party trust as indicated above. 
    >
-   > [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-44.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-44.png){:class="img-100pct"}{:data-lightbox="gallery"}
+   > [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-44.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-44.png){:class="img-700"}{:data-lightbox="gallery"}
 
 
 
@@ -753,12 +753,12 @@ version_1#34652ff0317711ec9bc096872580fd6d:00000000-0000-0000-0000-000000000000:
 
 Once your have your own custom values for **hpe_ccs_attribute**, put the value in the **Outgoing claim value field** corresponding to the administrative privileges:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-45.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-45.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-45.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-45.png){:class="img-700"}{:data-lightbox="gallery"}
 
 
 Then click **Finish**.
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-46.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-46.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-46.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-46.png){:class="img-500"}{:data-lightbox="gallery"}
 
 To create the second rule for the observers, click again on **Add Rule** and select again **Send Group Membership as Claim** as the template:
 
@@ -768,11 +768,11 @@ To create the second rule for the observers, click again on **Add Rule** and sel
 
 2. Select the AD group **GLCP-Observers** for User’s group: 
 
-   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-47.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-47.png){:class="img-100pct"}{:data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-47.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-47.png){:class="img-500"}{:data-lightbox="gallery"}
 
 3. For the *Outgoing claim type*, enter **hpe_ccs_attribute**
 
-   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-48.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-48.png){:class="img-100pct"}{:data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-48.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-48.png){:class="img-700"}{:data-lightbox="gallery"}
 
 4. Enter your values in the **Outgoing claim value field** for the **hpe_ccs_attribute** corresponding to the read only privileges:
 
@@ -783,7 +783,7 @@ Finally, click **Finish**.
 
 You should now have two group membership claim rules in ADFS: one for the administrative role and one for the read-only role:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-50.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-50.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-50.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-50.png){:class="img-500"}{:data-lightbox="gallery"}
 
 
 You can now click **Ok** to complete the claim issuance policy definition for HPE GreenLake.
@@ -831,17 +831,18 @@ This test consists of testing the authentication initiated by the Service provid
 
 Open a web browser, and go to the HPE GreenLake interface at [https://common.cloud.hpe.com/](https://common.cloud.hpe.com/) and click the **Sign in with SSO** button:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-53.png){:class="img-100pct"}{:width="60%"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-53.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-53.png){:class="img-500"}{:data-lightbox="gallery"}
 
 ### Test authentication with an AD administrator user
 
 To test an AD user with administrative role, provide the Active Directory e-mail address of the admin user created at [step 3](#step3) in our example (i.e. lionel) then click **Next**:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-54.png){:class="img-100pct"}{:width="60%"}
+
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-54.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-54.png){:class="img-500"}{:data-lightbox="gallery"}
 
 The ADFS sign on page opens, enter the Active Directory user credentials and click **Sign in**:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-55.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-55.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-55.png){:class="img-800"}{:data-lightbox="gallery"}
 
 > It is worth noting that having a different internal Active Directory domain name from the public one accessible from outside is completely valid and acceptable.
 
@@ -876,19 +877,25 @@ Once you've logged out from both, you can click on the **Sign in with SSO** butt
 
 The ADFS sign on page opens again, enter this time the Active Directory observer user credentials and click **Sign in**:
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-61.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-61.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-61.png){:class="img-700"}{:data-lightbox="gallery"}
 
 And check that you have observer rights in **Manage** / **Identity & Access** / **Users** by selecting your user account.
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-62.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-62.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-62.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-62.png){:class="img-700"}{:data-lightbox="gallery"}
 
-> With a resource restriction policy set in *hpe_ccs_attribute*, the HPE GreenLake user account resource access information is defined as **Limited Access**: 
+> With a resource restriction policy set in *hpe_ccs_attribute*, the HPE GreenLake user account resource access information is defined as **Limited Access**:    
 >
-> ![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-63.png){:class="img-100pct"}
+> {: .small-space}
+>
+> [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-63.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-63.png){:class="img-600"}{:data-lightbox="gallery"}
+>
+> {: .small-space}
 >
 > You can click on **Limited Access** to obtain the name of the resource restriction policy used:
 >
-> ![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-64.png){:class="img-100pct"}{:width="50%"}
+> {: .small-space}
+>
+> [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-64.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-64.png){:class="img-300"}{:data-lightbox="gallery"}
 
 <a name="IdPInitiatedtest"></a>
 
@@ -904,7 +911,7 @@ This time, you want to test the authentication initiated by the identity provide
 
 Open a web browser, and go to the encoded URL you have build earlier in [step 7](#step7), the URL might look like:
 
-```
+```bash
 https://<FQDN>/adfs/ls/IdPInitiatedSignon.aspx?RelayState=RPID%3Dhttps%253A%252F%252Fsso.common.cloud.hpe.com%26RelayState%3Dhttps%253A%252F%252Fcommon.cloud.hpe.com%252F
 ```   
 
@@ -914,7 +921,7 @@ You should be prompted to sign-in. Enter your credentials.
 
 If you are redirected to the HPE GreenLake platform, the process succeeds, you’re signed in.
 
-![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-56.png){:class="img-100pct"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-56.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-56.png){:class="img-700"}{:data-lightbox="gallery"}
 
 
 <a name="troubleshooting"></a>
@@ -951,7 +958,7 @@ If you don't find the same SAML attributes in your traces, like illustrated belo
 
 Make sure your ADFS claim rules are correct and that your AD user account includes a first name, last name and e-mail address:
 
-[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-70.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-70.png){:class="img-100pct"}{:data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-70.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-70.png){:class="img-500"}{:data-lightbox="gallery"}
 
 
 #### ADFS logs

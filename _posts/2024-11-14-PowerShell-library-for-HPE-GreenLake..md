@@ -148,7 +148,7 @@ To connect using single or multi-factor authentication, follow these steps:
         - On your Okta-enabled device, press "Yes, it’s me" to approve the authentication request from **Okta Verify**.
 
 
-            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="img-400"}{: data-lightbox="gallery"}
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="img-300"}{: data-lightbox="gallery"}
 
 
     - When MFA is enabled with **Google Authenticator**:
@@ -158,7 +158,7 @@ To connect using single or multi-factor authentication, follow these steps:
 
         - Open the **Google Authenticator** app on your device to retrieve the token and enter it when prompted.
 
-            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="img-400"}{: data-lightbox="gallery"}
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="img-300"}{: data-lightbox="gallery"}
          
 ### Using SAML Single Sign-On (SSO) with Okta
 
@@ -185,7 +185,7 @@ The library provides support for SAML Single Sign-On (SSO) exclusively with Okta
 
     - Open the **Okta Verify** app on your device and approve the authentication request by selecting the code provided to complete the authentication process.
 
-        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="img-400"}{: data-lightbox="gallery"}
+        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="img-300"}{: data-lightbox="gallery"}
 
 4. **Tips**:
     - Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
@@ -295,7 +295,7 @@ To list all commands exported by the module, use:
 Get-Command -Module HPECOMCmdlets
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png){:class="img-700"}{: data-lightbox="gallery"} 
 
 To find cmdlets related to a specific resource, use:
 
@@ -305,7 +305,7 @@ Get-Command -Module HPECOMCmdlets | ? Name -match "<ResourceName>"
 Get-Command -Module HPECOMCmdlets | ? Name -match group
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-700"}{: data-lightbox="gallery"} 
 
 [⬆ Back to Top](#)
 
