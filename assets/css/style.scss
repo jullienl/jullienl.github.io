@@ -175,6 +175,15 @@ main.page-content {
   border-radius: .25rem;
 }
 
+.card .content .post-meta {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.card .content p {
+  margin-top: 0;
+}
+
 .bg-img {
   background-size: cover;
   min-height: 180px;
