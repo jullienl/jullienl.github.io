@@ -3,13 +3,12 @@ layout: post
 title:  "PowerShell Library for HPE Compute Ops Management"
 categories: GreenLake
 image: /assets/images/HPECOMCmdlets/header.jpg
-# excerpt: The purpose of this blog is to familiarize readers with the PowerShell library for the HPE GreenLake edge-to-cloud platform.
+excerpt: Discover how to automate and manage your HPE GreenLake and Compute Ops Management environment using PowerShell with the HPECOMCmdlets library.
+last_modified_at: 2025-04-15
 tags: 
   - greenlake
   - com 
 ---
-
-Update: Avril 2025
 
 After long months of hard work, I am excited to announce the release of my new PowerShell library for HPE Compute Ops Management. This comprehensive library offers a robust set of cmdlets designed to manage and automate your HPE GreenLake environment efficiently. By leveraging this library, users can seamlessly interact with HPE GreenLake and Compute Ops Management services directly from the PowerShell command line, integrating effortlessly into existing automation workflows.
 

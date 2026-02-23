@@ -13,9 +13,14 @@
           <div class="related-post-content">
             <h4>{{ post.title | escape }}</h4>
             <p class="related-post-meta">
+              {%- assign post_date_ts = post.date | date: "%s" | plus: 0 -%}
+              {%- assign post_modified_ts = post.last_modified_at | default: post.date | date: "%s" | plus: 0 -%}
               <time datetime="{{ post.date | date_to_xmlschema }}">
                 {{ post.date | date: "%b %d, %Y" }}
               </time>
+              {%- if post_modified_ts > post_date_ts -%}
+               • <span class="related-post-updated">Updated: {{ post.last_modified_at | date: "%b %d, %Y" }}</span>
+              {%- endif -%}
               {%- if post.categories -%}
                • <span class="related-post-category">{{ post.categories | first }}</span>
               {%- endif -%}

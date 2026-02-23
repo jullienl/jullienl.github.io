@@ -3,7 +3,7 @@ layout: post
 title: "Bare metal provisioning with Compute Ops Management and Ansible"
 categories: ["Compute Ops Management"]
 image: /assets/images/COM-Baremetal/Baremetal-Title.jpg
-# excerpt: Streamline your server deployments with HPE GreenLake
+excerpt: Discover how to automate bare metal server provisioning using HPE GreenLake for Compute Ops Management and Ansible. This post introduces an open-source GitHub project that simplifies OS deployments for ESXi, RHEL, and Windows Server at scale, leveraging auto-customized kickstarts, auto-generated ISOs, and the powerful features of Compute Ops Management server groups.
 tags: 
   - greenlake
   - com

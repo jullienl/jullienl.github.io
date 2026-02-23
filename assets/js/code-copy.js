@@ -1,5 +1,12 @@
 // Add copy button to code blocks
 document.addEventListener('DOMContentLoaded', function() {
+  function updateHScrollState(pre) {
+    const wrapper = pre.parentElement;
+    if (!wrapper || !wrapper.classList.contains('code-block-wrapper')) return;
+    const hasHScroll = pre.scrollWidth > pre.clientWidth;
+    wrapper.classList.toggle('has-hscroll', hasHScroll);
+  }
+
   document.querySelectorAll('pre').forEach(function(pre) {
     if (pre.parentElement.classList.contains('code-block-wrapper')) return;
     
@@ -28,5 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     wrapper.appendChild(btn);
+    updateHScrollState(pre);
+  });
+
+  window.addEventListener('resize', function() {
+    document.querySelectorAll('.code-block-wrapper pre').forEach(updateHScrollState);
+  });
+
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.code-block-wrapper pre').forEach(updateHScrollState);
   });
 });
