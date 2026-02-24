@@ -371,7 +371,44 @@ h1:hover .octicon, h2:hover .octicon, h3:hover .octicon, h4:hover .octicon, h5:h
 #search-input {
   font-size: 15px;
   display: block;
-  width: 400px
+  width: 400px;
+  background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+[data-theme="dark"] #search-input {
+  background-color: #161b22 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] #search-input::placeholder {
+  color: #8b949e !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #search-input {
+    background-color: #161b22;
+    color: #e0e0e0;
+    border: 1px solid #30363d;
+  }
+
+  #search-input::placeholder {
+    color: #8b949e;
+  }
+}
+
+[data-theme="light"] #search-input {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid #cccccc !important;
+}
+
+[data-theme="light"] #search-input::placeholder {
+  color: #757575 !important;
 }
 
 /* Site picker */

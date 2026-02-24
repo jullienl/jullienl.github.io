@@ -9,11 +9,6 @@ hide_comments: true
 hide_breadcrumbs: true
 hide_post_meta: true
 image: /assets/images/banner-image.jpg
-tags: 
-   - greenlake
-   - com
-   - powershell
-   - scripting
 ---
 
 Living Lab experience
