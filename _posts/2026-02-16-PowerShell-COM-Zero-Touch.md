@@ -4,6 +4,10 @@ title: "HPE Compute Ops Management Zero-Touch Automation"
 hidden: true
 hide_header: true
 hide_footer: true
+hide_related_posts: true
+hide_comments: true
+hide_breadcrumbs: true
+hide_post_meta: true
 image: /assets/images/banner-image.jpg
 tags: 
    - greenlake

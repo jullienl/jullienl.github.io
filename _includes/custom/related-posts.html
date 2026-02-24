@@ -1,5 +1,5 @@
 <!-- Related Posts Section -->
-{%- if page.layout == 'post' -%}
+{%- if page.layout == 'post' and page.hide_related_posts != true -%}
   {%- assign related_posts = site.posts | where_exp: "post", "post.categories == page.categories" | where_exp: "post", "post.url != page.url" | limit: 3 -%}
   
   {%- if related_posts.size > 0 -%}
