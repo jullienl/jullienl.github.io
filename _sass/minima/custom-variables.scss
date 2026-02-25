@@ -1,4 +1,4 @@
 // Placeholder to allow overriding predefined variables smoothly.
-$content-width: 1000px;  // Override default 800px
+$content-width: 1000px;  // Fluid override via clamp() in style.scss; this value used for padding calc fallback
 $on-laptop: 1000px;
 $on-palm: 600px;
