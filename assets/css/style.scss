@@ -273,8 +273,8 @@ a:hover .svg-icon {
 
 /* Fixes weird table word break behaviour */
 table {
-  table-layout: fixed;
-  word-break: break-word;
+  table-layout: auto;
+  word-break: normal;
 }
 
 /* Fixes "tag" styling */
@@ -628,6 +628,12 @@ blockquote ol ol li {
   height: auto;
 }
 
+.img-900 img {
+  width: 900px;
+  max-width: 100%;
+  height: auto;
+}
+
 .img-100pct img {
   width: 100%;
   height: auto;
@@ -965,7 +971,7 @@ html[data-theme="light"] label[for="nav-trigger"] {
 [data-theme="light"] th {
   border-color: #e0e0e0 !important;
   background-color: #f0f0f0 !important;
-  color: #111 !important;
+  color: #1a73e8 !important;
 }
 
 [data-theme="light"] td {
@@ -1330,10 +1336,23 @@ html[data-theme="dark"] {
   border-color: #444 !important;
 }
 
-[data-theme="dark"] th,
+[data-theme="dark"] th {
+  border-color: #555 !important;
+  background-color: #2a2a2a !important;
+  color: #a8c7fa !important;
+}
+
 [data-theme="dark"] td {
-  border-color: #444 !important;
-  background-color: #2d2d2d !important;
+  border-color: #333 !important;
+  color: #cccccc !important;
+}
+
+[data-theme="dark"] tr:nth-child(odd) td {
+  background-color: #222222 !important;
+}
+
+[data-theme="dark"] tr:nth-child(even) td {
+  background-color: #1b222a !important;
 }
 
 [data-theme="dark"] .site-footer {

@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "HPE Compute Ops Management Zero-Touch Automation"
 hidden: true
@@ -27,7 +27,7 @@ will be continuously updated to incorporate new features as they are released by
 
 This module is available in the PowerShell Gallery under the name [HPECOMCmdlets](https://www.powershellgallery.com/packages/HPECOMCmdlets), following the naming convention used by most HPE modules.
 
-[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image3.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image3.png){:class="img-600"}{: data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image3.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image3.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 The PowerShell Gallery is a repository for sharing and distributing
 PowerShell modules and scripts. It's a community-driven platform that
@@ -47,7 +47,7 @@ report and view
 and participate in
 [discussions](https://github.com/jullienl/HPE-COM-PowerShell-Library/discussions).
 
-[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png){: data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image2.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 This library provides a variety of key features for managing HPE
 GreenLake and Compute Ops Management. Here are the main features:
@@ -128,12 +128,12 @@ configured SSO for passwordless access, **skip this section.**
 
 1. To create your HPE account for this library, go the HPE GreenLake interface at <https://common.cloud.hpe.com> and click on **Sign up**:
 
-   [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png){:class="img-600"}{: data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image4.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
    
 2. Provide all the required information, accept the terms and conditions
 and click on **Create Account**:
 
-   [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png){:class="img-600"}{: data-lightbox="gallery"}
+   [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image5.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. Once completed, you are ready to access the lab, then to install and use the library.
 
@@ -149,15 +149,15 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
 2. On the Horizon login screen, click the **Omnissa Horizon Web Client** button.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png){:class="img-600"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image6.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. Login with the credentials provided in your login sheet.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png){:class="img-500"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image7.png){:class="img-500"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Click on the graphic that represents your Lab environment.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png){:class="img-600"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image8.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     Since Horizon is presenting a remote desktop session inside of your desktop's browser, it may be helpful to hit **F11** at this time to put the browser in full screen mode.
 
@@ -165,43 +165,43 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
 
 1. You'll start by opening **Visual Studio Code** using the shortcut in the VM's desktop:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png){:class="img-600"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image9.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. Once opened, click on **Mark Done**:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png){:class="img-600"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image10.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. Start by opening a new file:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png){:class="img-600"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image11.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This new file will be useful to copy/paste all important information you find useful to keep an eye on.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image12.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image12.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image12.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image12.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Then open a PowerShell terminal using the **Terminal** menu / **New Terminal**: 
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     All the commands outlined in this lab guide should be executed in this window.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. I recommend you: **1️⃣** expand the window, **2️⃣** close the Copilot agent, and **3️⃣** increase the terminal size to improve your experience:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13a.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13a.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13a.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image13a.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     **💡 Tip: Using the Copy Button**  
     
     Throughout this lab, you'll see a **Copy** button in the midle-right corner of each code block. Click this button to instantly copy the command(s) to your clipboard, then use **CTRL**+**V** to paste them directly into the PowerShell terminal. This helps avoid typing errors and speeds up your workflow.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png)]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png)]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image14a.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 5. While the PowerShell console is opened, you can optionally launch a browser to access the HPE GreenLake website and view the results of the commands you will be executing. If your browser is not already open and connected to HPE GreenLake, open a browser and navigate to <https://common.cloud.hpe.com>.
 
 6. Login with your HPE account credentials:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image15.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image15.png){:class="img-300"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image15.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image15.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     If this is your first time using HPE GreenLake, it is expected that no workspace will be available in your environment. If you already have one or more workspaces, there is no issue; you can still proceed with this lab.
 
@@ -216,7 +216,7 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
     Install-Module HPECOMCmdlets
     ```
 
-    [![A black screen with white text Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image16.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image16.png){: data-lightbox="gallery"}
+    [![A black screen with white text Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image16.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image16.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command will download and install the module from the official PowerShell Gallery repository. If this is your first time installing a module from the PowerShell Gallery, it will ask you to confirm whether you trust the repository or not. 
     
@@ -236,7 +236,7 @@ To access the HPE Compute BU Enablement Environment, we will use VMware Horizon.
     Get-Command -Module HPECOMCmdlets
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image17.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image17.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image17.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image17.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     Version **1.0.22** of the module includes over 200 cmdlets.
 
@@ -249,7 +249,7 @@ Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL
     Get-Command -Module HPECOMCmdlets | ? name -match server
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image18.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image18.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image18.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image18.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command is especially helpful when you're dealing with many cmdlets and need to pinpoint the one that fits your needs best.
 
@@ -265,7 +265,7 @@ Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL
     Get-Help Get-HPECOMserver -Full
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image19.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image19.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image19.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image19.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     `Get-Help` (or the alias `Help`) is a PowerShell cmdlet that allows you to retrieve information on other PowerShell cmdlets and functions. 
     
@@ -280,7 +280,7 @@ Management). Cmdlets start with **HPECOM** for Compute Ops Management or **HPEGL
     This will display a list of examples demonstrating how to use `Get-HPECOMServer` along with detailed explanations of what each
 example does.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image20.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image20.png){:class="img-700"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image20.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image20.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -316,24 +316,24 @@ Select the below option according to your user authentication method:
      Connect-HPEGL -Credential $credentials
      ```
 
-     [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image21.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image21.png){: data-lightbox="gallery"}
+     [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image21.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image21.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
       - When MFA is enabled with Okta:
 
         The cmdlet will prompt you to validate the push notification from Okta.
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image22.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image22.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image22.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image22.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
         On your Okta-enabled device, press **Yes, it's me** to approve the authentication request.
 
-         [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){:class="img-300"}{: data-lightbox="gallery"}
+         [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image23.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
       - When MFA is enabled with Google Authenticator:
 
         The cmdlet will pause and prompt you to enter the MFA token.
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image24.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image24.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image24.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image24.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
         Open the Google Authenticator app on your device to retrieve the token and enter it when prompted.
 
@@ -355,11 +355,11 @@ Select the below option according to your user authentication method:
 
   - Check your IdP-enabled device for a push notification or authentication request.
   
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image25.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image25.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image25.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image25.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
   - Approve the request (for example, tap the number or "Yes, it's me" in Okta or confirm in PingID/Entra ID).
   
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){:class="img-300"}{: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image26.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
   - Complete any additional steps required by your organization's security policies.
 
@@ -374,11 +374,11 @@ The `Connect-HPEGL` cmdlet is responsible for initiating and managing this conne
 
 If you have no workspace tied to your HPE account, the `Connect-HPEGL` command will return a warning message indicating that you need to create your first workspace:
 
-[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image27.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image27.png){: data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image27.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image27.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 If you already have one or more workspaces available, the command will return a warning message indicating that you need to use a second command to connect to one of the workspaces:
 
-[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image28.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image28.png){: data-lightbox="gallery"}
+[![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image28.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image28.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 > **💡 Note**   
 >
@@ -467,7 +467,7 @@ If you already have one or more workspaces available, the command will return a 
     Connect-HPEGL -Credential $credentials -Workspace $WorkspaceName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image30.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image30.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image30.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image30.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 4. To check the content of your workspace, enter:
@@ -476,7 +476,7 @@ If you already have one or more workspaces available, the command will return a 
     Get-HPEGLWorkspace
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image31.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image31.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image31.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image31.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 ## Task 2 -- Add a user to your workspace
@@ -715,7 +715,7 @@ sheet provided by your instructor. Enter:
     > that are using self-signed certificates, which applies in our
     > scenario.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image32.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image32.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image32.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image32.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > 💡 **Note**
     >
@@ -751,7 +751,7 @@ sheet provided by your instructor. Enter:
     Get-HPEGLDevice
     ```
 
-    [![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image33.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image33.png){: data-lightbox="gallery"}
+    [![A screenshot of a computer Description automatically generated]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image33.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image33.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **💡 Note**
     >
@@ -767,7 +767,7 @@ sheet provided by your instructor. Enter:
     Get-HPECOMServer -Region $Region
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image34.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image34.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image34.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image34.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     Note that the output differs slightly from the output of the `Get-HPEGLDevice` command. It adds additional information such as the power state, the connected state, the iLO IP address, and more. 
     
@@ -779,7 +779,7 @@ sheet provided by your instructor. Enter:
     Get-HPECOMServer -Region $Region -ShowSubscriptionDetails
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image35.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image35.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image35.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image35.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 9. Before proceeding with the next steps in the lab, ensure that your server is powered on by checking the **PowerState** column in the output above. If the server is not **ON**, run the following command:
 
@@ -787,7 +787,7 @@ sheet provided by your instructor. Enter:
     Get-HPECOMServer -Region $Region | Start-HPECOMServer
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image36.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image36.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image36.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image36.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command will power on all servers managed by COM. Since you currently have only one server onboarded, it will specifically start that device.
 
@@ -799,7 +799,7 @@ sheet provided by your instructor. Enter:
     Get-HPEGLdevice | Set-HPEGLDeviceLocation -LocationName $LocationName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image37.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image37.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image37.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image37.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. To verify that the location has been correctly assigned to your device, use the following command:
 
@@ -807,7 +807,7 @@ sheet provided by your instructor. Enter:
     Get-HPEGLdevice
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image38.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image38.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image38.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image38.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **📝 Note**
     >
@@ -834,7 +834,7 @@ sheet provided by your instructor. Enter:
     Get-HPEGLDevice | Add-HPEGLDeviceTagToDevice -Tags "Country=FR, App=AI"
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image39.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image39.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image39.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image39.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 5. To verify that the tags have been correctly assigned to your device, use the following command:
 
@@ -842,7 +842,7 @@ sheet provided by your instructor. Enter:
     Get-HPEGLdevice -ShowTags
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image40.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image40.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image40.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image40.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -888,7 +888,7 @@ cmdlet.
 
     This command creates a new BIOS setting configuration tailored for virtualization with maximum performance. It also enables the Automatic Server Recovery (ASR) feature and sets the timeout for the ASR feature to 10 minutes.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image41.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image41.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image41.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image41.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. To verify the newly created BIOS setting, enter:
 
@@ -896,7 +896,7 @@ cmdlet.
     Get-HPECOMSetting -Region $Region -Name $BiosSettingName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image42.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image42.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image42.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image42.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 ### Server Internal Storage Settings
 
@@ -911,7 +911,7 @@ These settings allow you to configure a new server storage setup with different 
     New-HPECOMSettingServerInternalStorage -Region $Region -Name $InternalStorageSettingName -Volumes $volume1, $volume2 -Description "RAID1 and RAID5 server settings for AI systems"
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image43.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image43.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image43.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image43.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. To verify the newly created internal storage setting, enter:
 
@@ -919,7 +919,7 @@ These settings allow you to configure a new server storage setup with different 
     Get-HPECOMSetting -Region $Region -Name $InternalStorageSettingName
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image44.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image44.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image44.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image44.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 5. To verify the two volumes that are defined:
 
@@ -927,7 +927,7 @@ These settings allow you to configure a new server storage setup with different 
     Get-HPECOMSetting -Region $Region -Name $InternalStorageSettingName -ShowVolumes
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image45.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image45.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image45.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image45.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 ### Server Firmware Settings
 
@@ -940,7 +940,7 @@ helping maintain consistent firmware versions across groups of servers.
     Get-HPECOMFirmwareBaseline -Region $Region -Generation 11 -LatestVersion
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image46.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image46.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image46.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image46.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 7. To create the firmware setting with the latest baselines for both Gen10 and Gen11, enter:
 
@@ -951,7 +951,7 @@ helping maintain consistent firmware versions across groups of servers.
     New-HPECOMSettingServerFirmware -Region $Region -Name $FirmwareSettingName -Description "FW baseline for AI servers" -Gen10FirmwareBaselineReleaseVersion $Gen10_Firmware_Baseline -Gen11FirmwareBaselineReleaseVersion $Gen11_Firmware_Baseline
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image47.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image47.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image47.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image47.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 8. To verify the newly created firmware setting, enter:
 
@@ -959,7 +959,7 @@ helping maintain consistent firmware versions across groups of servers.
     Get-HPECOMSetting -Region $Region -Name $FirmwareSettingName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image48.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image48.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image48.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image48.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 ### iLO Settings
 
@@ -974,7 +974,7 @@ ILO settings enable the configuration of specific parameters to standardize iLO 
     
     This command activates iLO virtual media, enforces password complexity, enables HTTPS, and disables third-party firmware updates.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image49.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image49.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image49.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image49.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. To verify the newly created iLO settings, enter:
 
@@ -982,7 +982,7 @@ ILO settings enable the configuration of specific parameters to standardize iLO 
     Get-HPECOMSetting -Region $Region -Name $iLOSettingName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image50.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image50.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image50.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image50.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 ## Task 2 -- Create a group
 
@@ -995,7 +995,7 @@ In this task you will create a new group incorporating the different settings cr
     New-HPECOMGroup -Region $Region -Name $GroupName -Description "My new group for AI servers"  -BiosSettingName $BiosSettingName -AutoBiosApplySettingsOnAdd:$false -iLOSettingName $iLOSettingName -AutoIloApplySettingsOnAdd:$true -FirmwareSettingName $FirmwareSettingName -AutoFirmwareUpdateOnAdd:$false -PowerOffServerAfterFirmwareUpdate:$false -FirmwareDowngrade:$false -StorageSettingName $InternalStorageSettingName -AutoStorageVolumeCreationOnAdd:$false -AutoStorageVolumeDeletionOnAdd:$false -TagUsedForAutoAddServer "App=AI"
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image51.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image51.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image51.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image51.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command creates the new group "AI_Group" with previously configured BIOS, firmware, storage, and iLO settings. Additionally, the command specifies whether certain actions, such as applying settings or creating storage volumes, should be automated when servers are added to the group. These are called group policies. The "App=AI" tag is defined so that any server with this tag during onboarding will automatically be added to this group.
 
@@ -1014,7 +1014,7 @@ In this task you will create a new group incorporating the different settings cr
     Get-HPECOMGroup -Region $Region
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image52.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image52.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image52.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image52.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     Note that, as configured earlier, 4 settings are applied to that group.
 
@@ -1024,7 +1024,7 @@ In this task you will create a new group incorporating the different settings cr
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowSettings
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image53.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image53.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image53.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image53.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Additionally, you may review the policies currently assigned to the group by using the following:
 
@@ -1032,7 +1032,7 @@ In this task you will create a new group incorporating the different settings cr
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowPolicies
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image54.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image54.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image54.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image54.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     Keep in mind that only the iLO settings take effect right away after you add servers to the group.
 
@@ -1046,7 +1046,7 @@ The next task is to add your server to the new group. According to the group pol
     Get-HPECOMServer -Region $Region | Add-HPECOMServerToGroup -GroupName $GroupName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image55.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image55.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image55.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image55.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. To verify that the new server has been added to the group, enter the following command:
 
@@ -1054,7 +1054,7 @@ The next task is to add your server to the new group. According to the group pol
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowMembers
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image56.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image56.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image56.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image56.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. To monitor the progress of active related group jobs, execute the following command at regular intervals:
 
@@ -1062,7 +1062,7 @@ The next task is to add your server to the new group. According to the group pol
     Get-HPECOMJob -Region $Region -Category Group -ShowRunning
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image57.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image57.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image57.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image57.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command shows all the running jobs associated with the group category.
 
@@ -1082,7 +1082,7 @@ The next task is to add your server to the new group. According to the group pol
     Get-HPECOMJob -Region $Region -Category Server -ShowRunning
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image58.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image58.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image58.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image58.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command lists active jobs for the server category, focusing on the "add to group" action.
 
@@ -1092,7 +1092,7 @@ The next task is to add your server to the new group. According to the group pol
     Get-HPECOMJob -Region $Region
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image59.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image59.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image59.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image59.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **📝 Note**
     >
@@ -1108,7 +1108,7 @@ The next task is to add your server to the new group. According to the group pol
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowCompliance
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image60.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image60.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image60.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image60.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command generates a comprehensive compliance status report for all types, including firmware, iLO settings, and external storage. Notably, the iLO settings status is 'COMPLIANT,' which confirms that the group-defined iLO settings have been properly implemented on the iLO.
 
@@ -1152,7 +1152,7 @@ To obtain detailed server inventory information, use the `Get-HPECOMServerInvent
     Get-HPECOMServerInventory -Region $Region -Name $SN -ShowMemory
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image61.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image61.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image61.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image61.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. Additional reporting options are available via the same command, like for a report on the CPU:
 
@@ -1160,7 +1160,7 @@ To obtain detailed server inventory information, use the `Get-HPECOMServerInvent
     Get-HPECOMServerInventory -Region $Region -Name $SN -ShowProcessor
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image62.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image62.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image62.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image62.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     There are several **Show** commands for different server inventory data. For efficiency, type **-Show** and press **CTRL**+**SPACE** to view all property options or use **Tab** for auto-completion.
 
@@ -1229,7 +1229,7 @@ The first step in server troubleshooting is to confirm that the server is operat
     Get-HPECOMServer -Region $Region -Name $SN -ShowHealthStatus
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image63.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image63.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image63.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image63.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. To retrieve the list of activities from the past month on your server, you can use:
 
@@ -1237,7 +1237,7 @@ The first step in server troubleshooting is to confirm that the server is operat
     Get-HPECOMServer -Region $Region -Name $SN -ShowActivities
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image64.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image64.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image64.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image64.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > You can use the dedicated cmdlet `Get-HPECOMActivity -Region $Region -SourceName $SN` to retrieve COM activities, which offers enhanced options such as filtering by time, category, or source name.
 
@@ -1247,7 +1247,7 @@ The first step in server troubleshooting is to confirm that the server is operat
     Get-HPECOMServer -Region $Region -Name $SN -ShowAlerts
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image65.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image65.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image65.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image65.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > Alerts provide security information and issues related to servers. By
     > default, all alerts associated with your server are returned. You can
@@ -1260,7 +1260,7 @@ The first step in server troubleshooting is to confirm that the server is operat
     Get-HPECOMServer -Region $Region -Name $SN -ShowAlerts | Format-List
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image66.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image66.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image66.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image66.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 5. To obtain a comprehensive list of jobs associated with your server for the last month, including their current state "PENDING" (waiting to start), "RUNNING" (in progress), "STALLED" (stuck), "ERROR" (failed), or "COMPLETE" (finished successfully), you can run:
 
@@ -1268,7 +1268,7 @@ The first step in server troubleshooting is to confirm that the server is operat
     Get-HPECOMServer -Region $Region -Name $SN -ShowJobs
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image67.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image67.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image67.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image67.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > You can also utilize the specialized cmdlet `Get-HPECOMJob -Region $Region -SourceName $SN` to retrieve a list of jobs associated with a specific source name. By default, this command returns jobs from the past seven days, but you can broaden your search using parameters like `-ShowLastMonth` to include the previous month or `-ShowAll` for the complete job history. Additionally, you have the option to filter results to display only jobs that are currently running with `-ShowRunning`, or to show only jobs that are waiting in the queue by using `-ShowPending`.
 
@@ -1278,7 +1278,7 @@ The first step in server troubleshooting is to confirm that the server is operat
     Get-HPECOMJob -Region $Region -SourceName $GroupName
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image68.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image68.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image68.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image68.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 7. If you need to view detailed job information or troubleshoot specific tasks, you can refine your queries further by using additional parameters. For example, to quickly identify and analyze the most recent job that has failed, you can target your search accordingly:
 
@@ -1300,7 +1300,7 @@ status and its duration.
     Get-HPECOMServer -Region $Region -Name $SN -ShowSupportDetails
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image69.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image69.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image69.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image69.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **⚠️ Note**
     >
@@ -1314,7 +1314,7 @@ status and its duration.
     Get-HPECOMServer -Region $Region -Name $SN -ShowSupportCases
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image70.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image70.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image70.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image70.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     Note that if no support cases are found for the specified server, the cmdlet returns no output.
 
@@ -1340,7 +1340,7 @@ efficient and accessible.
     Get-HPECOMServerLogs -Region $Region -Name $SN -DownloadAHSLogs -Path .
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image71.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image71.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image71.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image71.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **💡 Note**
     >
@@ -1374,11 +1374,11 @@ efficient and accessible.
     Get-ChildItem -Path . -Filter *.zip | Select-Object Name, Length, LastWriteTime
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image72.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image72.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image72.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image72.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. If you want to see what's inside, you can use Windows Explorer to open the zip file:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image73.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image73.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image73.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image73.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Alternatively, you can use PowerShell's built-in `Expand-Archive` cmdlet to extract the contents of the zip file. Simply run the following by replacing the angle brackets with your server name, timestamp and destination folder:
 
@@ -1404,7 +1404,7 @@ automatically applied.
     Enable-HPECOMEmailNotificationPolicy -Region $Region -DailySummary -ServiceEventAndCriticalAndWarningIssues
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image74.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image74.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image74.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image74.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **📝 Note**
     >
@@ -1418,7 +1418,7 @@ automatically applied.
     Get-HPECOMEmailNotificationPolicy -Region $Region
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image75.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image75.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image75.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image75.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -1451,7 +1451,7 @@ efficiently.
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowFirmwareCompliance
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image76.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image76.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image76.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image76.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command returns the following properties for the server:
 
@@ -1500,7 +1500,7 @@ in the TotalDownloadSize column of the firmware compliance report.
     Get-HPECOMServer -Region $Region -Name $SN -ShowGroupFirmwareDeviation
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image77.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image77.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image77.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image77.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command returns the following properties for each firmware component that deviates:
 
@@ -1547,7 +1547,7 @@ weekend (in four days).
     Update-HPECOMGroupFirmware -Region $Region -GroupName $GroupName -AllowFirmwareDowngrade -InstallHPEDriversAndSoftware -ScheduleTime (Get-Date).AddDays(4)
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image78.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image78.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image78.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image78.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This update, scheduled in four days, allows firmware downgrades and installs HPE drivers and software.
 
@@ -1635,7 +1635,7 @@ and issuing utilization alerts.
     Get-HPECOMMetricsConfiguration -Region $Region
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image79.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image79.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image79.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image79.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     COM metrics provides information on CPU, memory bus, and I/O bus usage. These insights help organizations monitor and manage the performance of their server infrastructure.
 
@@ -1645,7 +1645,7 @@ and issuing utilization alerts.
     Get-HPECOMServerUtilizationInsights -Region $Region -SerialNumber $SN -CPUUtilization
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image80.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image80.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image80.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image80.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
     > **⚠️ Note**
@@ -1703,7 +1703,7 @@ operational expenses.
     Get-HPECOMSustainabilityInsights -Region $Region -SerialNumber $SN -EnergyConsumption
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image82.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image82.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image82.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image82.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     By default, similar to the server utilization insights, this cmdlet provides the total estimated figures for the previous 90 days. Specifying your server's serial number ensures that the results are focused on the server of interest.
 
@@ -1735,7 +1735,7 @@ operational expenses.
     Get-HPECOMSustainabilityInsights -Region eu-central -EnergyConsumptionTotal
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image84.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image84.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image84.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image84.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Additionally, you can explore other sustainability insights by modifying the parameters:
 
@@ -1782,7 +1782,7 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
     $SSOObject
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image85.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image85.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image85.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image85.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **⚠️ Note**
     >
@@ -1817,7 +1817,7 @@ To authenticate to your server's iLO using single sign-on (SSO), follow these 4 
     $connection
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image86.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image86.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image86.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image86.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 6. Perform iLO Operations
 
@@ -1847,7 +1847,7 @@ drift and re-applies the correct settings.
     $FirmwareUpdatePolicy
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image87.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image87.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image87.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image87.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command should return **false**, indicating that the AcceptThirdPartyFirmwareUpdates option is set to Disabled as per your group's iLO policy. With this setting, installation of third-party firmware on your server is blocked, aligning with recommended security
 best practices.
@@ -1860,7 +1860,7 @@ best practices.
     Set-HPECOMSettingiLOSettings -Region $Region -Name $iLOSettingName -Description "iLO Settings for AI Servers" -VirtualMedia Enabled -PasswordComplexity Enabled -WebServerSSL Enabled -AcceptThirdPartyFirmwareUpdates Enabled
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image88.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image88.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image88.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image88.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 - **Step 3**: Check the compliance status
 
@@ -1870,7 +1870,7 @@ best practices.
     Get-HPECOMGroup -Region $Region -Name $GroupName -ShowCompliance
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image89.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image89.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image89.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image89.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     The compliance check will show that your server's iLO configuration no longer matches the group's iLO policy.
 
@@ -1882,7 +1882,7 @@ best practices.
     $task = Invoke-HPECOMGroupiLOConfiguration -Region $Region -GroupName $GroupName -ServerSerialNumber $SN -Async
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image90.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image90.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image90.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image90.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     The command returns the job status, indicating that it is currently in a *Running* state.
 
@@ -1895,17 +1895,17 @@ best practices.
     Get-HPECOMJob -Region $Region -Category Group -JobResourceUri $task.resourceUri
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image91.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image91.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image91.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image91.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     ```powershell
     Get-HPECOMJob -Region $Region -Category Group
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image92.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image92.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image92.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image92.png){: data-lightbox="gallery"}{: .bordered-image-thin}
     
     The job will take approximately 1 to 2 minutes to complete.
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image93.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image93.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image93.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image93.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 - **Step 6**: Verify the setting has been applied
 
@@ -1917,7 +1917,7 @@ best practices.
     $FirmwareUpdatePolicy
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image94.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image94.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image94.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image94.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This should now return "**true**" confirming that COM successfully applied the new iLO configuration to your server.
 
@@ -1958,7 +1958,7 @@ environment.
     Get-HPEGLDevice | Remove-HPEGLDeviceFromService
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image95.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image95.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image95.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image95.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. Confirm that the server has been removed from its assignment by running:
 
@@ -1968,7 +1968,7 @@ environment.
 
     The expected response should show no more service and region information:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image96.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image96.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image96.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image96.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 ## Task 2: Remove the subscription key
 
@@ -1981,7 +1981,7 @@ also important to delete your key from your workspace.
     Get-HPEGLSubscription | Remove-HPEGLSubscription
     ```
     
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image97.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image97.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image97.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image97.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. To verify that the subscription key has been removed, the following command should return no response:
 
@@ -2004,11 +2004,11 @@ resources and lowers your carbon footprint.
     
     This action is permanent and cannot be undone. When you execute this cmdlet, you will receive a warning at runtime explaining the irreversible nature of the operation. The system will prompt you to confirm your choice.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image98.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image98.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image98.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image98.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. Type `Y` and press **Enter** to proceed with the removal
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image99.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image99.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image99.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image99.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. To verify that the COM service instance has been removed, the following command should return no response:
 
@@ -2034,7 +2034,7 @@ your command line terminal.
     Get-Variable -Name hpe*
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image100.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image100.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image100.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image100.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     After completing the removal of the COM service instance in the previous task, you will observe that variables such as `$HPECOMRegions` are now empty. This confirms that the related resources have been successfully deleted from your environment.
 
@@ -2044,7 +2044,7 @@ your command line terminal.
     Disconnect-HPEGL
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image101.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image101.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image101.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image101.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This command will terminate your session, remove any temporary API credentials, and clear related environment variables from your command line terminal.
 
@@ -2054,7 +2054,7 @@ your command line terminal.
     Get-Variable -Name hpe*
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image102.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image102.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image102.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image102.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This will display any remaining HPE-related variables. You may notice that several variables, such as `$HPEGreenLakeSession` (session information), `$HPECOMInvokeReturnData` (recent request output),
     `$HPEGLAPIClientCredentialName` (API credentials created during login), and `$HPEGLworkspaces` (workspace references) are no longer present, confirming their successful removal.
@@ -2080,41 +2080,41 @@ progress.
 
 2. Click **Download raw file**.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image103.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image103.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image103.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image103.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. Chrome automatically saves the script to your desktop's download folder; click **Show in folder**:
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image104.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image104.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image104.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image104.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Then right-click the script and select **Open with Code**.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image105.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image105.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image105.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image105.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 5. Update these 5 variables using your HPE account information and team details, which you can find in the lab's login sheet:
 
     - For `$MyEmail`, at line **251**, substitute the value with your HPE account email you used earlier to connect to HPE GreenLake:
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image106.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image106.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image106.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image106.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - For `$AdditionalUser`, at line **255**, enter **admin@hpelabs.us** as shown below, replacing the existing value:
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image107.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image107.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image107.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image107.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - For `$SubscriptionKeys`, at line **278**, delete the second key and add the subscription key from the login sheet (make sure you remove the comma at the end of the line):
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image108.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image108.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image108.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image108.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - For `$Servers`, at lines **282**+, substitute the value with your server's details (iLO IP and iLO password) found in the login sheet and remove the second server entry like below:
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image109.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image109.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image109.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image109.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - For `$ParkingLotWorkspace`, at line **343**, substitute the value with the name of your generated workspace. You may run `$WorkspaceName` to retrieve the name you configured previously
 
-        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image110.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image110.png){: data-lightbox="gallery"}
+        [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image110.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image110.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 6. After you finish changing the variable, save the file (**File** /**Save**) and switch back to the PowerShell terminal.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image111.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image111.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image111.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image111.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 7. Navigate to the **Download** folder:
 
@@ -2136,15 +2136,15 @@ progress.
 
 10. Enter your password when prompted.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image112.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image112.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image112.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image112.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 11. After provisioning is finished, you can check how long it took.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image113.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image113.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image113.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image113.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
 12. Then, press `Y` when prompted with "Do you want to clean up the environment now? (Y/N)" to begin deprovisioning, which will remove everything, even the newly created workspace.
 
-    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image114.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image114.png){: data-lightbox="gallery"}
+    [![]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image114.png){: .bordered-image-thin}]( {{ site.baseurl }}/assets/images/HOLs/COM-ZeroTouch/image114.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
     This completes the automation workflow, ensuring that your environment is both provisioned and then properly cleaned up, leaving no residual resources.
 

@@ -6,3 +6,98 @@
   margin-top: 0.7em;
   margin-bottom: 0.7em;
 }
+
+// ─── Improved table styles ────────────────────────────────────────────────────
+table {
+  border-radius: 6px;
+  overflow: hidden;         // clips th/td corners to the table's border-radius
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-size: 0.95em;
+  width: auto;
+  max-width: 100%;
+
+  th, td {
+    padding: 0.6em 1em;
+    border: none;           // handled below per-side to avoid double lines
+  }
+
+  // Horizontal dividers between rows
+  tr + tr td {
+    border-top: 1px solid;
+  }
+
+  // Header row
+  th {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-align: left;
+    border-bottom: 2px solid;
+  }
+
+  // Row hover highlight
+  tbody tr:hover {
+    transition: background-color 0.15s ease;
+  }
+}
+
+// Light mode
+@media (prefers-color-scheme: light) {
+  table {
+    border: 1px solid #d0d0d0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+    th {
+      background-color: #f0f0f0;
+      color: #222;
+      border-bottom-color: #bbb;
+    }
+
+    tr + tr td {
+      border-top-color: #e0e0e0;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #eef4ff;
+    }
+  }
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  table {
+    border: 1px solid #3a3a3a;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+    th {
+      background-color: #2a2a2a;
+      color: #e0e0e0;
+      border-bottom-color: #555;
+    }
+
+    td {
+      color: #cccccc;
+    }
+
+    tr + tr td {
+      border-top-color: #2e2e2e;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #222222;
+    }
+
+    tr:nth-child(even) {
+      background-color: #2a3a50;
+    }
+
+    tbody tr:hover {
+      background-color: #263040;
+    }
+  }
+}

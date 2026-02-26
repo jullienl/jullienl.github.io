@@ -14,7 +14,7 @@ After long months of hard work, I am excited to announce the release of my new P
 
 Development is ongoing, and my efforts are far from finished. As we all know, SaaS cloud applications evolve over time. Therefore, this library will be continuously updated to incorporate new features as they are released by HPE.
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-1.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 This module is available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/HPECOMCmdlets) under the name `HPECOMCmdlets`, following the naming convention used by most HPE modules.
 
@@ -114,7 +114,7 @@ To connect using single or multi-factor authentication, follow these steps:
     Connect-HPEGL -Credential (Get-Credential) -Workspace "YourWorkspaceName"
     ```
 
-    [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+    [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-4.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
     - **Note**: If you do not have a workspace yet, omit the `-Workspace` parameter. You can create a new workspace after your first connection using the `New-HPEGLWorkspace` cmdlet.
 
@@ -143,22 +143,22 @@ To connect using single or multi-factor authentication, follow these steps:
 	- When MFA is enabled with **Okta**:
         - The cmdlet will prompt you to validate the push notification from **Okta Verify**.
 
-            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-10.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
         - On your Okta-enabled device, press "Yes, it’s me" to approve the authentication request from **Okta Verify**.
 
 
-            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="img-300"}{: data-lightbox="gallery"}
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-11.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
     - When MFA is enabled with **Google Authenticator**:
        - The cmdlet will pause and prompt you to enter the MFA token.
 
-            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+            [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-12.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
         - Open the **Google Authenticator** app on your device to retrieve the token and enter it when prompted.
 
-            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="img-300"}{: data-lightbox="gallery"}
+            [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
          
 ### Using SAML Single Sign-On (SSO) with Okta
 
@@ -181,11 +181,11 @@ The library provides support for SAML Single Sign-On (SSO) exclusively with Okta
 3. **Validation**:
     - During the connection process, you will be prompted to validate the push notification sent to your Okta Verify app.
 
-        [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+        [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-13.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
     - Open the **Okta Verify** app on your device and approve the authentication request by selecting the code provided to complete the authentication process.
 
-        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="img-300"}{: data-lightbox="gallery"}
+        [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. **Tips**:
     - Unsure of the workspace name? Connect without specifying the `-Workspace` parameter, then run `Get-HPEGLWorkspace` to list all available workspaces. Once identified, use `Connect-HPEGLWorkspace -Name "YourWorkspaceName"` to connect to the desired workspace.
@@ -198,14 +198,14 @@ For detailed guidance on setting up and using SAML Single Sign-On (SSO) with HPE
 
 Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-5.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - A persistent session that is used for all subsequent cmdlet requests within the module.
 - Temporary API client credentials for both HPE GreenLake and any Compute Ops Management service instances provisioned in the workspace.
 - A global session object stored in the `$HPEGreenLakeSession` variable, which contains session details, API client credentials, access tokens, and other relevant information for interacting with HPE GreenLake and Compute Ops Management APIs.
 
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 #### Key Properties of `$HPEGreenLakeSession`:
 
@@ -244,7 +244,7 @@ Get-Help Connect-HPEGL -Full
 
 To help you get started quickly, I have provided a [sample script](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/Examples/sample.ps1). 
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-7.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 This file contains a variety of examples demonstrating how to use the different cmdlets available in the library to accomplish various tasks.
 
@@ -279,7 +279,7 @@ For more detailed information on each cmdlet and its usage, refer to the module'
 Get-Help <CmdletName> -full
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-8.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 To see detailed examples of how to use a specific cmdlet, use the **Get-Help** cmdlet with the **\-Examples** parameter followed by the cmdlet name.
 
@@ -287,7 +287,7 @@ To see detailed examples of how to use a specific cmdlet, use the **Get-Help** c
 Get-Help <CmdletName> -Examples
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png){:class="img-100pct"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-9.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 To list all commands exported by the module, use:
 
@@ -295,7 +295,7 @@ To list all commands exported by the module, use:
 Get-Command -Module HPECOMCmdlets
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png){:class="img-700"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-2.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 To find cmdlets related to a specific resource, use:
 
@@ -305,7 +305,7 @@ Get-Command -Module HPECOMCmdlets | ? Name -match "<ResourceName>"
 Get-Command -Module HPECOMCmdlets | ? Name -match group
 ```
 
-[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-700"}{: data-lightbox="gallery"} 
+[![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 [⬆ Back to Top](#)
 
