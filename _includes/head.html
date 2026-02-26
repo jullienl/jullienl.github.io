@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function() {
+      const themeKey = 'user-theme-preference';
+      const savedTheme = localStorage.getItem(themeKey);
+      const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme || preferredTheme);
+    })();
+  </script>
   
   <!-- Performance: Preconnect to external domains -->
   <link rel="preconnect" href="https://giscus.app" crossorigin>
@@ -83,7 +91,7 @@
   <script src="/assets/js/new_window.js" defer></script>
   {% endif %}
   
-  <script src="/assets/js/theme-toggle.js?v={{ asset_version }}"></script>
+  <script src="/assets/js/theme-toggle.js?v={{ asset_version }}" defer></script>
   <script src="/assets/js/code-copy.js?v={{ asset_version }}" defer></script>
   <script src="/assets/js/lazy-load.js?v={{ asset_version }}" defer></script>
   <script src="/assets/js/category-filter.js?v={{ asset_version }}" defer></script>
