@@ -2,7 +2,7 @@
 layout: post
 title: "Automating IT Operations with Compute Ops Management Webhooks"
 categories: ["Compute Ops Management"]
-image: /assets/images/COM-Webhooks/Webhooks-Title.jpg
+image: /assets/images/COM-Webhooks/banner.jpg
 excerpt: Discover how HPE GreenLake Compute Ops Management webhooks can transform your IT operations by automating workflows, triggering real-time alerts, and integrating with tools like Make, Slack, and Notion—turning routine server management tasks into seamless, hands-free processes.
 tags: 
   - greenlake
