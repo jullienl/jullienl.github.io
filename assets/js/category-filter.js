@@ -4,46 +4,62 @@ document.addEventListener('DOMContentLoaded', function() {
   const pagination = document.querySelector('.centred-homepage-content');
   const postsPerPage = postItems.length; // Current page size
 
-  chips.forEach(chip => {
-    chip.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // Get selected category
-      const selectedCategory = this.getAttribute('data-category');
-      
-      // Update active state
-      chips.forEach(c => c.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Filter posts and count visible ones
-      let visibleCount = 0;
-      postItems.forEach(post => {
-        if (selectedCategory === 'all') {
+  function applyCategoryFilter(selectedCategory) {
+    const activeChip = Array.from(chips).find((chip) => {
+      return chip.getAttribute('data-category') === selectedCategory;
+    }) || Array.from(chips).find((chip) => {
+      return chip.getAttribute('data-category') === 'all';
+    });
+
+    if (!activeChip) return;
+
+    const activeCategory = activeChip.getAttribute('data-category');
+
+    chips.forEach(c => c.classList.remove('active'));
+    activeChip.classList.add('active');
+
+    let visibleCount = 0;
+    postItems.forEach(post => {
+      if (activeCategory === 'all') {
+        post.style.display = 'list-item';
+        visibleCount++;
+      } else {
+        const postCategories = post.getAttribute('data-categories') || '';
+        if (postCategories.includes(activeCategory)) {
           post.style.display = 'list-item';
           visibleCount++;
         } else {
-          // Check if post has the selected category
-          const postCategories = post.getAttribute('data-categories') || '';
-          if (postCategories.includes(selectedCategory)) {
-            post.style.display = 'list-item';
-            visibleCount++;
-          } else {
-            post.style.display = 'none';
-          }
-        }
-      });
-      
-      // Show/hide pagination based on filter
-      if (pagination) {
-        if (selectedCategory === 'all') {
-          // Show pagination when showing all posts
-          pagination.style.display = 'block';
-        } else {
-          // Hide pagination only if filtered results fit on one page
-          // Show pagination if filtered results span multiple pages
-          pagination.style.display = visibleCount > postsPerPage ? 'block' : 'none';
+          post.style.display = 'none';
         }
       }
     });
+
+    if (pagination) {
+      if (activeCategory === 'all') {
+        pagination.style.display = 'block';
+      } else {
+        pagination.style.display = visibleCount > postsPerPage ? 'block' : 'none';
+      }
+    }
+
+    if (activeCategory === 'all') {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    } else {
+      history.replaceState(null, '', '#' + activeCategory);
+    }
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const selectedCategory = this.getAttribute('data-category') || 'all';
+      applyCategoryFilter(selectedCategory);
+    });
   });
+
+  const initialCategory = window.location.hash ? window.location.hash.substring(1) : 'all';
+  applyCategoryFilter(initialCategory || 'all');
 });
