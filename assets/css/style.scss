@@ -963,27 +963,6 @@ html[data-theme="light"] label[for="nav-trigger"] {
   border-left-color: #e8e8e8 !important;
 }
 
-[data-theme="light"] table {
-  border-color: #e8e8e8 !important;
-  color: #404040 !important;
-}
-
-[data-theme="light"] th {
-  border-color: #e0e0e0 !important;
-  background-color: #f0f0f0 !important;
-  color: #1a73e8 !important;
-}
-
-[data-theme="light"] td {
-  border-color: #e8e8e8 !important;
-  background-color: #ffffff !important;
-  color: #404040 !important;
-}
-
-[data-theme="light"] tr:nth-child(even) td {
-  background-color: #f7f7f7 !important;
-}
-
 /* Apply thin border to ALL post images in light mode */
 [data-theme="light"] .post-content img {
   border: 1px solid #c8c8c8 !important;
@@ -1330,29 +1309,6 @@ html[data-theme="dark"] {
 
 [data-theme="light"] .theme-toggle-header {
   color: #222 !important;
-}
-
-[data-theme="dark"] table {
-  border-color: #444 !important;
-}
-
-[data-theme="dark"] th {
-  border-color: #555 !important;
-  background-color: #2a2a2a !important;
-  color: #a8c7fa !important;
-}
-
-[data-theme="dark"] td {
-  border-color: #333 !important;
-  color: #cccccc !important;
-}
-
-[data-theme="dark"] tr:nth-child(odd) td {
-  background-color: #222222 !important;
-}
-
-[data-theme="dark"] tr:nth-child(even) td {
-  background-color: #1b222a !important;
 }
 
 [data-theme="dark"] .site-footer {

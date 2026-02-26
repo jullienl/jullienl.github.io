@@ -7,97 +7,112 @@
   margin-bottom: 0.7em;
 }
 
-// ─── Improved table styles ────────────────────────────────────────────────────
-table {
-  border-radius: 6px;
-  overflow: hidden;         // clips th/td corners to the table's border-radius
-  border-collapse: separate;
-  border-spacing: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  font-size: 0.95em;
+// ==========================================
+// Enhanced Table Styles
+// ==========================================
+.post-content table {
   width: auto;
   max-width: 100%;
+  font-size: 0.9rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  margin: 1.5em 0;
 
   th, td {
-    padding: 0.6em 1em;
-    border: none;           // handled below per-side to avoid double lines
+    padding: 9px 18px;
+    vertical-align: middle;
+    border: none;
   }
 
-  // Horizontal dividers between rows
-  tr + tr td {
-    border-top: 1px solid;
+  // Column separators inside rows
+  th + th,
+  td + td {
+    border-left: 1px solid;
   }
 
-  // Header row
-  th {
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-align: left;
+  thead tr:last-child th {
     border-bottom: 2px solid;
   }
 
-  // Row hover highlight
-  tbody tr:hover {
-    transition: background-color 0.15s ease;
+  // Rounded corners on first/last header cells
+  thead tr:first-child th:first-child { border-radius: 6px 0 0 0; }
+  thead tr:first-child th:last-child  { border-radius: 0 6px 0 0; }
+  tbody tr:last-child td:first-child  { border-radius: 0 0 0 6px; }
+  tbody tr:last-child td:last-child   { border-radius: 0 0 6px 0; }
+
+  // Section-header rows: bold first cell with an empty second cell
+  td:has(+ td:empty) {
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  td + td:empty {
+    width: 1px;
+    padding: 0;
   }
 }
 
-// Light mode
-@media (prefers-color-scheme: light) {
-  table {
-    border: 1px solid #d0d0d0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+// Light theme
+[data-theme="light"] .post-content table {
+  border-color: #c3d3e5;
 
-    th {
-      background-color: #f0f0f0;
-      color: #222;
-      border-bottom-color: #bbb;
-    }
+  th {
+    background-color: #1b5ea8;
+    color: #ffffff;
+    border-color: #154e8e;
+    font-weight: 600;
+  }
 
-    tr + tr td {
-      border-top-color: #e0e0e0;
-    }
+  td {
+    border-color: #eaf0f7;
+    color: #1a1a1a;
+  }
 
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
+  tr:nth-child(even) td {
+    background-color: #edf2f9;
+  }
 
-    tbody tr:hover {
-      background-color: #eef4ff;
-    }
+  td:has(+ td:empty) {
+    background-color: #dde8f4;
+    color: #1b5ea8;
+  }
+  td + td:empty {
+    background-color: #dde8f4;
+    border-left: none !important;
   }
 }
 
-// Dark mode
-@media (prefers-color-scheme: dark) {
-  table {
-    border: 1px solid #3a3a3a;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+// Dark theme
+[data-theme="dark"] .post-content table {
+  border-color: #2d4d6e;
 
-    th {
-      background-color: #2a2a2a;
-      color: #e0e0e0;
-      border-bottom-color: #555;
-    }
+  th {
+    background-color: #1a3a5c;
+    color: #c8ddf0;
+    border-color: #243f60;
+    font-weight: 600;
+  }
 
-    td {
-      color: #cccccc;
-    }
+  td {
+    border-color: #253040;
+    background-color: #141923;
+    color: #c8ddf0;
+  }
 
-    tr + tr td {
-      border-top-color: #2e2e2e;
-    }
+  tr:nth-child(even) td {
+    background-color: #0d1117;
+  }
 
-    tr:nth-child(odd) {
-      background-color: #222222;
-    }
-
-    tr:nth-child(even) {
-      background-color: #2a3a50;
-    }
-
-    tbody tr:hover {
-      background-color: #263040;
-    }
+  td:has(+ td:empty) {
+    background-color: #1a3a5c;
+    color: #7eb3d8;
+  }
+  td + td:empty {
+    background-color: #1a3a5c;
+    border-left: none !important;
   }
 }
