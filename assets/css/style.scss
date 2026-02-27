@@ -833,6 +833,21 @@ a.bordered-image-thin:hover img {
   text-decoration: none;
 }
 
+/* Override Minima CSS variables per theme so any element using var(--minima-*) also gets the right color */
+html[data-theme="light"] {
+  --minima-link-base-color: #0066cc;
+  --minima-link-visited-color: #0066cc;
+  --minima-link-hover-color: #0052a3;
+  --minima-site-title-color: #2e8be8;
+}
+
+html[data-theme="dark"] {
+  --minima-link-base-color: #6db3f2;
+  --minima-link-visited-color: #6db3f2;
+  --minima-link-hover-color: #5a9fd4;
+  --minima-site-title-color: #6db3f2;
+}
+
 /* Override minima auto skin for light theme */
 html[data-theme="light"],
 html[data-theme="light"] body {
@@ -846,7 +861,7 @@ html[data-theme="light"] body {
 
 [data-theme="light"] .site-header {
   background-color: #ffffff !important;
-  border-top: 3px solid #4f46e5 !important;
+  border-top: 3px solid #0066cc !important;
   border-bottom: 1px solid #d1d5db !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
 }
@@ -858,7 +873,11 @@ html[data-theme="light"] body {
 
 [data-theme="light"] .site-title {
   font-weight: 600 !important;
-  color: #4f46e5 !important;
+  color: #2e8be8 !important;
+}
+
+[data-theme="light"] .site-title:hover {
+  text-decoration: none !important;
 }
 
 [data-theme="light"] .page-link {
@@ -867,7 +886,7 @@ html[data-theme="light"] body {
 }
 
 [data-theme="light"] .page-link:hover {
-  color: #4f46e5 !important;
+  color: #0066cc !important;
   text-decoration: none !important;
 }
 
@@ -933,7 +952,13 @@ html[data-theme="light"] label[for="nav-trigger"] {
 }
 
 [data-theme="light"] a:visited {
-  color: #551a8b !important;
+  color: #0066cc !important;
+}
+
+[data-theme="light"] .site-title:visited,
+[data-theme="light"] .site-title:visited:hover,
+[data-theme="light"] .page-link:visited {
+  color: #2e8be8 !important;
 }
 
 [data-theme="light"] a:hover {
@@ -988,7 +1013,7 @@ html[data-theme="light"] label[for="nav-trigger"] {
 }
 
 [data-theme="light"] .site-footer a {
-  color: #4f46e5 !important;
+  color: #0066cc !important;
 }
 
 [data-theme="light"] .site-footer .footer-heading {
@@ -1173,7 +1198,7 @@ html[data-theme="dark"] {
 
 [data-theme="dark"] .site-header {
   background-color: #161b22 !important;
-  border-top: 3px solid #7c6fcd !important;
+  border-top: 2px solid #6db3f2 !important;
   border-bottom: 1px solid #30363d !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
 }
@@ -1184,7 +1209,11 @@ html[data-theme="dark"] {
 
 [data-theme="dark"] .site-title {
   font-weight: 600 !important;
-  color: #7c6fcd !important;
+  color: #6db3f2 !important;
+}
+
+[data-theme="dark"] .site-title:hover {
+  text-decoration: none !important;
 }
 
 [data-theme="dark"] .page-link {
@@ -1194,7 +1223,7 @@ html[data-theme="dark"] {
 }
 
 [data-theme="dark"] .page-link:hover {
-  color: #7c6fcd !important;
+  color: #6db3f2 !important;
   text-decoration: none !important;
 }
 
@@ -1241,7 +1270,13 @@ html[data-theme="dark"] {
 }
 
 [data-theme="dark"] a:visited {
-  color: #b48ead !important;
+  color: #6db3f2 !important;
+}
+
+[data-theme="dark"] .site-title:visited,
+[data-theme="dark"] .site-title:visited:hover,
+[data-theme="dark"] .page-link:visited {
+  color: #6db3f2 !important;
 }
 
 [data-theme="dark"] .post-content img {
@@ -1305,10 +1340,6 @@ html[data-theme="dark"] {
   color: #222 !important;
   background: rgba(255, 255, 255, 0.95) !important;
   border-color: #ddd !important;
-}
-
-[data-theme="light"] .theme-toggle-header {
-  color: #222 !important;
 }
 
 [data-theme="dark"] .site-footer {
@@ -1410,12 +1441,25 @@ body .highlight .err {
   position: fixed !important;
   top: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #6db3f2, #4a90e2);
+  height: 4px;
+  background: linear-gradient(90deg, #1e90ff, #00c3ff);
   width: 0%;
   transition: width 0.1s ease;
   z-index: 1001;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .reading-progress-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #125496, #cbf2fd);
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .reading-progress-bar {
+  height: 6px;
+  // background: linear-gradient(90deg, #e91e63, #9c27b0, #2196f3, #00bcd4, #4caf50);
+  background: linear-gradient(90deg, #0f4780, #6fe5f5);
+  box-shadow: 0 0 12px rgba(233, 30, 99, 0.7), 0 0 20px rgba(33, 150, 243, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Code block enhancements removed - restored to original */

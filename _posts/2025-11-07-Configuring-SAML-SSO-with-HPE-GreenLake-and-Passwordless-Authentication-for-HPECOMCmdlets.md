@@ -215,7 +215,7 @@ Before configuring the HPE GreenLake enterprise application in Entra ID, it's es
 
 - Go to **Groups** → **Overview** → **New group**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-1.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-1.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Create a **Security** group for the HPE GreenLake application. Name it `HPE GreenLake` and add the members who will be granted access to the application. 
 
@@ -228,11 +228,11 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 - Go to **Applications** → **Enterprise Applications** → **New Application** 
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-3.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-3.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-3.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-3.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Click **Create your own Application**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-4.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-4.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-4.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-4.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Enter the name of your application (e.g. *HPE GreenLake*)
     
@@ -242,21 +242,21 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 - From **1: Assign users and groups**, click on **Assign users and groups**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-6.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-6.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-6.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-6.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Click on **Add user/group**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-7.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-7.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-7.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-7.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Add a group using the **None Selected** link then select the **HPE GreenLake** group
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-8.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-8.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-8.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-8.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Then click **Select** then **Assign**
 
 - To make the app visible to users to enable IDP-Initiated SSO logins, go to **Properties**, and make sure **Visible to Users** is enabled
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-9.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-9.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-9.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-9.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
     - This setting controls whether the HPE GreenLake application appears in users' MyApps portal (https://myapps.microsoft.com)
     - If set to **No**, users won't see the app tile and can only use SP-initiated SSO (starting from HPE GreenLake login page)
@@ -265,11 +265,11 @@ With the security group created, you can now proceed to register the HPE GreenLa
  
 - To configure SSO, go to **Single sign-on** 
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-10.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-10.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-10.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-10.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - By default the SSO method is disabled. Select **SAML**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-11.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-11.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-11.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-11.png){:class="img-800"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Under Basic SAML Configuration, click **Edit**
 
@@ -297,13 +297,13 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 - Under **Attributes & Claims**, click **Edit**:
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
     > **Important**: Entra ID creates default SAML claims when you add a new enterprise application. Before configuring the required attributes, you must **remove all default claims** except for the **Unique User Identifier (Name ID)**. These typically include claims with URIs like `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`, `emailaddress`, `name`, etc. Click the **...** menu next to each unwanted claim and select **Delete** to remove them.
     >
     >{: .small-space}
     >
-    > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14a.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-14a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
    For the HPE GreenLake integration, the following SAML attributes must be defined:
 
@@ -356,7 +356,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     The `hpe_ccs_attribute` value follows a specific format that defines workspace access, application permissions, and user roles. For detailed instructions on constructing this attribute value, including the required syntax and examples, refer to [HPE GreenLake cloud SAML attribute for session-based authentication](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-237A2D36-D5D3-4514-915F-42B2ACDF825C.html#ariaid-title1).
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-20.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     The `hpe_ccs_attribute` value follows this format:
 
@@ -446,7 +446,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 - The SAML SSO configuration is now complete, you can close the **Attributes & Claims** page. To proceed with the HPE GreenLake integration, you need to obtain the Federation Metadata. Navigate to the **SAML Certificates** tile and locate the **App Federation Metadata Url**. Click **Copy** to copy the metadata URL to your clipboard.
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **RECOMMENDATION: Use Metadata URL (Not Manual XML Upload)**
     >
@@ -501,7 +501,7 @@ The SSO configuration steps in this guide apply exclusively to HPE GreenLake wor
 
     2. **Activated workspace**: If you see **SSO configuration** and **Domains** tiles, your workspace uses enhanced IAM and is ready for SSO configuration:
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-21b.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     If you don't see any of these elements, your workspace uses legacy IAM and requires a different configuration procedure.
 
@@ -517,7 +517,7 @@ The first step is to claim and verify the domain you will use for single sign-on
 
 - Navigate to **Manage Workspace**   
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-22.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
     
 - Navigate to **Manage Workspace** → **SSO configuration**.
 
@@ -737,7 +737,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 5. After successful authentication, you should be redirected back to HPE GreenLake and automatically logged in
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 [⬆ Back to Top](#)
 
@@ -759,11 +759,11 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
         2. Locate your user account, which should be identified with an **SSO** authorization source.
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         3. Select your user and verify that the assigned roles match the permissions defined in your `hpe_ccs_attribute`.
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 [⬆ Back to Top](#)
 
@@ -777,11 +777,11 @@ Identity Provider initiated SSO (IdP-Initiated) provides users with direct acces
 
 2. Locate and click the **HPE GreenLake** application tile in your application dashboard
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. You should be automatically redirected to HPE GreenLake and logged in without additional authentication prompts
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a1.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a1.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37a1.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Verify successful authentication by confirming your user profile and workspace access are displayed correctly in the HPE GreenLake console
 
@@ -835,7 +835,7 @@ Before implementing the two-phase enrollment strategy, verify that your Entra ID
 
 1. Navigate to **Authentication methods** → **Policies**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-38.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. Verify **Microsoft Authenticator** is enabled:
     - Status should show **Enabled**
@@ -849,7 +849,7 @@ Before implementing the two-phase enrollment strategy, verify that your Entra ID
 
 3. Navigate to **Authentication methods** → **Authentication strengths**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. Verify the built-in **Passwordless MFA** authentication strength exists:
     - This is a built-in strength that includes Microsoft Authenticator push notifications and TOTP
@@ -909,7 +909,7 @@ First, create a security group to track users who are in the enrollment phase:
 - **Do not add any members yet** - this group will be populated as new users need enrollment
 - Click **Create**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39a.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     > **Purpose**: This group identifies users who are still setting up passwordless authentication and need the grace period policy.
 
@@ -920,7 +920,7 @@ This policy applies to users in the enrollment group, allowing them to authentic
 
 - Navigate to **Conditional Access** → **Policies** → **New policy**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-41.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-41.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-41.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-41.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 - Configure the policy with the following settings:
 
@@ -1032,7 +1032,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
     - Click **Authentication methods**
     - Verify **Microsoft Authenticator** is listed under **Usable authentication methods**
 
-       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39n.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         > **IMPORTANT: How to Verify Passwordless is Actually Enabled** 
         >
@@ -1074,7 +1074,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 1. **Initial Sign-In**:
     - Navigate to [https://common.cloud.hpe.com/newlogin](https://common.cloud.hpe.com/newlogin) and enter your email address
 
-       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png){:class="img-500"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png){:class="img-400"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - Select **Sign in with SSO**
 
@@ -1132,7 +1132,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
     - To confirm successful enrollment, visit [https://aka.ms/mysecurityinfo](https://aka.ms/mysecurityinfo)
     
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39m.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39m.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39m.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39m.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         The page should display: **Microsoft Authenticator - Passwordless sign-in** (with a key icon 🔑)
 
@@ -1162,7 +1162,7 @@ To verify that your passwordless authentication configuration is working correct
 2. **Initial Sign-In**:
     - Enter your email address on the HPE GreenLake login page
 
-       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png){:class="img-500"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+       [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-40a.png){:class="img-400"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - Click **Sign in with SSO**
 
@@ -1251,7 +1251,7 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
 4. **Authentication Completion**:
     - After successful approval, the `Connect-HPEGL` cmdlet completes authentication
     - Connection details containing your authentication context and connection details are displayed in the PowerShell console
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 > **Important**: The authentication flow must complete within the timeout period configured in your Conditional Access policy (typically 60-90 seconds). If the timeout expires before approval, the connection attempt will fail and you'll need to retry the `Connect-HPEGL` command.
@@ -1298,11 +1298,11 @@ Before configuring the HPE GreenLake enterprise application in Okta, it's essent
 
 - Go to **Directory** → **Groups** → **Add group**
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-46.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-46.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-46.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-46.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Create a group for the HPE GreenLake application. Name it `HPE GreenLake` and add the members who will be granted access to the application. 
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-47.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-47.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-47.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-47.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 
 #### 2. Create a new SAML 2.0 Application Integration  
@@ -1311,17 +1311,17 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 - Go to **Applications** → **Applications** → **Create App Integration** 
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-48.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-48.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-48.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-48.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - Select **SAML 2.0** as the sign-in method
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-49.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-49.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-49.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-49.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - On the **General Settings** page: 
     - Enter an App name, e.g., `HPE GreenLake`
     - Optionally, upload an HPE logo for the app
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-50.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-50.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-50.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-50.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 - On the **Configure SAML** page, enter:
 
@@ -1343,7 +1343,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
         > **Important**: The Relay State parameter is required for IdP-Initiated SSO functionality. Without this value configured, users attempting to access HPE GreenLake from your identity provider will encounter the error: "Please Specify Target - No Single Sign-On Target Specified"
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-51.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-51.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-51.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-51.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
 
     
@@ -1456,7 +1456,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 5. After successful authentication, you should be redirected back to HPE GreenLake and automatically logged in
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 #### Verify the authentication
 
@@ -1476,11 +1476,11 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
         2. Locate your user account, which should be identified with an **SSO** authorization source.
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         3. Select your user and verify that the assigned roles match the permissions defined in your `hpe_ccs_attribute`.
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 [⬆ Back to Top](#)
 
@@ -1565,11 +1565,11 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     2. On the **Setup** tab, click **Add Authenticator**.
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         If Okta Verify is already added to your tenant, you cannot create a duplicate instance with application-specific settings. Instead, you'll need to modify the existing Okta Verify authenticator to ensure it supports push notifications. Locate **Okta Verify** in the list of configured authenticators and click **Edit** to verify or enable the push notification settings. 
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59a.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}      
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-59a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}      
     
         > **Note**: Changes to the existing Okta Verify authenticator will apply globally to all applications using it in your tenant. If this is a concern, coordinate with your Okta administrators to ensure the configuration meets all organizational requirements.
         
@@ -1591,7 +1591,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     1. Navigate to the **Enrollment** tab and click **Add a Policy** to create a new authenticator enrollment policy.     
     
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-67.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-67.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-67.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-67.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     2. Provide a descriptive policy name (e.g., `HPE GreenLake - Passwordless Enrollment`) and assign it to the **HPE GreenLake** group. In the **Authenticators** section, configure Okta Verify as either **Optional** or **Required** based on your organization's security requirements. Click **Create rule** to save your configuration.
 
@@ -1619,7 +1619,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
     
     1. In the Admin Console, go to **Security** → **Authenticators**
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-69a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-69a.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-69a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-69a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
     
     2. On the **Setup** tab, locate **Phone** in the authenticator list
         - If **Phone** is not listed in your authenticators, you'll need to add it:
@@ -1667,11 +1667,11 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     1. In the Admin Console, go to **Security** → **Authentication Policies** → **App sign-in**.     
     
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-62.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-62.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-62.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-62.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     2. Click **Create policy**.
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-63.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-63.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-63.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-63.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     3. Enter a policy name (e.g., `HPE GreenLake - Passwordless MFA`) and description, then click **Create policy**.
 
@@ -1689,7 +1689,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
        - Check **Require user interaction**
        - Select **Any interaction** (this includes responding to an approval prompt in Okta Verify or touching a Yubikey to activate)
        
-          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-70.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-70.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-70.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-70.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
        This configuration ensures users authenticate using interactive methods like Okta Verify push notifications, enforcing passwordless authentication.
 
@@ -1700,7 +1700,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
        - Verify that other password-based methods are also excluded if they appear in your configuration
        - Only passwordless methods should remain available (e.g., Okta Verify push notification, Okta Verify - TOTP, Okta Verify - FastPass)
        
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-71.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-71.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-71.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-71.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         > **Note**: 
        This configuration prevents users from authenticating with passwords and ensures compliance with passwordless requirements for the HPECOMCmdlets module.
@@ -1708,7 +1708,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     8. Review all settings carefully to ensure accuracy, then click **Save** to apply the authentication policy.
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 - **Assign the authentication policy to the HPE GreenLake application**
 
@@ -1716,7 +1716,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     1. Navigate to **Applications** → **Applications** and select your HPE GreenLake application.
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-73.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-73.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-73.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-73.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     2. Go to the **Sign On** tab and scroll down to the **User authentication** section.
 
@@ -1726,7 +1726,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     4. Select the authentication policy you created earlier (e.g., `HPE GreenLake - Passwordless MFA`).
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     4. Click **Save** to apply the policy to your HPE GreenLake application.
 
@@ -1860,7 +1860,7 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
     - **With Number Matching** (enhanced security):
         * The PowerShell progress bar displays a challenge number (e.g., "Respond '53' to the Okta Verify notification")   
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72e.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72e.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         * Open Okta Verify on your mobile device
         * Locate and tap the matching number displayed in the PowerShell console
@@ -1872,7 +1872,7 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
     - **Without Number Matching** (standard approval):
         - The PowerShell progress bar displays: "Approve the Okta Verify Push notification"
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72g.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72g.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72g.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72g.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         - Open Okta Verify on your mobile device
         - Review the authentication request details
@@ -1886,7 +1886,7 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
     - After successful approval, the `Connect-HPEGL` cmdlet completes authentication
     - Connection details containing your authentication context and connection details are displayed in the PowerShell console
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72i.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72i.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72i.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72i.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 > **Important**: The authentication flow must complete within the timeout period configured in your Okta authentication policy (typically 60-90 seconds). If the timeout expires before approval, the connection attempt will fail and you'll need to retry the `Connect-HPEGL` command.
@@ -1925,7 +1925,7 @@ Before configuring the HPE GreenLake application in Ping Identity, it's essentia
 
 - Navigate to **Directory** → **Groups** → **Add Group**
     
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-76.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-76.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-76.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-76.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 - Create a group for the HPE GreenLake application. Name it `HPE GreenLake`
 
@@ -2123,7 +2123,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 5. After successful authentication, you should be redirected back to HPE GreenLake and automatically logged in
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 [⬆ Back to Top](#)
 
@@ -2145,11 +2145,11 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
         2. Locate your user account, which should be identified with an **SSO** authorization source.
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37c.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         3. Select your user and verify that the assigned roles match the permissions defined in your `hpe_ccs_attribute`.
 
-            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 [⬆ Back to Top](#)
@@ -2164,7 +2164,7 @@ Identity Provider initiated SSO (IdP-Initiated) provides users with direct acces
 
 2. Locate and click the **HPE GreenLake** application tile in your application dashboard
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 3. You should be automatically redirected to HPE GreenLake and logged in without additional authentication prompts (assuming you've already authenticated to Ping Identity)
 
@@ -2237,7 +2237,7 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     2. On the **MFA Policies** page, click on the default MFA Policy and click the **Edit** button (pencil icon) at the top of the page
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-101.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-101.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-101.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-101.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         > **Note**: Alternatively, you can create a dedicated policy for HPE GreenLake by clicking the **+** icon to add a new MFA policy. A dedicated policy allows for more granular control over authentication requirements specific to your HPE GreenLake application.
 
@@ -2261,7 +2261,7 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     1. Navigate to **Authentication** → **Authentication** → **Policies** and click **Add Policy**
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-93.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-93.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-93.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-93.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     2. Provide a descriptive policy name (e.g., `HPEGreenLake_PingID_Passwordless`) and select **PingID Authentication** from the **Step Type** dropdown
 
@@ -2275,7 +2275,7 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     4. A warning message will appear indicating additional configuration is needed. Click **Configure now** to access the PingID authentication settings
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-95.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-95.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-95.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-95.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     5. In the PingID configuration screen, locate the **ENROLLMENT** section and verify the following settings:
 
@@ -2321,7 +2321,7 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     7. In the **PingID Mobile** App, select the **Configuration** tab and click the **Edit** button
 
-         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+         [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
     8. Navigate to the **Mobile App authentication** section and verify the following settings:
@@ -2351,7 +2351,7 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     11. Return to your authentication policy page. This completes the configuration of your passwordless authentication policy, which is now ready to be assigned to the HPE GreenLake application.
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99c.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99c.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-99c.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
     
 - **Assign the authentication policy to the HPE GreenLake application**
 
@@ -2359,11 +2359,11 @@ The following sections demonstrate how to configure PingID with push notificatio
 
     1. Navigate to **Applications** → **Applications** and select your **HPE GreenLake** application
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-102.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-102.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-102.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-102.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     2. Go to the **Policies** tab
 
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-103.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-103.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-103.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-103.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     3. Click **Edit** to modify the policy assignment
 
@@ -2417,7 +2417,7 @@ To verify that your passwordless authentication configuration is working correct
 
 3. Once logged in, locate and click the **HPE GreenLake** application tile in your application dashboard
 
-    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-92.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 4. **Expected Authentication Flow:**
 
@@ -2533,7 +2533,7 @@ Connect-HPEGL -SSOEmail "test.user@company.com"
    - After successful approval, the `Connect-HPEGL` cmdlet completes authentication
    - Connection details containing your authentication context and connection details are displayed in the PowerShell console
 
-      [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+      [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-100.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
 > **Important**: The authentication flow must complete within the timeout period configured in your PingID policy (typically 60-90 seconds). If the timeout expires before approval, the connection attempt will fail and you'll need to retry the `Connect-HPEGL` command.

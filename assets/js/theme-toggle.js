@@ -112,7 +112,10 @@
   // Initialize theme on page load
   function initTheme() {
     const savedTheme = getCurrentTheme();
-    applyTheme(savedTheme);
+    // data-theme is already set by the inline script in <head> — avoid re-setting it
+    // (which would cause redundant CSS recalculation and a visible icon swap from ☾ to SVG).
+    // Only update the toggle button icon and bind events.
+    updateToggleButton(savedTheme);
     bindGiscusFrameTheme();
     observeGiscus();
 

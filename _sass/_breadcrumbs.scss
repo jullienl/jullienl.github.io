@@ -35,7 +35,7 @@
   transition: color 0.2s ease;
   
   &:hover {
-    color: #4a90e2;
+    color: #5a9fd4;
     text-decoration: underline;
   }
   
@@ -54,11 +54,11 @@
 
 /* Light theme breadcrumbs */
 [data-theme="light"] .breadcrumb-item a {
-  color: #4a90e2 !important;
+  color: #0066cc !important;
 }
 
 [data-theme="light"] .breadcrumb-item a:hover {
-  color: #2d6ab8 !important;
+  color: #0052a3 !important;
 }
 
 /* Dark theme breadcrumbs */
