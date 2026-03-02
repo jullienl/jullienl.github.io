@@ -1315,6 +1315,29 @@ html[data-theme="dark"] {
   transform: translateY(-2px);
 }
 
+/* ======================================================
+   DISABLE VISITED LINK STYLING ENTIRELY (SITE-WIDE)
+   Ensures visited links look identical to regular links,
+   including inside the Table of Contents.
+   ====================================================== */
+
+/* Generic fallback — covers any element outside a data-theme scope */
+a:visited {
+  color: inherit !important;
+}
+
+/* Light theme — explicit link color to match unvisited links */
+[data-theme="light"] a:visited,
+[data-theme="light"] .toc a:visited {
+  color: #0066cc !important;
+}
+
+/* Dark theme — explicit link color to match unvisited links */
+[data-theme="dark"] a:visited,
+[data-theme="dark"] .toc a:visited {
+  color: #6db3f2 !important;
+}
+
 [data-theme="dark"] code {
   background-color: #2d2d2d !important;
   color: #f8f8f2 !important;
