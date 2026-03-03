@@ -2,7 +2,7 @@
 layout: post
 title:  "Configuring SAML SSO Authentication with HPE GreenLake: A Guide for the Top 3 Identity Providers and Passwordless Integration for HPECOMCmdlets"
 categories: GreenLake
-image: /assets/images/banner-image.jpg
+image: /assets/images/SAML-SSO/banner.jpg
 reading_time: 75
 excerpt: A comprehensive guide to configuring SAML SSO authentication with the three main identity providers for HPE GreenLake and setting up passwordless authentication for the HPECOMCmdlets PowerShell module, covering SAML 2.0 integration with Microsoft Entra ID, Okta, and Ping Identity, plus step-by-step passwordless authentication setup for the HPECOMCmdlets PowerShell module
 last_modified_at: 2026-01-15
