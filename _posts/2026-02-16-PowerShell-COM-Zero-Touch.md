@@ -11,7 +11,38 @@ hide_post_meta: true
 image: /assets/images/banner-image.jpg
 ---
 
-Living Lab experience
+
+Hands on Lab Guide
+
+# Introduction
+
+Welcome to this Hands-On Lab (HOL). For the next two hours you will
+complete a self-paced lab using the HPECOMCmdlets PowerShell library, 
+HPE ProLiant DL-series servers and HPE GreenLake Compute Ops Management.
+
+## Lab Objectives
+
+In this hands-on lab, you will discover how the HPE Compute Ops Management PowerShell library can transform the way you manage data center infrastructure. By working through real-world scenarios, you will learn how to replace time-consuming manual operations with automated, repeatable workflows—covering the full server lifecycle from initial provisioning and device onboarding to policy enforcement, compliance monitoring, and decommissioning. You will gain practical experience automating critical IT tasks such as workspace configuration, firmware management, and iLO settings enforcement, while also learning how to leverage sustainability and utilization insights to make smarter infrastructure decisions. By the end of this lab, you will have the skills and confidence to design and implement automation workflows that reduce human error, enforce consistent configurations at scale, and accelerate server deployments across your HPE GreenLake environment.
+
+## Team Assignments
+
+This lab has 25 stations. Each station will have its own HPE DL-series
+server to be onboarded into COM. You will be working in a Virtual
+Machine using Visual Studio Code with the PowerShell extension.
+
+Your team assignments will be on a separate sheet of paper issued to you
+by your lab proctor. Please return the team assignment sheet to your
+proctor when finished with this lab.
+
+## Virtual Lab Environment
+
+Upon access to the lab, you will be presented with a Windows desktop.
+
+Each team will have the following physical and virtual infrastructure:
+
+- Windows virtual machine with Visual Studio Code
+
+- One ProLiant DL-series server
 
 
 # HPE Compute Ops Management PowerShell Library
