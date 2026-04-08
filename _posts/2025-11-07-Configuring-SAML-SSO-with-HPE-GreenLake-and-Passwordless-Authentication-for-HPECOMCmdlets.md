@@ -1155,7 +1155,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
 #### 3. Test SSO Authentication with Browser
 
-To verify that your passwordless authentication configuration is working correctly, test the complete authentication flow using a web browser:
+To verify that your passwordless authentication configuration is working correctly with the HPE GreenLake application, test the complete authentication flow using a web browser:
 
 1. Open a web browser and navigate to [https://common.cloud.hpe.com/newlogin](https://common.cloud.hpe.com/newlogin)
 
@@ -1681,9 +1681,11 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-65.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-65.png){: data-lightbox="gallery"}{: .bordered-image-thin}
 
-    5. Under **User must authenticate with**, select **Any 2 factor types**
+    5. Under **User must authenticate with**, select **Any 1 factor type**
 
        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-66.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-66.png){: data-lightbox="gallery"}{: .bordered-image-thin}
+
+        > **Important**: Select **Any 1 factor type** (not "Any 2 factor types"). Requiring 2 factors forces Okta to use a password as the first factor during SP-Initiated SSO (when users start from the HPE GreenLake login page), because no active Okta session exists yet. With 1 factor type, a single Okta Verify push notification is sufficient for both SP-Initiated and IdP-Initiated flows — no password prompt.
 
     6. In the **Possession factor constraints** section:
        - Check **Require user interaction**
@@ -1730,7 +1732,31 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
     4. Click **Save** to apply the policy to your HPE GreenLake application.
 
-This completes the passwordless authentication configuration for Okta. Users in the HPE GreenLake group will now be required to authenticate using Okta Verify with push notification when accessing the HPE GreenLake application.
+- **Configure the Global Session Policy**
+
+    The Global Session Policy controls how Okta establishes the initial user session and is evaluated **before** your app authentication policy. If it requires a password to establish the session, Okta will prompt for a password regardless of what your app policy says — breaking SP-Initiated passwordless SSO.
+
+    You must update the Global Session Policy rule that applies to your HPE GreenLake users to allow the session to be established using the authentication method defined by the app policy (i.e., the push notification).
+
+    1. In the Admin Console, go to **Security** → **Global Session Policy**.
+
+    2. Locate the policy that applies to your HPE GreenLake users (e.g., `Enforce MFA for HPE GreenLake users`). If no dedicated policy exists, edit the **Default Policy**.
+
+    3. Click the **pencil/edit icon** on the applicable rule (e.g., `Require Okta Verify`).
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-74a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-74a.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+
+    4. In the **Establish the session with** field, change the value from **A password** to **Any factor used to meet the Authentication Policy requirements**
+
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-74b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-74b.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+
+    5. Click **Save**.
+
+    > **Why this is required**: With the default setting, Okta requires a password to bootstrap the global session when no active session exists — which is always the case for SP-Initiated SSO (user starts at the HPE GreenLake login page). Changing this setting tells Okta that a push notification satisfying the app authentication policy is sufficient to establish the session, removing the password prompt entirely for SP-Initiated flows.
+
+    > **SP-Initiated vs IdP-Initiated behavior**: Without this change, IdP-Initiated SSO (clicking the app tile in the Okta Dashboard) appears to work without a password because an Okta session already exists from the Dashboard login. SP-Initiated SSO always starts with no session, exposing the Global Session Policy requirement.
+
+This completes the passwordless authentication configuration for Okta. Users in the HPE GreenLake group will now be required to authenticate using Okta Verify with push notification when accessing the HPE GreenLake application — both from the Okta Dashboard (IdP-Initiated) and directly from the HPE GreenLake login page (SP-Initiated).
   
 [⬆ Back to Top](#)
 
@@ -1760,24 +1786,26 @@ This completes the passwordless authentication configuration for Okta. Users in 
 >
 > **Important**: If you need users to enroll when accessing HPE GreenLake directly (SP-Initiated), you must modify the authentication policy to allow password authentication as a fallback method, which contradicts the pure passwordless design. For pure passwordless deployments, initial enrollment via the Okta Dashboard is required.
 
-To verify that your passwordless authentication configuration is working correctly, test the complete authentication flow using a web browser:
+To verify that your passwordless authentication configuration is working correctly with the HPE GreenLake application, test the complete authentication flow using a web browser:
 
-1. Open a web browser and navigate to your Okta End-User Dashboard at your organization's Okta URL (typically `https://<your-domain>.okta.com/app/UserHome`)
+1. Open a web browser and navigate to your Okta End-User Dashboard at your organization's Okta URL (typically `https://<your-domain>.okta.com/app/UserHome`) and click on the `HPE GreenLake` application
+
+    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72aa.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72aa.png){:class="img-800"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 2. **Expected Authentication Flow:**
 
-    - **Initial Login Screen**: The Okta sign-in screen appears. Enter your email address and note that no password field is displayed, confirming that the passwordless policy is active.
+    - **Initial Login Screen**: The Okta sign-in screen appears. Enter your password:
     
-        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72a.png){:class="img-400"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+        [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-72a.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
     - **First-Time Okta Verify Setup** (if applicable):
         - A "Set up security methods" screen appears displaying a **Set up** button
        
-          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75a.png){:class="img-400"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75a.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75a.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         - Click **Set up** to display a QR code for device pairing   
 
-          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75b.png){:class="img-400"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+          [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75b.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-75b.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
         - Open the Okta Verify app on your mobile device
         - Tap the **+** icon to add an account
