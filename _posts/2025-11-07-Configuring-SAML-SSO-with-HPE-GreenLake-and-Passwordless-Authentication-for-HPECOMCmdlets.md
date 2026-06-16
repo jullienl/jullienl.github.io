@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Configuring SAML SSO Authentication with HPE GreenLake: A Guide for the Top 3 Identity Providers and Passwordless Integration for HPECOMCmdlets"
+title:  "Configuring SAML SSO Authentication with HPE GreenLake: A Guide for the Top 3 Identity Providers, with Passwordless and Password-Based Integration for HPECOMCmdlets"
 categories: GreenLake
 image: /assets/images/SAML-SSO/banner.jpg
 reading_time: 75
-excerpt: A comprehensive guide to configuring SAML SSO authentication with the three main identity providers for HPE GreenLake and setting up passwordless authentication for the HPECOMCmdlets PowerShell module, covering SAML 2.0 integration with Microsoft Entra ID, Okta, and Ping Identity, plus step-by-step passwordless authentication setup for the HPECOMCmdlets PowerShell module
-last_modified_at: 2026-01-15
+excerpt: A comprehensive guide to configuring SAML SSO authentication with the three main identity providers for HPE GreenLake — Microsoft Entra ID, Okta, and Ping Identity — and integrating it with the HPECOMCmdlets PowerShell module using either passwordless (push/TOTP) or password-based (`-Credential`, v1.0.26+) sign-in.
+last_modified_at: 2026-06-16
 tags: 
    - greenlake
    - saml
@@ -45,6 +45,8 @@ This guide covers:
 **Skill Level:** Intermediate (identity management experience recommended)
 
 ## Why SAML SSO?
+
+SAML SSO is a form of **federated authentication** (also called federated identity): HPE GreenLake (the *service provider*) trusts an external *identity provider* — Entra ID, Okta, or Ping Identity — to verify who you are, so your organization's existing credentials work across systems without HPE GreenLake ever storing your password.
 
 The motivation for implementing SAML SSO with HPE GreenLake is driven by several key factors:
 
@@ -107,7 +109,7 @@ Choose ONE of the following:
 
 **Optional (for HPECOMCmdlets):**
 - PowerShell 7+
-- HPECOMCmdlets module v1.0.18 or later
+- HPECOMCmdlets module v1.0.18 or later (passwordless SSO); **v1.0.26 or later** for password-based SSO (`-Credential`)
 - Mobile device for authenticator app (Microsoft Authenticator, Okta Verify, or PingID)
 
 
@@ -115,16 +117,18 @@ Choose ONE of the following:
 
 While configuring SAML SSO with an identity provider is a crucial step, the authentication methods you implement are equally critical, especially if you plan to use the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module for HPE GreenLake automation and management.
 
-> **Note**: SAML SSO authentication with identity providers is supported in HPECOMCmdlets module version 1.0.18 and later.
+> **Note**: SAML SSO authentication with identity providers is supported in HPECOMCmdlets module version 1.0.18 and later. **Password-based SSO** (`-Credential`) was added in version 1.0.26; earlier versions support passwordless SSO only.
 
-The HPECOMCmdlets module is designed for modern security standards and requires **passwordless authentication** for SAML SSO-enabled workspaces. This method replaces traditional passwords with more secure and user-friendly alternatives, such as push notifications from an authenticator app or biometric verification.
+The HPECOMCmdlets module supports **two authentication modes** for SAML SSO-enabled workspaces: **passwordless authentication** (push notifications or TOTP from an authenticator app — no password) and, since v1.0.26, **password-based authentication** (your federated password, with an optional MFA step-up). Passwordless remains the recommended approach as it replaces traditional passwords with more secure and user-friendly alternatives, but password-based sign-in is available when your identity provider policy requires a password.
 
 [⬆ Back to Top](#)
 
 
-### Why Passwordless Authentication?
+### Passwordless and Password-Based Authentication
 
-When you run `Connect-HPEGL -SSOEmail user@company.com`, the HPECOMCmdlets module intentionally **does not support password-based credentials**. This design aligns with modern security frameworks from Microsoft, NIST, and the FIDO Alliance, which advocate eliminating traditional passwords in favor of cryptographic authentication methods.
+When you run `Connect-HPEGL -PasswordlessSSOEmail user@company.com`, the HPECOMCmdlets module authenticates **without a password**, using push notifications or TOTP codes from your authenticator app. This passwordless approach aligns with modern security frameworks from Microsoft, NIST, and the FIDO Alliance, which advocate eliminating traditional passwords in favor of cryptographic authentication methods. Since v1.0.26, the module **also** supports password-based SSO via `Connect-HPEGL -Credential user@company.com` for identity provider policies that require a password.
+
+> **Parameter rename (v1.0.26):** The `-SSOEmail` parameter was renamed to `-PasswordlessSSOEmail` to make its passwordless intent explicit. The `-SSOEmail` alias remains fully functional for backward compatibility, so existing scripts continue to work unchanged.
 
 **Key Benefits:**
 - **Enhanced Security**: Eliminates attack vectors including phishing, credential stuffing, and password reuse
@@ -160,6 +164,10 @@ Not all passwordless methods work with PowerShell automation. The following tabl
 >    - Platform credential managers
 
 For successful PowerShell automation with HPECOMCmdlets, ensure that either **push notifications** or **TOTP** (Time-based One-Time Password) is enabled as an available authentication method.
+
+> **New in v1.0.26 — two authentication modes:** The HPECOMCmdlets module supports **both** passwordless and password-based SSO. Use `Connect-HPEGL -PasswordlessSSOEmail <email>` when your IdP account is configured for passwordless sign-in (push/TOTP, no password), or `Connect-HPEGL -Credential <email>` when your IdP policy requires a password (the password is submitted to the IdP and, if a second factor is required, a push or TOTP challenge fires automatically). The two modes are mutually exclusive per account: `-PasswordlessSSOEmail` against a password-protected account returns a clear error — it never prompts interactively, so automation scripts do not hang — and `-Credential` against a passwordless-only account ignores the password and proceeds with push/TOTP. This guide focuses on configuring passwordless sign-in; for password-based sign-in, a standard password + MFA policy in your IdP is sufficient (the password-disabling policy steps below are not required).
+
+> **Note on TOTP with Microsoft Entra ID:** TOTP codes are accepted **only in the password-based flow** (`-Credential`, as a step-up second factor). Entra ID's **passwordless** flow (`-PasswordlessSSOEmail`) uses Microsoft Authenticator push with mandatory number matching only — TOTP is not available there. Okta and PingIdentity support TOTP in both flows.
 
 > **Configuration Guidance**: Step 4 in each identity provider section of this guide covers the detailed verification and configuration of these supported passwordless authentication methods.
 
@@ -802,7 +810,7 @@ Common authentication failures include misconfigured SAML attributes, certificat
 
 **Purpose**: Configure Entra ID to support passwordless SSO authentication for the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module when connecting to HPE GreenLake.
 
-**Use Case**: Enable `Connect-HPEGL -SSOEmail user@company.com` to authenticate via Microsoft Authenticator push notification without requiring password entry.
+**Use Case**: Enable `Connect-HPEGL -PasswordlessSSOEmail user@company.com` to authenticate via Microsoft Authenticator push notification without requiring password entry. (For password-based sign-in instead, use `Connect-HPEGL -Credential user@company.com` — no passwordless policy required.)
 
 To support HPECOMCmdlets SSO functionality, Entra ID must be configured to enable MFA (Multi-Factor Authentication) with passwordless methods:
 
@@ -864,6 +872,8 @@ Before implementing the two-phase enrollment strategy, verify that your Entra ID
 #### 2. Conditional access policies and passwordless enrollment strategy
 
 Conditional Access policies determine when and how multi-factor authentication (MFA) or passwordless authentication is required for your organization. To support the HPECOMCmdlets module while maintaining security best practices, you need to implement a two-phase enrollment strategy that allows users to set up passwordless authentication before enforcing it.
+
+> **Passwordless vs. password-based:** The Conditional Access policies below enforce passwordless-only authentication, which is required for the **passwordless** flow (`Connect-HPEGL -PasswordlessSSOEmail`). If you intend to use **password-based** sign-in (`Connect-HPEGL -Credential`, v1.0.26+), you do **not** need the passwordless-enforcement policy (Policy 2) — a standard "Multifactor authentication" Conditional Access policy (password + MFA, like the grace-period Policy 1 below) works as-is. Configure the full two-phase strategy only if you want password-free sign-in.
 
 ##### Understanding the Two-Phase Enrollment Strategy
 
@@ -1212,8 +1222,12 @@ After confirming browser-based authentication works correctly, verify that the H
 # Import the HPECOMCmdlets module
 Import-Module HPECOMCmdlets
 
-# Attempt SSO login with your verified email address
-Connect-HPEGL -SSOEmail "test.user@company.com"
+# Passwordless SSO (push/TOTP) — for IdP accounts configured for passwordless sign-in
+# Note: -SSOEmail was renamed to -PasswordlessSSOEmail in v1.0.26 (the -SSOEmail alias still works)
+Connect-HPEGL -PasswordlessSSOEmail "test.user@company.com"
+
+# Password-based SSO (federated password + optional MFA step-up) — new in v1.0.26
+Connect-HPEGL -Credential (Get-Credential -UserName "test.user@company.com")
 ```
 
 **Expected Authentication Flow:**
@@ -1517,7 +1531,7 @@ Common authentication failures include misconfigured SAML attributes, certificat
 
 **Purpose**: Configure Okta to support passwordless SSO authentication for the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module when connecting to HPE GreenLake.
 
-**Use Case**: Enable `Connect-HPEGL -SSOEmail user@company.com` to authenticate via Okta Verify push notification without requiring password entry.
+**Use Case**: Enable `Connect-HPEGL -PasswordlessSSOEmail user@company.com` to authenticate via Okta Verify push notification without requiring password entry. (For password-based sign-in instead, use `Connect-HPEGL -Credential user@company.com` — no passwordless policy required.)
 
 To support HPECOMCmdlets SSO functionality, Okta must be configured to:
 
@@ -1664,6 +1678,8 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 - **Configure an authentication policy**
 
     Now that Okta Verify is configured for push notifications and users are enrolled, you need to create a dedicated authentication policy for the HPE GreenLake application. This policy will enforce passwordless authentication by requiring users to authenticate with Okta Verify push notifications instead of passwords.
+
+    > **Passwordless vs. password-based:** The policy below disables password authentication, which is required only for the **passwordless** flow (`Connect-HPEGL -PasswordlessSSOEmail`). If you intend to use **password-based** sign-in (`Connect-HPEGL -Credential`, v1.0.26+), you do **not** need these password-disabling steps — a standard Okta password + MFA policy works as-is. Configure this passwordless policy only if you want password-free sign-in.
 
     1. In the Admin Console, go to **Security** → **Authentication Policies** → **App sign-in**.     
     
@@ -1868,8 +1884,12 @@ After confirming browser-based authentication works correctly, verify that the H
 # Import the HPECOMCmdlets module
 Import-Module HPECOMCmdlets
 
-# Attempt SSO login with your verified email address
-Connect-HPEGL -SSOEmail "test.user@company.com"
+# Passwordless SSO (push/TOTP) — for IdP accounts configured for passwordless sign-in
+# Note: -SSOEmail was renamed to -PasswordlessSSOEmail in v1.0.26 (the -SSOEmail alias still works)
+Connect-HPEGL -PasswordlessSSOEmail "test.user@company.com"
+
+# Password-based SSO (federated password + optional MFA step-up) — new in v1.0.26
+Connect-HPEGL -Credential (Get-Credential -UserName "test.user@company.com")
 ```
 
 **Expected Authentication Flow:**
@@ -2218,7 +2238,7 @@ Common authentication failures include misconfigured SAML attributes, certificat
 
 **Purpose**: Configure PingID to support passwordless SSO authentication for the [HPECOMCmdlets](https://github.com/jullienl/HPE-COM-PowerShell-Library) PowerShell module when connecting to HPE GreenLake.
 
-**Use Case**: Enable `Connect-HPEGL -SSOEmail user@company.com` to authenticate via PingID push notification without requiring password entry.
+**Use Case**: Enable `Connect-HPEGL -PasswordlessSSOEmail user@company.com` to authenticate via PingID push notification without requiring password entry. (For password-based sign-in instead, use `Connect-HPEGL -Credential user@company.com` — no passwordless policy required.)
 
 To support HPECOMCmdlets SSO functionality, PingID must be configured to:
 
@@ -2286,6 +2306,8 @@ The following sections demonstrate how to configure PingID with push notificatio
 - **Create an authentication policy for passwordless login**
 
     The next step is to create an authentication policy that enforces passwordless authentication for HPE GreenLake users. This policy will require users to authenticate using PingID push notifications or TOTP codes instead of passwords.
+
+    > **Passwordless vs. password-based:** The policy below removes the password step, which is required only for the **passwordless** flow (`Connect-HPEGL -PasswordlessSSOEmail`). If you intend to use **password-based** sign-in (`Connect-HPEGL -Credential`, v1.0.26+), you do **not** need this passwordless policy — a standard PingOne password + PingID MFA policy works as-is. Configure this passwordless policy only if you want password-free sign-in.
 
     1. Navigate to **Authentication** → **Authentication** → **Policies** and click **Add Policy**
 
@@ -2516,8 +2538,12 @@ After confirming browser-based authentication works correctly, verify that the H
 # Import the HPECOMCmdlets module
 Import-Module HPECOMCmdlets
 
-# Attempt SSO login with your verified email address
-Connect-HPEGL -SSOEmail "test.user@company.com"
+# Passwordless SSO (push/TOTP) — for IdP accounts configured for passwordless sign-in
+# Note: -SSOEmail was renamed to -PasswordlessSSOEmail in v1.0.26 (the -SSOEmail alias still works)
+Connect-HPEGL -PasswordlessSSOEmail "test.user@company.com"
+
+# Password-based SSO (federated password + optional MFA step-up) — new in v1.0.26
+Connect-HPEGL -Credential (Get-Credential -UserName "test.user@company.com")
 ```
 
 **Expected Authentication Flow:**
