@@ -11,9 +11,11 @@ layout: default
     <h1 id="main-title" class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     {% unless page.hide_post_meta %}<p class="post-meta">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {%- assign post_date_ts = page.date | date: "%s" | plus: 0 -%}
+      {%- assign post_modified_ts = page.last_modified_at | default: page.date | date: "%s" | plus: 0 -%}
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ page.date | date: date_format }}
-      </time>
+      </time>{% if post_modified_ts > post_date_ts %} <span style="color: #999;">[Updated: {{ page.last_modified_at | date: date_format }}]</span>{% endif %}
       {%- if page.author -%}
         • {% for author in page.author %}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">

@@ -39,7 +39,7 @@ layout: default
           {%- assign post_date_ts = post.date | date: "%s" | plus: 0 -%}
           {%- assign post_modified_ts = post.last_modified_at | default: post.date | date: "%s" | plus: 0 -%}
           <span class="post-meta">
-            {{ post.date | date: "%b %-d, %Y" }}{% if post_modified_ts > post_date_ts %} [Updated: {{ post.last_modified_at | date: "%b %-d, %Y" }}]{% endif %} • {% include custom/read_time_or_words.html %} • {% include custom/tags.html %}
+            {{ post.date | date: "%b %-d, %Y" }}{% if post_modified_ts > post_date_ts %} <span style="color: #999;">[Updated: {{ post.last_modified_at | date: "%b %-d, %Y" }}]</span>{% endif %} • {% include custom/read_time_or_words.html %} • {% include custom/tags.html %}
           </span>
           {%- if site.show_excerpts -%}
             <p>{{ post.excerpt | strip_html }}</p>
