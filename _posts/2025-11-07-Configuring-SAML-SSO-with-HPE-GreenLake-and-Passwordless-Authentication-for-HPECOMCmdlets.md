@@ -317,9 +317,9 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
     | Name | Value |
     |------|-------|
-    | **Unique User Identifier (Name ID)** | `user.email` |
-    | **FirstName** | `user.firstName` |
-    | **LastName** | `user.lastName` |
+    | **Unique User Identifier (Name ID)** | `user.mail` |
+    | **FirstName** | `user.givenname` |
+    | **LastName** | `user.surname` |
     | **hpe_ccs_attribute** | See configuration below |
 
     > **Important**: Attribute names (FirstName, LastName, hpe_ccs_attribute) are case-sensitive and must match exactly as shown. The **Unique User Identifier (Name ID)** should already be configured with `user.email` by default - verify this setting but do not modify it.
