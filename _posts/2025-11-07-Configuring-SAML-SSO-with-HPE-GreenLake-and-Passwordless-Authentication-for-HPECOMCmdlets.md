@@ -322,7 +322,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
     | **LastName** | `user.surname` |
     | **hpe_ccs_attribute** | See configuration below |
 
-    > **Important**: Attribute names (FirstName, LastName, hpe_ccs_attribute) are case-sensitive and must match exactly as shown. The **Unique User Identifier (Name ID)** should already be configured with `user.email` by default - verify this setting but do not modify it.
+    > **Important**: Attribute names (FirstName, LastName, hpe_ccs_attribute) are case-sensitive and must match exactly as shown. The **Unique User Identifier (Name ID)** should already be configured with `user.mail` by default - verify this setting but do not modify it.
 
     These SAML attributes define how user identity information is transmitted from Entra ID to HPE GreenLake during authentication:
 
