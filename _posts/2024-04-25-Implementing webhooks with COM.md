@@ -8,6 +8,7 @@ tags:
   - greenlake
   - com  
 mermaid: true
+last_modified_at: 2026-08-31
 ---
 
 
@@ -471,6 +472,91 @@ Description of the different requests:
 [⬆ Back to Top](#)
 
 
+## Securing webhook events with a shared secret
+
+The handshake mechanism described above validates your endpoint to COM, but it does not solve the reverse problem: **how does your endpoint know that an incoming request genuinely comes from COM?**
+
+By design, a webhook destination must be publicly reachable so that COM can post events to it. Unfortunately, "publicly reachable" also means that anyone on the internet who discovers your destination URL can send `POST` requests to it. Without an additional check, a malicious caller could inject **forged events** into your pipeline, resulting in bogus notifications, false tickets, or even a denial-of-service flood.
+
+This is where the `headers` property of the webhook definition becomes useful. So far in this article the `headers` field has been left empty (`{}`), but it is designed precisely for this purpose: **any key/value pair you define there, COM attaches to every webhook request it sends** to your destination. By placing a secret token in this field, you create a **shared secret** that only COM and your receiver know.
+
+
+### Defining the shared secret at webhook creation
+
+When creating (or updating) the webhook, add a custom header containing a long, random, unguessable value:
+
+```json
+{
+  "name": "Webhook event for servers that get unhealthy",
+  "destination": "https://example.com/webhookDestination",
+  "state": "ENABLED",
+  "eventFilter": "type eq 'compute-ops/server' and old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True",
+  "headers": {
+    "X-Webhook-Secret": "s3cr3t-long-random-value-only-COM-and-your-endpoint-know"
+  }
+}
+```
+
+From now on, **every** event COM delivers to your destination will carry the header `X-Webhook-Secret: s3cr3t-...`.
+
+  > Treat the webhook creation payload as sensitive, since it contains your secret. You can pick any header name you like (e.g. `X-Webhook-Secret`, `X-Api-Key`), as long as your receiver checks for the same one.
+
+
+### Validating the shared secret at the receiver
+
+Your event handler must then inspect this header on **every** incoming `POST` request, before processing the payload:
+
+```python
+EXPECTED_SECRET = get_secret("webhook-shared-secret")  # from a vault / secrets manager
+
+def handle_webhook(request):
+    received = request.headers.get("X-Webhook-Secret")
+
+    # Constant-time comparison to avoid timing attacks
+    if not received or not hmac.compare_digest(received, EXPECTED_SECRET):
+        return Response(status=401)   # Reject: not from COM
+
+    process_event(request.body)       # Accept: genuine COM event
+    return Response(status=200)
+```
+
+- If the header **matches**, the caller knows the secret, so the request came from your COM webhook and is processed.
+- If the header is **missing or incorrect**, the request is rejected (`401`/`403`) and dropped, so forged events from anonymous callers never enter your workflow.
+
+This is the same shared-secret model used by providers such as GitHub and Stripe to authenticate their webhook calls.
+
+The following diagram illustrates the decision the receiver makes on each incoming request:
+<br>
+
+<div class="mermaid">
+flowchart TD
+    A["Incoming POST<br>to webhook destination"] --> B{"Is the shared<br>secret header<br>present?"}
+    B -- No --> R["Reject<br>HTTP 401 / 403"]
+    B -- Yes --> C{"Does it match the<br>expected secret?<br>(constant-time compare)"}
+    C -- No --> R
+    C -- Yes --> P["Accept<br>Process the event<br>HTTP 200"]
+    R --> Z["Event dropped<br>(never enters workflow)"]
+</div>
+<br>
+
+
+### Security considerations
+
+A few important points to keep in mind when relying on this mechanism:
+
+| Consideration | Detail |
+|---|---|
+| **Always use HTTPS** | The header is transmitted in clear text inside the request. TLS is what prevents it from being intercepted in transit, so your destination must be an `https://` endpoint. |
+| **Shared secret, not a signature** | COM sends a *static* header value (a bearer-style secret), not an HMAC signature computed over the payload. It proves the caller knows the secret, but does not, on its own, guarantee that the body was not altered. Over HTTPS this is generally sufficient. |
+| **Constant-time comparison** | Compare the header using a constant-time function (e.g. `hmac.compare_digest`) to avoid leaking information through timing attacks. |
+| **Store secrets securely** | Never hard-code the secret. Keep it in a secrets manager (e.g. HashiCorp Vault, Azure Key Vault, AWS Secrets Manager) on the receiver side. |
+| **Rotate periodically** | To rotate the secret, `PATCH` the webhook `headers` with the new value and update your receiver's stored secret accordingly. |
+
+  > Combining the handshake (which authenticates your endpoint to COM) with a shared secret header (which authenticates COM to your endpoint) gives you mutual assurance: COM knows it is talking to the right receiver, and your receiver knows it is processing genuine COM events.
+
+[⬆ Back to Top](#)
+
+
 ## Integrating COM webhooks with automation tools
 
 To manage webhook events, you can use any programming language—such as Node.js, Python, or PHP—to set up a server that listens for webhook events. Alternatively, you can use tools like Zapier or Make (formerly known as Integromat), which have become very popular in the no-code/low-code arena. There are also solutions available from major providers like Google Cloud, Amazon Web Services (AWS), and Microsoft Azure.
@@ -504,8 +590,27 @@ The multifaceted automated workflow must handle the initial validation challenge
 - Create a new record in a Notion database, cataloguing particulars of the affected server.
 
 The following steps describe how to implement this scenario in Make:
-<a name="1-setup-your-make-account"></a>
 
+  1. [Setup your Make account](#1-setup-your-make-account)
+  2. [Create a new scenario](#2-create-a-new-scenario)
+  3. [Search and add the webhooks module](#3-search-and-add-the-webhooks-module)
+  4. [Configure the webhook trigger](#4-configure-the-webhook-trigger)
+  5. [Run the webhooks module once](#5-run-the-webhooks-module-once)
+  6. [Create the webhook using the COM API](#6-create-the-webhook-using-the-com-api)
+  7. [Create a variable to capture the verification challenge sent by COM](#7-create-a-variable-to-capture-the-verification-challenge-sent-by-com)
+  8. [Renegotiate the webhook handshake to set the variable](#8-renegociate-the-webhook-handshake-to-set-the-variable)
+  9. [Use the verification challenge in the webhook response](#9-use-the-verification-challenge-in-the-webhook-response)
+  10. [Renegotiate the webhook handshake to generate the response](#10-renegociate-the-webhook-handshake-to-generate-the-response)
+  11. [Check the webhook status in COM (optional)](#11-check-the-webhook-status-in-com-optional)
+  12. [Enable header capture and validate the shared secret in Make](#12-enable-header-capture-and-validate-the-shared-secret-in-make)
+  13. [Configure a variable to store the server tags](#13-configure-a-variable-to-store-the-server-tags)
+  14. [Configure the event handlers](#14-Configure-the-event-handlers)
+  15. [Scheduling and Activation](#15-scheduling-and-activation)
+  16. [Trigger a webhook to test the full flow](#16-trigger-a-webhook-to-test-the-full-flow)
+
+<a name="1-setup-your-make-account"></a>
+   <br>
+      
 1. **Setup your Make account**
    
    - Sign in to your Make account.
@@ -577,6 +682,7 @@ The following steps describe how to implement this scenario in Make:
               "state": "ENABLED",
               "eventFilter": "type eq 'compute-ops/server' and old/hardware/powerState eq 'ON' and changed/hardware/powerState eq True",
               "headers": {
+                  "X-Webhook-Secret": "s3cr3t-long-random-value-only-COM-and-your-scenario-know"
               }
           }
         ```
@@ -587,6 +693,10 @@ The following steps describe how to implement this scenario in Make:
         >   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-11.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-11.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}  
 
         > These examples should assist you in creating your own webhooks successfully.
+
+        > **Adding a shared secret header (recommended)**: In the payload above, the `headers` field includes a custom `X-Webhook-Secret` header, as described in the [Securing webhook events with a shared secret](#securing-webhook-events-with-a-shared-secret) section. COM will attach this header to every event it sends to your Make endpoint, allowing your scenario to reject any request that does not carry the correct secret. Since a Make webhook URL is publicly reachable, this is strongly recommended to prevent anyone who discovers the URL from injecting forged events into your scenario. The steps below explain how to validate it in Make.
+
+   
 
     - Send the request to create the webhook. Verify that the COM API responds with a `201 Created` status code, indicating successful creation. The response body should indicate a status of `PENDING`.
       
@@ -664,9 +774,12 @@ The following steps describe how to implement this scenario in Make:
               "state": "ENABLED",
               "eventFilter": "type eq 'compute-ops/server' and old/hardware/powerState eq 'ON' and changed/hardware/powerState eq True",
               "headers": {
+                  "X-Webhook-Secret": "s3cr3t-long-random-value-only-COM-and-your-scenario-know"
               }
             }
         ```
+
+        > **Note**: Since this is a `merge-patch` request, be sure to include the `X-Webhook-Secret` header again in the `headers` field. Sending an empty `headers: {}` would remove the shared secret you defined in step 6.
     
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-31.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-31.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
@@ -734,9 +847,42 @@ The following steps describe how to implement this scenario in Make:
         [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
  <br>
 <br>
-<a name="12-configure-a-variable-to-store-the-server-tags"></a>
+<a name="12-enable-header-capture-and-validate-the-shared-secret-in-make"></a>
 
-12. **Configure a variable to store the server tags**
+12. **Enable header capture and validate the shared secret in Make**: 
+    
+      Because the Make Webhooks module was configured with **Get request headers** set to **Yes** in [step 4](#4-configure-the-webhook-trigger), the incoming `X-Webhook-Secret` header sent by COM is available in this scenario. To ensure only genuine COM events are processed, add a **filter** on the connection leaving the Webhooks module so that the flow only continues when the header matches your expected secret:
+      
+      1. Hover over the connection line just after the Webhooks module and click the **wrench (Set up a filter)** icon.
+
+          [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35a.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35a.png){:class="img-500"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+
+      2. Give the filter a label such as `Valid shared secret`.
+      3. In the first condition field, build the following expression to extract the header value from the incoming request:
+      
+          \{\{get(toCollection(Headers[]; &quot;name&quot;; &quot;value&quot;); &quot;x-webhook-secret&quot;)\}\}
+
+          > **Important: Do not type** `Headers[]` **as plain text**: `Headers[]` is a mapped variable, not literal text. You must insert it by clicking the **`Headers[]`** item in the Make mapping pane (the output of the Webhooks module), exactly as you did in [step 7](#7-create-a-variable-to-capture-the-verification-challenge-sent-by-com). To build the expression, type `get(toCollection(`, then click the `Headers[]` item from the mapping pane to insert the real reference, and finish typing `; "name"; "value"); "x-webhook-secret")`. If you type the word `Headers[]` by hand instead of mapping it, `toCollection()` receives an invalid input, returns an empty value, and the filter blocks every request.
+     
+          > This reuses the same `toCollection()` / `get()` technique used earlier in [step 7](#7-create-a-variable-to-capture-the-verification-challenge-sent-by-com) to capture the verification challenge header, but this time it retrieves the `x-webhook-secret` header instead.
+
+          > **Header name case**: use the header name in **lowercase** (`x-webhook-secret`), even though you defined it as `X-Webhook-Secret` in the webhook payload. Make normalizes all incoming HTTP header names to lowercase when it stores them in the `Headers[]` collection, and the `get()` function is case-sensitive. Looking up `X-Webhook-Secret` would return an empty value and your filter would block every request. This is the same reason the verification challenge header in step 7 is referenced in lowercase.
+      
+      4. Set the operator to **Text operators: Equal to**.
+      5. In the second field, enter the exact secret value you defined in the webhook payload (e.g. `s3cr3t-long-random-value-only-COM-and-your-scenario-know`).
+
+          [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35b.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-35b.png){:class="img-500"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+
+      6. Click **Save**.
+      
+      With this filter in place, any request that does not carry the correct `X-Webhook-Secret` value is discarded and the downstream modules never run, so forged events from anonymous callers are ignored.
+      
+      > **Security tips**: store the secret in a Make [custom variable](https://www.make.com/en/help/scenarios/custom-variables) rather than hard-coding it inline, always keep your endpoint on HTTPS (the header travels in clear text inside the request), and rotate the secret periodically by updating both the COM webhook `headers` (via a `PATCH` request) and the value referenced in your scenario.
+ <br>
+<br>
+<a name="13-configure-a-variable-to-store-the-server-tags"></a>
+
+13. **Configure a variable to store the server tags**
       
       The webhook data that Make will receive from COM will include server resource data, including Tags information. 
       
@@ -814,9 +960,9 @@ The following steps describe how to implement this scenario in Make:
        You may now proceed to configure the event handlers, which will enable the triggering of specific actions.
  <br>
 <br>
-<a name="13-Configure-the-event-handlers"></a>
+<a name="14-Configure-the-event-handlers"></a>
 
-13. **Configure the event handlers**
+14. **Configure the event handlers**
 
       To configure the following actions: sending an email, posting on a Slack channel, and adding a record in a Notion database, a router module in Make is essential. The router module enables you to create multiple branches within your scenario, allowing different actions to take place either conditionally or in parallel. For this particular scenario, no conditions will be used since I want to trigger various actions from the same webhook event concurrently. The router effectively manages these simultaneous executions, ensuring that each action is processed without the need for any conditional logic.
 
@@ -971,9 +1117,9 @@ The following steps describe how to implement this scenario in Make:
 
             [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-55.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-55.png){:class="img-400"}{: data-lightbox="gallery"}{: .bordered-image-thin}  
 <br>
-<a name="14-scheduling-and-activation"></a>
+<a name="15-scheduling-and-activation"></a>
 
-14. **Scheduling and Activation**   
+15. **Scheduling and Activation**   
 
       - To ensure the scenario runs automatically every time webhook data is received from COM, click on the **Scheduling** button and make sure the **Immediately as data arrives** option is selected:
 
@@ -986,9 +1132,9 @@ The following steps describe how to implement this scenario in Make:
 
       This completes the configuration of the scenario. You are ready to test the full flow. 
   <br>  
-<a name="15-trigger-a-webhook-to-test-the-full-flow"></a>
+<a name="16-trigger-a-webhook-to-test-the-full-flow"></a>
 
-15. **Trigger a webhook to test the full flow**
+16. **Trigger a webhook to test the full flow**
 
       The last step will be the testing phase where you'll verify that everything operates as expected. Exit the editor to monitor the scenario and check logs for any issues:
 
