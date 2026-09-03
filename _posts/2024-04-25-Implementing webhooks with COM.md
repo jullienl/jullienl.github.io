@@ -1322,6 +1322,27 @@ Details about the different modules to use in Make to interact with COM:
    [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}  
 
 
+[⬆ Back to Top](#)
+
+
+## A production-ready reference implementation
+
+The Make scenario above is perfect for prototyping and no-code automation, but if you need to forward COM events into an enterprise tool — an **event/monitoring system** (HPE OpsRamp, OBM), an **ITSM/ticketing system** (ServiceNow), or a **SIEM** (Splunk) — in a robust, self-hosted way, I've put together an open-source set of reference implementations:
+
+  > **[HPE-COM-Event-Integrations](https://github.com/jullienl/HPE-COM-Event-Integrations)** — reference receivers that take COM webhook events and forward them to OBM, ServiceNow, Splunk, or any generic webhook target.
+
+It implements, in real code, everything this article describes — the [verification handshake](#secure-handshake-mechanism), [shared-secret validation](#securing-webhook-events-with-a-shared-secret), and the [raise/clear ticketing pattern](#pairing-raise-and-clear-webhooks-for-ticketing-systems) — plus event normalisation, de-duplication, and retry, so you don't have to build those from scratch. It comes in two deployment shapes depending on your constraints:
+
+- **Cloud relay + on-prem shim** — a managed public receiver (Azure Container Apps / AWS App Runner) enqueues events, and an outbound-only shim running next to your target drains the queue. No inbound ports on-prem.
+- **Single on-prem box** — one container that receives, transforms, and forwards in a single process (with an optional local disk spool for durability), for when no cloud service can be used.
+
+  > If you already run **HPE OpsRamp** or **ServiceNow**, note that both have a **native COM integration**, so you may not need a custom receiver at all — the repo's README explains when to use which.
+
+[⬆ Back to Top](#)
+
+
+## Wrapping up
+
 To wrap things up, I'm genuinely excited about the opportunities here! The combination of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake. Imagine having complicated tasks just flow smoothly on their own—less manual work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀
 
 
