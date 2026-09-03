@@ -8,7 +8,7 @@ tags:
   - greenlake
   - com  
 mermaid: true
-last_modified_at: 2026-08-31
+last_modified_at: 2026-09-03
 ---
 
 
@@ -96,8 +96,8 @@ For each resource, certain specific properties are capable of initiating the dis
 
 | Resource Type | API Documentation | Monitorable Properties |
 |---|---|---|
-| `compute-ops/server` | [Get v1beta2 server by ID](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta2_server_by_id/) | `hardware`, `state`, `firmwareInventory`, `softwareInventory`, `lastFirmwareUpdate`, `tags`, `autoIloFwUpdate` |
-| `compute-ops/alert` | [Get v1beta2 server alerts](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta2_server_alerts/) | N/A - no specific properties can be monitored. Will only send `Created` and `Deleted` events |
+| `compute-ops/server` | [Get v1 server by ID](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1_server_by_id/) | `hardware`, `state`, `firmwareInventory`, `softwareInventory`, `lastFirmwareUpdate`, `tags`, `autoIloFwUpdate` |
+| `compute-ops/alert` | [Get v1 server alerts](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1_server_alerts/) | N/A - no specific properties can be monitored. Will only send `Created` and `Deleted` events |
 | `compute-ops/group` | [Get v1beta2 group by ID](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta2_group_by_id/) | `name`, `autoFwUpdateOnAdd`, `groupComplianceStatus`, `serverSettingsUris`, `devices`, `serverPolicies`, `autoAddServerTags` |
 | `compute-ops/server-setting` | [Get v1beta1 server settings by ID](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta1_server_settings_by_id/) | `name`, `settings` |
 | `compute-ops/job` | [Get v1beta3 job by ID](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta3_job_by_id/) | `state` |
@@ -217,12 +217,26 @@ Logical Operators can also be used to combine conditions using `and`, `or`, and 
 
 Filtering with OData allows for both simple and complex querying possibilities, here are some examples:
 
-- **To receive webhooks for group and server events only**:  
- 
+
+- **To receive webhooks for all servers that transition to an unhealthy status** (raise):
+
   ```txt
-  type eq 'compute-ops/group' or type eq 'compute-ops/server'
+  type eq 'compute-ops/server' and old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True
   ```
-  => Match all group and server events
+
+  => Match any server events whose health summary transitions out of an `OK` state
+
+
+- **To receive webhooks for all servers that recover to a healthy status** (clear):
+
+  ```txt
+  type eq 'compute-ops/server' and new/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True
+  ```
+
+  => Match any server events whose health summary transitions back **into** an `OK` state
+
+  **Note**: This is the mirror image of the previous filter. The raise filter keys off `old/...summary eq 'OK'` (the server *was* healthy and just left that state), whereas the clear filter keys off `new/...summary eq 'OK'` (the server *is now* healthy again after having been degraded). Together they capture both edges of the health transition. See [Pairing raise and clear webhooks for ticketing systems](#pairing-raise-and-clear-webhooks-for-ticketing-systems) below for how these two are typically used together.
+
 
 
 - **To receive webhooks for all servers that are shut down**:   
@@ -257,15 +271,6 @@ Filtering with OData allows for both simple and complex querying possibilities, 
   => Match any firmware update job events that have a new `state` set to `RUNNING`
 
 
-- **To receive webhooks for all servers that transition to an unhealthy status**:
-
-  ```txt
-  type eq 'compute-ops/server' and old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True
-  ```
-
-  => Match any server events whose health summary transitions out of an `OK` state
-
-
 - **To receive webhooks for all events within a specified group**:
 
   ```txt
@@ -298,6 +303,47 @@ Filtering with OData allows for both simple and complex querying possibilities, 
   ```
 
   => Match any server events whose connected state transitions out of a `false` state, which occurs after the iLO establishes a connection with COM
+
+[⬆ Back to Top](#)
+
+
+### Pairing raise and clear webhooks for ticketing systems
+
+When you integrate COM webhooks with a ticketing or event-management system (ServiceNow, Jira, PagerDuty, an ITSM tool, etc.), you rarely want to be notified of a problem only. You also want the case that was opened for that problem to be **closed automatically** once the condition clears, so that operators are not left manually reconciling stale tickets.
+
+This is where a key characteristic of COM webhooks matters: a webhook is **opt-in and single-directional**. Its `eventFilter` describes **one** transition, and COM only sends the events that match it. A single filter such as `old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True` captures the moment a server *leaves* the healthy state, but it will **never** fire when the server recovers. There is no "both directions" operator.
+
+So yes: the common pattern is to create **two webhooks that point to the same destination URL**, one for the *raise* transition and one for the *clear* transition:
+
+| Purpose | Ticketing action | `eventFilter` |
+|---|---|---|
+| **Raise** (fault appears) | Open / create the ticket | `type eq 'compute-ops/server' and old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True` |
+| **Clear** (fault resolved) | Resolve / close the ticket | `type eq 'compute-ops/server' and new/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True` |
+
+<br>
+
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    participant COM as Compute Ops Management
+    participant EP as Destination<br>(same endpoint)
+    participant ITSM as Ticketing system
+
+    Note over COM: Server health<br>leaves OK
+    COM->>EP: Raise webhook<br>(old/...summary eq 'OK')
+    EP->>ITSM: Open ticket
+    Note over COM: Server health<br>returns to OK
+    COM->>EP: Clear webhook<br>(new/...summary eq 'OK')
+    EP->>ITSM: Close matching ticket
+</div>
+<br>
+
+A few practical points when implementing this pattern:
+
+- **Correlate the two events.** Your receiver needs to match the clear against the ticket opened by the raise. Use a stable identifier from the payload (for example the server's `id`/serial, and ideally the affected component) as the ticket's correlation/deduplication key, so the clear closes the *right* ticket.
+- **The same idea applies to any monitorable transition**, not just health. You can pair power state (`powerState` `ON`↔`OFF`), connectivity (`state/connected` `True`↔`False`), or group compliance (`groupComplianceStatus` `Compliant`↔not compliant) the same way — one webhook per direction.
+- **Alerts are a different model.** The `compute-ops/alert` resource only emits `Created` and `Deleted` events (no property transitions). If you prefer to drive tickets from alerts rather than from health transitions, map `operation eq 'Created'` to *open* and `operation eq 'Deleted'` to *close* instead.
+- **Both webhooks share the destination, but are independent objects** — each has its own `id`, its own handshake, and its own status in COM. Enable, disable, or rotate the [shared secret](#securing-webhook-events-with-a-shared-secret) on each one individually.
 
 [⬆ Back to Top](#)
 
