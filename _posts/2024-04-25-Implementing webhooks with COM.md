@@ -239,7 +239,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
 
 
-- **To receive webhooks for all servers that are shut down**:   
+- **To receive webhooks for all servers that are shut down** (raise):   
  
   ```txt
   type eq 'compute-ops/server' and old/hardware/powerState eq 'ON' and changed/hardware/powerState eq True
@@ -249,7 +249,18 @@ Filtering with OData allows for both simple and complex querying possibilities, 
   **Note**: Make sure that the Boolean value `True` is used without quotes, as it represents a logical Boolean change (`True` or `False`) for the `powerState` property. `old` specifies the previous state of the `powerState` property (`ON`).
 
 
-- **To receive webhooks for all servers that get disconnect from Compute Ops Management**:   
+- **To receive webhooks for all servers that are powered back on** (clear):
+
+  ```txt
+  type eq 'compute-ops/server' and new/hardware/powerState eq 'ON' and changed/hardware/powerState eq True
+  ```
+
+  => Match any server events whose power state transitions back to `ON`
+
+  **Note**: This is the mirror of the previous filter — the raise keys off `old/...powerState eq 'ON'` (the server *was* on and just went off), whereas the clear keys off `new/...powerState eq 'ON'` (the server *is now* back on). See [Pairing raise and clear webhooks for ticketing systems](#pairing-raise-and-clear-webhooks-for-ticketing-systems).
+
+
+- **To receive webhooks for all servers that get disconnect from Compute Ops Management** (raise):   
   
   ```txt
   type eq 'compute-ops/server' and old/state/connected eq True and changed/state/connected eq True
@@ -260,7 +271,18 @@ Filtering with OData allows for both simple and complex querying possibilities, 
   **Note**: The `connected` property of the servers API is a Boolean as indicated in the [API reference](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/openapi/compute-ops-mgmt-latest/operation/get_v1beta2_server_by_id/#tag/servers-v1beta2/operation/get_v1beta2_server_by_id!c=200&path=state&t=response), therefore ensure you use the Boolean value `True` without enclosing it in quotation marks as they represent Boolean literals for both expressions because quotation marks would indicate a string type rather than a Boolean type:
 
   [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-1.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-1.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
-  
+
+
+- **To receive webhooks for all servers that reconnect to Compute Ops Management** (clear):
+
+  ```txt
+  type eq 'compute-ops/server' and old/state/connected eq False and changed/state/connected eq True
+  ```
+
+  => Match any server events whose connected state transitions out of a `false` state, which occurs after the iLO establishes (or re-establishes) a connection with COM
+
+  **Note**: This is the mirror of the disconnect filter above and closes the loop: the disconnect filter (`old/state/connected eq True`) is the *raise*, and this one (`old/state/connected eq False`) is the *clear*. The same filter also matches a brand-new server connecting to COM for the first time. See [Pairing raise and clear webhooks for ticketing systems](#pairing-raise-and-clear-webhooks-for-ticketing-systems).
+
 
 - **To receive webhooks for all jobs that run a server firmware update**:
 
@@ -295,14 +317,6 @@ Filtering with OData allows for both simple and complex querying possibilities, 
   ```
 
   => Match any events related to servers that are assigned to a COM instance but with iLOs not connected to COM
-
-- **To receive webhooks for all new servers added and connected to COM**:
-
-  ```txt
-  type eq 'compute-ops/server' and old/state/connected eq False and changed/state/connected eq True
-  ```
-
-  => Match any server events whose connected state transitions out of a `false` state, which occurs after the iLO establishes a connection with COM
 
 [⬆ Back to Top](#)
 
