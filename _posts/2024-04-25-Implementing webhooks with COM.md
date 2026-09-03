@@ -313,7 +313,7 @@ When you integrate COM webhooks with a ticketing or event-management system (Ser
 
 This is where a key characteristic of COM webhooks matters: a webhook is **opt-in and single-directional**. Its `eventFilter` describes **one** transition, and COM only sends the events that match it. A single filter such as `old/hardware/health/summary eq 'OK' and changed/hardware/health/summary eq True` captures the moment a server *leaves* the healthy state, but it will **never** fire when the server recovers. There is no "both directions" operator.
 
-So yes: the common pattern is to create **two webhooks that point to the same destination URL**, one for the *raise* transition and one for the *clear* transition:
+The common pattern is therefore to create **two webhooks that point to the same destination URL**, one for the *raise* transition and one for the *clear* transition:
 
 | Purpose | Ticketing action | `eventFilter` |
 |---|---|---|
@@ -326,14 +326,14 @@ So yes: the common pattern is to create **two webhooks that point to the same de
 sequenceDiagram
     autonumber
     participant COM as Compute Ops Management
-    participant EP as Destination<br>(same endpoint)
+    participant EP as Destination (same endpoint)
     participant ITSM as Ticketing system
 
-    Note over COM: Server health<br>leaves OK
-    COM->>EP: Raise webhook<br>(old/...summary eq 'OK')
+    Note over COM: Server health leaves OK
+    COM->>EP: Raise webhook (old health OK)
     EP->>ITSM: Open ticket
-    Note over COM: Server health<br>returns to OK
-    COM->>EP: Clear webhook<br>(new/...summary eq 'OK')
+    Note over COM: Server health returns to OK
+    COM->>EP: Clear webhook (new health OK)
     EP->>ITSM: Close matching ticket
 </div>
 <br>
