@@ -1334,7 +1334,7 @@ The Make scenario above is perfect for prototyping and no-code automation, but i
 It implements, in real code, everything this article describes — the [verification handshake](#secure-handshake-mechanism), [shared-secret validation](#securing-webhook-events-with-a-shared-secret), and the [raise/clear ticketing pattern](#pairing-raise-and-clear-webhooks-for-ticketing-systems) — plus event normalisation, de-duplication, and retry, so you don't have to build those from scratch. It comes in two deployment shapes depending on your constraints:
 
 - **Cloud relay + on-prem shim** — a managed public receiver (Azure Container Apps / AWS App Runner) enqueues events, and an outbound-only shim running next to your target drains the queue. No inbound ports on-prem.
-- **Single on-prem box** — one container that receives, transforms, and forwards in a single process (with an optional local disk spool for durability), for when no cloud service can be used.
+- **Single on-prem box** — one container that receives, transforms, and forwards in a single process with a local disk spool for durability, for when no cloud service can be used.
 
   > If you already run **HPE OpsRamp** or **ServiceNow**, note that both have a **native COM integration**, so you may not need a custom receiver at all — the repo's README explains when to use which.
 
