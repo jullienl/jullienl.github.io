@@ -48,12 +48,14 @@ This guide covers:
 
 SAML SSO is a form of **federated authentication** (also called federated identity): HPE GreenLake (the *service provider*) trusts an external *identity provider* — Entra ID, Okta, or Ping Identity — to verify who you are, so your organization's existing credentials work across systems without HPE GreenLake ever storing your password.
 
+> **Two concepts to keep distinct:** *authentication* (**AuthN** — proving who a user is) and *authorization* (**AuthZ** — deciding what that user can do). SAML SSO always handles AuthN through your identity provider; AuthZ can be handled either in HPE GreenLake or by the identity provider, as explained later in the [Authorization mode](#3-configure-an-authentication-policy) step.
+
 The motivation for implementing SAML SSO with HPE GreenLake is driven by several key factors:
 
 - **Centralized identity management**: Integration with existing enterprise identity infrastructure creates a single source of truth for user authentication and authorization
 - **Enhanced security**: Eliminates the need for multiple passwords across different systems, reducing the risk of credential compromise
 - **Improved user experience**: Users authenticate once and gain seamless access to multiple applications
-- **Simplified administration**: Changes to user access rights in the identity provider are automatically reflected in HPE GreenLake
+- **Simplified administration**: Centralized authentication through the identity provider, with the option to manage authorization either in HPE GreenLake or through IdP-based role assignments
 - **Compliance**: Centralized authentication logging and audit trails support regulatory compliance requirements
 
 ## Scope of This Guide: Organization Users (Internal SSO)
@@ -217,7 +219,7 @@ For experienced administrators familiar with Entra ID and SAML configuration, he
 
 ### Step 1: Register HPE GreenLake in Entra ID
 
-Before configuring the HPE GreenLake enterprise application in Entra ID, it's essential to create a security group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Entra ID groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use local authorization instead of SAML-based RBAC.
+Before configuring the HPE GreenLake enterprise application in Entra ID, it's essential to create a security group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Entra ID groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use **Local role assignments** — the mode HPE's architecture guidance calls **Authentication-Only SSO** (the IdP authenticates, HPE GreenLake authorizes) — instead of **SSO role assignments**, the mode HPE calls **SSO Authorization Mode** (the IdP authenticates and supplies authorization through the `hpe_ccs_attribute`).
 
 #### 1. Create a security group 
 
@@ -638,6 +640,19 @@ The first step is to claim and verify the domain you will use for single sign-on
 
 With the SSO connection established, the final step is to create an authentication policy. This policy links your verified domain to the SSO connection, activating single sign-on for your users.
 
+During this step you will choose an **Authorization mode**, which determines whether HPE GreenLake or your identity provider decides what each user can access. HPE's [identity governance guidance](https://developer.greenlake.hpe.com/docs/greenlake/guides/public/well-architected/workspaces/identity-governance) describes these as two operating modes. The table below maps them to the labels you see in the HPE GreenLake UI:
+
+<div class="table-wrapper" markdown="block">
+
+| HPE GreenLake UI label | HPE architecture term | How authorization works |
+|:--|:--|:--|
+| **Local role assignments** | **Authentication-Only SSO** | The IdP authenticates the user; **HPE GreenLake authorizes** by having administrators assign roles in-platform. |
+| **SSO role assignments** | **SSO Authorization Mode** | The IdP authenticates the user **and** supplies authorization, sending roles with each session through the `hpe_ccs_attribute` SAML claim. |
+
+</div>
+
+> **Note**: Both modes rely on your IdP for authentication (AuthN — proving who the user is). They differ only in *authorization* (AuthZ — deciding what the user can do). **Authentication-Only SSO** (Local role assignments) keeps authorization in HPE GreenLake and is the simpler, recommended choice for most organizations. **SSO Authorization Mode** (SSO role assignments) centralizes authorization in the IdP and is typically used by MSPs or large teams that manage `hpe_ccs_attribute` claims at scale.
+
 - Return to the **SSO configuration** page and click **Create authentication policy**.
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-30.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
@@ -655,7 +670,7 @@ With the SSO connection established, the final step is to create an authenticati
 
     - **If you configured `hpe_ccs_attribute` in Step 1**:
 
-        - Select **SSO role assignments**.
+        - Select **SSO role assignments** (**SSO Authorization Mode**).
 
             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-31.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-31.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
@@ -663,11 +678,24 @@ With the SSO connection established, the final step is to create an authenticati
 
     - **If you did not configure `hpe_ccs_attribute` in Step 1**:
         
-        - Select **Local role assignments**. 
+        - Select **Local role assignments** (**Authentication-Only SSO**). 
         
            [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-32.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-32.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-        This option decouples authentication from authorization. Users authenticate via your identity provider, but their roles and permissions are managed directly within the HPE GreenLake platform. With this approach, you must manually invite users and assign roles within HPE GreenLake after the SSO configuration is complete.
+        **Local role assignments**
+
+        This option decouples authentication from authorization. Users authenticate through your identity provider, while their workspace access, roles, and permissions continue to be managed directly within HPE GreenLake.
+
+        If users already exist in the HPE GreenLake workspace and have roles assigned, enabling SSO does not normally require recreating those users or reassigning their roles. The identity provided by the IdP must match the existing GreenLake user identity, typically using the same email address.
+
+        For new users who do not yet exist in the workspace, an administrator must add or invite the users and assign the appropriate roles in HPE GreenLake.
+
+        With this model:
+
+        * **Identity Provider:** authenticates the user
+        * **HPE GreenLake:** controls workspace access, roles, and permissions
+
+        This model is referred to in current HPE GreenLake architecture guidance as **Authentication-Only SSO**.
 
         **How It Works:**     
         1. Navigate to **Manage Workspace** → **Identity & access management**.
@@ -761,7 +789,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 - **Verify Role-Based Permissions (if applicable)**:
 
-    - If you configured the `hpe_ccs_attribute` for SAML-based role assignments, confirm that the correct roles have been applied:
+    - If you configured the `hpe_ccs_attribute` for **SSO role assignments** (**SSO Authorization Mode**), confirm that the correct roles have been applied:
 
         1. Navigate to **Manage workspace** → **Identity & access management** → **Users**.
 
@@ -1305,7 +1333,7 @@ The following steps will guide you through creating a custom SAML 2.0 applicatio
 
 ### Step 1: Register HPE GreenLake in Okta
 
-Before configuring the HPE GreenLake enterprise application in Okta, it's essential to create a group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Okta groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use local authorization instead of SAML-based RBAC.
+Before configuring the HPE GreenLake enterprise application in Okta, it's essential to create a group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Okta groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use **Local role assignments** (**Authentication-Only SSO** in HPE's architecture guidance) instead of **SSO role assignments** (**SSO Authorization Mode**).
 
 
 #### 1. Create a group 
@@ -1484,7 +1512,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 - **Verify Role-Based Permissions (if applicable)**:
 
-    - If you configured the `hpe_ccs_attribute` for SAML-based role assignments, confirm that the correct roles have been applied:
+    - If you configured the `hpe_ccs_attribute` for **SSO role assignments** (**SSO Authorization Mode**), confirm that the correct roles have been applied:
 
         1. Navigate to **Manage workspace** → **Identity & access management** → **Users**.
 
@@ -1964,7 +1992,7 @@ The following steps will guide you through creating a custom SAML 2.0 applicatio
 
 ### Step 1: Register HPE GreenLake in Ping Identity
 
-Before configuring the HPE GreenLake application in Ping Identity, it's essential to create a group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Ping Identity groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use local authorization instead of SAML-based RBAC.
+Before configuring the HPE GreenLake application in Ping Identity, it's essential to create a group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Ping Identity groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use **Local role assignments** (**Authentication-Only SSO** in HPE's architecture guidance) instead of **SSO role assignments** (**SSO Authorization Mode**).
 
 [⬆ Back to Top](#)
 
@@ -2187,7 +2215,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
 - **Verify Role-Based Permissions (if applicable)**:
 
-    - If you configured the `hpe_ccs_attribute` for SAML-based role assignments, confirm that the correct roles have been applied:
+    - If you configured the `hpe_ccs_attribute` for **SSO role assignments** (**SSO Authorization Mode**), confirm that the correct roles have been applied:
 
         1. Navigate to **Manage workspace** → **Identity & access management** → **Users**.
 
