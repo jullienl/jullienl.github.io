@@ -686,7 +686,13 @@ During this step you will choose an **Authorization mode**, which determines whe
 
         This option decouples authentication from authorization. Users authenticate through your identity provider, while their workspace access, roles, and permissions continue to be managed directly within HPE GreenLake.
 
-        If users already exist in the HPE GreenLake workspace and have roles assigned, enabling SSO does not normally require recreating those users or reassigning their roles. The identity provided by the IdP must match the existing GreenLake user identity, typically using the same email address.
+        If users already exist in the HPE GreenLake workspace and have roles assigned, enabling SSO does not normally require recreating those users or reassigning their roles.
+
+        > **Critical — the IdP identity must match the existing HPE GreenLake user identity:** With **Authentication-Only SSO** (Local role assignments), HPE GreenLake does **not** create users from the SAML assertion. It matches the incoming user to an existing account using the identity your IdP sends in the SAML **NameID** — which, per Step 1, is mapped to the user's email address (`user.mail`, typically the UPN). This value must be **identical** (case-insensitive) to the email address of the existing HPE GreenLake user.
+        >
+        >{: .small-space}
+        >
+        > **Example:** If your claimed SSO domain is `acme.com` and the IdP sends `NameID = john.doe@acme.com`, then a user with the email `john.doe@acme.com` must already exist in the HPE GreenLake workspace with roles assigned. A mismatch — such as the IdP sending `jdoe@acme.com` (an alias) or `john.doe@acme.co.uk` (a different domain) while the GreenLake user is `john.doe@acme.com` — authenticates successfully at the IdP but fails to resolve to a workspace user, so the sign-in is rejected. Ensure your IdP's NameID/email claim emits the **exact** primary email address used in HPE GreenLake.
 
         For new users who do not yet exist in the workspace, an administrator must add or invite the users and assign the appropriate roles in HPE GreenLake.
 
