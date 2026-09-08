@@ -5,7 +5,7 @@ categories: GreenLake
 image: /assets/images/SAML-SSO/banner.jpg
 reading_time: 75
 excerpt: A comprehensive guide to configuring SAML SSO authentication with the three main identity providers for HPE GreenLake — Microsoft Entra ID, Okta, and Ping Identity — and integrating it with the HPECOMCmdlets PowerShell module using either passwordless (push/TOTP) or password-based (`-Credential`, v1.0.26+) sign-in.
-last_modified_at: 2026-06-16
+last_modified_at: 2026-09-08
 tags: 
    - greenlake
    - saml
