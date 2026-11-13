@@ -122,6 +122,10 @@
   box-shadow: none !important;
   overflow: hidden;
 }
+[data-theme="light"] .home .home-card {
+  --home-card: #e8f4ee;
+  --home-border: #b2d2c2;
+}
 [data-theme] .home .home-card:hover {
   border-color: var(--home-accent) !important;
   box-shadow: 0 10px 24px rgba(0, 0, 0, .08) !important;
