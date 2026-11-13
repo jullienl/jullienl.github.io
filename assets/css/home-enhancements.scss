@@ -9,17 +9,17 @@
   gap: 0.75em;
   margin-bottom: 3.5em;
   padding-bottom: 1.5em;
-  border-bottom: 2px solid rgba(107, 179, 242, 0.2);
+  border-bottom: 2px solid rgba(121, 218, 202, 0.2);
 }
 
 .category-chip {
   display: inline-block;
   padding: 0.5em 1.2em;
-  background-color: rgba(107, 179, 242, 0.05);
-  border: 1.5px solid rgba(107, 179, 242, 0.3);
+  background-color: rgba(121, 218, 202, 0.05);
+  border: 1.5px solid rgba(121, 218, 202, 0.3);
   border-radius: 20px;
   text-decoration: none;
-  color: #6db3f2;
+  color: #79daca;
   font-size: 0.9em;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -27,21 +27,21 @@
   white-space: nowrap;
   
   &:hover {
-    background-color: rgba(107, 179, 242, 0.12);
-    border-color: #6db3f2;
+    background-color: rgba(121, 218, 202, 0.12);
+    border-color: #79daca;
     transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(107, 179, 242, 0.15);
+    box-shadow: 0 2px 8px rgba(121, 218, 202, 0.15);
   }
   
   &.active {
-    background-color: #6db3f2;
-    border-color: #6db3f2;
+    background-color: #79daca;
+    border-color: #79daca;
     color: #fff;
-    box-shadow: 0 4px 12px rgba(107, 179, 242, 0.3);
+    box-shadow: 0 4px 12px rgba(121, 218, 202, 0.3);
   }
   
   &:focus-visible {
-    outline: 2px solid #6db3f2;
+    outline: 2px solid var(--minima-link-base-color);
     outline-offset: 2px;
   }
 }
@@ -54,50 +54,50 @@
 
 /* Light theme category chips */
 [data-theme="light"] .category-chips {
-  border-bottom-color: rgba(74, 144, 226, 0.2) !important;
+  border-bottom-color: rgba(0, 127, 119, 0.2) !important;
 }
 
 [data-theme="light"] .category-chip {
-  background-color: rgba(74, 144, 226, 0.08) !important;
-  border-color: rgba(74, 144, 226, 0.3) !important;
-  color: #4a90e2 !important;
+  background-color: rgba(0, 127, 119, 0.08) !important;
+  border-color: rgba(0, 127, 119, 0.3) !important;
+  color: #007f77 !important;
 }
 
 [data-theme="light"] .category-chip:hover {
-  background-color: rgba(74, 144, 226, 0.15) !important;
-  border-color: #4a90e2 !important;
-  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15) !important;
+  background-color: rgba(0, 127, 119, 0.15) !important;
+  border-color: #007f77 !important;
+  box-shadow: 0 2px 8px rgba(0, 127, 119, 0.15) !important;
 }
 
 [data-theme="light"] .category-chip.active {
-  background-color: #4a90e2 !important;
-  border-color: #4a90e2 !important;
+  background-color: #007f77 !important;
+  border-color: #007f77 !important;
   color: #fff !important;
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 127, 119, 0.3) !important;
 }
 
 /* Dark theme category chips */
 [data-theme="dark"] .category-chips {
-  border-bottom-color: rgba(107, 179, 242, 0.25) !important;
+  border-bottom-color: rgba(121, 218, 202, 0.25) !important;
 }
 
 [data-theme="dark"] .category-chip {
-  background-color: rgba(107, 179, 242, 0.1) !important;
-  border-color: rgba(107, 179, 242, 0.35) !important;
-  color: #6db3f2 !important;
+  background-color: rgba(121, 218, 202, 0.1) !important;
+  border-color: rgba(121, 218, 202, 0.35) !important;
+  color: #79daca !important;
 }
 
 [data-theme="dark"] .category-chip:hover {
-  background-color: rgba(107, 179, 242, 0.15) !important;
-  border-color: #6db3f2 !important;
-  box-shadow: 0 2px 8px rgba(107, 179, 242, 0.2) !important;
+  background-color: rgba(121, 218, 202, 0.15) !important;
+  border-color: #79daca !important;
+  box-shadow: 0 2px 8px rgba(121, 218, 202, 0.2) !important;
 }
 
 [data-theme="dark"] .category-chip.active {
-  background-color: #6db3f2 !important;
-  border-color: #6db3f2 !important;
+  background-color: #79daca !important;
+  border-color: #79daca !important;
   color: #fff !important;
-  box-shadow: 0 4px 12px rgba(107, 179, 242, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(121, 218, 202, 0.4) !important;
 }
 
 /* Enhanced post list heading */
@@ -114,7 +114,7 @@
     content: "";
     width: 4px;
     height: 1.2em;
-    background: linear-gradient(180deg, #6db3f2, #4a90e2);
+    background: linear-gradient(180deg, #79daca, #007f77);
     border-radius: 2px;
   }
 }

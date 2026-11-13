@@ -2,7 +2,7 @@
 layout: post
 title:  "PowerShell Library for HPE Compute Ops Management"
 categories: GreenLake
-image: /assets/images/HPECOMCmdlets/header.jpg
+image: /assets/images/HPECOMCmdlets/banner.jpg
 excerpt: Discover how to automate and manage your HPE GreenLake and Compute Ops Management environment using PowerShell with the HPECOMCmdlets library.
 last_modified_at: 2026-06-18
 tags: 
@@ -102,7 +102,7 @@ Install-Module -Name HPECOMCmdlets -Force -AllowClobber
    
 > **Note**: If you encounter permission issues during the upgrade process, run PowerShell as an administrator or use the `-Scope CurrentUser` parameter with the `Install-Module` cmdlet.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Getting Started
@@ -267,7 +267,7 @@ For more details, refer to the help documentation of the `Connect-HPEGL` cmdlet:
 Get-Help Connect-HPEGL -Full
 ```
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 
@@ -318,7 +318,7 @@ You feed it a CSV file of iLO IP addresses or hostnames — either sharing a sin
 
 The script is fully idempotent — it checks each setting before changing anything and skips servers that are already connected, so it is safe to re-run for ongoing management or troubleshooting. A `-Check` switch runs a non-destructive pre-flight assessment, reporting exactly what would change without touching any iLO. It is built for scale (up to 1000 servers per 24 hours) and keeps the HPE GreenLake session alive throughout long-running firmware operations.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Telemetry & Privacy
@@ -331,7 +331,7 @@ Starting with v1.0.26, `Connect-HPEGL` sends a single **anonymous** usage event 
 
 For full details, see the [Telemetry](https://github.com/jullienl/HPE-COM-PowerShell-Library#telemetry) section in the README.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Getting help
@@ -370,7 +370,7 @@ Get-Command -Module HPECOMCmdlets | ? Name -match group
 
 [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-3.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Support
@@ -392,7 +392,7 @@ Please note that the HPE GreenLake APIs are subject to change. Such changes can 
 * [HPE Compute Ops Management User Guide](https://www.hpe.com/info/com-ug)
 * [HPE GreenLake Developer Portal](https://developer.greenlake.hpe.com/)
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 

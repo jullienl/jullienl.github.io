@@ -38,7 +38,7 @@ Main operations include:
 
 In this project, automating the provisioning of operating systems on bare metal servers is made simple and accessible to anyone with basic knowledge of Ansible, HPE Compute Ops Management, and kickstart techniques. While it is generally a complex process that requires a wide range of skills, this project simplifies it with the use of auto-customized kickstarts, auto-generated ISO files and by exploiting the very compelling features of HPE Compute Ops Management server groups.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Key highlights of this project 
@@ -68,7 +68,7 @@ HPE GreenLake for Compute Ops Management provides the foundational management ca
 
 A key attribute of Ansible that I looked for in this project is its impressive capability to execute tasks concurrently across multiple systems, thereby accelerating deployment processes. This feature is called "forks" in Ansible. Set to 5 by default, the forks value is adjustable based on available system resources (CPU and memory), signifying that Ansible can carry out playbook tasks in parallel across 5 hosts from the inventory list. This parallel execution is among Ansible's outstanding functionalities, enhancing the effectiveness of bare-metal provisioning substantially. Moreover, this approach ensures consistent configurations across all provisioned hosts.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Where to start?
@@ -88,7 +88,7 @@ This repository also hosts an extensively detailed lab guide that provides compr
 
 See [HPE GreenLake for Compute Ops Management baremetal provisioning with Ansible](https://github.com/jullienl/HPE-COM-baremetal/blob/main/HPE%20GreenLake%20for%20Compute%20Ops%20Management%20baremetal%20provisioning%20with%20Ansible.pdf) 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # How to run a playbook?
@@ -104,7 +104,7 @@ Where `<provisioning_file>` should be replaced with `ESXi_provisioning`, `RHEL_p
 
 Upon running this command, Ansible will prompt you to enter the vault password and the sudo password to proceed with the provisioning process.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Explore my video series
@@ -135,4 +135,4 @@ Stay tuned as I continue to update and maintain this project, incorporating user
 
 Get started now and begin transforming your server deployment strategy today!
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)

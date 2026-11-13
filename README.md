@@ -38,5 +38,6 @@ Design changes:
 
 - Banner images
 - Accent colour system
+- Posts can set `home_title` in front matter for a shorter homepage card title; the full `title` remains unchanged.
 
 [![](https://blog.jakelee.co.uk/assets/images/2023/minimajake.png)](https://blog.jakelee.co.uk/assets/images/2023/minimajake.png)

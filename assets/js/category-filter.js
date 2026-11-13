@@ -1,65 +1,56 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const chips = document.querySelectorAll('.category-chip');
-  const postItems = document.querySelectorAll('.post-list li.card');
+document.addEventListener('DOMContentLoaded', function () {
+  const chips = Array.from(document.querySelectorAll('.category-chip'));
+  const pagedPosts = document.getElementById('paged-posts');
+  const filteredPosts = document.getElementById('filtered-posts');
+  if (!chips.length || !pagedPosts || !filteredPosts) return;
+
+  const cards = Array.from(filteredPosts.querySelectorAll('.home-card'));
   const pagination = document.querySelector('.centred-homepage-content');
-  const postsPerPage = postItems.length; // Current page size
+  const featured = document.querySelector('.home-featured');
+  const empty = document.getElementById('filter-empty');
+  const status = document.getElementById('filter-status');
 
-  function applyCategoryFilter(selectedCategory) {
-    const activeChip = Array.from(chips).find((chip) => {
-      return chip.getAttribute('data-category') === selectedCategory;
-    }) || Array.from(chips).find((chip) => {
-      return chip.getAttribute('data-category') === 'all';
+  function applyCategory(category) {
+    const active = chips.find(chip => chip.dataset.category === category);
+    if (!active) return;
+    const showAll = category === 'all';
+    let count = 0;
+
+    chips.forEach(chip => {
+      const selected = chip === active;
+      chip.classList.toggle('active', selected);
+      if (selected) chip.setAttribute('aria-current', 'true');
+      else chip.removeAttribute('aria-current');
     });
 
-    if (!activeChip) return;
-
-    const activeCategory = activeChip.getAttribute('data-category');
-
-    chips.forEach(c => c.classList.remove('active'));
-    activeChip.classList.add('active');
-
-    let visibleCount = 0;
-    postItems.forEach(post => {
-      if (activeCategory === 'all') {
-        post.style.display = 'list-item';
-        visibleCount++;
-      } else {
-        const postCategories = post.getAttribute('data-categories') || '';
-        if (postCategories.includes(activeCategory)) {
-          post.style.display = 'list-item';
-          visibleCount++;
-        } else {
-          post.style.display = 'none';
-        }
-      }
+    cards.forEach(card => {
+      const matches = (card.dataset.categories || '').split(/\s+/).includes(category);
+      card.hidden = !matches;
+      if (matches) count++;
     });
 
-    if (pagination) {
-      if (activeCategory === 'all') {
-        pagination.style.display = 'block';
-      } else {
-        pagination.style.display = visibleCount > postsPerPage ? 'block' : 'none';
-      }
-    }
-
-    if (activeCategory === 'all') {
-      if (window.location.hash) {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-      }
-    } else {
-      history.replaceState(null, '', '#' + activeCategory);
-    }
+    pagedPosts.hidden = !showAll;
+    filteredPosts.hidden = showAll;
+    if (pagination) pagination.hidden = !showAll;
+    if (featured) featured.hidden = !showAll;
+    if (empty) empty.hidden = showAll || count > 0;
+    if (status) status.textContent = showAll ? '' : count + (count === 1 ? ' guide found.' : ' guides found.');
   }
 
   chips.forEach(chip => {
-    chip.addEventListener('click', function(e) {
-      e.preventDefault();
-
-      const selectedCategory = this.getAttribute('data-category') || 'all';
-      applyCategoryFilter(selectedCategory);
+    chip.addEventListener('click', function (event) {
+      event.preventDefault();
+      const category = chip.dataset.category;
+      applyCategory(category);
+      history.replaceState(null, '', category === 'all' ? '#latest-guides' : '#' + category);
     });
   });
 
-  const initialCategory = window.location.hash ? window.location.hash.substring(1) : 'all';
-  applyCategoryFilter(initialCategory || 'all');
+  function applyHash() {
+    const category = decodeURIComponent(location.hash.slice(1));
+    applyCategory(chips.some(chip => chip.dataset.category === category) ? category : 'all');
+  }
+
+  window.addEventListener('hashchange', applyHash);
+  applyHash();
 });

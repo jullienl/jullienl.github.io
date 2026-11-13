@@ -67,7 +67,7 @@ In an Identity Provider initiated SSO workflow, the SSO request originates from 
 
 <a name="prerequisites"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Prerequisites
@@ -134,7 +134,7 @@ Here are the key components I’m using in my lab environment to support ADFS se
 
 <a name="step1"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 1: Certificate Requirements for Federation Servers
@@ -160,7 +160,7 @@ Active Directory Federation Services (ADFS) requires a certificate for Secure So
 
 <a name="step2"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 2: Configuring an ADFS service user 
@@ -181,7 +181,7 @@ Add admin right to **adfssvc**
 
 <a name="step3"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 3: Configuring AD user accounts and groups
@@ -218,7 +218,7 @@ And add **Mike** to the **GLCP-Observers** group:
 
 <a name="step4"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 4: Inviting an AD administrator user to HPE GreenLake
@@ -259,7 +259,7 @@ So if you are not connected to HPE GreenLake with an email from your SAML domain
 
 <a name="step5"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 5: ADFS installation
@@ -284,7 +284,7 @@ When the installation is complete, click on **Configure the federation service o
 
 <a name="step6"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 #  Step 6: ADFS configuration
@@ -353,7 +353,7 @@ Save the file as *ADFS_federation_metadata.ping.xml* and keep it for later.
 
 <a name="step7"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 7: Configuring ADFS for IdP-initiated SSO 
@@ -414,7 +414,7 @@ There are two steps to this configuration:
 
 <a name="step8"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 8: HPE GreenLake configuration for SAML federation
@@ -517,7 +517,7 @@ You should now have a new SAML configuration available on your Authentication pa
 
 > If you want to support multiple workspaces in HPE GreenLake with SSO, you must follow the same procedure for each HPE GreenLake workspace you want to support through SSO authentication. This means you need to rerun [Step 4: Inviting an AD administrator user to HPE GreenLake](#step4) and [Step 8: HPE GreenLake configuration for SAML federation](#step8) for each workspace.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 9: Collecting the HPE GreenLake SAML attributes values
@@ -553,7 +553,7 @@ The SSO domain configuration in HPE GreenLake is now complete.
 
 <a name="step10"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Step 10: Adding HPE GreenLake as an ADFS relying party trust 
@@ -817,7 +817,7 @@ You can now click **Ok** to complete the claim issuance policy definition for HP
 
 <a name="testingADFSsignonpage"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Testing step 1: Testing the ADFS sign on page
@@ -844,7 +844,7 @@ You can then close this page for now.
 
 <a name="SPInitiatedtest"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Testing step 2: SP-Initiated test authentication
@@ -924,7 +924,7 @@ And check that you have observer rights in **Manage** / **Identity & Access** / 
 
 <a name="IdPInitiatedtest"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Testing step 3: IdP-Initiated test authentication
@@ -951,7 +951,7 @@ If you are redirected to the HPE GreenLake platform, the process succeeds, you�
 
 <a name="troubleshooting"></a>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Troubleshooting SAML connectivity errors
@@ -998,4 +998,4 @@ The logs can provide valuable information about the errors that are occurring du
 
 This concludes this blog post. I hope you find it useful and should you have any feedback, please send me a [message](mailto:lio@hpe.com).
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)

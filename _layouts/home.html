@@ -2,66 +2,75 @@
 layout: default
 ---
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+{%- assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" -%}
+{%- assign featured_post = visible_posts | first -%}
+{%- assign current_page = paginator.page | default: 1 -%}
 
+<div class="home">
+  {% include custom/translate.html %}
   {{ content }}
 
-  {% if site.paginate %}
-    {% assign posts = paginator.posts %}
-  {% else %}
-    {% assign posts = site.posts %}
+  {% if current_page == 1 %}
+  <section class="home-hero" aria-labelledby="home-title">
+    <p class="home-eyebrow">HPE GREENLAKE &middot; AUTOMATION &middot; IDENTITY</p>
+    <h1 id="home-title">Practical automation for<br><span>HPE GreenLake.</span></h1>
+    <p>Hands-on guides for PowerShell, Compute Ops Management, identity, and infrastructure automation.</p>
+    <div class="home-actions">
+      <a class="home-button home-button-primary" href="#latest-guides">Browse guides <span aria-hidden="true">&rarr;</span></a>
+      <a class="home-button home-button-secondary" href="https://github.com/jullienl/HPE-COM-PowerShell-Library">Explore HPECOMCmdlets <span aria-hidden="true">&#x2197;&#xFE0E;</span></a>
+    </div>
+  </section>
+
+  {% if featured_post %}
+  <section class="home-featured" aria-labelledby="featured-heading">
+    <div class="home-section-heading">
+      <div><p class="home-eyebrow">START HERE</p><h2 id="featured-heading">Latest guide</h2></div>
+      <span class="home-heading-note">Fresh from the blog</span>
+    </div>
+    <ul class="home-featured-list">{% include custom/home-card.html post=featured_post featured=true %}</ul>
+  </section>
+  {% endif %}
   {% endif %}
 
-  {%- if posts.size > 0 -%}
-    {% include custom/translate.html %}
-    <!-- Category Filter Chips -->
-    {% include custom/category-filter.html %}
-    
-    {%- if page.list_title -%}
-      <h2 class="post-list-heading">{{ page.list_title }}</h2>
-    {%- endif -%}
-    <ul class="post-list">
-      {%- for post in posts -%}
-      {%- unless post.hidden -%}
-      <li class="card" data-categories="{% for cat in post.categories %}{{ cat | slugify }} {% endfor %}">
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          <div class="bg-img" style="background-image: url({{post.image}})"></div>
-        </a>
-        <div class="content">
-          <h3>
-            <a class="post-link" href="{{ post.url | relative_url }}">
-              {{ post.title | escape }}
-            </a>
-          </h3>
-          {%- assign post_date_ts = post.date | date: "%s" | plus: 0 -%}
-          {%- assign post_modified_ts = post.last_modified_at | default: post.date | date: "%s" | plus: 0 -%}
-          <span class="post-meta">
-            {{ post.date | date: "%b %-d, %Y" }}{% if post_modified_ts > post_date_ts %} <span style="color: #999;">[Updated: {{ post.last_modified_at | date: "%b %-d, %Y" }}]</span>{% endif %} • {% include custom/read_time_or_words.html %} • {% include custom/tags.html %}
-          </span>
-          {%- if site.show_excerpts -%}
-            <p>{{ post.excerpt | strip_html }}</p>
-          {%- elsif site.show_excerpts_html -%}
-            {{ post.excerpt }}
+  <section class="home-guides" id="latest-guides" aria-labelledby="guides-heading">
+    <div class="home-section-heading">
+      <div><p class="home-eyebrow">EXPLORE THE BLOG</p><h2 id="guides-heading">All guides</h2></div>
+      <span class="home-heading-note">Practical insights, step by step</span>
+    </div>
+
+    {% include custom/category-filter.html posts=visible_posts %}
+
+    {% if site.paginate %}
+      {% assign posts = paginator.posts %}
+    {% else %}
+      {% assign posts = site.posts %}
+    {% endif %}
+    <ul class="post-list home-post-list" id="paged-posts">
+      {% for post in posts %}
+        {% unless post.hidden %}
+          {% if current_page != 1 or post.url != featured_post.url %}
+            {% include custom/home-card.html post=post %}
           {% endif %}
-        </div>
-      </li>
-      {%- endunless -%}
-      {%- endfor -%}
+        {% endunless %}
+      {% endfor %}
     </ul>
+
+    <ul class="post-list home-post-list" id="filtered-posts" hidden>
+      {% for post in visible_posts %}
+        {% include custom/home-card.html post=post %}
+      {% endfor %}
+    </ul>
+    <p class="home-empty" id="filter-empty" hidden>No guides found in this category.</p>
+    <p class="home-filter-status" id="filter-status" role="status" aria-live="polite"></p>
 
     {% if site.paginate %}
     <div class="centred-homepage-content">
       {% include custom/paginator.html %}
     </div>
-    {%- endif %}
-
-  {%- endif -%}
+    {% endif %}
+  </section>
 
   {% if site.kofi_floating_text != blank? and site.kofi_id != blank? %}
-      {% include custom/donatefloating.html %}
+    {% include custom/donatefloating.html %}
   {% endif %}
-
 </div>

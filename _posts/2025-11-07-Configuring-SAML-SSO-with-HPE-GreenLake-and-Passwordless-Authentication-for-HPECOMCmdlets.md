@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Configuring SAML SSO Authentication with HPE GreenLake: A Guide for the Top 3 Identity Providers, with Passwordless and Password-Based Integration for HPECOMCmdlets"
+home_title: "SAML SSO for HPE GreenLake: A practical guide"
 categories: GreenLake
 image: /assets/images/SAML-SSO/banner.jpg
 reading_time: 75
@@ -94,7 +95,7 @@ HPE GreenLake supports two distinct SSO configuration scenarios:
 1. **Organization Users (Internal SSO)** - The focus of this guide
 2. **External Users** - Brief overview provided below
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ## What This Guide Covers: Internal SSO for Organization Users
@@ -122,7 +123,7 @@ If you need to grant HPE GreenLake access to **external users** (partners, contr
 > **Learn More About External SSO**: For detailed instructions on configuring SSO for external users, refer to the [HPE GreenLake User Guide - Configuring SSO using authentication policies](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-62D97D19-4476-4192-9BEA-1CE05576FB41.html#ariaid-title1).
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Prerequisites
 
@@ -162,7 +163,7 @@ While configuring SAML SSO with an identity provider is a crucial step, the auth
 
 The HPECOMCmdlets module supports **two authentication modes** for SSO-enabled workspaces, whether they use SAML 2.0 or OIDC:  **passwordless authentication** (push notifications or TOTP from an authenticator app — no password) and, since v1.0.26, **password-based authentication** (your federated password, with an optional MFA step-up). Passwordless remains the recommended approach as it replaces traditional passwords with more secure and user-friendly alternatives, but password-based sign-in is available when your identity provider policy requires a password.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ## Passwordless and Password-Based Authentication
@@ -212,7 +213,7 @@ For successful PowerShell automation with HPECOMCmdlets, ensure that either **pu
 
 > **Configuration Guidance**: Step 4 in each identity provider section of this guide covers the detailed verification and configuration of these supported passwordless authentication methods. These identity provider policies do not depend on the federation protocol, so they apply unchanged to OIDC SSO connections.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Part 1: Configuring SAML SSO with Microsoft Entra ID
@@ -254,7 +255,7 @@ For experienced administrators familiar with Entra ID and SAML configuration, he
 
 > **Note**: Detailed step-by-step instructions with screenshots follow below.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 1: Register HPE GreenLake in Entra ID
 
@@ -516,7 +517,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 This completes the Entra ID application configuration for HPE GreenLake. You can now proceed to Step 2 to register Entra ID as your identity provider in the HPE GreenLake platform.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ## Step 2: Register Entra ID in HPE GreenLake
@@ -555,7 +556,7 @@ The SSO configuration steps in this guide apply exclusively to HPE GreenLake wor
     If you don't see any of these elements, your workspace uses legacy IAM and requires a different configuration procedure.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ### 1. Claim and verify a domain
@@ -622,7 +623,7 @@ The first step is to claim and verify the domain you will use for single sign-on
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27b2.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-27b2.png){:class="img-800"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 2. Create a SSO connection between the platform and the IdP
 
@@ -674,7 +675,7 @@ The first step is to claim and verify the domain you will use for single sign-on
 
    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29e.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-29e.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ### 3. Configure an authentication policy
@@ -791,7 +792,7 @@ During this step you will choose an **Authorization mode**, which determines whe
 
    [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-33.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-33.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}     
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 3: Testing SAML SSO Authentication
 
@@ -823,7 +824,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### Verify the authentication
 
@@ -849,7 +850,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### Test the SSO IdP-Initiated login flow (User starts at Entra ID portal)
 
@@ -880,7 +881,7 @@ If authentication fails, use the following diagnostic approaches:
  
 Common authentication failures include misconfigured SAML attributes, certificate mismatches, or incorrect RelayState values.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 4: Entra ID Configuration Guide for HPECOMCmdlets SSO Integration
 
@@ -908,7 +909,7 @@ The following sections guide you through verifying and configuring each requirem
 
 > **Note**: As of November 2025, number matching cannot be disabled for Microsoft Authenticator push notifications in Microsoft Entra ID. Microsoft enforced it globally starting May 8, 2023, to combat MFA fatigue and phishing attacks.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ### 1. Verify authentication method prerequisites
@@ -943,7 +944,7 @@ Before implementing the two-phase enrollment strategy, verify that your Entra ID
 
 > **Optional - SMS/Email Fallback Methods:** If you want to provide recovery options when users can't access their mobile device, you can enable SMS and Email OTP authentication methods. These are useful for browser-based recovery but are NOT compatible with the HPECOMCmdlets PowerShell module. Enable them at **Authentication methods** → **Policies** → **SMS** or **Email OTP**.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 2. Conditional access policies and passwordless enrollment strategy
 
@@ -1089,7 +1090,7 @@ This policy applies to users who have completed passwordless enrollment, enforci
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39f.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-39f.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 #### Operational Procedures
 
@@ -1153,7 +1154,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
 **Time Estimate**: 2 minutes per user
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 #### User Enrollment Experience
 
@@ -1237,7 +1238,7 @@ When you need to grant HPE GreenLake access to a new user, follow this process:
 
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 3. Test SSO Authentication with Browser
 
@@ -1286,7 +1287,7 @@ To verify that your passwordless authentication configuration is working correct
 > - Push notifications are enabled in your device settings
 > - Your device has an active internet connection
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 4. Test SSO Authentication with HPECOMCmdlets
 
@@ -1352,7 +1353,7 @@ Connect-HPEGL -Credential (Get-Credential -UserName "test.user@company.com")
 > If authentication fails, consult the [HPECOMCmdlets documentation](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) or review the authentication logs in Entra ID Portal under **Monitoring & health** → **Sign-in logs**.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Part 2: Configuring SAML SSO with Okta
 
@@ -1378,7 +1379,7 @@ Key capabilities relevant to HPE GreenLake integration include:
 
 The following steps will guide you through creating a custom SAML 2.0 application integration in Okta, configuring the required SAML attributes for seamless integration with HPE GreenLake, and establishing passwordless authentication policies. While HPE GreenLake itself supports standard password-based SAML authentication, this guide will also demonstrate how to configure passwordless authentication methods that are essential for users who plan to leverage the HPECOMCmdlets PowerShell module for automation and management tasks.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 1: Register HPE GreenLake in Okta
 
@@ -1505,7 +1506,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 This completes the Okta application configuration for HPE GreenLake. You can now proceed to Step 2 to register Okta as your identity provider in the HPE GreenLake platform.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 2: Register Okta in HPE GreenLake
 
@@ -1517,7 +1518,7 @@ Follow the detailed instructions in [Step 2: Register Entra ID in HPE GreenLake]
 
 > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-57.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-57.png){:class="img-800"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 3: Testing SAML SSO Authentication
 
@@ -1573,7 +1574,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ### Test the SSO IdP-Initiated login flow (User starts at Okta portal)
@@ -1602,7 +1603,7 @@ If authentication fails, use the following diagnostic approaches:
 Common authentication failures include misconfigured SAML attributes, certificate mismatches, or incorrect RelayState values.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 4: Okta Configuration Guide for HPECOMCmdlets SSO Integration
 
@@ -1630,7 +1631,7 @@ The following sections guide you through verifying and configuring each requirem
 
 > **Learn more**: For comprehensive guidance on passwordless authentication in Okta, refer to the official documentation: [Set up a passwordless sign-in experience](https://help.okta.com/oie/en-us/content/topics/identity-engine/password-optional/password-optional-disabled.htm).
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 1. Verify authentication method compatibility
 
@@ -1642,7 +1643,7 @@ Before implementing passwordless authentication for the HPECOMCmdlets module, en
 
 The following sections demonstrate how to configure Okta Verify with push notifications, which provides the most streamlined authentication experience while maintaining robust security standards compatible with the HPECOMCmdlets module.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 2. Configure Okta Verify for push notification
 
@@ -1851,7 +1852,7 @@ The following sections demonstrate how to configure Okta Verify with push notifi
 
 This completes the passwordless authentication configuration for Okta. Users in the HPE GreenLake group will now be required to authenticate using Okta Verify with push notification when accessing the HPE GreenLake application — both from the Okta Dashboard (IdP-Initiated) and directly from the HPE GreenLake login page (SP-Initiated).
   
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 3. Test SSO Authentication with Browser
 
@@ -1949,7 +1950,7 @@ To verify that your passwordless authentication configuration is working correct
 > - Push notifications are enabled in your device settings
 > - Your device has an active internet connection
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 4. Test SSO Authentication with HPECOMCmdlets
 
@@ -2021,7 +2022,7 @@ Connect-HPEGL -Credential (Get-Credential -UserName "test.user@company.com")
 > If authentication fails, consult the [HPECOMCmdlets documentation](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) or review the authentication logs in Okta Admin Console under **Reports** → **System Log**.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Part 3: Configuring SAML SSO with Ping Identity
 
@@ -2037,13 +2038,13 @@ Key capabilities relevant to HPE GreenLake integration include:
 
 The following steps will guide you through creating a custom SAML 2.0 application integration in Ping Identity, configuring the required SAML attributes for seamless integration with HPE GreenLake, and establishing passwordless authentication policies. While HPE GreenLake itself supports standard password-based SAML authentication, this guide will also demonstrate how to configure passwordless authentication methods that are essential for users who plan to leverage the HPECOMCmdlets PowerShell module for automation and management tasks.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 1: Register HPE GreenLake in Ping Identity
 
 Before configuring the HPE GreenLake application in Ping Identity, it's essential to create a group that will control which users can access the HPE GreenLake application. This group will be used for authentication purposes and can optionally be leveraged for role-based access control (RBAC) through SAML attributes, allowing you to map Ping Identity groups to specific HPE GreenLake roles and permissions. Alternatively, if you prefer to manage user authorization directly within the HPE GreenLake platform, you can configure your SAML domain to use **Local role assignments** (**Authentication-Only SSO** in HPE's architecture guidance) instead of **SSO role assignments** (**SSO Authorization Mode**).
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ### 1. Create a group
@@ -2063,7 +2064,7 @@ Before configuring the HPE GreenLake application in Ping Identity, it's essentia
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-78.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-78.png){:class="img-800"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 2. Create a new SAML Application Connection
 
@@ -2204,7 +2205,7 @@ With the security group created, you can now proceed to register the HPE GreenLa
 
 This completes the Ping Identity application configuration for HPE GreenLake. You can now proceed to Step 2 to register Ping Identity as your identity provider in the HPE GreenLake platform.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 2: Register Ping Identity in HPE GreenLake
 
@@ -2218,7 +2219,7 @@ Follow the detailed instructions in [Step 2: Register Entra ID in HPE GreenLake]
 >
 > [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-91.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-91.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 3: Testing SAML SSO Authentication
 
@@ -2250,7 +2251,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
 
     [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### Verify the authentication
 
@@ -2277,7 +2278,7 @@ Service Provider (SP) initiated SSO is the authentication flow that begins when 
             [![]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png)]( {{ site.baseurl }}/assets/images/SAML-SSO/SAML-SSO-37d.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### Test the SSO IdP-Initiated login flow (User starts at PingOne Apps portal)
 
@@ -2296,7 +2297,7 @@ Identity Provider initiated SSO (IdP-Initiated) provides users with direct acces
 4. Verify successful authentication by confirming your user profile and workspace access are displayed correctly in the HPE GreenLake console
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### Troubleshooting
 
@@ -2309,7 +2310,7 @@ If authentication fails, use the following diagnostic approaches:
 Common authentication failures include misconfigured SAML attributes, certificate mismatches, or incorrect Target Application URL values.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 4: PingID Configuration Guide for HPECOMCmdlets SSO Integration
 
@@ -2347,7 +2348,7 @@ Before implementing passwordless authentication for the HPECOMCmdlets module, en
 
 The following sections demonstrate how to configure PingID with push notifications, which provides the most streamlined authentication experience while maintaining robust security standards compatible with the HPECOMCmdlets module.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ### 2. Configure PingID for push notification 
@@ -2504,7 +2505,7 @@ The following sections demonstrate how to configure PingID with push notificatio
 
 This completes the passwordless authentication configuration for Ping Identity. Users accessing the HPE GreenLake application will now be required to authenticate using PingID with push notifications or TOTP codes, eliminating password-based authentication while maintaining compatibility with the HPECOMCmdlets PowerShell module.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 3. Test SSO Authentication with Browser
 
@@ -2603,7 +2604,7 @@ To verify that your passwordless authentication configuration is working correct
 > - Your device has an active internet connection
 > - The passwordless authentication policy is correctly assigned to the HPE GreenLake application
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ### 4. Test SSO Authentication with HPECOMCmdlets
 
@@ -2673,7 +2674,7 @@ Connect-HPEGL -Credential (Get-Credential -UserName "test.user@company.com")
 >
 > If authentication fails, consult the [HPECOMCmdlets documentation](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) or review the authentication logs in your PingOne Admin Console under **Monitoring** → **Audit**.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Troubleshooting Common Issues
 
@@ -2714,7 +2715,7 @@ Certificate mismatches are a common cause of SAML authentication failures. OIDC 
   # Update the certificate in HPE GreenLake
   Set-HPEGLWorkspaceSAMLSSODomain -DomainName "example.com" -X509Certificate $certificate
   ```
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ## OIDC Issues
@@ -2725,7 +2726,7 @@ If your workspace uses an OIDC SSO connection instead of SAML 2.0 (see the [OIDC
 - **Client secret expiration**: OIDC replaces certificate rotation with client secret expiration. Track the expiry date of the client secret in your identity provider and update it in HPE GreenLake before it expires
 - **HPECOMCmdlets version**: OIDC-federated workspaces require HPECOMCmdlets v1.0.27 or later. Earlier versions stop with an error saying the sign-in flow has changed
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ## PowerShell Module Authentication
@@ -2761,4 +2762,4 @@ Drop a comment below with your setup wins!
 
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)

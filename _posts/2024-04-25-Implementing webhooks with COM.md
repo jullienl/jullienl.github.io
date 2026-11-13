@@ -81,7 +81,7 @@ Upon receiving the POST request, the destination application at the webhook URL 
 After the event has been processed according to the instructions laid out in the event handler, the loop comes to a close. The workflow ends until a new event is triggered, and the process starts all over again.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Available resources in Compute Ops Management
@@ -107,7 +107,7 @@ For each resource, certain specific properties are capable of initiating the dis
 
  > More information about these monitorable properties can be found in the related API documentation which is linked in this table.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Filtering options
@@ -318,7 +318,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 
   => Match any events related to servers that are assigned to a COM instance but with iLOs not connected to COM
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 ## Pairing raise and clear webhooks for ticketing systems
@@ -359,7 +359,7 @@ A few practical points when implementing this pattern:
 - **Alerts are a different model.** The `compute-ops/alert` resource only emits `Created` and `Deleted` events (no property transitions). If you prefer to drive tickets from alerts rather than from health transitions, map `operation eq 'Created'` to *open* and `operation eq 'Deleted'` to *close* instead.
 - **Both webhooks share the destination, but are independent objects** — each has its own `id`, its own handshake, and its own status in COM. Enable, disable, or rotate the [shared secret](#securing-webhook-events-with-a-shared-secret) on each one individually.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Secure handshake mechanism
@@ -529,7 +529,7 @@ Description of the different requests:
         > The webhook transitions to a `state` of `DISABLED` and a `status` of `WARNING` when the endpoint fails to respond with the expected body or when it returns a non-200 status code. 
           In addition, `statusReason` indicates `Incorrect handshake response.`
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Securing webhook events with a shared secret
@@ -614,7 +614,7 @@ A few important points to keep in mind when relying on this mechanism:
 
   > Combining the handshake (which authenticates your endpoint to COM) with a shared secret header (which authenticates COM to your endpoint) gives you mutual assurance: COM knows it is talking to the right receiver, and your receiver knows it is processing genuine COM events.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Integrating COM webhooks with automation tools
@@ -1266,7 +1266,7 @@ The following steps describe how to implement this scenario in Make:
       [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-63.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}  
   <br>  
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Using the Make On-premise agent
@@ -1279,7 +1279,7 @@ To learn more, see [Using the On-premise agent](https://www.make.com/en/help/con
 
 > According to the Make website as of April 2024, the On-premise agent is still in beta and is exclusively available with their Enterprise plan.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Taking automation a step further?
@@ -1322,7 +1322,7 @@ Details about the different modules to use in Make to interact with COM:
    [![]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png)]( {{ site.baseurl }}/assets/images/COM-Webhooks/COM-webhooks-67.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}  
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # A production-ready reference implementation
@@ -1338,7 +1338,7 @@ It implements, in real code, everything this article describes — the [verifica
 
   > If you already run **HPE OpsRamp** or **ServiceNow**, note that both have a **native COM integration**, so you may not need a custom receiver at all — the repo's README explains when to use which.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 
 # Wrapping up
@@ -1346,4 +1346,4 @@ It implements, in real code, everything this article describes — the [verifica
 To wrap things up, I'm genuinely excited about the opportunities here! The combination of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake. Imagine having complicated tasks just flow smoothly on their own—less manual work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)

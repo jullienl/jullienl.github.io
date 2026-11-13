@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Configuring OIDC SSO Authentication with HPE GreenLake: Microsoft Entra ID, Okta, and Ping Identity, with HPECOMCmdlets Integration"
+home_title: "OIDC SSO for HPE GreenLake: A practical guide"
 categories: GreenLake
 image: /assets/images/OIDC-SSO/banner.jpg
 excerpt: A step-by-step guide to configuring OpenID Connect (OIDC) single sign-on for HPE GreenLake with Microsoft Entra ID, Okta, and Ping Identity, the simpler alternative to SAML 2.0 with no signing certificate to rotate, and to signing in with the HPECOMCmdlets PowerShell module (v1.0.27+).
@@ -56,7 +57,7 @@ Both protocols provide the same federated authentication: HPE GreenLake trusts y
 
 > ⚠️ **Important**: An OIDC connection only supports **local role assignments**. Your identity provider authenticates users, but their workspace access and roles are defined in HPE GreenLake (manually, by script, or with SCIM). If you need your identity provider to drive roles through `hpe_ccs_attribute`, use SAML 2.0 instead.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Prerequisites
 
@@ -75,7 +76,7 @@ Both protocols provide the same federated authentication: HPE GreenLake trusts y
 - HPECOMCmdlets module **v1.0.27 or later**
 - A mobile device with an authenticator app (Microsoft Authenticator, Okta Verify, or PingID) for passwordless sign-in or MFA (push notification or TOTP code)
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # How the HPE GreenLake OIDC Wizard Works
 
@@ -88,7 +89,7 @@ For every identity provider, the configuration alternates between HPE GreenLake 
 
 Keep the wizard open in one browser tab and the identity provider console in another.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Part 1: Configuring OIDC SSO with Microsoft Entra ID
 
@@ -126,7 +127,7 @@ Microsoft Entra ID (formerly Azure Active Directory) is Microsoft's cloud identi
 
     [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-05.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-05.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 3: Register the application in Entra ID
 
@@ -193,7 +194,7 @@ By default, any user in the tenant can sign in to the application. To limit acce
     Users who are not assigned get error `AADSTS50105` at sign-in.
 
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 4: Complete the OIDC connection in HPE GreenLake
 
@@ -219,7 +220,7 @@ By default, any user in the tenant can sign in to the application. To limit acce
 
     [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-18.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-18.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 5: Create the authentication policy
 
@@ -251,7 +252,7 @@ The authentication policy links your verified domain to the OIDC connection and 
 
 The Entra ID authentication methods and Conditional Access policies for passwordless sign-in and MFA do not depend on the federation protocol. Follow [Step 4 of the SAML guide for Entra ID]({{ site.baseurl }}/Configuring-SAML-SSO-with-HPE-GreenLake-and-Passwordless-Authentication-for-HPECOMCmdlets/#step-4-entra-id-configuration-guide-for-hpecomcmdlets-sso-integration), and target the new **OIDC enterprise application** in your Conditional Access policies instead of the SAML one.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Part 2: Configuring OIDC SSO with Okta
 
@@ -275,7 +276,7 @@ Okta is a cloud identity platform widely used for workforce single sign-on. In t
 
     [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-26.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-26.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 2: Prepare users and a group in Okta
 
@@ -285,7 +286,7 @@ Okta is a cloud identity platform widely used for workforce single sign-on. In t
 
 - In **Directory** → **Groups** → **Add group**, create a group such as `HPE-GreenLake-OIDC` and add the members allowed to sign in to HPE GreenLake.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 3: Create the OIDC application in Okta
 
@@ -322,7 +323,7 @@ Okta is a cloud identity platform widely used for workforce single sign-on. In t
 
     > **Note**: The tile simply opens HPE GreenLake, which then starts the regular sign-in flow. OIDC has no equivalent to the SAML IdP-initiated flow.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 4: Apply your Okta sign-in policies
 
@@ -340,7 +341,7 @@ The Okta policies used for passwordless sign-in and MFA with HPECOMCmdlets are t
 
     [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-33.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-33.png){:class="img-800"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 5: Complete the OIDC connection in HPE GreenLake
 
@@ -365,7 +366,7 @@ The Okta policies used for passwordless sign-in and MFA with HPECOMCmdlets are t
 
 > **Next**: Add the users and assign their roles in HPE GreenLake, as described in [Granting Users Access with Local Role Assignments](#granting-users-access-with-local-role-assignments). Assigning the application in Okta allows users to authenticate; HPE GreenLake role assignments determine what they can access.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Part 3: Configuring OIDC SSO with Ping Identity
 
@@ -391,7 +392,7 @@ PingOne is Ping Identity's cloud identity platform, with PingID providing multi-
 
     [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-38.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-38.png){:class="img-700"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 2: Prepare users and a group in PingOne
 
@@ -400,7 +401,7 @@ PingOne is Ping Identity's cloud identity platform, with PingID providing multi-
 
     [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-39.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-39.png){:class="img-900"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 3: Create and configure the OIDC application in PingOne
 
@@ -437,7 +438,7 @@ PingOne is Ping Identity's cloud identity platform, with PingID providing multi-
 
 - Enable the application with its toggle.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 4: Collect the PingOne client values
 
@@ -445,7 +446,7 @@ On the application's **Overview** tab, copy the **Client ID** and **Client Secre
 
 [![]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-44.png)]( {{ site.baseurl }}/assets/images/OIDC-SSO/OIDC-SSO-44.png){:class="img-600"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 ## Step 5: Complete the OIDC connection in HPE GreenLake
 
@@ -463,7 +464,7 @@ On the application's **Overview** tab, copy the **Client ID** and **Client Secre
 
 > **Next**: Add the users and assign their roles in HPE GreenLake, as described in the next section.
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Granting Users Access with Local Role Assignments
 
@@ -535,7 +536,7 @@ The exact screens and values depend on your identity provider. See the HPE Green
 - [Configuring the SCIM integration in Okta](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-2F427FF8-7448-4C8A-9C4E-C1B32EFEAA2E.html)
 - [Define SSO users with local role assignments (SCIM)](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us&page=GUID-7B68A441-4F01-4267-9DB7-FE39B31E82F1.html#ariaid-title1)
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Testing OIDC SSO Authentication
 
@@ -572,7 +573,7 @@ Connect-HPEGL -Credential $cred -Workspace "Production"
 {: .col1-20}
 </div>
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Troubleshooting
 
@@ -588,7 +589,7 @@ Connect-HPEGL -Credential $cred -Workspace "Production"
     Connect-HPEGL -Credential $cred -Workspace "Production" -Verbose *> signin-log.txt
     ```
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)
 
 # Conclusion
 
@@ -606,4 +607,4 @@ Drop a comment below with your setup wins!
 - [HPECOMCmdlets v1.0.27 release notes (OIDC support)](https://github.com/jullienl/HPE-COM-PowerShell-Library/releases/tag/v1.0.27)
 - [OpenID Connect Core 1.0 Specification](https://openid.net/specs/openid-connect-core-1_0.html)
 
-[⬆ Back to Top](#)
+[↑ Back to Top](#)

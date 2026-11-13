@@ -26,17 +26,17 @@
 }
 
 [data-theme="light"] .step-meta {
-  background-color: #e3eefb;
-  color: #1b5ea8;
-  border-color: #b9d1ea;
-  box-shadow: 0 0 8px rgba(27, 94, 168, 0.25), 0 0 2px rgba(27, 94, 168, 0.15);
+  background-color: #edf5f2;
+  color: #00645e;
+  border-color: #b8d8cf;
+  box-shadow: 0 0 8px rgba(0, 127, 119, 0.25), 0 0 2px rgba(0, 127, 119, 0.15);
 }
 
 [data-theme="dark"] .step-meta {
-  background-color: #1a3a5c;
-  color: #6db3f2;
-  border-color: #2d4d6e;
-  box-shadow: 0 0 10px rgba(109, 179, 242, 0.35), 0 0 3px rgba(109, 179, 242, 0.2);
+  background-color: #1d312a;
+  color: #79daca;
+  border-color: #30443f;
+  box-shadow: 0 0 10px rgba(121, 218, 202, 0.35), 0 0 3px rgba(121, 218, 202, 0.2);
 }
 
 // ==========================================
@@ -151,49 +151,49 @@
 
 // Light theme
 [data-theme="light"] .post-content table {
-  border-color: #c3d3e5;
+  border-color: #a0d9cc;
 
   th {
-    background-color: #1b5ea8;
+    background-color: #027a60;
     color: #ffffff;
-    border-color: #154e8e;
+    border-color: #01604b;
     font-weight: 600;
   }
 
   td {
-    border-color: #eaf0f7;
+    border-color: #d4f0ea;
     color: #1a1a1a;
   }
 
   tr:nth-child(even) td {
-    background-color: #edf2f9;
+    background-color: #edf7f5;
   }
 
   td:has(+ td:empty) {
-    background-color: #dde8f4;
-    color: #1b5ea8;
+    background-color: #c2e8df;
+    color: #025f49;
   }
   td + td:empty {
-    background-color: #dde8f4;
+    background-color: #c2e8df;
     border-left: none !important;
   }
 }
 
 // Dark theme
 [data-theme="dark"] .post-content table {
-  border-color: #2d4d6e;
+  border-color: #1a6b55;
 
   th {
-    background-color: #1a3a5c;
-    color: #c8ddf0;
-    border-color: #243f60;
+    background-color: #0d3d30;
+    color: #a8e6d8;
+    border-color: #1a6b55;
     font-weight: 600;
   }
 
   td {
-    border-color: #253040;
+    border-color: #1a3a30;
     background-color: #141923;
-    color: #c8ddf0;
+    color: #e0e0e0;
   }
 
   tr:nth-child(even) td {
@@ -201,11 +201,11 @@
   }
 
   td:has(+ td:empty) {
-    background-color: #1a3a5c;
-    color: #7eb3d8;
+    background-color: #0d3d30;
+    color: #a8e6d8;
   }
   td + td:empty {
-    background-color: #1a3a5c;
+    background-color: #0d3d30;
     border-left: none !important;
   }
 }

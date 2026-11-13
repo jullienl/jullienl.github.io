@@ -50,7 +50,11 @@
 <!-- translate="no" and class="notranslate" prevent Google from translating the button/menu itself -->
 <div class="post-translate notranslate" id="post-translate" translate="no">
   <button class="post-translate-btn" onclick="document.getElementById('post-translate').classList.toggle('post-translate--open')" aria-haspopup="true">
-    🌐 Translate ▾
+    <svg class="post-translate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="9"></circle>
+      <ellipse cx="12" cy="12" rx="4" ry="9"></ellipse>
+      <path d="M3 12h18M5 7h14M5 17h14"></path>
+    </svg> Translate ▾
   </button>
   <ul class="post-translate-menu" role="menu">
     <li role="menuitem"><a onclick="doTranslate(''); return false;" href="#">🇬🇧 English (original)</a></li>
