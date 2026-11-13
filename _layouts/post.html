@@ -44,15 +44,20 @@ layout: default
   <hr>
 
   <div class="centred-content">
-    {% if site.post_end_promo != blank? %}
-      {{ site.post_end_promo }}<br><br>
-    {% endif %}
+    {% unless page.hide_post_end_promo == true %}
+      {% assign post_end_promo = page.post_end_promo | default: site.post_end_promo %}
+      {% if post_end_promo != blank? %}
+        {{ post_end_promo }}<br><br>
+      {% endif %}
+    {% endunless %}
 
     {% if site.kofi_button_text != blank? and site.kofi_id != blank? %}
       {% include custom/donatebutton.html %}<br><br>
     {% endif %}
   </div>
 
+  <script src="{{ '/assets/js/step-time.js' | relative_url }}" defer></script>
+  {% if page.collapsible %}<script id="collapsible-sections-script" src="{{ '/assets/js/collapsible-sections.js' | relative_url }}" data-expanded="{{ page.collapsible_expanded | default: false }}" defer></script>{% endif %}
   {% if site.giscus_repo != blank? and page.hide_comments != true %}
     <script src="https://giscus.app/client.js"
       data-repo="{{ site.giscus_repo }}"

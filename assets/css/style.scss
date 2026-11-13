@@ -277,6 +277,25 @@ table {
   word-break: normal;
 }
 
+/* Column width: add {: .col1-40} or {: .col3-35} (columns 1 to 4, 5 to 90, step 5) under a table */
+table[class*="col1-"],
+table[class*="col2-"],
+table[class*="col3-"],
+table[class*="col4-"] {
+  table-layout: fixed;
+  word-break: break-word;
+}
+
+@for $i from 1 through 18 {
+  $w: $i * 5;
+  @for $c from 1 through 4 {
+    table.col#{$c}-#{$w} th:nth-child(#{$c}),
+    table.col#{$c}-#{$w} td:nth-child(#{$c}) {
+      width: #{$w}#{'%'};
+    }
+  }
+}
+
 /* Fixes "tag" styling */
 .tag,
 .tag:visited {
@@ -592,6 +611,12 @@ blockquote ol ol li {
 
 
 /* Responsive image size classes */
+.img-200 img {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+}
+
 .img-300 img {
   width: 300px;
   max-width: 100%;  /* Never exceed container width on mobile */
@@ -634,6 +659,12 @@ blockquote ol ol li {
   height: auto;
 }
 
+.img-1000 img {
+  width: 1000px;
+  max-width: 100%;
+  height: auto;
+}
+
 .img-100pct img {
   width: 100%;
   height: auto;
@@ -642,7 +673,14 @@ blockquote ol ol li {
 /* Wrapper for code blocks with copy button */
 .code-block-wrapper {
   position: relative;
-  margin: 1em 0;
+  margin: 0 0 1em;
+}
+
+/* Keep code blocks and quotes beside the floated table of contents instead of running under it */
+.code-block-wrapper,
+.post-content div.highlighter-rouge,
+.post-content blockquote {
+  display: flow-root;
 }
 
 .code-block-wrapper pre {
@@ -1453,6 +1491,25 @@ body .highlight .err {
   html[data-theme="light"] .highlight .vg    { color: #008080 !important; }
   html[data-theme="light"] .highlight .vi    { color: #008080 !important; }
   html[data-theme="light"] .highlight .il    { color: #099 !important; }
+}
+
+.language-powershell {
+  --powershell-variable-color: #008080;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .language-powershell {
+    --powershell-variable-color: #EEFFFF;
+  }
+}
+
+[data-theme="dark"] .language-powershell {
+  --powershell-variable-color: #EEFFFF;
+}
+
+.language-powershell .highlight .nv + .nn,
+.language-powershell .highlight .nv + .nn + .p {
+  color: var(--powershell-variable-color) !important;
 }
 
 /* ============================================

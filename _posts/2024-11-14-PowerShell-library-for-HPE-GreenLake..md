@@ -27,7 +27,7 @@ This repository is where the source code is developed. You can also track [relea
 
 > 📖 **The [README](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) is the most complete and up-to-date reference for the library** — covering supported authentication methods, the full identity-provider compatibility matrix, connection examples, global variables, best practices, troubleshooting, and telemetry. Whenever this blog and the README differ, the README is authoritative.
 
-## Key Features
+# Key Features
 
 This library provides a variety of key features for managing HPE GreenLake and Compute Ops Management. Here are the main features:
 
@@ -54,11 +54,11 @@ These features collectively provide a comprehensive set of cmdlets to manage var
 
 
 
-## Requirements
+# Requirements
 
 The module requires **PowerShell 7.0 or later** and an HPE GreenLake account. For detailed system requirements and prerequisites, please refer to the [README.md](https://github.com/jullienl/HPE-COM-PowerShell-Library) file in the GitHub repository.
 
-## Installation
+# Installation
 
 To install the library, use the following command to download and install the module from the official PowerShell Gallery:
 
@@ -70,7 +70,7 @@ Note: As a best practice, always install the newest release to get all the lates
 
 If this is your first time installing a module from the PowerShell Gallery, you will be prompted to confirm whether you trust the repository. Type `Y` and press `Enter` to proceed.   
 
-### Common Issues and Troubleshooting
+## Common Issues and Troubleshooting
 - **Internet Connection**: An active internet connection is required to install the module from the PowerShell Gallery.
 - **No Dependencies**: This library has no external dependencies, so no additional software or modules are required for it to function.
 - **Common Issues**:
@@ -92,7 +92,7 @@ If this is your first time installing a module from the PowerShell Gallery, you 
 
 By following these steps, you can successfully install the `HPECOMCmdlets` module and begin using it in your PowerShell 7 environment. (Note: while `Install-Module` ships with Windows PowerShell 5.1+, the module itself runs on **PowerShell 7.0 or later**.)
 
-### How to Upgrade the Module
+## How to Upgrade the Module
 
 If you have already installed the module and need to update it to the latest version, run the following commands:
 
@@ -105,9 +105,9 @@ Install-Module -Name HPECOMCmdlets -Force -AllowClobber
 [⬆ Back to Top](#)
 
 
-## Getting Started
+# Getting Started
 
-### Using HPE Account Authentication (Single or Multi-Factor)
+## Using HPE Account Authentication (Single or Multi-Factor)
 
 To connect using single or multi-factor authentication, follow these steps:
 
@@ -165,7 +165,7 @@ To connect using single or multi-factor authentication, follow these steps:
 
             [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-15.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
          
-### Using SAML Single Sign-On (SSO) with Okta, Microsoft Entra ID, or PingIdentity
+## Using SAML Single Sign-On (SSO) with Okta, Microsoft Entra ID, or PingIdentity
 
 The library supports SAML 2.0 Single Sign-On (SSO) with three identity providers: **Okta** (Okta Identity Engine — OIE only; Classic is not supported), **Microsoft Entra ID** (commercial cloud), and **PingIdentity** (PingOne SSO environment). Two sign-in modes are available depending on how your IdP account is configured:
 
@@ -178,7 +178,7 @@ In both modes, federation is detected automatically from your email domain — n
 
 > **Note on unsupported providers**: Identity providers other than Okta, Microsoft Entra ID, and PingIdentity (for example Google Workspace, OneLogin, Auth0, IBM Security Verify) are not supported for SSO, and OpenID Connect (OIDC) federation is not supported — only SAML 2.0. For these, sign in with native HPE Account credentials instead.
 
-#### Passwordless SSO (`-PasswordlessSSOEmail`)
+### Passwordless SSO (`-PasswordlessSSOEmail`)
 
 1. **Prepare your authenticator app**:
     - Install your IdP's authenticator (Okta Verify, Microsoft Authenticator, or PingID) and link it to your account by following your organization's setup instructions.
@@ -201,7 +201,7 @@ In both modes, federation is detected automatically from your email domain — n
 
         [![]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png)]({{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-14.png){:class="img-300"}{: data-lightbox="gallery"}{: .bordered-image-thin}
 
-#### Password-based SSO (`-Credential`)
+### Password-based SSO (`-Credential`)
 
 1. **Authentication Process**:
     - Connect using `-Credential` with your federated email address — federation is detected automatically:
@@ -222,7 +222,7 @@ For a complete setup walkthrough, see the [Configuring SAML SSO with HPE GreenLa
 
 
 
-### Global Session Object: `$HPEGreenLakeSession`
+## Global Session Object: `$HPEGreenLakeSession`
 
 Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
@@ -235,7 +235,7 @@ Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 
 [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-6.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin} 
 
-#### Key Properties of `$HPEGreenLakeSession`:
+### Key Properties of `$HPEGreenLakeSession`:
 
 - **Access Tokens**: Temporary tokens used for authenticating API requests.
 - **Workspace Details**: Information about the connected HPE GreenLake workspace.
@@ -243,7 +243,7 @@ Upon successful connection, the `Connect-HPEGL` cmdlet returns:
 - **API Client Credentials**: Credentials used for API interactions.
 - **User Information**: Details about the authenticated user.
 
-#### Usage Example:
+### Usage Example:
 
 To view the details of the `$HPEGreenLakeSession` object, simply run:
 
@@ -253,7 +253,7 @@ $HPEGreenLakeSession
 
 This will display all the properties and their current values.
 
-#### Managing Sessions:
+### Managing Sessions:
 
 - To disconnect and clear the session, use the `Disconnect-HPEGL` cmdlet.
 - To refresh an expired session, re-run the `Connect-HPEGL` cmdlet with the appropriate credentials.
@@ -271,11 +271,11 @@ Get-Help Connect-HPEGL -Full
 
 
 
-## Script Samples
+# Script Samples
 
 To help you get started quickly, here are two ready-to-use scripts that showcase the module in real-world scenarios.
 
-### End-to-end zero-touch automation
+## End-to-end zero-touch automation
 
 The first is a complete end-to-end example: [COM-Zero-Touch-Automation.ps1](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/Examples/COM-Zero-Touch-Automation.ps1). It walks through the entire infrastructure deployment lifecycle — workspace creation, zero-touch server onboarding, configuration, firmware updates, and teardown.
 
@@ -303,7 +303,7 @@ With HPE Compute Ops Management:
 
 Feel free to modify and expand upon this example to suit your specific needs. It is an excellent starting point for understanding the capabilities of the module and how to leverage it in your automation workflows.
 
-### Bulk iLO onboarding to Compute Ops Management
+## Bulk iLO onboarding to Compute Ops Management
 
 The second is a production-grade onboarding script: [Prepare-and-Connect-iLOs-to-COM-v2.ps1](https://github.com/jullienl/HPE-Compute-Ops-Management/blob/main/PowerShell/Onboarding/Prepare-and-Connect-iLOs-to-COM-v2.ps1). It streamlines onboarding HPE Gen10 and later servers to Compute Ops Management by automating the iLO preparation and firmware-compliance work required for a successful connection. It pairs the `HPECOMCmdlets` module (for HPE GreenLake and COM) with the `HPEiLOCmdlets` module (for the iLOs themselves), and both modules are installed automatically if missing.
 
@@ -321,7 +321,7 @@ The script is fully idempotent — it checks each setting before changing anythi
 [⬆ Back to Top](#)
 
 
-## Telemetry & Privacy
+# Telemetry & Privacy
 
 Starting with v1.0.26, `Connect-HPEGL` sends a single **anonymous** usage event each time a successful connection is established. This lightweight telemetry helps guide development — focusing testing on the operating systems and PowerShell versions people actually run, measuring adoption of features like SSO, catching connection problems early, and gauging demand for currently-unsupported scenarios.
 
@@ -334,7 +334,7 @@ For full details, see the [Telemetry](https://github.com/jullienl/HPE-COM-PowerS
 [⬆ Back to Top](#)
 
 
-## Getting help
+# Getting help
 
 For more detailed information on each cmdlet and its usage, refer to the module's help documentation using:
 
@@ -373,19 +373,19 @@ Get-Command -Module HPECOMCmdlets | ? Name -match group
 [⬆ Back to Top](#)
 
 
-## Support
+# Support
 
 If you encounter any issues or unexpected behavior, please open a [new issue](https://github.com/jullienl/HPE-COM-PowerShell-Library/issues) on my GitHub issue tracker for assistance.
 
 For general questions or discussions that don't require tracking, join our [GitHub Discussions](https://github.com/jullienl/HPE-COM-PowerShell-Library/discussions).
 
 
-## Disclaimer
+# Disclaimer
 
 Please note that the HPE GreenLake APIs are subject to change. Such changes can impact the functionality of this library. We recommend keeping the library updated to the latest version to ensure compatibility with the latest API changes.
 
 
-## Want more?
+# Want more?
 
 * [HPECOMCmdlets README](https://github.com/jullienl/HPE-COM-PowerShell-Library/blob/main/README.md) — the complete, up-to-date library reference (authentication, examples, best practices, troubleshooting, telemetry)
 * [HPE GreenLake Edge-to-Cloud Platform User Guide](https://support.hpe.com/hpesc/public/docDisplay?docId=a00120892en_us)

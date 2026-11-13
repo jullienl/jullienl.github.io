@@ -8,6 +8,99 @@
 }
 
 // ==========================================
+// Step / Time Indicator
+// ==========================================
+.step-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.22em 0.85em;
+  border-radius: 999px;
+  margin: 0 0 2.8em 0;
+  line-height: 1.6;
+  border: 1px solid;
+  text-transform: none;
+}
+
+[data-theme="light"] .step-meta {
+  background-color: #e3eefb;
+  color: #1b5ea8;
+  border-color: #b9d1ea;
+  box-shadow: 0 0 8px rgba(27, 94, 168, 0.25), 0 0 2px rgba(27, 94, 168, 0.15);
+}
+
+[data-theme="dark"] .step-meta {
+  background-color: #1a3a5c;
+  color: #6db3f2;
+  border-color: #2d4d6e;
+  box-shadow: 0 0 10px rgba(109, 179, 242, 0.35), 0 0 3px rgba(109, 179, 242, 0.2);
+}
+
+// ==========================================
+// Collapsible Sections (page.collapsible)
+// ==========================================
+.collapsible-section {
+  margin-top: $spacing-unit;
+
+  // Not a flex container: it must not form a block formatting context, or it would
+  // shrink next to the floated table of contents and push the chevron to the far edge.
+  > summary {
+    display: block;
+    cursor: pointer;
+    list-style: none;
+    line-height: 1.15;
+    text-indent: -12px; // same hanging indent as .post-content h1, which is inline here
+
+    &::-webkit-details-marker { display: none; }
+
+    h1 {
+      display: inline;
+      margin: 0;
+
+      // Non-breaking space glues the chevron to the last word so it never wraps alone
+      &::after {
+        content: "\00a0\25B8";
+        font-size: 1rem;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &[open] > summary { margin-bottom: $spacing-unit * 0.5; }
+  &[open] > summary h1::after { content: "\00a0\25BE"; }
+}
+
+// Hand-written <details> blocks in a post: indent the opened content under the summary.
+// Done in CSS because a 4-space indent in the Markdown would turn it into a code block.
+.post-content details:not(.collapsible-section) > :not(summary) {
+  margin-left: 1.5rem;
+}
+
+// Space under the summary equals the paragraph spacing under the content, so the gaps match
+.post-content details:not(.collapsible-section) > summary + * {
+  margin-top: $spacing-unit * 0.5;
+}
+
+// The <br> after each summary adds one line (24px) above the content, so mirror it below
+// (the last paragraph already has a 15px bottom margin).
+.post-content details[open]:not(.collapsible-section) {
+  padding-bottom: $spacing-unit * 0.3;
+}
+
+// ==========================================
+// Placeholders highlighted with <mark> inside code blocks
+// ==========================================
+.post-content pre code mark {
+  background-color: rgba(255, 196, 0, 0.35);
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+// ==========================================
 // Enhanced Table Styles
 // ==========================================
 .post-content table {

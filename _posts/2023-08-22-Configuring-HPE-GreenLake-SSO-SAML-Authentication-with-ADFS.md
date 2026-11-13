@@ -8,7 +8,8 @@ tags:
    - greenlake
    - adfs
    - idp
-
+collapsible: true
+collapsible_expanded: true
 ---
 
 
@@ -32,11 +33,11 @@ This integration enhances security and user convenience by leveraging existing A
 
 <a name="SAMLAuthenticationworkflow"></a>
 
-## SAML Authentication workflows
+# SAML Authentication workflows
 
 The following diagrams describe the SAML authentication workflow used by HPE GreenLake when ADFS is used as the identity provider. Both Identity Provider (IdP) initiated and Service Provider (SP) initiated methods are supported by ADFS and HPE GreenLake.
 
-### Service Provider Initiated SSO
+## Service Provider Initiated SSO
 
 In a Service Provider initiated SSO workflow, the SSO request originates from the service provider, i.e., HPE GreenLake. When a user tries to access HPE GreenLake, a federation authentication request is created and sent to the ADFS server:
 
@@ -51,7 +52,7 @@ In a Service Provider initiated SSO workflow, the SSO request originates from th
 7. The authentication process completes, and the user is granted access to the HPE GreenLake resource(s).
 
 
-### Identity Provider Initiated SSO
+## Identity Provider Initiated SSO
 
 In an Identity Provider initiated SSO workflow, the SSO request originates from the identity provider, i.e., ADFS. Users access a specific ADFS encoded URL which contains the HPE GreenLake SSO URL, and enter their Active Directory credentials. Then ADFS creates a SAML response and redirects the users to the HPE GreenLake user interface:
 
@@ -69,7 +70,7 @@ In an Identity Provider initiated SSO workflow, the SSO request originates from 
 [⬆ Back to Top](#)
 
 
-## Prerequisites
+# Prerequisites
 
 1. Subscribe to HPE GreenLake from your organization, see [Sign up with HPE GreenLake](https://common.cloud.hpe.com/) 
 2. Make sure you have an admin role for HPE GreenLake
@@ -78,7 +79,7 @@ In an Identity Provider initiated SSO workflow, the SSO request originates from 
     
 <a name="keycomponents"></a>    
 
-## Environment setup and automated certificate renewal
+# Environment setup and automated certificate renewal
 
 Here are the key components I’m using in my lab environment to support ADFS services and automate certificate renewal:
 
@@ -136,7 +137,7 @@ Here are the key components I’m using in my lab environment to support ADFS se
 [⬆ Back to Top](#)
 
 
-## Step 1: Certificate Requirements for Federation Servers
+# Step 1: Certificate Requirements for Federation Servers
 
 Active Directory Federation Services (ADFS) requires a certificate for Secure Socket Layer (SSL) server authentication on each federation server in your federation server farm so before you start the ADFS installation, you need to meet two important requirements:
 
@@ -162,7 +163,7 @@ Active Directory Federation Services (ADFS) requires a certificate for Secure So
 [⬆ Back to Top](#)
 
 
-## Step 2: Configuring an ADFS service user 
+# Step 2: Configuring an ADFS service user 
 
 From the **Active Directory Users and Computers**, create a new Active Directory (AD) user account:
 
@@ -183,7 +184,7 @@ Add admin right to **adfssvc**
 [⬆ Back to Top](#)
 
 
-## Step 3: Configuring AD user accounts and groups
+# Step 3: Configuring AD user accounts and groups
 
 The idea for users and groups is to create two AD user accounts to illustrate how roles and privileges works between ADFS and HPE GreenLake, so you will create a first user account with a read-only role and another with a full administrator role.
 
@@ -220,7 +221,7 @@ And add **Mike** to the **GLCP-Observers** group:
 [⬆ Back to Top](#)
 
 
-## Step 4: Inviting an AD administrator user to HPE GreenLake
+# Step 4: Inviting an AD administrator user to HPE GreenLake
 
 The configuration of HPE GreenLake SAML SSO requires at least one verified user from the SAML domain you want to claim.  For example, to claim an acme.com domain, the user must be logged in to HPE GreenLake with an @acme.com email address.
 
@@ -261,7 +262,7 @@ So if you are not connected to HPE GreenLake with an email from your SAML domain
 [⬆ Back to Top](#)
 
 
-## Step 5: ADFS installation
+# Step 5: ADFS installation
 
 The next step is to install Active Directory Federation Services role on the Windows Server. 
 
@@ -286,7 +287,7 @@ When the installation is complete, click on **Configure the federation service o
 [⬆ Back to Top](#)
 
 
-##  Step 6: ADFS configuration
+#  Step 6: ADFS configuration
 
 In the new window, select **Create the first federation server in a federation server farm** then click **Next**:
 
@@ -355,7 +356,7 @@ Save the file as *ADFS_federation_metadata.ping.xml* and keep it for later.
 [⬆ Back to Top](#)
 
 
-## Step 7: Configuring ADFS for IdP-initiated SSO 
+# Step 7: Configuring ADFS for IdP-initiated SSO 
 
 By default ADFS is not configured for RelayState, a parameter of the SAML federation protocol which is required for IdP-initiated SSO.
 
@@ -416,7 +417,7 @@ There are two steps to this configuration:
 [⬆ Back to Top](#)
 
 
-## Step 8: HPE GreenLake configuration for SAML federation
+# Step 8: HPE GreenLake configuration for SAML federation
 
 Now it's time to configure your HPE GreenLake environment for SAML SSO authentication. Log in to your HPE GreenLake workspace using your AD administrative user account (i.e. lionel@\<your_domain_name.com\> created above).
 
@@ -519,7 +520,7 @@ You should now have a new SAML configuration available on your Authentication pa
 [⬆ Back to Top](#)
 
 
-## Step 9: Collecting the HPE GreenLake SAML attributes values
+# Step 9: Collecting the HPE GreenLake SAML attributes values
 
 The SSO domain configuration in HPE GreenLake is now complete. 
 
@@ -555,7 +556,7 @@ The SSO domain configuration in HPE GreenLake is now complete.
 [⬆ Back to Top](#)
 
 
-## Step 10: Adding HPE GreenLake as an ADFS relying party trust 
+# Step 10: Adding HPE GreenLake as an ADFS relying party trust 
 
 The next step involves configuring HPE GreenLake as a relying party trust in ADFS. Open the **AD FS Management** console: 
 
@@ -590,7 +591,7 @@ Then click **Close**.
 
 <a name="step10.1"></a>
 
-### LDAP Attributes Mappings
+## LDAP Attributes Mappings
 
 Once the *HPE GreenLake* relying party has been created, you'll need to create the claim issuance policies, right click on *HPE GreenLake* and select **Edit Claim Issuance Policy**:
 
@@ -631,7 +632,7 @@ Then click **OK** to save this new rule.
 
 <a name="step10.3"></a>
 
-### Roles and permission attribute
+## Roles and permission attribute
 
 The next step is to define roles and permissions using the *hpe_ccs_attribute* attribute used by HPE GreenLake.
 
@@ -662,7 +663,7 @@ On the next screen:
 
 <a name="hpe_ccs_attribute"></a>
 
-#### Building hpe_ccs_attribute value
+### Building hpe_ccs_attribute value
 
 For the **Outgoing claim value**, there is a special SAML format that must be used to define the HPE GreenLake platform's roles and permissions using  *hpe_ccs_attribute*. 
 
@@ -732,7 +733,7 @@ Then for:
 
 <a name="hpeCcsAttributeExamples"></a>
 
-#### hpe_ccs_attribute examples
+### hpe_ccs_attribute examples
 
 - For one workspace and two applications (HPE GreenLake and Compute Ops Management) with administrative privileges:
 
@@ -819,7 +820,7 @@ You can now click **Ok** to complete the claim issuance policy definition for HP
 [⬆ Back to Top](#)
 
 
-## Testing step 1: Testing the ADFS sign on page
+# Testing step 1: Testing the ADFS sign on page
 
 Installation is now complete, you can start testing your configuration.
 
@@ -846,7 +847,7 @@ You can then close this page for now.
 [⬆ Back to Top](#)
 
 
-## Testing step 2: SP-Initiated test authentication
+# Testing step 2: SP-Initiated test authentication
 
 
 **Prerequisite**: Before continuing and testing the SSO connection, make sure you are disconnected from the HPE GreenLake platform.
@@ -857,7 +858,7 @@ Open a web browser, and go to the HPE GreenLake interface at [https://common.clo
 
 [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-53.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-53.png){:class="img-500"}{:data-lightbox="gallery"}{: .bordered-image-thin}
 
-### Test authentication with an AD administrator user
+## Test authentication with an AD administrator user
 
 To test an AD user with administrative role, provide the Active Directory e-mail address of the admin user created at [step 3](#step3) in our example (i.e. lionel) then click **Next**:
 
@@ -884,7 +885,7 @@ The administrative role should be listed for all application defined in *hpe_ccs
 
 > If a user is a member of several AD security groups, the group with the highest SAML HPE GreenLake *hpe_ccs_attribute* is always used when connecting to the platform.
 
-### Test authentication with an AD observer user
+## Test authentication with an AD observer user
 
 To test the next AD user with the observer role, it is first necessary to disconnect from the HPE GreenLake platform:
 
@@ -926,7 +927,7 @@ And check that you have observer rights in **Manage** / **Identity & Access** / 
 [⬆ Back to Top](#)
 
 
-## Testing step 3: IdP-Initiated test authentication
+# Testing step 3: IdP-Initiated test authentication
 
 
 This time, you want to test the authentication initiated by the identity provider, i.e. ADFS.
@@ -953,7 +954,7 @@ If you are redirected to the HPE GreenLake platform, the process succeeds, you�
 [⬆ Back to Top](#)
 
 
-## Troubleshooting SAML connectivity errors
+# Troubleshooting SAML connectivity errors
 
 If you've diligently followed all the steps in this blog, you shouldn't be far from successful SAML authentication, but if you still encounter problems, there are a number of tools that can be used to analyze SAML connections. One of the most popular tool is SAML Tracer. [SAML Tracer](https://chrome.google.com/webstore/detail/saml-tracer/mpdajninpobndbfcldcmbpnnbhibjmch) is a browser extension that allows you to view and debug SAML requests and responses. It is available for [Chrome]((https://chrome.google.com/webstore/detail/saml-tracer/mpdajninpobndbfcldcmbpnnbhibjmch) ), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/saml-tracer/), and Edge. 
 
@@ -974,7 +975,7 @@ Below are examples of typical SAML POST requests with the correct attributes (wi
    [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-67.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-67.png){:class="img-700"}{:data-lightbox="gallery"}{: .bordered-image-thin}
 
 
-#### Lack of SAML attributes
+### Lack of SAML attributes
 
 If you don't find the same SAML attributes in your traces, like illustrated below:
  
@@ -985,7 +986,7 @@ Make sure your ADFS claim rules are correct and that your AD user account includ
 [![]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-70.png)]( {{ site.baseurl }}/assets/images/AD-ADFS/AD-ADFS-70.png){:class="img-500"}{:data-lightbox="gallery"}{: .bordered-image-thin}
 
 
-#### ADFS logs
+### ADFS logs
 
 Another place to troubleshoot a SAML connection is to check the logs of the ADFS server. 
 

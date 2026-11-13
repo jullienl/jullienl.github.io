@@ -4,6 +4,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if page.noindex %}<meta name="robots" content="noindex, nofollow">{%- endif %}
+  {%- if jekyll.environment == 'development' -%}
+  <!-- Dev only: keep scroll position across livereload refreshes -->
+  <script>
+    history.scrollRestoration = 'manual';
+    document.documentElement.style.scrollBehavior = 'auto';
+    addEventListener('beforeunload', function() { sessionStorage.setItem('devScrollY:' + location.pathname, scrollY); });
+    addEventListener('load', function() {
+      var y = sessionStorage.getItem('devScrollY:' + location.pathname);
+      if (y !== null) scrollTo(0, +y);
+    });
+  </script>
+  {%- endif -%}
   <script>
     (function() {
       const themeKey = 'user-theme-preference';

@@ -19,12 +19,12 @@ Imagine having a high-powered alert system not just sounding alarms, but also tr
 Now, let's peel back the layers to discover how this impacts organizations like yours.
 
 
-## What are webhooks?
+# What are webhooks?
 
 At their core, webhooks are automated messages sent from apps when something happens. They're a way for apps to communicate and pass information along instantly, setting off a chain reaction of tasks without the need for manual intervention.
 
 
-## The magic of automation
+# The magic of automation
 
 With Compute Ops Management, webhooks offer a seamless avenue for triggering events across your systems. When a specific event occurs—be it an outage, a new alert raised or a new server connection—webhooks spring into action, notifying your other tools and services, and initiating predefined operations tasks.
 
@@ -84,9 +84,9 @@ After the event has been processed according to the instructions laid out in the
 [⬆ Back to Top](#)
 
 
-## Available resources in Compute Ops Management
+# Available resources in Compute Ops Management
 
-The concept of available resources in the context of webhooks refers to the different types of events or actions within an application or service that a webhook can be configured to listen for. With Compute Ops Management, you can be set up webhooks to monitor a large range of event resources such as servers, alerts, groups, server settings, jobs, compliance checks, and firmware bundles. 
+The concept of available resources in the context of webhooks refers to the different types of events or actions within an application or service that a webhook can be configured to listen for. With Compute Ops Management, you can set up webhooks to monitor a large range of event resources such as servers, alerts, groups, server settings, jobs, compliance checks, and firmware bundles. 
 
   > The process of creating webhooks in Compute Ops Management and the various resource types that are available are documented in the [API documentation](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/webhooks/overview/). 
 
@@ -110,7 +110,7 @@ For each resource, certain specific properties are capable of initiating the dis
 [⬆ Back to Top](#)
 
 
-## Filtering options
+# Filtering options
 
 When setting up webhooks in Compute Ops Management, it is mandatory to specify filters using the `eventFilter` property. These filters determine which event payloads the webhook will transmit to its designated endpoint. The webhook operates on an opt-in basis, meaning that only events that align with the criteria defined in the `eventFilter` are dispatched to the receiving URL.
 
@@ -192,7 +192,7 @@ The specifics of these filter attributes are described in the following table:
 </table>
 
 
-### New and Old
+## New and Old
 
 `new` and `old` can be employed to determine when to trigger webhooks based on changes in data. These filters can be used to monitor for specific updates or modifications that occur.
 
@@ -201,7 +201,7 @@ When an event occurs that modifies data, the system can look at the `new` state 
 Suppose a group named "Group1" is created at the initial stage (referred to as event 0) and then, after a sequence of n events, its name is altered to "Group2". Using a filter with criteria such as `type eq 'compute-ops/group'` combined with `new/name eq 'Group1'`, you would capture all events from the start (event 0) up to but not including the event where the change occurs (event n-1). In contrast, if the filter is set to `old/name`, it targets a different set of events, in this case from event 1 through to the event where the update happens (event n).
 
 
-### OData style filters
+## OData style filters
 
 Filters use OData style filters as described in the [HPE GreenLake specification](https://developer.greenlake.hpe.com/docs/greenlake/services/compute-ops-mgmt/public/guide/#filtering). 
 
@@ -213,7 +213,7 @@ The general syntax for an OData filter looks like `property op value` with:
 Logical Operators can also be used to combine conditions using `and`, `or`, and `not`. The nesting separator to specify a nested resource is `/` (e.g. `property eq 'compute-ops/group'`).
 
 
-### Filter examples
+## Filter examples
 
 Filtering with OData allows for both simple and complex querying possibilities, here are some examples:
 
@@ -321,7 +321,7 @@ Filtering with OData allows for both simple and complex querying possibilities, 
 [⬆ Back to Top](#)
 
 
-### Pairing raise and clear webhooks for ticketing systems
+## Pairing raise and clear webhooks for ticketing systems
 
 When you integrate COM webhooks with a ticketing or event-management system (ServiceNow, Jira, PagerDuty, an ITSM tool, etc.), you rarely want to be notified of a problem only. You also want the case that was opened for that problem to be **closed automatically** once the condition clears, so that operators are not left manually reconciling stale tickets.
 
@@ -362,7 +362,7 @@ A few practical points when implementing this pattern:
 [⬆ Back to Top](#)
 
 
-## Secure handshake mechanism
+# Secure handshake mechanism
 
 Compute Ops Management uses webhook verification through challenges in headers. This is a common security measure used by providers to verify the receiver's endpoint authenticity before starting to send webhook data. 
 
@@ -532,7 +532,7 @@ Description of the different requests:
 [⬆ Back to Top](#)
 
 
-## Securing webhook events with a shared secret
+# Securing webhook events with a shared secret
 
 The handshake mechanism described above validates your endpoint to COM, but it does not solve the reverse problem: **how does your endpoint know that an incoming request genuinely comes from COM?**
 
@@ -541,7 +541,7 @@ By design, a webhook destination must be publicly reachable so that COM can post
 This is where the `headers` property of the webhook definition becomes useful. So far in this article the `headers` field has been left empty (`{}`), but it is designed precisely for this purpose: **any key/value pair you define there, COM attaches to every webhook request it sends** to your destination. By placing a secret token in this field, you create a **shared secret** that only COM and your receiver know.
 
 
-### Defining the shared secret at webhook creation
+## Defining the shared secret at webhook creation
 
 When creating (or updating) the webhook, add a custom header containing a long, random, unguessable value:
 
@@ -562,7 +562,7 @@ From now on, **every** event COM delivers to your destination will carry the hea
   > Treat the webhook creation payload as sensitive, since it contains your secret. You can pick any header name you like (e.g. `X-Webhook-Secret`, `X-Api-Key`), as long as your receiver checks for the same one.
 
 
-### Validating the shared secret at the receiver
+## Validating the shared secret at the receiver
 
 Your event handler must then inspect this header on **every** incoming `POST` request, before processing the payload:
 
@@ -600,7 +600,7 @@ flowchart TD
 <br>
 
 
-### Security considerations
+## Security considerations
 
 A few important points to keep in mind when relying on this mechanism:
 
@@ -617,7 +617,7 @@ A few important points to keep in mind when relying on this mechanism:
 [⬆ Back to Top](#)
 
 
-## Integrating COM webhooks with automation tools
+# Integrating COM webhooks with automation tools
 
 To manage webhook events, you can use any programming language—such as Node.js, Python, or PHP—to set up a server that listens for webhook events. Alternatively, you can use tools like Zapier or Make (formerly known as Integromat), which have become very popular in the no-code/low-code arena. There are also solutions available from major providers like Google Cloud, Amazon Web Services (AWS), and Microsoft Azure.
 
@@ -633,7 +633,7 @@ When an event occurs—for instance, a server shutdown—Compute Ops Management 
 
 And more - there are numerous potential applications!
 
-### A step-by-step workflow creation guide with Make
+## A step-by-step workflow creation guide with Make
 
 To illustrate this, let's explore how to create a typical workflow using Make (formerly known as Integromat). 
 
@@ -1269,7 +1269,7 @@ The following steps describe how to implement this scenario in Make:
 [⬆ Back to Top](#)
 
 
-## Using the Make On-premise agent
+# Using the Make On-premise agent
 
 In this Make scenario with COM, you've learned how to create actions using public resources, such as Slack, Email, Notion. But what happens when someone wants to interact with local files, databases, and services?
 
@@ -1282,7 +1282,7 @@ To learn more, see [Using the On-premise agent](https://www.make.com/en/help/con
 [⬆ Back to Top](#)
 
 
-## Taking automation a step further?
+# Taking automation a step further?
 
 An enhanced scenario could incorporate more sophisticated actions, such as sending HTTP requests to Compute Ops Management to execute tasks informed by data received from a webhook. For example, expanding on the initial scenario, I could introduce an additional action to automatically restart a server. This enhancement would necessitate the integration of several modules:
 
@@ -1325,7 +1325,7 @@ Details about the different modules to use in Make to interact with COM:
 [⬆ Back to Top](#)
 
 
-## A production-ready reference implementation
+# A production-ready reference implementation
 
 The Make scenario above is perfect for prototyping and no-code automation, but if you need to forward COM events into an enterprise tool — an **event/monitoring system** (HPE OpsRamp, OBM), an **ITSM/ticketing system** (ServiceNow), or a **SIEM** (Splunk) — in a robust, self-hosted way, I've put together an open-source set of reference implementations:
 
@@ -1341,7 +1341,7 @@ It implements, in real code, everything this article describes — the [verifica
 [⬆ Back to Top](#)
 
 
-## Wrapping up
+# Wrapping up
 
 To wrap things up, I'm genuinely excited about the opportunities here! The combination of COM webhooks with some nifty tools opens up a world of possibilities for automating all sorts of things in HPE GreenLake. Imagine having complicated tasks just flow smoothly on their own—less manual work for us humans, and you get a server management system that's agile and super responsive. By tapping into the magic of webhooks through Compute Ops Management, you're looking at a real game-changer for boosting how you handle IT operations and making everything run like a well-oiled machine. It's pretty awesome what you can achieve with this tech! 🚀
 
