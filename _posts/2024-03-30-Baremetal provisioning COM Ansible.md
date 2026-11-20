@@ -8,6 +8,8 @@ tags:
   - greenlake
   - com
   - ansible 
+collapsible: true
+collapsible_expanded: true
 ---
 
 
