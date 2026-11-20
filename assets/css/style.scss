@@ -1833,3 +1833,8 @@ body.translated-rtl {
 [data-theme="light"] .post-content :is(p, li, td, dd, blockquote) a:not(.lightbox-image):not(.home-card a) {
   color: #006e67 !important;
 }
+
+/* Code blocks: only the code itself is grey; the outer wrapper would show a strip from the inner margin */
+[data-theme="light"] div.highlighter-rouge {
+  background-color: transparent !important;
+}
