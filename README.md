@@ -27,7 +27,7 @@ Native (liquid) features:
 - Network site picker
 - Plaintext or HTML excerpts (`show_excerpts` / `show_excerpts_html`)
 - Read time / word count (`replace_read_time_with_word_count`)
-- Search
+- Search with clickable result cards and bold keyword matches; dates and tags stay grouped in the card footer
 
 Third party features:
 

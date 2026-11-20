@@ -1,4 +1,6 @@
-.home {
+.home,
+.search-results,
+.about-page {
   --home-accent: #007f77;
   --home-text: #142929;
   --home-muted: #526565;
@@ -8,7 +10,9 @@
   --home-hero: #e4f2ee;
 }
 
-[data-theme="dark"] .home {
+[data-theme="dark"] .home,
+[data-theme="dark"] .search-results,
+[data-theme="dark"] .about-page {
   --home-accent: #79daca;
   --home-text: #ecf5f2;
   --home-muted: #a3b8b2;
@@ -112,7 +116,7 @@
 }
 .home .home-post-list > li { margin: 0; }
 
-[data-theme] .home .home-card {
+[data-theme] :is(.home, .search-results) .home-card {
   position: relative;
   isolation: isolate;
   display: flex;
@@ -124,11 +128,11 @@
   box-shadow: none !important;
   overflow: hidden;
 }
-[data-theme="light"] .home .home-card {
+[data-theme="light"] :is(.home, .search-results) .home-card {
   --home-card: #e8f4ee;
   --home-border: #b2d2c2;
 }
-[data-theme] .home .home-card:hover {
+[data-theme] :is(.home, .search-results) .home-card:hover {
   border-color: var(--home-accent) !important;
   box-shadow: 0 10px 24px rgba(0, 0, 0, .08) !important;
   transform: translateY(-3px);
@@ -142,7 +146,7 @@
   background-position: center;
   background-size: cover;
 }
-[data-theme] .home .home-card .content {
+[data-theme] :is(.home, .search-results) .home-card .content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -162,18 +166,18 @@
   text-transform: uppercase;
 }
 .home-card-categories .home-featured-label { color: var(--home-muted); background: transparent; }
-[data-theme] .home .home-card h3 { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.35; letter-spacing: -.015em; }
-[data-theme] .home .home-card h3 a { color: var(--home-text) !important; text-decoration: none; }
-[data-theme] .home .home-card:hover:not(:has(.home-card-tags a:hover)) h3 a {
+[data-theme] :is(.home, .search-results) .home-card :is(h2, h3) { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.35; letter-spacing: -.015em; }
+[data-theme] :is(.home, .search-results) .home-card :is(h2, h3) a { color: var(--home-text) !important; text-decoration: none; }
+[data-theme] :is(.home, .search-results) .home-card:hover:not(:has(.home-card-tags a:hover)) :is(h2, h3) a {
   color: var(--home-accent) !important;
 }
-[data-theme] .home .home-card h3 a::after {
+[data-theme] :is(.home, .search-results) .home-card :is(h2, h3) a::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
 }
-[data-theme] .home .home-card h3 a:focus-visible::after {
+[data-theme] :is(.home, .search-results) .home-card :is(h2, h3) a:focus-visible::after {
   outline: 2px solid var(--home-accent);
   outline-offset: -2px;
   border-radius: 12px;
@@ -182,10 +186,10 @@
   position: relative;
   z-index: 2;
 }
-.home .home-card .home-card-excerpt { margin: 0; color: var(--home-muted); font-size: .94rem; line-height: 1.6; }
+:is(.home, .search-results) .home-card .home-card-excerpt { margin: 0; color: var(--home-muted); font-size: .94rem; line-height: 1.6; }
 .home-card-tags { display: flex; flex-wrap: wrap; gap: .6rem; font-size: .78rem; }
 [data-theme] .home .home-card-tags a { color: var(--home-accent) !important; text-decoration: none; }
-[data-theme] .home .home-card-tags a:hover { color: var(--home-text) !important; text-decoration: underline; }
+[data-theme] .home .home-card-tags a:hover { text-decoration: underline; }
 .home-card-footer {
   display: flex;
   align-items: center;
@@ -201,6 +205,20 @@
 .home-filter-status { min-height: 1.4rem; margin: .75rem 0 0; color: var(--home-muted); font-size: .85rem; }
 .home-empty { color: var(--home-muted); }
 .home .centred-homepage-content { margin-top: 1.5rem; }
+
+.search-results {
+  display: grid;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .search-match {
+    background: transparent;
+    color: inherit;
+    font-weight: 700;
+  }
+}
 
 @media (min-width: 700px) {
   [data-theme] .home .home-card-featured { flex-direction: row; }
@@ -219,5 +237,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home .home-card, .home .category-chip { transition: none; }
+  :is(.home, .search-results) .home-card, .home .category-chip { transition: none; }
 }

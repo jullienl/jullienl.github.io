@@ -10,7 +10,7 @@
     />
   </p>
 </form>
-<ul id="searchresults" class="post-list"></ul>
+<ul id="searchresults" class="search-results" role="list"></ul>
 
 <script src="/assets/js/search.js" type="text/javascript"></script>
 
@@ -28,7 +28,7 @@
       }
       return value.replace(
         new RegExp(document.getElementById("search-input").value, "gi"),
-        '<span class="highlight">$&</span>'
+        '<mark class="search-match">$&</mark>'
       );
     },
     sortMiddleware: function (a, b) {
@@ -37,11 +37,12 @@
       return bPrio - aPrio;
     },
     searchResultTemplate:
-      "<li class='card'>" +
+      "<li class='card home-card'>" +
       "<div class='content'>" +
-      "<a class='post-link' href='{url}'>{title}</a>" +
-      "<span class='post-meta'>{meta}</span>" +
-      "<p>{excerpt}</p>" +
+      // Escape the heading delimiters so the page's heading-anchor filter leaves the script alone.
+      "\x3ch2><a href='{url}'>{title}</a>\x3c/h2>" +
+      "<p class='home-card-excerpt'>{excerpt}</p>" +
+      "<div class='home-card-footer'><span class='home-card-meta'>{meta}</span></div>" +
       "</div>" +
       "</li>",
   });

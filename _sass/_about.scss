@@ -1,0 +1,123 @@
+.about-page {
+  color: var(--home-text);
+  margin-bottom: 3rem;
+
+  h2 {
+    margin-bottom: .85rem;
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -.025em;
+  }
+
+  p:not(.home-eyebrow) {
+    color: var(--home-muted);
+    line-height: 1.65;
+  }
+
+  a {
+    color: var(--home-accent) !important;
+  }
+}
+
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 5vw, 4rem);
+  border: 1px solid var(--home-border);
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 90% 15%, rgba(35, 177, 142, .18), transparent 55%), var(--home-hero);
+
+  h1 {
+    margin: 0 0 .45rem;
+    font-size: clamp(2.35rem, 6vw, 4.4rem);
+    font-weight: 700;
+    letter-spacing: -.045em;
+    line-height: 1.08;
+  }
+
+  p.about-role {
+    color: var(--home-text);
+    font-weight: 600;
+  }
+}
+
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.4rem;
+
+  a {
+    padding: .5rem .85rem;
+    border: 1px solid var(--home-border);
+    border-radius: 8px;
+    background: var(--home-card);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      border-color: var(--home-accent);
+      text-decoration: underline;
+    }
+  }
+}
+
+.about-experience,
+.about-project {
+  padding: clamp(1.15rem, 3vw, 1.8rem);
+  border: 1px solid var(--home-border);
+  border-radius: 12px;
+  background: var(--home-card);
+
+  p:last-child { margin-bottom: 0; }
+}
+
+.about-experience strong {
+  display: block;
+  color: var(--home-text);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.4rem, 4vw, 3rem);
+}
+
+.about-hero + .about-grid,
+.about-projects {
+  margin-top: clamp(2rem, 5vw, 3.75rem);
+}
+
+.about-project h3 {
+  margin-bottom: .45rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.about-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: .3rem .7rem;
+    border: 1px solid var(--home-border);
+    border-radius: 999px;
+    background: var(--home-surface);
+    font-size: .88rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-hero,
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

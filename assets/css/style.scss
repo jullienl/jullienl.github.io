@@ -1822,3 +1822,14 @@ body.translated-rtl {
 }
 
 @import "home-redesign";
+@import "about";
+
+/* Links in guide text: underlined on hover only, same color on hover */
+.post-content :is(p, li, td, dd, blockquote) a:not(.lightbox-image):not(.home-card a):hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Darker in light mode for readability on white; keeps 3:1 against body text */
+[data-theme="light"] .post-content :is(p, li, td, dd, blockquote) a:not(.lightbox-image):not(.home-card a) {
+  color: #006e67 !important;
+}
