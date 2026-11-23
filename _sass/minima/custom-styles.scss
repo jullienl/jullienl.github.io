@@ -149,6 +149,33 @@
   }
 }
 
+// Phones and tablets: scroll wide tables sideways instead of cutting columns off
+@media (max-width: 1000px) {
+  .post-content table,
+  .post-content table[class] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    table-layout: auto;
+    word-break: normal;
+    // Same thin scrollbar as code blocks
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  }
+  // Keep columns readable: wide tables scroll instead of squeezing columns into tall, narrow strips
+  .post-content table :is(th, td) { min-width: 8rem; }
+  .post-content table td + td:empty { min-width: 0; }
+  .post-content table::-webkit-scrollbar { height: 6px; }
+  .post-content table::-webkit-scrollbar-track { background: transparent; }
+  .post-content table::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+  }
+  .post-content table:hover::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.62); }
+  [data-theme="light"] .post-content table { scrollbar-color: rgba(0, 0, 0, 0.3) transparent; }
+  [data-theme="light"] .post-content table::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.22); }
+  [data-theme="light"] .post-content table:hover::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.5); }
+}
+
 // Light theme
 [data-theme="light"] .post-content table {
   border-color: #a0d9cc;
