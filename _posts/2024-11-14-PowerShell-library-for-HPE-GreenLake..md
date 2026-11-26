@@ -4,7 +4,7 @@ title:  "PowerShell Library for HPE Compute Ops Management"
 categories: GreenLake
 image: /assets/images/HPECOMCmdlets/banner.jpg
 excerpt: Discover how to automate and manage your HPE GreenLake and Compute Ops Management environment using PowerShell with the HPECOMCmdlets library.
-last_modified_at: 2026-11-20
+last_modified_at: 2026-11-26
 tags: 
   - greenlake
   - com 
@@ -35,10 +35,10 @@ The source code is developed in the [HPE-COM-PowerShell-Library](https://github.
 The library covers the HPE GreenLake platform and every Compute Ops Management instance in your workspace:
 
 - **Authentication and sessions**: Connect with SAML 2.0 or OIDC single sign-on (Okta, Microsoft Entra ID, PingIdentity), passwordless or password-based, or with an HPE Account with or without MFA. One session covers every COM region, and sessions can be saved and restored for multi-workspace automation.
-- **Workspace, identity and access**: Create and manage workspaces, organizations and tenant workspaces; claim domains and configure SSO connections and authentication policies; invite users and manage user groups, roles, and scope-based access control (SBAC).
+- **Workspace, identity and access**: Create and manage workspaces, organizations and tenant workspaces; claim domains and configure SSO connections and authentication policies; invite users and manage user groups, roles, custom roles, and scope-based access control (SBAC).
 - **Services, subscriptions and devices**: Provision Compute Ops Management, manage subscriptions and auto-subscription policies, add devices individually or in bulk from CSV files, set locations and tags, and remove (unclaim) devices.
 - **Server onboarding and configuration**: Connect iLOs to COM directly, through a web proxy, or through a Secure Gateway (with automatic discovery). Create BIOS, storage, OS, firmware and iLO settings, and apply them to server groups.
-- **Operations, compliance and insights**: Schedule firmware updates and other jobs, require approval for sensitive operations, check firmware, iLO settings and external storage compliance, collect inventory, health, warranty and logs, and review utilization and sustainability insights.
+- **Operations, compliance and insights**: Schedule firmware updates and other jobs, require approval for sensitive operations, check firmware, iLO settings and external storage compliance, review the firmware analysis report with the security bulletins and advisories an update resolves, detect and accept hardware changes with hardware verification, collect inventory, health, warranty and logs, and review utilization and sustainability insights.
 - **Notifications, integration and appliances**: Enable email notifications, deliver platform events to external endpoints with webhooks, integrate with ServiceNow, and manage HPE OneView, OVE and Secure Gateway appliances.
 
 [↑ Back to Top](#)
@@ -393,8 +393,8 @@ The table below shows the main stages of managing servers with the library and t
 | Define settings and groups | `New-HPECOMSettingServerBios`, `New-HPECOMSettingServerInternalStorage`, `New-HPECOMSettingServerFirmware`, `New-HPECOMSettingiLOSettings`, `New-HPECOMGroup`, `Add-HPECOMServerToGroup` | [Task 6](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-6---configuration-of-compute-ops-management) |
 | Collect inventory | `New-HPECOMServerInventory`, `Get-HPECOMServerInventory` | [Task 7](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-7---gathering-comprehensive-server-inventory-information) |
 | Monitor health, support and logs | `Get-HPECOMAlert`, `Get-HPECOMActivity`, `Get-HPECOMServerLogs`, `Enable-HPECOMEmailNotificationPolicy` | [Task 8](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-8---monitoring-server-health-support-and-warranty-status) |
-| Keep firmware compliant | `Get-HPECOMGroup -ShowFirmwareCompliance`, `Update-HPECOMGroupServerFirmware`, `Get-HPECOMSchedule` | [Task 9](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-9---updating-and-ensuring-server-firmware-compliance) |
-| Review insights and access iLOs | `Get-HPECOMServerUtilizationInsights`, `Get-HPECOMSustainabilityInsights`, `Get-HPECOMServeriLOSSO`, `Invoke-HPECOMGroupServeriLOConfiguration` | [Task 10](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-10---essential-next-steps-for-server-management-and-sustainability) |
+| Keep firmware compliant | `Get-HPECOMFirmwareAnalysisReport`, `Get-HPECOMGroup -ShowFirmwareCompliance`, `Update-HPECOMGroupServerFirmware`, `Get-HPECOMSchedule` | [Task 9](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-9---updating-and-ensuring-server-firmware-compliance) |
+| Review insights, security and iLOs | `Get-HPECOMServerUtilizationInsights`, `Get-HPECOMSustainabilityInsights`, `Get-HPECOMServeriLOSSO`, `Invoke-HPECOMGroupServeriLOConfiguration`, `Get-HPECOMGroupServerHardwareVerification`, `Approve-HPECOMGroupServerHardwareChange` | [Task 10](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-10---essential-next-steps-for-server-management-and-sustainability) |
 | Clean up | `Remove-HPEGLDevice`, `Remove-HPEGLSubscription`, `Remove-HPEGLService`, `Remove-HPEGLWorkspace` | [Task 11](https://hpelabs.github.io/PowerShell-COM-Zero-Touch/#task-11---clean-up-your-workspace) |
 
 Most cmdlets that change something support `-WhatIf`, so you can preview an action before running it.
@@ -414,6 +414,20 @@ Get-HPECOMSustainabilityInsights -Region "eu-central" -SerialNumber "CZ12312312"
 ```
 
 [![]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-18.png)]( {{ site.baseurl }}/assets/images/HPECOMCmdlets/HPECOMCmdlets-18.png){:class="img-100pct"}{: data-lightbox="gallery"}{: .bordered-image-thin}
+
+Before planning an update, the firmware analysis report tells you which security bulletins and customer advisories the latest baselines would resolve, and on how many servers:
+
+```powershell
+Get-HPECOMFirmwareAnalysisReport -Region "eu-central" -ShowAdvisories -Severity Critical, High
+```
+
+And with hardware verification enabled in the iLO settings of a group, you can review the components added, removed or modified on a server, then accept the changes once they are confirmed:
+
+```powershell
+Get-HPECOMGroupServerHardwareVerification -Region "eu-central" -GroupName "Production-Servers" -ShowChanges
+Get-HPECOMGroupServerHardwareVerification -Region "eu-central" -GroupName "Production-Servers" -Status RISK |
+    Approve-HPECOMGroupServerHardwareChange
+```
 
 [↑ Back to Top](#)
 
@@ -553,6 +567,12 @@ See the README's [Best Practices](https://github.com/jullienl/HPE-COM-PowerShell
 
     ```powershell
     Connect-HPEGL -Credential $cred -Workspace "Production" -RemoveExistingCredentials
+    ```
+
+    Workspace administrators can list the API clients of every user of the workspace, for example to find temporary credentials left by sessions that were never closed:
+
+    ```powershell
+    Get-HPEGLAPICredential -AllUsers | Where-Object name -match 'COM_PS_Library_Temp_Credential'
     ```
 
 - **"SSO configuration issue detected" or "Domain not configured for SSO"**: your email domain is not claimed, or the SSO connection or authentication policy is incomplete in HPE GreenLake. Check them with `Get-HPEGLDomain`, `Get-HPEGLSSOConnection` and `Get-HPEGLSSOAuthenticationPolicy`, and test SSO in a browser first.
